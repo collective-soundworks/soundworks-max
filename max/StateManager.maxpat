@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 319.0, 169.0, 1297.0, 926.0 ],
+		"rect" : [ -6.0, 87.0, 942.0, 1006.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -112,7 +112,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 823.0, 29.0, 493.0, 229.0 ],
+					"patching_rect" : [ 822.0, 33.0, 493.0, 229.0 ],
 					"proportion" : 0.5
 				}
 
@@ -900,6 +900,54 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-27",
+					"linecount" : 8,
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 100.0, 116.0 ],
+					"text" : "senders 0 2 {volume:{type:integer\\,min:-80\\,max:6\\,default:0\\,initValue:0}\\,mute:{type:boolean\\,default:false\\,initValue:false}}"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-28",
+					"linecount" : 8,
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 100.0, 116.0 ],
+					"text" : "senders 0 4 {volume:{type:integer\\,min:-80\\,max:6\\,default:0\\,initValue:0}\\,mute:{type:boolean\\,default:false\\,initValue:false}}"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-29",
+					"linecount" : 8,
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 100.0, 116.0 ],
+					"text" : "senders 0 2 {volume:{type:integer\\,min:-80\\,max:6\\,default:0\\,initValue:0}\\,mute:{type:boolean\\,default:false\\,initValue:false}}"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-30",
+					"linecount" : 8,
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 100.0, 116.0 ],
+					"text" : "senders 0 3 {volume:{type:integer\\,min:-80\\,max:6\\,default:0\\,initValue:0}\\,mute:{type:boolean\\,default:false\\,initValue:false}}"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-31",
 					"linecount" : 8,
 					"maxclass" : "newobj",
 					"numinlets" : 0,
