@@ -7,7 +7,9 @@ import compile from 'template-literal';
 import PlayerExperience from './PlayerExperience.js';
 import ControllerExperience from './ControllerExperience.js';
 
-import osc from 'osc';
+// import osc from 'osc';
+
+import { Client as OscClient, Server as OscServer } from 'node-osc';
 
 import globalsSchema from './schemas/globals';
 
@@ -69,74 +71,98 @@ server.stateManager.registerSchema('globals', globalsSchema);
     playerExperience.start();
     controllerExperience.start();
 
-
-    const udpPort = new osc.UDPPort({
+    const oscConfig = {
       localAddress: '127.0.0.1',
       localPort: 57121,
       remoteAddress: '127.0.0.1',
       remotePort: 57122,
-    });
+    };
 
-    udpPort.on('ready', () => console.log('OSC ready'));
-    udpPort.on('error', () => console.log('OSC error'));
+    class OscStateManager {
+      constructor(config, stateManager) {
+        this.config = config;
+        this.stateManager = stateManager;
 
-    //
-    // let localState = null;
+        this._listeners = new Map();
+      }
 
-    // need to wrap udpPort in a proper PubSub interface
-    udpPort.on('message', async oscMsg => {
-      console.log('subscribe 1');
-      const { address, args } = oscMsg;
+      async init() {
+        return new Promise((resolve, reject) => {
+          this._oscClient = new OscClient(oscConfig.remoteAddress, oscConfig.remotePort);
 
-      switch (address) {
-        case '/sw/state-manager/attach-request': {
-          const [schemaName, stateId] = args;
-          let localState = null;
-          console.log('attach state', schemaName);
-
-          try {
-            localState = await server.stateManager.attach(schemaName, stateId);
-          } catch(err) {
-            udpPort.send({
-              address: '/sw/state-manager/attach-error',
-              args: [
-                {
-                  type: 's',
-                  value: err,
-                },
-              ],
-            });
-            return;
-          }
-
-          const { id, remoteId } = localState;
-          const schema = localState.getSchema();
-          const currentValues = localState.getValues();
-
-          // bing listeners from updates
-          // udpPort.on('message', async oscMsg => {
-          //   const { address, args } = oscMsg;
-
-          // });
-
-          udpPort.send({
-            address: '/sw/state-manager/attach-response',
-            args: [
-              { type: 'i', value: id },
-              { type: 'i', value: remoteId },
-              { type: 's', value: schemaName },
-              { type: 's', value: JSON.stringify(schema) },
-              { type: 's', value: JSON.stringify(currentValues) },
-            ],
+          this._oscServer = new OscServer(oscConfig.localPort, oscConfig.localAddress, () => {
+            console.log('osc server inited');
+            resolve();
           });
 
-          // udpPort
-          break;
+          this._oscServer.on('message', msg => {
+            const [channel, ...args] = msg;
+            this._emit(channel, args);
+          });
+
+          // subscribe for `attach`
+          this._subscribe('/sw/state-manager/attach-request', async (schemaName, stateId) => {
+            let state;
+
+            try {
+              state = await this.stateManager.attach(schemaName, stateId);
+            } catch(err) {
+              this._oscClient.send('/sw/state-manager/attach-error', err);
+            }
+
+            const { id, remoteId } = state;
+
+            const channel = `/sw/state-manager/${id}/${remoteId}/update-request`;
+            const unsubscribe = this._subscribe(channel, async updates => {
+              updates = JSON.parse(updates);
+
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${channel} ${updates}`);
+
+              const diff = await state.set(updates);
+              // @note - let's if we can do something here to handle
+              // update-notifications vs. update-response
+            });
+
+            state.subscribe(updates => {
+              const channel = `/sw/state-manager/${id}/${remoteId}/update-notification`;
+              updates = JSON.stringify(updates);
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel} ${updates}`);
+              this._oscClient.send(channel, updates);
+            });
+            // init state listeners
+
+            const schema = JSON.stringify(state.getSchema());
+            const currentValues = JSON.stringify(state.getValues());
+
+            console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending attach response`);
+            this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schema, currentValues);
+          });
+        });
+      }
+
+      _subscribe(channel, callback) {
+        if (!this._listeners.has(channel)) {
+          this._listeners.set(channel, new Set());
+        }
+
+        const listeners = this._listeners.get(channel);
+        listeners.add(callback);
+
+        return () => listeners.add(callback);
+      }
+
+      _emit(channel, args) {
+        if (this._listeners.has(channel)) {
+          const listeners = this._listeners.get(channel);
+          listeners.forEach(callback => callback(...args));
         }
       }
-    });
+    }
 
-    udpPort.open();
+    const oscStateManager = new OscStateManager(oscConfig, server.stateManager);
+    await oscStateManager.init();
+
+
 
   } catch (err) {
     console.error(err.stack);
