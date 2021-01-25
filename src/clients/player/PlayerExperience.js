@@ -23,6 +23,7 @@ class PlayerExperience extends AbstractExperience {
     super.start();
 
     this.globals = await this.client.stateManager.attach('globals');
+    this.globals.subscribe(() => this.render());
 
     window.addEventListener('resize', () => this.render());
     this.render();

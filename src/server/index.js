@@ -114,10 +114,9 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
             const channel = `/sw/state-manager/${id}/${remoteId}/update-request`;
             const unsubscribe = this._subscribe(channel, async updates => {
+              // console.log(updates);
               updates = JSON.parse(updates);
-
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${channel} ${updates}`);
-
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${channel}`, updates);
               const diff = await state.set(updates);
               // @note - let's if we can do something here to handle
               // update-notifications vs. update-response
@@ -161,8 +160,6 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
     const oscStateManager = new OscStateManager(oscConfig, server.stateManager);
     await oscStateManager.init();
-
-
 
   } catch (err) {
     console.error(err.stack);

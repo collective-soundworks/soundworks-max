@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 8,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 927.0, 738.0 ],
+		"rect" : [ 49.0, 105.0, 1280.0, 772.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,17 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-33",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 963.5, 509.0, 152.0, 20.0 ],
+					"text" : "=> reload problem is fixed"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-31",
 					"linecount" : 6,
 					"maxclass" : "comment",
@@ -57,7 +68,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 537.0, 493.0, 150.0, 87.0 ],
+					"patching_rect" : [ 537.0, 493.0, 151.0, 87.0 ],
 					"text" : "valeurs courantes des paramètres du schéma au moment de la request\nà envoyer juste après la création de l'objet schema_sw.update"
 				}
 
@@ -137,23 +148,24 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-119",
-					"linecount" : 8,
+					"linecount" : 10,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 859.0, 719.0, 150.0, 114.0 ],
-					"text" : "we may maybe need to think about sending values with compressed JSON\nhttps://www.cssscript.com/parse-stringify-compress-json-strings-javascript-zipson/"
+					"patching_rect" : [ 834.0, 705.0, 150.0, 141.0 ],
+					"text" : "we may maybe need to think about sending values with compressed JSON\nhttps://www.cssscript.com/parse-stringify-compress-json-strings-javascript-zipson/\n\n=> NOPE"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-117",
+					"linecount" : 3,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 834.0, 681.0, 150.0, 20.0 ],
-					"text" : "this syntax is NOT working"
+					"patching_rect" : [ 781.0, 660.0, 150.0, 47.0 ],
+					"text" : "this syntax is NOT working\n=> if you put the right remoteId (2), it does work"
 				}
 
 			}
@@ -189,7 +201,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1157.0, 443.0, 20.0, 140.0 ]
+					"patching_rect" : [ 1157.0, 440.0, 20.0, 140.0 ]
 				}
 
 			}
@@ -387,8 +399,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 541.0, 660.0, 291.0, 62.0 ],
-					"text" : "/sw/state-manager/0/2/update-request \"{\n\t\\\"volume\\\" : -80\n}\n\""
+					"patching_rect" : [ 541.0, 660.0, 223.0, 62.0 ],
+					"text" : "/sw/state-manager/0/6/update-request \"{\n\t\\\"mute\\\" : 1\n}\n\""
 				}
 
 			}
@@ -474,7 +486,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 559.0, 613.0, 69.0, 22.0 ],
+					"patching_rect" : [ 537.0, 592.5, 69.0, 22.0 ],
 					"text" : "r _udpsend"
 				}
 
@@ -487,7 +499,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1249.0, 585.0, 24.0, 24.0 ]
+					"patching_rect" : [ 1249.0, 540.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -826,7 +838,7 @@
 							"min" : -80,
 							"max" : 6,
 							"default" : 0,
-							"initValue" : -64
+							"initValue" : 0
 						}
 ,
 						"mute" : 						{
@@ -1031,6 +1043,138 @@
 				}
 
 			}
+, 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-26",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-27",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-28",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-30",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-32",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-34",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 6 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-35",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 6 globals"
+				}
+
+			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -1078,13 +1222,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-125", 0 ],
 					"source" : [ "obj-116", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
-					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -1356,6 +1493,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-12", 1 ],
+					"order" : 0,
+					"source" : [ "obj-95", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-24", 0 ],
+					"order" : 1,
 					"source" : [ "obj-95", 0 ]
 				}
 
@@ -1393,14 +1539,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "senders.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "receivers.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
