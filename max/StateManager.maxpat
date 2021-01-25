@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 49.0, 105.0, 1280.0, 772.0 ],
+		"rect" : [ 34.0, 87.0, 1505.0, 803.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,17 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-49",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 496.0, 832.0, 101.0, 22.0 ],
+					"text" : "print UDP_SEND"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-33",
 					"maxclass" : "comment",
@@ -123,12 +134,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-122",
-					"linecount" : 5,
+					"linecount" : 12,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 8.0, 97.0, 150.0, 74.0 ],
-					"text" : "@TODO\n-> connardproof system for attach-request, can be done only once per schema"
+					"patching_rect" : [ 8.0, 14.5, 150.0, 167.0 ],
+					"text" : "@TODO\n-> connardproof system for attach-request, can be done only once per schema\n\n-> not sure it's a good idea in the long term, but I created a detach OSC channel `/sw/state-manager/${id}/${remoteId}/detach-request"
 				}
 
 			}
@@ -148,24 +159,24 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-119",
-					"linecount" : 10,
+					"linecount" : 12,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 834.0, 705.0, 150.0, 141.0 ],
-					"text" : "we may maybe need to think about sending values with compressed JSON\nhttps://www.cssscript.com/parse-stringify-compress-json-strings-javascript-zipson/\n\n=> NOPE"
+					"patching_rect" : [ 989.0, 644.0, 150.0, 167.0 ],
+					"text" : "we may maybe need to think about sending values with compressed JSON\nhttps://www.cssscript.com/parse-stringify-compress-json-strings-javascript-zipson/\n\n=> NOPE, seems like a display problem, we don't care"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-117",
-					"linecount" : 3,
+					"linecount" : 13,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 781.0, 660.0, 150.0, 47.0 ],
-					"text" : "this syntax is NOT working\n=> if you put the right remoteId (2), it does work"
+					"patching_rect" : [ 773.5, 620.0, 201.0, 181.0 ],
+					"text" : "this syntax is NOT working\n=> actually a cable was missing but\n=> this is weird... the /6/ should be /2/, it logs a broken channel but sends a correct one (while multiple times)\n=> it seems that instances of states are not cleaned between open / close of the patche (or even open / quit of Max)\n=> so each update triggers a lot of OSC messages, we only see the last one in the comment box"
 				}
 
 			}
@@ -201,7 +212,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1157.0, 440.0, 20.0, 140.0 ]
+					"patching_rect" : [ 1152.0, 447.0, 20.0, 140.0 ]
 				}
 
 			}
@@ -400,7 +411,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 541.0, 660.0, 223.0, 62.0 ],
-					"text" : "/sw/state-manager/0/6/update-request \"{\n\t\\\"mute\\\" : 1\n}\n\""
+					"text" : "/sw/state-manager/0/6/update-request \"{\n\t\\\"volume\\\" : -44\n}\n\""
 				}
 
 			}
@@ -627,7 +638,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 353.0, 265.0, 50.0, 22.0 ],
-					"text" : "6"
+					"text" : "4"
 				}
 
 			}
@@ -838,7 +849,7 @@
 							"min" : -80,
 							"max" : 6,
 							"default" : 0,
-							"initValue" : 0
+							"initValue" : -38
 						}
 ,
 						"mute" : 						{
@@ -1175,6 +1186,116 @@
 				}
 
 			}
+, 			{
+				"box" : 				{
+					"id" : "obj-36",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-37",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-39",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 3 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-40",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 3 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-44",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-48",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 2 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-50",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 3 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-51",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 3 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-54",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 119.0, 22.0 ],
+					"text" : "receivers 0 4 globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-57",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 0.0, 0.0, 113.0, 22.0 ],
+					"text" : "senders 0 4 globals"
+				}
+
+			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -1222,6 +1343,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-125", 0 ],
 					"source" : [ "obj-116", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-24", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -1502,6 +1630,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-24", 0 ],
 					"order" : 1,
+					"source" : [ "obj-95", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-49", 0 ],
+					"order" : 2,
 					"source" : [ "obj-95", 0 ]
 				}
 

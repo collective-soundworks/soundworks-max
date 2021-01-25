@@ -112,15 +112,24 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
             const { id, remoteId } = state;
 
-            const channel = `/sw/state-manager/${id}/${remoteId}/update-request`;
-            const unsubscribe = this._subscribe(channel, async updates => {
-              // console.log(updates);
+            const updateChannel = `/sw/state-manager/${id}/${remoteId}/update-request`;
+            const unsubscribeUpdate = this._subscribe(updateChannel, async updates => {
               updates = JSON.parse(updates);
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${channel}`, updates);
-              const diff = await state.set(updates);
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${updateChannel}`, updates);
+              await state.set(updates);
               // @note - let's if we can do something here to handle
               // update-notifications vs. update-response
             });
+
+            const detachChannel = `/sw/state-manager/${id}/${remoteId}/detach-request`;
+            const unsubscribeDetach = this._subscribe(updateChannel, async () => {
+              unsubscribeUpdate();
+              unsubscribeDetach();
+              await state.detach();
+              // @note - let's if we can do something here to handle
+              // update-notifications vs. update-response
+            });
+
 
             state.subscribe(updates => {
               const channel = `/sw/state-manager/${id}/${remoteId}/update-notification`;
