@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 895.0, 424.0, 776.0, 415.0 ],
+		"rect" : [ 579.0, 406.0, 513.0, 411.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,45 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-22",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 15.0, 126.0, 119.0, 45.5 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 278.0, 316.0, 50.0, 22.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 266.0, 272.0, 84.0, 22.0 ],
+					"text" : "r schemaInfos"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-15",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 112.0, 317.0, 50.0, 22.0 ]
+					"patching_rect" : [ 20.0, 283.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -56,7 +89,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 100.0, 272.0, 239.0, 22.0 ],
+					"patching_rect" : [ 8.0, 238.0, 239.0, 22.0 ],
 					"text" : "route /sw/state-manager/detach-notification"
 				}
 
@@ -68,7 +101,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 113.0, 243.0, 81.0, 22.0 ],
+					"patching_rect" : [ 21.0, 209.0, 81.0, 22.0 ],
 					"text" : "r _udpreceive"
 				}
 
@@ -78,8 +111,9 @@
 					"id" : "obj-20",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 15.0, 76.0, 225.0, 22.0 ],
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 15.0, 73.0, 225.0, 22.0 ],
 					"text" : "sw.StateManager localhost 57121 57122"
 				}
 
@@ -103,7 +137,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 201.0, 46.0, 37.0, 22.0 ],
+					"patching_rect" : [ 216.0, 21.0, 37.0, 22.0 ],
 					"text" : "close"
 				}
 
@@ -176,18 +210,6 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 15.0, 100.0, 290.0, 20.0 ],
 					"text" : "udp send adress / upd send port / udp receive port"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 201.0, 16.0, 113.0, 22.0 ],
-					"text" : "get-schema globals"
 				}
 
 			}
@@ -1057,8 +1079,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-21", 1 ],
+					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-52", 0 ],
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-22", 0 ],
+					"source" : [ "obj-20", 0 ]
 				}
 
 			}
@@ -1174,28 +1210,6 @@
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "senders.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "receivers.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spat5.osc.prepend.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.route.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0
