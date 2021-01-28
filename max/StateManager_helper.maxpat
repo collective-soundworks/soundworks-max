@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 6,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 626.0, 87.0, 776.0, 685.0 ],
+		"rect" : [ 895.0, 424.0, 776.0, 415.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,82 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 112.0, 317.0, 50.0, 22.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 100.0, 272.0, 239.0, 22.0 ],
+					"text" : "route /sw/state-manager/detach-notification"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 113.0, 243.0, 81.0, 22.0 ],
+					"text" : "r _udpreceive"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 15.0, 76.0, 225.0, 22.0 ],
+					"text" : "sw.StateManager localhost 57121 57122"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 264.0, 62.0, 150.0, 33.0 ],
+					"text" : "sw.StateManager localhost 57121 57122"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 201.0, 46.0, 37.0, 22.0 ],
+					"text" : "close"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "int", "int" ],
-					"patching_rect" : [ 432.0, 485.0, 48.0, 22.0 ],
+					"patching_rect" : [ 434.0, 341.5, 48.0, 22.0 ],
 					"text" : "change"
 				}
 
@@ -57,7 +127,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 547.5, 313.0, 41.0, 22.0 ],
+					"patching_rect" : [ 549.5, 174.0, 41.0, 22.0 ],
 					"text" : "set $1"
 				}
 
@@ -69,7 +139,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 432.0, 257.0, 41.0, 22.0 ],
+					"patching_rect" : [ 434.0, 174.0, 41.0, 22.0 ],
 					"text" : "set $1"
 				}
 
@@ -104,7 +174,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 256.0, 72.0, 290.0, 20.0 ],
+					"patching_rect" : [ 15.0, 100.0, 290.0, 20.0 ],
 					"text" : "udp send adress / upd send port / udp receive port"
 				}
 
@@ -129,7 +199,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 655.0, 283.0, 20.0, 140.0 ]
+					"patching_rect" : [ 657.0, 200.0, 20.0, 140.0 ]
 				}
 
 			}
@@ -140,7 +210,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 655.0, 554.0, 76.0, 22.0 ],
+					"patching_rect" : [ 657.0, 397.0, 76.0, 22.0 ],
 					"text" : "prepend toto"
 				}
 
@@ -168,7 +238,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 6,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -818,7 +888,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 432.0, 522.0, 101.0, 22.0 ],
+					"patching_rect" : [ 434.0, 365.0, 101.0, 22.0 ],
 					"text" : "scale 0 127 -80 6"
 				}
 
@@ -831,7 +901,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 432.0, 298.0, 20.0, 140.0 ]
+					"patching_rect" : [ 434.0, 198.0, 20.0, 140.0 ]
 				}
 
 			}
@@ -843,7 +913,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 547.5, 356.0, 24.0, 24.0 ]
+					"patching_rect" : [ 549.5, 251.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -854,7 +924,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 547.5, 554.0, 83.0, 22.0 ],
+					"patching_rect" : [ 549.5, 397.0, 83.0, 22.0 ],
 					"text" : "prepend mute"
 				}
 
@@ -866,7 +936,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 432.0, 554.0, 95.0, 22.0 ],
+					"patching_rect" : [ 434.0, 397.0, 95.0, 22.0 ],
 					"text" : "prepend volume"
 				}
 
@@ -877,7 +947,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 432.0, 603.0, 93.0, 22.0 ],
+					"patching_rect" : [ 434.0, 446.0, 93.0, 22.0 ],
 					"text" : "s globals.sw.set"
 				}
 
@@ -889,7 +959,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 432.0, 226.0, 101.0, 22.0 ],
+					"patching_rect" : [ 434.0, 144.0, 101.0, 22.0 ],
 					"text" : "scale -80 6 0 127"
 				}
 
@@ -901,7 +971,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 432.0, 159.0, 250.0, 22.0 ],
+					"patching_rect" : [ 434.0, 105.0, 250.0, 22.0 ],
 					"text" : "route volume mute"
 				}
 
@@ -913,7 +983,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 432.0, 114.0, 126.0, 22.0 ],
+					"patching_rect" : [ 434.0, 60.0, 126.0, 22.0 ],
 					"text" : "r globals.sw.subscribe"
 				}
 
@@ -942,17 +1012,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 23.0, 72.0, 225.0, 22.0 ],
-					"text" : "sw.StateManager localhost 57121 57122"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"angle" : 270.0,
 					"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
 					"border" : 2,
@@ -962,7 +1021,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 409.0, 103.0, 346.0, 544.0 ],
+					"patching_rect" : [ 427.0, 46.0, 340.0, 431.0 ],
 					"proportion" : 0.5
 				}
 
@@ -970,8 +1029,22 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-59", 0 ],
 					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -991,14 +1064,14 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
+					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
+					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-4", 0 ]
 				}
 
@@ -1068,6 +1141,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-15", 1 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
 					"source" : [ "obj-84", 0 ]
 				}
@@ -1090,21 +1170,21 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "sw.StateManager.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "senders.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "receivers.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
