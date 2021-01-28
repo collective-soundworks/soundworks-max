@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 327.0, 166.0, 907.0, 599.0 ],
+		"rect" : [ 34.0, 166.0, 1200.0, 650.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -267,7 +267,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+						"rect" : [ 691.0, 187.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -298,13 +298,12 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-9",
-									"linecount" : 3,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 100.0, 115.0, 49.0 ],
-									"text" : "attached to $3 - StateID is $1 - RequestID is $2"
+									"patching_rect" : [ 50.0, 100.0, 229.0, 22.0 ],
+									"text" : "attached to $3 - stateId: $1 - remoteId: $2"
 								}
 
 							}
