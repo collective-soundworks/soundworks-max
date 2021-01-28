@@ -105,32 +105,24 @@ server.stateManager.registerSchema('globals', globalsSchema);
           });
 
           // send detach messages to max when the server shuts down
-          // cf. https://stackoverflow.com/a/14032965
-          const exitHandler = (options, exitCode) => {
-            if (options.cleanup) {
-              this._attachedStates.forEach(state => {
-                const { id, remoteId } = state;
-                const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
+          const cleanup = () => {
+            console.log('> cleanup...');
+            this._attachedStates.forEach(state => {
+              const { id, remoteId } = state;
+              const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
 
-                console.log(`[stateId: ${id} - remoteId: ${remoteId}] send detach notification ${channel}`);
-                this._oscClient.send(channel);
-              });
-            }
-            // if (exitCode || exitCode === 0) console.log(exitCode);
-            if (options.exit) {
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] send detach notification ${channel}`);
+              this._oscClient.send(channel);
+            });
+
+            setTimeout(() => {
+              console.log('> exiting...');
               process.exit();
-            }
-          }
+            }, 1);
+          };
 
-          // do something when app is closing
-          process.on('exit', exitHandler.bind(null, { cleanup: true }));
-          // catches ctrl+c event | or @soundworks/template-build restart
-          process.on('SIGINT', exitHandler.bind(null, { exit: true }));
-          // catches "kill pid" (for example: nodemon restart)
-          // process.on('SIGUSR1', exitHandler.bind(null, { exit: true }));
-          // process.on('SIGUSR2', exitHandler.bind(null, { exit: true }));
-          //catches uncaught exceptions
-          process.on('uncaughtException', exitHandler.bind(null, { exit: true }));
+          process.once('SIGINT', cleanup);
+          process.once('beforeExit', cleanup);
 
           // subscribe for `attach-request`s
           this._subscribe('/sw/state-manager/attach-request', async (schemaName, stateId) => {
