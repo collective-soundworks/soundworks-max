@@ -72,7 +72,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
     controllerExperience.start();
 
     const oscConfig = {
-      localAddress: '127.0.0.1',
+      localAddress: '127.0.0.1', // could be 0.0.0.0 by default
       localPort: 57121,
       remoteAddress: '127.0.0.1',
       remotePort: 57122,
@@ -112,7 +112,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
             const { id, remoteId } = state;
 
-            const updateChannel = `/sw/state-manager/${id}/${remoteId}/update-request`;
+            const updateChannel = `/sw/state-manager/update-request/${id}/${remoteId}`;
             const unsubscribeUpdate = this._subscribe(updateChannel, async updates => {
               updates = JSON.parse(updates);
               console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${updateChannel}`, updates);
@@ -121,8 +121,9 @@ server.stateManager.registerSchema('globals', globalsSchema);
               // update-notifications vs. update-response
             });
 
-            const detachChannel = `/sw/state-manager/${id}/${remoteId}/detach-request`;
+            const detachChannel = `/sw/state-manager/detach-request/${id}/${remoteId}`;
             const unsubscribeDetach = this._subscribe(updateChannel, async () => {
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] detach request ${detachChannel}`);
               unsubscribeUpdate();
               unsubscribeDetach();
               await state.detach();
@@ -132,7 +133,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
 
             state.subscribe(updates => {
-              const channel = `/sw/state-manager/${id}/${remoteId}/update-notification`;
+              const channel = `/sw/state-manager/update-notification/${id}/${remoteId}`;
               updates = JSON.stringify(updates);
               console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel} ${updates}`);
               this._oscClient.send(channel, updates);
@@ -143,7 +144,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
             const currentValues = JSON.stringify(state.getValues());
 
             console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending attach response`);
-            this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schema, currentValues);
+            this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schemaName, schema, currentValues);
           });
         });
       }
@@ -160,6 +161,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
       }
 
       _emit(channel, args) {
+        console.log(channel);
         if (this._listeners.has(channel)) {
           const listeners = this._listeners.get(channel);
           listeners.forEach(callback => callback(...args));
