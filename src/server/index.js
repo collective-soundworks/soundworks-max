@@ -122,7 +122,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
             });
 
             const detachChannel = `/sw/state-manager/detach-request/${id}/${remoteId}`;
-            const unsubscribeDetach = this._subscribe(updateChannel, async () => {
+            const unsubscribeDetach = this._subscribe(detachChannel, async () => {
               console.log(`[stateId: ${id} - remoteId: ${remoteId}] detach request ${detachChannel}`);
               unsubscribeUpdate();
               unsubscribeDetach();
@@ -135,7 +135,8 @@ server.stateManager.registerSchema('globals', globalsSchema);
             state.subscribe(updates => {
               const channel = `/sw/state-manager/update-notification/${id}/${remoteId}`;
               updates = JSON.stringify(updates);
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel} ${updates}`);
+
+              console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel}`, updates);
               this._oscClient.send(channel, updates);
             });
             // init state listeners
