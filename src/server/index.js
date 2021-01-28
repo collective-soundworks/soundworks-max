@@ -72,7 +72,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
     controllerExperience.start();
 
     const oscConfig = {
-      localAddress: '127.0.0.1', // could be 0.0.0.0 by default
+      localAddress: '0.0.0.0', // could be 0.0.0.0 by default
       localPort: 57121,
       remoteAddress: '127.0.0.1',
       remotePort: 57122,
@@ -83,6 +83,9 @@ server.stateManager.registerSchema('globals', globalsSchema);
         this.config = config;
         this.stateManager = stateManager;
 
+        // we keep a record of attached states, to send a notification to max
+        // when the server exists
+        this._attachedStates = new Set();
         this._listeners = new Map();
       }
 
@@ -95,12 +98,41 @@ server.stateManager.registerSchema('globals', globalsSchema);
             resolve();
           });
 
+          // listen for incomming messages and dispatch
           this._oscServer.on('message', msg => {
             const [channel, ...args] = msg;
             this._emit(channel, args);
           });
 
-          // subscribe for `attach`
+          // send detach messages to max when the server shuts down
+          // cf. https://stackoverflow.com/a/14032965
+          const exitHandler = (options, exitCode) => {
+            if (options.cleanup) {
+              this._attachedStates.forEach(state => {
+                const { id, remoteId } = state;
+                const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
+
+                console.log(`[stateId: ${id} - remoteId: ${remoteId}] send detach notification ${channel}`);
+                this._oscClient.send(channel);
+              });
+            }
+            // if (exitCode || exitCode === 0) console.log(exitCode);
+            if (options.exit) {
+              process.exit();
+            }
+          }
+
+          // do something when app is closing
+          process.on('exit', exitHandler.bind(null, { cleanup: true }));
+          // catches ctrl+c event | or @soundworks/template-build restart
+          process.on('SIGINT', exitHandler.bind(null, { exit: true }));
+          // catches "kill pid" (for example: nodemon restart)
+          // process.on('SIGUSR1', exitHandler.bind(null, { exit: true }));
+          // process.on('SIGUSR2', exitHandler.bind(null, { exit: true }));
+          //catches uncaught exceptions
+          process.on('uncaughtException', exitHandler.bind(null, { exit: true }));
+
+          // subscribe for `attach-request`s
           this._subscribe('/sw/state-manager/attach-request', async (schemaName, stateId) => {
             let state;
 
@@ -108,7 +140,10 @@ server.stateManager.registerSchema('globals', globalsSchema);
               state = await this.stateManager.attach(schemaName, stateId);
             } catch(err) {
               this._oscClient.send('/sw/state-manager/attach-error', err);
+              return;
             }
+
+            this._attachedStates.add(state);
 
             const { id, remoteId } = state;
 
@@ -134,11 +169,12 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
             state.subscribe(updates => {
               const channel = `/sw/state-manager/update-notification/${id}/${remoteId}`;
-              updates = JSON.stringify(updates);
-
               console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel}`, updates);
+
+              updates = JSON.stringify(updates);
               this._oscClient.send(channel, updates);
             });
+
             // init state listeners
 
             const schema = JSON.stringify(state.getSchema());
@@ -162,7 +198,6 @@ server.stateManager.registerSchema('globals', globalsSchema);
       }
 
       _emit(channel, args) {
-        console.log(channel);
         if (this._listeners.has(channel)) {
           const listeners = this._listeners.get(channel);
           listeners.forEach(callback => callback(...args));
