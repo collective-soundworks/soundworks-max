@@ -247,7 +247,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 612.0, 226.0, 50.0, 89.0 ],
-					"text" : "/sw/state-manager/detach-request/0/1"
+					"text" : "/sw/state-manager/detach-request/0/2"
 				}
 
 			}
