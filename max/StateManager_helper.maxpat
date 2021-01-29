@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 626.0, 87.0, 776.0, 685.0 ],
+		"rect" : [ 612.0, 87.0, 776.0, 685.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,26 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-15",
+					"linecount" : 12,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 23.0, 247.0, 240.0, 167.0 ],
+					"text" : "@note : JS state API\n\n- subscribe(function() {})\n- set(updates)\n- getValues() -> { currentValues }\n- getSchema() -> { schema }\n\nSi on trouve un moyen de matcher ça en Max ce serait vraiment parfait, mais c'est vrai que c'est pas forcement raccord avec un paradigme send / receive (si tu as une idée ?)"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-13",
+					"linecount" : 7,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 201.0, 538.0, 50.0, 22.0 ]
+					"patching_rect" : [ 84.0, 509.0, 230.0, 102.0 ],
+					"text" : "/sw/state-manager/attach-response 0 1 globals {\\\"volume\\\":{\\\"type\\\":\\\"integer\\\"\\,\\\"min\\\":-80\\,\\\"max\\\":6\\,\\\"default\\\":0\\,\\\"initValue\\\":0}\\,\\\"mute\\\":{\\\"type\\\":\\\"boolean\\\"\\,\\\"default\\\":false\\,\\\"initValue\\\":false}} {\\\"volume\\\":0\\,\\\"mute\\\":false}"
 				}
 
 			}
@@ -56,7 +70,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 220.0, 472.0, 81.0, 22.0 ],
+					"patching_rect" : [ 79.0, 464.0, 81.0, 22.0 ],
 					"text" : "r _udpreceive"
 				}
 
@@ -105,7 +119,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 256.0, 169.0, 24.0, 24.0 ]
+					"patching_rect" : [ 256.0, 144.5, 48.5, 48.5 ]
 				}
 
 			}
@@ -1125,21 +1139,6 @@
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "sw.abs.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spat5.osc.prepend.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.route.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

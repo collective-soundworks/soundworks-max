@@ -78,6 +78,75 @@ server.stateManager.registerSchema('globals', globalsSchema);
       remotePort: 57122,
     };
 
+    function coerseValue(key, value, def) {
+      if (!def) {
+        throw new Error(`Param "${key}" does not exists`);
+      }
+
+      switch (def.type) {
+        case 'float': {
+          const coersed = parseFloat(value);
+
+          if (!Number.isNaN(coersed)) {
+            return coersed;
+          } else {
+            if (def.nullable === true) {
+              return null;
+            } else {
+              throw new Error(`Invalid value "${value}" for param "${key}"`);
+            }
+          }
+          break;
+        }
+        case 'integer': {
+          const coersed = parseInt(value);
+
+          if (!Number.isNaN(coersed)) {
+            return coersed;
+          } else {
+            if (def.nullable === true) {
+              return null;
+            } else {
+              throw new Error(`Invalid value "${value}" for param "${key}"`);
+            }
+          }
+          break;
+        }
+        case 'boolean': {
+          return !!value;
+          break;
+        }
+        case 'string': {
+          return value + '';
+          break;
+        }
+        case 'enum': {
+          const list = def.list;
+
+          if (list.indexOf(value) !== -1) {
+            return list;
+          } else {
+            if (def.nullable === true) {
+              return null;
+            } else {
+              throw new Error(`Invalid value "${value}" for param "${key}"`);
+            }
+          }
+          break;
+        }
+        case 'any': {
+          return value;
+          break;
+        }
+        default: {
+          return value;
+          break;
+        }
+      }
+
+      // return value;
+    }
+
     class OscStateManager {
       constructor(config, stateManager) {
         this.config = config;
@@ -94,7 +163,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
           this._oscClient = new OscClient(oscConfig.remoteAddress, oscConfig.remotePort);
 
           this._oscServer = new OscServer(oscConfig.localPort, oscConfig.localAddress, () => {
-            console.log('osc server inited');
+            // console.log('osc server inited');
             resolve();
           });
 
@@ -111,7 +180,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
               const { id, remoteId } = state;
               const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
 
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] send detach notification ${channel}`);
+              // console.log(`[stateId: ${id} - remoteId: ${remoteId}] send detach notification ${channel}`);
               this._oscClient.send(channel);
             });
 
@@ -138,19 +207,28 @@ server.stateManager.registerSchema('globals', globalsSchema);
             this._attachedStates.add(state);
 
             const { id, remoteId } = state;
+            const schema = state.getSchema();
 
             const updateChannel = `/sw/state-manager/update-request/${id}/${remoteId}`;
             const unsubscribeUpdate = this._subscribe(updateChannel, async updates => {
               updates = JSON.parse(updates);
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${updateChannel}`, updates);
+
+              for (let key in updates) {
+                try {
+                  updates[key] = coerseValue(key, updates[key], schema[key])
+                } catch(err) {
+                  console.log('Ignoring param update:', err.message);
+                  delete updates[key];
+                }
+              }
+
+              // console.log(`[stateId: ${id} - remoteId: ${remoteId}] received updated request ${updateChannel}`, updates);
               await state.set(updates);
-              // @note - let's if we can do something here to handle
-              // update-notifications vs. update-response
             });
 
             const detachChannel = `/sw/state-manager/detach-request/${id}/${remoteId}`;
             const unsubscribeDetach = this._subscribe(detachChannel, async () => {
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] detach request ${detachChannel}`);
+              // console.log(`[stateId: ${id} - remoteId: ${remoteId}] detach request ${detachChannel}`);
               unsubscribeUpdate();
               unsubscribeDetach();
               await state.detach();
@@ -161,7 +239,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
             state.subscribe(updates => {
               const channel = `/sw/state-manager/update-notification/${id}/${remoteId}`;
-              console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel}`, updates);
+              // console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel}`, updates);
 
               updates = JSON.stringify(updates);
               this._oscClient.send(channel, updates);
@@ -169,11 +247,11 @@ server.stateManager.registerSchema('globals', globalsSchema);
 
             // init state listeners
 
-            const schema = JSON.stringify(state.getSchema());
+            const schemaStr = JSON.stringify(schema);
             const currentValues = JSON.stringify(state.getValues());
 
             console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending attach response`);
-            this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schemaName, schema, currentValues);
+            this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schemaName, schemaStr, currentValues);
           });
         });
       }

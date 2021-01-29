@@ -5,6 +5,8 @@ import renderInitializationScreens from '@soundworks/template-helpers/client/ren
 import '@ircam/simple-components/sc-text.js';
 import '@ircam/simple-components/sc-slider.js';
 import '@ircam/simple-components/sc-toggle.js';
+import '@ircam/simple-components/sc-number.js';
+import '@ircam/simple-components/sc-editor.js';
 
 class PlayerExperience extends AbstractExperience {
   constructor(client, config, $container) {
@@ -35,7 +37,6 @@ class PlayerExperience extends AbstractExperience {
 
     this.rafId = window.requestAnimationFrame(() => {
       const schema = this.globals.getSchema();
-      // const values = this.globals.getValues();
 
       render(html`
         <div style="padding: 20px">
@@ -66,9 +67,45 @@ class PlayerExperience extends AbstractExperience {
                 readonly
               ></sc-text>
               <sc-toggle
-                .value="${this.globals.get('mute')}"
+                ?active="${this.globals.get('mute')}"
                 @change=${e => this.globals.set({ mute: e.detail.value })}
               ></sc-toggle>
+            </div>
+            <div style="margin-bottom: 4px">
+              <sc-text
+                value="gain"
+                width="100"
+                readonly
+              ></sc-text>
+              <sc-number
+                value="${this.globals.get('gain')}"
+                min="${schema.gain.min}"
+                max="${schema.gain.max}"
+                step="${schema.gain.step}"
+                @input=${e => this.globals.set({ gain: e.detail.value })}
+              ></sc-number>
+            </div>
+            <div style="margin-bottom: 4px">
+              <sc-text
+                value="message"
+                width="100"
+                readonly
+              ></sc-text>
+              <sc-text
+                value="${this.globals.get('message')}"
+                @change=${e => this.globals.set({ message: e.detail.value })}
+              ></sc-text>
+            </div>
+            <div style="margin-bottom: 4px">
+              <sc-text
+                value="config"
+                width="100"
+                readonly
+              ></sc-text>
+              <sc-editor
+                value="${JSON.stringify(this.globals.get('config'), null, 2)}"
+                @change=${e => this.globals.set({ config: JSON.parse(e.detail.value) })}
+              ></sc-editor>
             </div>
         </div>
       `, this.$container);
