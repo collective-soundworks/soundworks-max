@@ -2,7 +2,7 @@
 	"name" : "SoundworksMaxAPI",
 	"version" : 1,
 	"creationdate" : 3694697443,
-	"modificationdate" : 3694697491,
+	"modificationdate" : 3694781308,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 1,
 	"hideprojectwindow" : 0,
@@ -33,6 +33,15 @@
 				"kind" : "javascript",
 				"local" : 1
 			}
+,
+			"parseDict.js" : 			{
+				"kind" : "javascript",
+				"local" : 1
+			}
+
+		}
+,
+		"externals" : 		{
 
 		}
 
