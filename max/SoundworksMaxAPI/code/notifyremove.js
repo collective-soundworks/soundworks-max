@@ -1,6 +1,11 @@
+var a = 0;
+
+
+function anything()
+{
+	a = arrayfromargs(messagename, arguments);
+}
+
 function notifydeleted(){
-	post('StateManager has been cleared');post();
-	messnamed('statemanagerkilled', 'bang');
-	outlet("statemanagerkilled");
-	
+	messnamed('sw.abs.killed', a);	
 }
