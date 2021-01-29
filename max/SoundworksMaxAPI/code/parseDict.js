@@ -39,27 +39,21 @@ function basic_getting_and_setting()
 			case "integer":
 				var min = d.get(keys[pas]+"::min");
 				var max = d.get(keys[pas]+"::max");
-				var initValue = d.get(keys[pas]+"::initValue");
-				outlet(0,keys[pas],"integer", min,max,initValue);
+				outlet(0,keys[pas],"integer", min,max);
 				break;
 			case "boolean":
-				var initValue = d.get(keys[pas]+"::initValue");
-				outlet(0, keys[pas], "boolean",0,0,initValue);
+				outlet(0, keys[pas], "boolean",0,0);
 				break;
 			case "float":
 				var min = d.get(keys[pas]+"::min");
 				var max = d.get(keys[pas]+"::max");
-				var initValue = d.get(keys[pas]+"::initValue");
-				outlet(0,keys[pas], "float", min,max,initValue);
+				outlet(0,keys[pas], "float", min,max);
 				break;
 			case "string":
-				var initValue = d.get(keys[pas]+"::initValue");
-				outlet(0,keys[pas], "string",0,0,initValue);
+				outlet(0,keys[pas], "string",0,0);
 				break;
 			case "any":
-				var initValue = d.get(keys[pas]+"::initValue");
-				var initValueJson = initValue.stringify();
-				outlet(0,keys[pas], "any",0,0,initValueJson);
+				outlet(0,keys[pas], "any",0,0);
 				break;
 			default:
 				post("unknown type");

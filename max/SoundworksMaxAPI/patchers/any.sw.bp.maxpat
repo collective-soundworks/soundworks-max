@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 81.0, 111.0, 663.0, 480.0 ],
+		"rect" : [ 512.0, 175.0, 663.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,26 +40,38 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-11",
+					"id" : "obj-48",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"outlettype" : [ "dictionary" ],
-					"patching_rect" : [ 461.0, 253.0, 88.0, 22.0 ],
-					"text" : "dict.deserialize"
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 241.0, 319.0, 123.0, 35.0 ],
+					"text" : "dict.serialize @mode dictionnary"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-19",
-					"linecount" : 5,
+					"id" : "obj-21",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 461.0, 164.0, 71.0, 76.0 ],
-					"text" : "loadmess #5"
+					"patching_rect" : [ 20.5, 238.0, 72.0, 22.0 ],
+					"text" : "prepend set"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 20.5, 205.0, 47.0, 22.0 ],
+					"text" : "dict.iter"
 				}
 
 			}
@@ -108,7 +120,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 321.5, 321.0, 72.0, 22.0 ],
+					"patching_rect" : [ 388.5, 361.0, 72.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -120,7 +132,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 329.0, 292.0, 102.0, 22.0 ],
+					"patching_rect" : [ 396.0, 332.0, 102.0, 22.0 ],
 					"text" : "loadmess #2"
 				}
 
@@ -131,8 +143,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 241.0, 399.0, 113.0, 22.0 ],
-					"text" : "send #1.sw.set"
+					"patching_rect" : [ 308.0, 439.0, 135.0, 22.0 ],
+					"text" : "send #1.dict.sw.set"
 				}
 
 			}
@@ -143,7 +155,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 241.0, 358.0, 76.0, 22.0 ],
+					"patching_rect" : [ 308.0, 398.0, 76.0, 22.0 ],
 					"text" : "prepend toto"
 				}
 
@@ -191,7 +203,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 39.5, 366.0, 115.0, 22.0 ],
+					"patching_rect" : [ 12.5, 389.0, 115.0, 22.0 ],
 					"text" : "loadmess set #2"
 				}
 
@@ -279,10 +291,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 39.5, 408.0, 156.0, 22.0 ],
+					"patching_rect" : [ 12.5, 431.0, 156.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 84.0, 22.0 ],
-					"text" : "config"
+					"text" : "#2"
 				}
 
 			}
@@ -291,13 +303,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-10", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-11", 0 ]
 				}
 
 			}
@@ -345,15 +350,36 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-11", 0 ],
-					"source" : [ "obj-19", 0 ]
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
-					"source" : [ "obj-2", 0 ]
+					"destination" : [ "obj-21", 0 ],
+					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-21", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-48", 0 ]
 				}
 
 			}
@@ -366,7 +392,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
+					"destination" : [ "obj-48", 0 ],
 					"source" : [ "obj-6", 0 ]
 				}
 
@@ -385,7 +411,9 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [  ],
+		"autosave" : 0
 	}
 
 }

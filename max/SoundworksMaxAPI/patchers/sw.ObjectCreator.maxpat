@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 150.0, 112.0, 826.0, 697.0 ],
+		"rect" : [ 532.0, 79.0, 826.0, 697.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 340.0, 154.0, 58.0, 22.0 ],
+					"patching_rect" : [ 318.0, 214.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -145,7 +145,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 104.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 104.0, 843.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -173,6 +173,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -264,8 +265,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 270.75, 729.0, 22.0 ],
-									"text" : "script newobject bpatcher $3.sw.bp @args $1 $2 $4 $5 $6 @patching_position 500 $7 @varname $7.name, script size $7.name 285 25"
+									"patching_rect" : [ 50.0, 270.75, 712.0, 22.0 ],
+									"text" : "script newobject bpatcher $3.sw.bp @args $1 $2 $4 $5 @patching_position 500 $6 @varname $6.name, script size $6.name 285 25"
 								}
 
 							}

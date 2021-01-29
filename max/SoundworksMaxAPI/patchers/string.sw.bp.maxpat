@@ -81,7 +81,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 86.0, 0.0, 174.0, 23.0 ],
 					"tabmode" : 0,
-					"text" : "dr er erz "
+					"text" : "#5"
 				}
 
 			}
@@ -120,18 +120,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 478.0, 383.0, 111.0, 22.0 ],
 					"text" : "r globals.sw.detach"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-25",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 213.5, 35.0, 161.0, 22.0 ],
-					"text" : "loadmess #5"
 				}
 
 			}
@@ -306,7 +294,7 @@
 					"patching_rect" : [ 26.5, 413.0, 156.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 84.0, 22.0 ],
-					"text" : "message"
+					"text" : "#2"
 				}
 
 			}
@@ -400,13 +388,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
-					"source" : [ "obj-25", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-26", 0 ]
 				}
@@ -440,7 +421,9 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [  ],
+		"autosave" : 0
 	}
 
 }
