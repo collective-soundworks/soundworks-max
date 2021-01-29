@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 612.0, 87.0, 776.0, 685.0 ],
+		"rect" : [ 743.0, 165.0, 844.0, 693.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,38 +40,70 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-15",
+					"id" : "obj-20",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 591.5, 515.0, 39.0, 22.0 ],
+					"text" : "truthy"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 491.0, 485.0, 49.0, 22.0 ],
+					"text" : "ignored"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
 					"linecount" : 12,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 23.0, 247.0, 240.0, 167.0 ],
-					"text" : "@note : JS state API\n\n- subscribe(function() {})\n- set(updates)\n- getValues() -> { currentValues }\n- getSchema() -> { schema }\n\nSi on trouve un moyen de matcher ça en Max ce serait vraiment parfait, mais c'est vrai que c'est pas forcement raccord avec un paradigme send / receive (si tu as une idée ?)"
+					"patching_rect" : [ 23.0, 478.0, 271.0, 167.0 ],
+					"text" : "@note : JS state API\n\n- subscribe(function() {})\n- set(updates)\n- getValues() -> { currentValues }\n- getSchema() -> { schema }\n\nSi on trouve un moyen de matcher ça en Max ce serait vraiment parfait, mais c'est vrai que c'est pas forcement raccord avec un paradigme send / receive (si tu as une idée ?), sinon c'est déjà super bien quoiqu'il arrive !"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 170.0, 342.0, 117.0, 22.0 ],
+					"text" : "r statemanagerkilled"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-13",
-					"linecount" : 7,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 84.0, 509.0, 230.0, 102.0 ],
-					"text" : "/sw/state-manager/attach-response 0 1 globals {\\\"volume\\\":{\\\"type\\\":\\\"integer\\\"\\,\\\"min\\\":-80\\,\\\"max\\\":6\\,\\\"default\\\":0\\,\\\"initValue\\\":0}\\,\\\"mute\\\":{\\\"type\\\":\\\"boolean\\\"\\,\\\"default\\\":false\\,\\\"initValue\\\":false}} {\\\"volume\\\":0\\,\\\"mute\\\":false}"
+					"patching_rect" : [ 73.0, 431.0, 50.0, 22.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-8",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 79.0, 464.0, 81.0, 22.0 ],
-					"text" : "r _udpreceive"
+					"id" : "obj-15",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 23.0, 120.0, 100.0, 100.0 ]
 				}
 
 			}
@@ -1008,6 +1040,13 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-59", 0 ],
 					"source" : [ "obj-10", 0 ]
 				}
@@ -1022,8 +1061,29 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-13", 1 ],
+					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-53", 0 ],
+					"source" : [ "obj-19", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-52", 0 ],
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-55", 0 ],
+					"source" : [ "obj-20", 0 ]
 				}
 
 			}
@@ -1106,13 +1166,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-13", 1 ],
-					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
 					"source" : [ "obj-84", 0 ]
 				}
@@ -1135,10 +1188,32 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "sw.StateManager.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "sw.abs.maxpat",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "notifyremove.js",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "spat5.osc.prepend.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.route.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0
