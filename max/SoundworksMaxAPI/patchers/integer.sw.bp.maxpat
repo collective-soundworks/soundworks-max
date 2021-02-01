@@ -71,8 +71,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 478.0, 352.0, 111.0, 22.0 ],
-					"text" : "r globals.sw.detach"
+					"patching_rect" : [ 478.0, 352.0, 86.0, 22.0 ],
+					"text" : "r #1.sw.detach"
 				}
 
 			}

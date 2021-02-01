@@ -71,8 +71,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 481.0, 370.0, 111.0, 22.0 ],
-					"text" : "r globals.sw.detach"
+					"patching_rect" : [ 481.0, 370.0, 99.0, 22.0 ],
+					"text" : "r #1.sw.detach"
 				}
 
 			}
@@ -107,7 +107,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 373.0, 299.0, 102.0, 22.0 ],
+					"patching_rect" : [ 373.0, 299.0, 106.0, 22.0 ],
 					"text" : "loadmess #2"
 				}
 
@@ -142,7 +142,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 46.5, 172.0, 102.0, 22.0 ],
+					"patching_rect" : [ 46.5, 172.0, 106.0, 22.0 ],
 					"text" : "loadmess #2"
 				}
 
@@ -190,7 +190,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 11.5, 356.0, 96.0, 22.0 ],
+					"patching_rect" : [ 11.5, 356.0, 125.0, 22.0 ],
 					"text" : "loadmess set #2"
 				}
 
@@ -219,7 +219,7 @@
 					"patching_rect" : [ 11.5, 398.0, 156.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 1.0, 84.0, 22.0 ],
-					"text" : "#2"
+					"text" : "boolean"
 				}
 
 			}
@@ -301,9 +301,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [  ],
-		"autosave" : 0
+ ]
 	}
 
 }

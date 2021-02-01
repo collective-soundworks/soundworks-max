@@ -71,8 +71,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 496.0, 371.0, 111.0, 22.0 ],
-					"text" : "r globals.sw.detach"
+					"patching_rect" : [ 496.0, 371.0, 86.0, 22.0 ],
+					"text" : "r #1.sw.detach"
 				}
 
 			}
@@ -234,7 +234,7 @@
 					"patching_rect" : [ 11.5, 398.0, 156.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 84.0, 22.0 ],
-					"text" : "gain"
+					"text" : "#2"
 				}
 
 			}
@@ -370,7 +370,9 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [  ],
+		"autosave" : 0
 	}
 
 }
