@@ -25,7 +25,10 @@ class PlayerExperience extends AbstractExperience {
     super.start();
 
     this.globals = await this.client.stateManager.attach('globals');
+    this.other = await this.client.stateManager.attach('other');
+
     this.globals.subscribe(() => this.render());
+    this.other.subscribe(() => this.render());
 
     window.addEventListener('resize', () => this.render());
     this.render();
@@ -36,7 +39,8 @@ class PlayerExperience extends AbstractExperience {
     window.cancelAnimationFrame(this.rafId);
 
     this.rafId = window.requestAnimationFrame(() => {
-      const schema = this.globals.getSchema();
+      const globalsSchema = this.globals.getSchema();
+      const otherSchema = this.other.getSchema();
 
       render(html`
         <div style="padding: 20px">
@@ -53,8 +57,8 @@ class PlayerExperience extends AbstractExperience {
               <sc-slider
                 display-number
                 width="300"
-                min="${schema.volume.min}"
-                max="${schema.volume.max}"
+                min="${globalsSchema.volume.min}"
+                max="${globalsSchema.volume.max}"
                 step="1"
                 value="${this.globals.get('volume')}"
                 @input=${e => this.globals.set({ volume: e.detail.value })}
@@ -79,9 +83,9 @@ class PlayerExperience extends AbstractExperience {
               ></sc-text>
               <sc-number
                 value="${this.globals.get('gain')}"
-                min="${schema.gain.min}"
-                max="${schema.gain.max}"
-                step="${schema.gain.step}"
+                min="${globalsSchema.gain.min}"
+                max="${globalsSchema.gain.max}"
+                step="${globalsSchema.gain.step}"
                 @input=${e => this.globals.set({ gain: e.detail.value })}
               ></sc-number>
             </div>
@@ -106,6 +110,35 @@ class PlayerExperience extends AbstractExperience {
                 value="${JSON.stringify(this.globals.get('config'), null, 2)}"
                 @change=${e => this.globals.set({ config: JSON.parse(e.detail.value) })}
               ></sc-editor>
+            </div>
+
+            <h1>Other</h1>
+            <div style="margin-bottom: 4px">
+              <sc-text
+                value="float"
+                width="100"
+                readonly
+              ></sc-text>
+              <sc-slider
+                display-number
+                width="300"
+                min="${otherSchema.float.min}"
+                max="${otherSchema.float.max}"
+                step="0.001"
+                value="${this.other.get('float')}"
+                @input=${e => this.other.set({ float: e.detail.value })}
+              ></sc-slider>
+            </div>
+            <div style="margin-bottom: 4px">
+              <sc-text
+                value="boolean"
+                width="100"
+                readonly
+              ></sc-text>
+              <sc-toggle
+                ?active="${this.other.get('boolean')}"
+                @change=${e => this.other.set({ boolean: e.detail.value })}
+              ></sc-toggle>
             </div>
         </div>
       `, this.$container);

@@ -11,7 +11,8 @@ import ControllerExperience from './ControllerExperience.js';
 
 import { Client as OscClient, Server as OscServer } from 'node-osc';
 
-import globalsSchema from './schemas/globals';
+import globalsSchema from './schemas/globals.js';
+import otherSchema from './schemas/other.js';
 
 import getConfig from './utils/getConfig.js';
 const ENV = process.env.ENV || 'default';
@@ -41,6 +42,7 @@ console.log(`
 // register schemas
 // -------------------------------------------------------------------
 server.stateManager.registerSchema('globals', globalsSchema);
+server.stateManager.registerSchema('other', otherSchema);
 
 
 (async function launch() {
@@ -65,6 +67,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
     const controllerExperience = new ControllerExperience(server, 'controller');
 
     const globals = await server.stateManager.create('globals');
+    const other = await server.stateManager.create('other');
 
     // start all the things
     await server.start();
