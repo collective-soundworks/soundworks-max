@@ -3,7 +3,7 @@ inlets = 1;
 outlets = 1;
 
 
-function basic_getting_and_setting()
+function parseDict(dictName)
 {
 	// argument is the name of a dict, which may or may not already exist. 
 	// in this case there is already a dict named "northern animals" and we will reference that dict.
@@ -39,21 +39,31 @@ function basic_getting_and_setting()
 			case "integer":
 				var min = d.get(keys[pas]+"::min");
 				var max = d.get(keys[pas]+"::max");
-				outlet(0,keys[pas],"integer", min,max);
+				//outlet(0,keys[pas],"integer", min,max);
+				maker(keys[pas],"integer", min, max);
 				break;
 			case "boolean":
-				outlet(0, keys[pas], "boolean",0,0);
+				//outlet(0, keys[pas], "boolean",0,0);
+				maker(keys[pas], "boolean",0,0);
 				break;
 			case "float":
 				var min = d.get(keys[pas]+"::min");
 				var max = d.get(keys[pas]+"::max");
-				outlet(0,keys[pas], "float", min,max);
+				if (keys[pas] == "float") {
+					post("unallowed variable name : float");post();
+				}
+				else {
+					//outlet(0,keys[pas], "float", min,max);
+					maker(keys[pas], "float", min, max);
+				}
 				break;
 			case "string":
-				outlet(0,keys[pas], "string",0,0);
+				//outlet(0,keys[pas], "string",0,0);
+				maker(keys[pas], "string", 0, 0);	
 				break;
 			case "any":
-				outlet(0,keys[pas], "any",0,0);
+				//outlet(0,keys[pas], "any",0,0);
+				maker(keys[pas], "any",0,0);
 				break;
 			default:
 				post("unknown type");
@@ -64,10 +74,17 @@ function basic_getting_and_setting()
 
 }
 
-
-
-function bang()
+function maker(varName, varType, varMin, varMax)
 {
-	basic_getting_and_setting();
+	var parent = p.parentpatcher;
+	object = parent.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args","globals", varName, varMin, varMax);
+}
+
+
+function create()
+{
+	//post(arguments[0]);
+	parseDict();
+	
 
 }

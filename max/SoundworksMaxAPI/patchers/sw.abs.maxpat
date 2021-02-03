@@ -345,8 +345,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 604.0, 9.0, 81.0, 22.0 ],
-					"text" : "r _udpreceive"
+					"patching_rect" : [ 604.0, 9.0, 99.0, 22.0 ],
+					"text" : "r sw._udpreceive"
 				}
 
 			}
@@ -533,8 +533,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 529.0, 447.0, 81.0, 22.0 ],
-					"text" : "r _udpreceive"
+					"patching_rect" : [ 529.0, 447.0, 99.0, 22.0 ],
+					"text" : "r sw._udpreceive"
 				}
 
 			}
@@ -547,7 +547,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 612.0, 226.0, 50.0, 89.0 ],
-					"text" : "/sw/state-manager/detach-request/0/3"
+					"text" : "/sw/state-manager/detach-request/0/2"
 				}
 
 			}
@@ -659,8 +659,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.5, 394.0, 91.0, 22.0 ],
-					"text" : "send _udpsend"
+					"patching_rect" : [ 30.5, 394.0, 108.0, 22.0 ],
+					"text" : "send sw._udpsend"
 				}
 
 			}
