@@ -67,7 +67,7 @@ server.stateManager.registerSchema('other', otherSchema);
     const controllerExperience = new ControllerExperience(server, 'controller');
 
     const globals = await server.stateManager.create('globals');
-    const globals2 = await server.stateManager.create('globals');
+    // const globals2 = await server.stateManager.create('globals');
     const other = await server.stateManager.create('other');
 
     // start all the things
@@ -207,7 +207,6 @@ server.stateManager.registerSchema('other', otherSchema);
           // we differ from JS API here
           // this should be one shot oeprations
           this._subscribe('/sw/state-manager/observe-request', schemaName => {
-            console.log(schemaName);
             this.stateManager.observe((_schemaName, stateId, nodeId) => {
               // Max can only attach to states created by the server
               if (nodeId === -1) {
