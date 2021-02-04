@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 6,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -31.0, 235.0, 1035.0, 700.0 ],
+		"rect" : [ 303.0, 79.0, 709.0, 739.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,31 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-235",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 880.0, 425.076923012733459, 228.0, 22.0 ],
+					"presentation_linecount" : 2,
+					"text" : "/sw/state-manager/observe-request other"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-234",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 880.0, 386.076923012733459, 221.0, 22.0 ],
+					"text" : "/sw/state-manager/observe-request toto"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -66,19 +91,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 634.5, 10.0, 41.0, 22.0 ],
+					"patching_rect" : [ 356.0, 110.5, 41.0, 22.0 ],
 					"text" : "attach"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-2",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 544.0, 497.0, 32.0, 22.0 ],
-					"text" : "print"
 				}
 
 			}
@@ -89,7 +103,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 267.0, 574.0, 239.0, 22.0 ],
+					"patching_rect" : [ 1013.0, 329.0, 239.0, 22.0 ],
 					"text" : "/sw/state-manager/observe-request globals"
 				}
 
@@ -100,7 +114,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 267.0, 605.0, 88.0, 22.0 ],
+					"patching_rect" : [ 1013.0, 360.0, 88.0, 22.0 ],
 					"text" : "s sw._udpsend"
 				}
 
@@ -112,20 +126,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 631.0, 448.0, 381.0, 208.0 ],
+					"patching_rect" : [ 957.0, 451.0, 381.0, 208.0 ],
 					"text" : "new messages\n\n[node -> max] /sw/state-manager/listening\nsent when Node starts, allows Max to send all its observe and attach calls\n\n[max -> node] /sw/state-manager/observe-request <schemaName>\nask for informations about the schemaName states \n@note : only send informations about states created by the server\n\n[node -> max] /sw/state-manager/observe-notification <schemaName>\nnode informs max a state exists with this name, so it can be attached, from there we can continue with the exsiting attach code\n"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-12",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 267.0, 497.0, 270.0, 22.0 ],
-					"text" : "/sw/state-manager/detach-notification/1/5"
 				}
 
 			}
@@ -136,7 +138,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 477.0, 459.5, 99.0, 22.0 ],
+					"patching_rect" : [ 1137.0, 251.0, 99.0, 22.0 ],
 					"text" : "r sw._udpreceive"
 				}
 
@@ -148,7 +150,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 159.0, 10.0, 150.0, 47.0 ],
+					"patching_rect" : [ 124.0, 10.0, 150.0, 47.0 ],
 					"text" : "no need for this one\nthis is implicit with the `sw.sharedState <name>`"
 				}
 
@@ -173,8 +175,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 350.0, 357.0, 160.0, 47.0 ],
-					"text" : "ATTENTION\nenvoyer les valeurs à la création des objets !!!!"
+					"patching_rect" : [ 18.0, 179.5, 302.0, 47.0 ],
+					"text" : "ATTENTION\nenvoyer les valeurs à la création des objets !!!!\nil faudrait avoir un getValues."
 				}
 
 			}
@@ -184,7 +186,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 93.0, 358.0, 150.0, 20.0 ],
+					"patching_rect" : [ 1195.0, 61.0, 150.0, 20.0 ],
 					"text" : "isf.launcher"
 				}
 
@@ -312,7 +314,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 105.0, 10.0, 51.0, 22.0 ],
+					"patching_rect" : [ 297.307698726654053, 48.461539745330811, 51.0, 22.0 ],
 					"text" : "observe"
 				}
 
@@ -356,7 +358,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 393.0, 274.0, 45.0, 22.0 ],
+					"patching_rect" : [ 1125.0, 153.0, 45.0, 22.0 ],
 					"text" : "detach"
 				}
 
@@ -368,7 +370,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 374.0, 305.0, 121.0, 22.0 ],
+					"patching_rect" : [ 1106.0, 184.0, 121.0, 22.0 ],
 					"text" : "sw.sharedState other"
 				}
 
@@ -410,19 +412,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-32",
-					"linecount" : 2,
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 539.0, 205.0, 51.0, 35.0 ],
-					"text" : "volume 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"bgcolor" : [ 0.019607843137255, 1.0, 0.0, 1.0 ],
 					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
 					"bgfillcolor_angle" : 270.0,
@@ -438,8 +427,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 570.0, 147.0, 64.0, 22.0 ],
-					"text" : "volume $1"
+					"patching_rect" : [ 570.0, 147.0, 83.0, 22.0 ],
+					"text" : "set volume $1"
 				}
 
 			}
@@ -452,53 +441,6 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 570.0, 174.0, 132.0, 22.0 ],
 					"text" : "sw.sharedState globals"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-57",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 943.0, 129.0, 72.0, 22.0 ],
-					"text" : "attach other"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-20",
-					"maxclass" : "dict.view",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 167.0, 157.75, 107.0, 176.5 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-19",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 131.0, 120.0, 55.0, 22.0 ],
-					"text" : "zl slice 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-22",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 23.0, 157.75, 67.0, 22.0 ],
-					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
-					"text" : "thispatcher"
 				}
 
 			}
@@ -531,64 +473,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 23.0, 41.0, 75.0, 22.0 ],
+					"patching_rect" : [ 276.0, 17.0, 75.0, 22.0 ],
 					"text" : "getSchemas"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-34",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 23.0, 120.0, 101.0, 22.0 ],
-					"text" : "sw.ObjectCreator"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_angle" : 270.0,
-					"bgfillcolor_autogradient" : 0.0,
-					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_color1" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_proportion" : 0.5,
-					"bgfillcolor_type" : "gradient",
-					"gradient" : 1,
-					"id" : "obj-4",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 564.0, 41.0, 65.0, 22.0 ],
-					"text" : "attach toto"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_angle" : 270.0,
-					"bgfillcolor_autogradient" : 0.0,
-					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_color1" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_proportion" : 0.5,
-					"bgfillcolor_type" : "gradient",
-					"gradient" : 1,
-					"id" : "obj-3",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 539.0, 17.0, 83.0, 22.0 ],
-					"text" : "attach globals"
 				}
 
 			}
@@ -600,6 +486,106 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 23.0, 78.0, 101.0, 22.0 ],
 					"text" : "sw.StateManager"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "globals", "volume", -80, 6 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-224",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "integer.sw.bp.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 23.0, 252.0, 285.0, 25.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "globals", "mute", 0, 0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-226",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "boolean.sw.bp.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 23.0, 287.0, 285.0, 25.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "globals", "gain", 0, 1 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-228",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "float.sw.bp.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 23.0, 322.0, 285.0, 25.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "globals", "message", 0, 0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-230",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "string.sw.bp.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 23.0, 357.0, 285.0, 25.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "globals", "config", 0, 0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-232",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "any.sw.bp.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 23.0, 392.0, 285.0, 25.0 ],
+					"viewvisibility" : 1
 				}
 
 			}
@@ -620,13 +606,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
-					"source" : [ "obj-19", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-17", 0 ],
 					"source" : [ "obj-21", 0 ]
 				}
@@ -634,8 +613,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-32", 1 ],
-					"source" : [ "obj-28", 0 ]
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-234", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-235", 0 ]
 				}
 
 			}
@@ -649,21 +635,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
-					"source" : [ "obj-3", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-30", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
-					"source" : [ "obj-34", 0 ]
 				}
 
 			}
@@ -677,14 +649,14 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
-					"source" : [ "obj-4", 0 ]
+					"source" : [ "obj-47", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
-					"source" : [ "obj-47", 0 ]
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -704,36 +676,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-12", 1 ],
-					"order" : 1,
-					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"order" : 0,
-					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-9", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-93", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-96", 0 ]
 				}
@@ -748,32 +690,82 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "sw.StateManager.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
+				"name" : "any.sw.bp.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sw.ObjectCreator.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
+				"name" : "string.sw.bp.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "float.sw.bp.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "boolean.sw.bp.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "integer.sw.bp.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "sw.StateManager.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "sw.abs.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "sw.sharedState.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "parseDict.js",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/code",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sw.sharedState.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
+				"name" : "notifydeleted.js",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "spat5.osc.prepend.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat5.osc.route.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

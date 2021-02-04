@@ -1,6 +1,7 @@
-
+p = this.patcher;
 inlets = 1;
 outlets = 1;
+var inc = 0;
 
 
 function parseDict(dictName)
@@ -78,13 +79,21 @@ function maker(varName, varType, varMin, varMax)
 {
 	var parent = p.parentpatcher;
 	object = parent.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args","globals", varName, varMin, varMax);
+	var objH = 25;
+	var objW = 285;
+	var objL = 23; //change me!
+	var objU = 252; //change me!
+	object.rect = [objL, objU+inc, objL+objW, objU+inc+objH];
+	inc=inc+35;
 }
 
 
 function create()
 {
 	//post(arguments[0]);
+	inc = 0;
 	parseDict();
 	
 
 }
+
