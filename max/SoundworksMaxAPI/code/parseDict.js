@@ -2,6 +2,7 @@ p = this.patcher;
 inlets = 1;
 outlets = 1;
 var inc = 0;
+var schemaName = "";
 
 
 function parseDict(dictName)
@@ -78,7 +79,7 @@ function parseDict(dictName)
 function maker(varName, varType, varMin, varMax)
 {
 	var parent = p.parentpatcher;
-	object = parent.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args","globals", varName, varMin, varMax);
+	object = parent.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args",schemaName, varName, varMin, varMax);
 	var objH = 25;
 	var objW = 285;
 	var objL = 23; //change me!
@@ -91,6 +92,7 @@ function maker(varName, varType, varMin, varMax)
 function create()
 {
 	//post(arguments[0]);
+	schemaName = arguments[0];
 	inc = 0;
 	parseDict();
 	
