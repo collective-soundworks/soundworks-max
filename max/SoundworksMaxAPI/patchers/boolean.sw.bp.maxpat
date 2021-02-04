@@ -40,6 +40,31 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"comment" : "",
+					"id" : "obj-17",
+					"index" : 0,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 68.0, 250.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "",
+					"id" : "obj-14",
+					"index" : 0,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 172.0, 240.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-46",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -57,7 +82,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 673.0, 353.0, 29.5, 22.0 ],
+					"patching_rect" : [ 655.0, 353.0, 29.5, 22.0 ],
 					"text" : "1"
 				}
 
@@ -69,7 +94,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 790.0, 374.0, 29.5, 22.0 ],
+					"patching_rect" : [ 702.0, 353.0, 29.5, 22.0 ],
 					"text" : "0"
 				}
 
@@ -235,7 +260,7 @@
 , 			{
 				"box" : 				{
 					"angle" : 270.0,
-					"bgcolor" : [ 255, 0, 0 ],
+					"bgcolor" : [ 0, 255, 0 ],
 					"id" : "obj-5",
 					"maxclass" : "panel",
 					"mode" : 0,
@@ -257,7 +282,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 790.0, 344.0, 86.0, 22.0 ],
+					"patching_rect" : [ 784.0, 307.0, 99.0, 22.0 ],
 					"text" : "r #1.sw.detach"
 				}
 
@@ -293,7 +318,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 373.0, 299.0, 106.0, 22.0 ],
+					"patching_rect" : [ 373.0, 299.0, 123.0, 22.0 ],
 					"text" : "loadmess #2"
 				}
 
@@ -328,7 +353,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 46.5, 172.0, 106.0, 22.0 ],
+					"patching_rect" : [ 46.5, 172.0, 123.0, 22.0 ],
 					"text" : "loadmess #2"
 				}
 
@@ -376,7 +401,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 11.5, 356.0, 125.0, 22.0 ],
+					"patching_rect" : [ 11.5, 356.0, 143.0, 22.0 ],
 					"text" : "loadmess set #2"
 				}
 
@@ -441,7 +466,23 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
+					"order" : 0,
 					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"order" : 1,
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-14", 0 ]
 				}
 
 			}

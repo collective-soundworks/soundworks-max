@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 303.0, 79.0, 439.0, 739.0 ],
+		"rect" : [ 303.0, 79.0, 656.0, 739.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,61 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-15",
+					"linecount" : 5,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 540.0, 206.0, 53.0, 76.0 ],
+					"text" : "config dictionary u113005454"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1118.0, 229.0, 169.0, 200.076923012733459 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+					"id" : "obj-5",
+					"linecount" : 13,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 393.0, 499.230769038200378, 152.0, 181.0 ],
+					"text" : "PROBLEME multiples abstractions !!\n--> si on en supprime une, on se détache, meme si d'autres sont encore actives!\n--> solution temporaire, quand le patch sharedState est supprimé, le detach n'est pas envoyé. Il faut manuellement se détacher."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 1,
+					"id" : "obj-80",
+					"linecount" : 10,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 13.0, 189.0, 359.0, 141.0 ],
+					"text" : "ATTENTION\n- envoyer les valeurs à la création des objets !!!!\n- il faudrait avoir un getValues.\n- debug multiples instance of sharedState --> envoyer des detach-notif quand on envoie plusieurs attach à la suite\n- refaire l'arborescence pour pouvoir lancer node dans Max\n\nautre petit truc :\nest-ce qu'on peut savoir si dans soundworks on a un slider ou une boite à nombre ?"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-109",
 					"linecount" : 5,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 35.0, 589.0, 150.0, 74.0 ],
+					"patching_rect" : [ 35.0, 632.0, 151.0, 74.0 ],
 					"text" : "autre petit truc :\nest-ce qu'on peut savoir si dans soundworks on a un slider ou une boite à nombre ?"
 				}
 
@@ -56,18 +105,18 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 612.0, 210.0, 166.0, 147.076923012733459 ]
+					"patching_rect" : [ 612.0, 210.0, 160.0, 364.076923012733459 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 1.0, 0.0, 0.0, 1.0 ],
+					"bgcolor" : [ 0.145098039215686, 1.0, 0.0, 1.0 ],
 					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
 					"bgfillcolor_angle" : 270.0,
 					"bgfillcolor_autogradient" : 0.0,
 					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_color1" : [ 1.0, 0.0, 0.0, 1.0 ],
+					"bgfillcolor_color1" : [ 0.145098039215686, 1.0, 0.0, 1.0 ],
 					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
 					"bgfillcolor_proportion" : 0.5,
 					"bgfillcolor_type" : "gradient",
@@ -77,7 +126,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1202.0, 147.0, 69.0, 22.0 ],
+					"patching_rect" : [ 1051.0, 157.0, 69.0, 22.0 ],
 					"text" : "getSchema"
 				}
 
@@ -99,32 +148,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1078.346161901950836, 129.0, 63.0, 22.0 ],
+					"patching_rect" : [ 927.346161901950836, 139.0, 63.0, 22.0 ],
 					"text" : "createGUI"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-235",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 880.0, 425.076923012733459, 228.0, 22.0 ],
-					"text" : "/sw/state-manager/observe-request other"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-234",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 880.0, 386.076923012733459, 221.0, 22.0 ],
-					"text" : "/sw/state-manager/observe-request toto"
 				}
 
 			}
@@ -152,36 +177,12 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-21",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 1013.0, 329.0, 239.0, 22.0 ],
-					"text" : "/sw/state-manager/observe-request globals"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1013.0, 360.0, 88.0, 22.0 ],
+					"patching_rect" : [ 1183.0, 582.0, 88.0, 22.0 ],
 					"text" : "s sw._udpsend"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-16",
-					"linecount" : 14,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 957.0, 451.0, 381.0, 208.0 ],
-					"text" : "new messages\n\n[node -> max] /sw/state-manager/listening\nsent when Node starts, allows Max to send all its observe and attach calls\n\n[max -> node] /sw/state-manager/observe-request <schemaName>\nask for informations about the schemaName states \n@note : only send informations about states created by the server\n\n[node -> max] /sw/state-manager/observe-notification <schemaName>\nnode informs max a state exists with this name, so it can be attached, from there we can continue with the exsiting attach code\n"
 				}
 
 			}
@@ -192,33 +193,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1153.0, 236.576922595500946, 99.0, 22.0 ],
+					"patching_rect" : [ 1183.0, 542.0, 99.0, 22.0 ],
 					"text" : "r sw._udpreceive"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 124.0, 10.0, 150.0, 47.0 ],
-					"text" : "no need for this one\nthis is implicit with the `sw.sharedState <name>`"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 1,
-					"id" : "obj-80",
-					"linecount" : 4,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 18.0, 179.5, 302.0, 60.0 ],
-					"text" : "ATTENTION\nenvoyer les valeurs à la création des objets !!!!\nil faudrait avoir un getValues.\nil faudrait aussi getSchema"
 				}
 
 			}
@@ -228,20 +204,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1195.0, 61.0, 150.0, 20.0 ],
+					"patching_rect" : [ 1044.0, 71.0, 150.0, 20.0 ],
 					"text" : "isf.launcher"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-132",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 353.0, 43.0, 150.0, 33.0 ],
-					"text" : "liste des schémas attachés à Max."
 				}
 
 			}
@@ -304,34 +268,12 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 1.0, 0.0, 0.0, 1.0 ],
+					"bgcolor" : [ 0.176470588235294, 1.0, 0.0, 1.0 ],
 					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
 					"bgfillcolor_angle" : 270.0,
 					"bgfillcolor_autogradient" : 0.0,
 					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_color1" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_proportion" : 0.5,
-					"bgfillcolor_type" : "gradient",
-					"gradient" : 1,
-					"id" : "obj-93",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 297.307698726654053, 48.461539745330811, 51.0, 22.0 ],
-					"text" : "observe"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_angle" : 270.0,
-					"bgfillcolor_autogradient" : 0.0,
-					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
-					"bgfillcolor_color1" : [ 1.0, 0.0, 0.0, 1.0 ],
+					"bgfillcolor_color1" : [ 0.176470588235294, 1.0, 0.0, 1.0 ],
 					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
 					"bgfillcolor_proportion" : 0.5,
 					"bgfillcolor_type" : "gradient",
@@ -353,7 +295,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1125.0, 153.0, 45.0, 22.0 ],
+					"patching_rect" : [ 974.0, 163.0, 45.0, 22.0 ],
 					"text" : "detach"
 				}
 
@@ -364,8 +306,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 1106.0, 184.0, 121.0, 22.0 ],
+					"outlettype" : [ "", "dictionary" ],
+					"patching_rect" : [ 955.0, 194.0, 121.0, 22.0 ],
 					"text" : "sw.sharedState other"
 				}
 
@@ -433,7 +375,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"outlettype" : [ "", "dictionary" ],
 					"patching_rect" : [ 570.0, 174.0, 132.0, 22.0 ],
 					"text" : "sw.sharedState globals"
 				}
@@ -446,7 +388,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 159.0, 72.0, 290.0, 47.0 ],
+					"patching_rect" : [ 126.0, 69.0, 290.0, 47.0 ],
 					"text" : "@ip \n@portsend\n@portrecv"
 				}
 
@@ -492,14 +434,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-224",
+					"id" : "obj-3",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "integer.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 35.0, 400.884616315364838, 285.0, 25.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 453.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -512,14 +455,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-226",
+					"id" : "obj-7",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "boolean.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 35.0, 427.884616315364838, 285.0, 25.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 488.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -532,14 +476,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-228",
+					"id" : "obj-12",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "float.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 35.0, 456.230769038200378, 285.0, 25.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 523.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -552,14 +497,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-230",
+					"id" : "obj-16",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "string.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 35.0, 491.230769038200378, 285.0, 25.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 558.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -572,14 +518,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-232",
+					"id" : "obj-19",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "any.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 35.0, 526.230769038200378, 285.0, 25.0 ],
+					"outlettype" : [ "dictionary" ],
+					"patching_rect" : [ 17.0, 593.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -592,14 +539,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-104",
+					"id" : "obj-21",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "boolean.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 23.0, 327.0, 285.0, 25.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 348.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -612,14 +560,15 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-106",
+					"id" : "obj-23",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "float.sw.bp.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 23.0, 362.0, 285.0, 25.0 ],
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 383.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -641,27 +590,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-234", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-235", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-59", 0 ],
 					"source" : [ "obj-240", 0 ]
 				}
@@ -671,6 +599,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-107", 0 ],
 					"source" : [ "obj-28", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 1 ],
+					"source" : [ "obj-28", 0 ]
 				}
 
 			}
@@ -692,6 +627,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-47", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-59", 1 ]
 				}
 
 			}

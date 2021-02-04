@@ -9,7 +9,7 @@ function parseDict(dictName)
 {
 	// argument is the name of a dict, which may or may not already exist. 
 	// in this case there is already a dict named "northern animals" and we will reference that dict.
-	var d = new Dict("infos");
+	var d = new Dict(schemaName+"_infos");
 	
 	// an optional 'true' arg to getnames() will get all dictionary names
 	// rather than just explicitly named dictionaries

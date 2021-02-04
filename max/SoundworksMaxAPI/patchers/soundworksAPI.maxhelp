@@ -354,7 +354,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 12.0, 399.0, 74.0, 22.0 ],
+					"patching_rect" : [ 33.0, 481.0, 74.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -656,7 +656,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 12.0, 356.0, 132.0, 22.0 ],
+					"patching_rect" : [ 10.0, 422.0, 132.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -685,7 +685,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 596.0, 167.0, 773.0, 545.0 ],
+						"rect" : [ 0.0, 26.0, 773.0, 545.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -941,7 +941,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 12.0, 321.0, 85.0, 22.0 ],
+					"patching_rect" : [ 41.0, 510.0, 85.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1359,7 +1359,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 12.0, 281.0, 160.0, 22.0 ],
+					"patching_rect" : [ 20.0, 449.0, 160.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1406,21 +1406,6 @@
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "sw.abs.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spat5.osc.prepend.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.route.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0,
