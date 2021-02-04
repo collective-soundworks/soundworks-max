@@ -188,11 +188,15 @@ server.stateManager.registerSchema('other', otherSchema);
           const cleanup = async () => {
             console.log('> cleanup...');
             for (let [schemaName, infos] of this._attachedStates) {
-              const { id, remoteId } = infos.state;
-              await infos.cleanStateFunc();
-              // notify max
-              const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
-              this._oscClient.send(channel);
+              try {
+                const { id, remoteId } = infos.state;
+                await infos.cleanStateFunc();
+                // notify max
+                const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
+                this._oscClient.send(channel);
+              } catch (err) {
+                console.log(err);
+              }
             };
 
             setTimeout(() => {
@@ -269,6 +273,7 @@ server.stateManager.registerSchema('other', otherSchema);
               unsubscribeUpdateNotifications();
               unsubscribeDetach();
               await state.detach();
+              this._attachedStates.delete(schemaName);
             }
 
             const detachChannel = `/sw/state-manager/detach-request/${id}/${remoteId}`;
@@ -295,7 +300,7 @@ server.stateManager.registerSchema('other', otherSchema);
         const listeners = this._listeners.get(channel);
         listeners.add(callback);
 
-        return () => listeners.add(callback);
+        return () => listeners.delete(callback);
       }
 
       _emit(channel, args) {

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 298.0, 115.0, 1035.0, 700.0 ],
+		"rect" : [ -31.0, 235.0, 1035.0, 700.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -112,7 +112,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 631.0, 448.0, 378.0, 208.0 ],
+					"patching_rect" : [ 631.0, 448.0, 381.0, 208.0 ],
 					"text" : "new messages\n\n[node -> max] /sw/state-manager/listening\nsent when Node starts, allows Max to send all its observe and attach calls\n\n[max -> node] /sw/state-manager/observe-request <schemaName>\nask for informations about the schemaName states \n@note : only send informations about states created by the server\n\n[node -> max] /sw/state-manager/observe-notification <schemaName>\nnode informs max a state exists with this name, so it can be attached, from there we can continue with the exsiting attach code\n"
 				}
 
@@ -125,7 +125,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 267.0, 497.0, 270.0, 22.0 ],
-					"text" : "/sw/state-manager/detach-notification/0/4"
+					"text" : "/sw/state-manager/detach-notification/1/5"
 				}
 
 			}
@@ -160,7 +160,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 634.5, 78.0, 186.0, 87.0 ],
+					"patching_rect" : [ 634.5, 78.0, 187.0, 87.0 ],
 					"text" : "@note: I think I'm really for using the \"set\" keyword here, that's very error prone (what if we have a parameter named `detach` or `getSchema` or `createGUI` ?)\n\"set volume <value>\""
 				}
 
@@ -404,7 +404,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 570.0, 111.0, 50.0, 22.0 ]
+					"patching_rect" : [ 571.0, 99.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -417,7 +417,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 539.0, 205.0, 51.0, 35.0 ],
-					"text" : "volume -7"
+					"text" : "volume 1"
 				}
 
 			}
