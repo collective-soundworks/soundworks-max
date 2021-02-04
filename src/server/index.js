@@ -214,7 +214,6 @@ server.stateManager.registerSchema('other', otherSchema);
                   this._oscClient.send('/sw/state-manager/observe-notification', schemaName /*, stateId */);
                 }
               }
-
             });
           });
 

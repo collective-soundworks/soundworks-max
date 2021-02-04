@@ -84,18 +84,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-26",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 253.0, 454.0, 185.0, 33.0 ],
-					"text" : "@note: I receive all messages twice, that's weird..."
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-21",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -132,13 +120,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-12",
-					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 267.0, 497.0, 270.0, 35.0 ],
-					"text" : "/sw/state-manager/update-notification/0/7 {\\\"volume\\\":-9}"
+					"patching_rect" : [ 267.0, 497.0, 270.0, 22.0 ],
+					"text" : "/sw/state-manager/detach-notification/0/4"
 				}
 
 			}
@@ -430,7 +417,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 539.0, 205.0, 51.0, 35.0 ],
-					"text" : "volume -9"
+					"text" : "volume -7"
 				}
 
 			}
@@ -768,13 +755,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sw.abs.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "sw.ObjectCreator.maxpat",
 				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
@@ -794,14 +774,6 @@
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "spat5.osc.prepend.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spat5.osc.route.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0
