@@ -115,29 +115,29 @@ class PlayerExperience extends AbstractExperience {
             <h1>Other</h1>
             <div style="margin-bottom: 4px">
               <sc-text
-                value="float"
+                value="myFloat"
                 width="100"
                 readonly
               ></sc-text>
               <sc-slider
                 display-number
                 width="300"
-                min="${otherSchema.float.min}"
-                max="${otherSchema.float.max}"
+                min="${otherSchema.myFloat.min}"
+                max="${otherSchema.myFloat.max}"
                 step="0.001"
-                value="${this.other.get('float')}"
-                @input=${e => this.other.set({ float: e.detail.value })}
+                value="${this.other.get('myFloat')}"
+                @input=${e => this.other.set({ myFloat: e.detail.value })}
               ></sc-slider>
             </div>
             <div style="margin-bottom: 4px">
               <sc-text
-                value="boolean"
+                value="myBoolean"
                 width="100"
                 readonly
               ></sc-text>
               <sc-toggle
-                ?active="${this.other.get('boolean')}"
-                @change=${e => this.other.set({ boolean: e.detail.value })}
+                ?active="${this.other.get('myBoolean')}"
+                @change=${e => this.other.set({ myBoolean: e.detail.value })}
               ></sc-toggle>
             </div>
         </div>

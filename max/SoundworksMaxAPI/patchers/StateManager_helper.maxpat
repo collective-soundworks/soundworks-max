@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 8,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 298.0, 115.0, 839.0, 702.0 ],
+		"rect" : [ 298.0, 115.0, 1035.0, 700.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,146 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 634.5, 32.5, 187.0, 20.0 ],
+					"text" : "is enough than"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.0, 1.0, 0.070588235294118, 1.0 ],
+					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_angle" : 270.0,
+					"bgfillcolor_autogradient" : 0.0,
+					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_color1" : [ 0.0, 1.0, 0.070588235294118, 1.0 ],
+					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_proportion" : 0.5,
+					"bgfillcolor_type" : "gradient",
+					"gradient" : 1,
+					"id" : "obj-6",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 634.5, 10.0, 41.0, 22.0 ],
+					"text" : "attach"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 544.0, 497.0, 32.0, 22.0 ],
+					"text" : "print"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-26",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 253.0, 454.0, 185.0, 33.0 ],
+					"text" : "@note: I receive all messages twice, that's weird..."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 267.0, 574.0, 239.0, 22.0 ],
+					"text" : "/sw/state-manager/observe-request globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 267.0, 605.0, 88.0, 22.0 ],
+					"text" : "s sw._udpsend"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"linecount" : 14,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 631.0, 448.0, 378.0, 208.0 ],
+					"text" : "new messages\n\n[node -> max] /sw/state-manager/listening\nsent when Node starts, allows Max to send all its observe and attach calls\n\n[max -> node] /sw/state-manager/observe-request <schemaName>\nask for informations about the schemaName states \n@note : only send informations about states created by the server\n\n[node -> max] /sw/state-manager/observe-notification <schemaName>\nnode informs max a state exists with this name, so it can be attached, from there we can continue with the exsiting attach code\n"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 267.0, 497.0, 270.0, 35.0 ],
+					"text" : "/sw/state-manager/update-notification/0/7 {\\\"volume\\\":-9}"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 477.0, 459.5, 99.0, 22.0 ],
+					"text" : "r sw._udpreceive"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"linecount" : 3,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 159.0, 10.0, 150.0, 47.0 ],
+					"text" : "no need for this one\nthis is implicit with the `sw.sharedState <name>`"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"linecount" : 6,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 634.5, 78.0, 186.0, 87.0 ],
+					"text" : "@note: I think I'm really for using the \"set\" keyword here, that's very error prone (what if we have a parameter named `detach` or `getSchema` or `createGUI` ?)\n\"set volume <value>\""
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontface" : 1,
 					"id" : "obj-80",
@@ -139,7 +279,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 644.0, 147.0, 63.0, 22.0 ],
+					"patching_rect" : [ 837.0, 147.0, 63.0, 22.0 ],
 					"text" : "createGUI"
 				}
 
@@ -277,7 +417,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 570.0, 114.0, 50.0, 22.0 ]
+					"patching_rect" : [ 570.0, 111.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -290,7 +430,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 539.0, 205.0, 51.0, 35.0 ],
-					"text" : "volume -46"
+					"text" : "volume -9"
 				}
 
 			}
@@ -377,18 +517,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-12",
-					"linecount" : 12,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 23.0, 395.0, 273.0, 167.0 ],
-					"text" : "@note : JS state API\n\n- subscribe(function() {})\n- set(updates)\n- getValues() -> { currentValues }\n- getSchema() -> { schema }\n\nSi on trouve un moyen de matcher ça en Max ce serait vraiment parfait, mais c'est vrai que c'est pas forcement raccord avec un paradigme send / receive (si tu as une idée ?), sinon c'est déjà super bien quoiqu'il arrive !"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-11",
 					"linecount" : 3,
 					"maxclass" : "comment",
@@ -416,7 +544,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 15.0, 10.0, 75.0, 22.0 ],
+					"patching_rect" : [ 23.0, 41.0, 75.0, 22.0 ],
 					"text" : "getSchemas"
 				}
 
@@ -450,7 +578,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 678.0, 89.0, 65.0, 22.0 ],
+					"patching_rect" : [ 564.0, 41.0, 65.0, 22.0 ],
 					"text" : "attach toto"
 				}
 
@@ -472,7 +600,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 653.0, 65.0, 83.0, 22.0 ],
+					"patching_rect" : [ 539.0, 17.0, 83.0, 22.0 ],
 					"text" : "attach globals"
 				}
 
@@ -507,6 +635,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-19", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-21", 0 ]
 				}
 
 			}
@@ -582,6 +717,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-12", 1 ],
+					"order" : 1,
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"order" : 0,
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-9", 0 ]
 				}
@@ -611,35 +762,35 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "sw.StateManager.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sw.abs.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sw.ObjectCreator.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "parseDict.js",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sw.sharedState.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/_tests/state-manager-osc/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

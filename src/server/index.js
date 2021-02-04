@@ -67,6 +67,7 @@ server.stateManager.registerSchema('other', otherSchema);
     const controllerExperience = new ControllerExperience(server, 'controller');
 
     const globals = await server.stateManager.create('globals');
+    const globals2 = await server.stateManager.create('globals');
     const other = await server.stateManager.create('other');
 
     // start all the things
@@ -157,8 +158,11 @@ server.stateManager.registerSchema('other', otherSchema);
 
         // we keep a record of attached states, to send a notification to max
         // when the server exists
-        this._attachedStates = new Set();
+        // this._attachedStates = new Set(); // needs to
+        this._attachedStates = new Map(); // <schemaName: func>
         this._listeners = new Map();
+
+        this._observeListeners = new Map();
       }
 
       async init() {
@@ -166,6 +170,9 @@ server.stateManager.registerSchema('other', otherSchema);
           this._oscClient = new OscClient(oscConfig.remoteAddress, oscConfig.remotePort);
 
           this._oscServer = new OscServer(oscConfig.localPort, oscConfig.localAddress, () => {
+            // allow Max to resend its observe requests when node wakes up
+            console.log('sending: /sw/state-manager/listening');
+            this._oscClient.send('/sw/state-manager/listening');
             // console.log('osc server inited');
             resolve();
           });
@@ -173,19 +180,20 @@ server.stateManager.registerSchema('other', otherSchema);
           // listen for incomming messages and dispatch
           this._oscServer.on('message', msg => {
             const [channel, ...args] = msg;
+            console.log(channel);
             this._emit(channel, args);
           });
 
           // send detach messages to max when the server shuts down
-          const cleanup = () => {
+          const cleanup = async () => {
             console.log('> cleanup...');
-            this._attachedStates.forEach(state => {
-              const { id, remoteId } = state;
+            for (let [schemaName, infos] of this._attachedStates) {
+              const { id, remoteId } = infos.state;
+              await infos.cleanStateFunc();
+              // notify max
               const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
-
-              // console.log(`[stateId: ${id} - remoteId: ${remoteId}] send detach notification ${channel}`);
               this._oscClient.send(channel);
-            });
+            };
 
             setTimeout(() => {
               console.log('> exiting...');
@@ -196,24 +204,44 @@ server.stateManager.registerSchema('other', otherSchema);
           process.once('SIGINT', cleanup);
           process.once('beforeExit', cleanup);
 
+          // we differ from JS API here
+          // this should be one shot oeprations
+          this._subscribe('/sw/state-manager/observe-request', schemaName => {
+            console.log(schemaName);
+            this.stateManager.observe((_schemaName, stateId, nodeId) => {
+              // Max can only attach to states created by the server
+              if (nodeId === -1) {
+                if (_schemaName === schemaName) {
+                  this._oscClient.send('/sw/state-manager/observe-notification', schemaName /*, stateId */);
+                }
+              }
+
+            });
+          });
+
           // subscribe for `attach-request`s
           this._subscribe('/sw/state-manager/attach-request', async (schemaName, stateId) => {
+            // we don't allow Max to attach mode than once to a state
+            if (this._attachedStates.has(schemaName)) {
+              const infos = this._attachedStates.get(schemaName);
+              await infos.cleanStateFunc();
+            }
+
             let state;
 
             try {
-              state = await this.stateManager.attach(schemaName, stateId);
+              // @note - use soundworks behavior to find the first state of its kind
+              state = await this.stateManager.attach(schemaName/*, stateId */);
             } catch(err) {
               this._oscClient.send('/sw/state-manager/attach-error', err);
               return;
             }
 
-            this._attachedStates.add(state);
-
             const { id, remoteId } = state;
             const schema = state.getSchema();
 
             const updateChannel = `/sw/state-manager/update-request/${id}/${remoteId}`;
-            const unsubscribeUpdate = this._subscribe(updateChannel, async updates => {
+            const unsubscribeUpdateRequests = this._subscribe(updateChannel, async updates => {
               updates = JSON.parse(updates);
 
               for (let key in updates) {
@@ -229,18 +257,7 @@ server.stateManager.registerSchema('other', otherSchema);
               await state.set(updates);
             });
 
-            const detachChannel = `/sw/state-manager/detach-request/${id}/${remoteId}`;
-            const unsubscribeDetach = this._subscribe(detachChannel, async () => {
-              // console.log(`[stateId: ${id} - remoteId: ${remoteId}] detach request ${detachChannel}`);
-              unsubscribeUpdate();
-              unsubscribeDetach();
-              await state.detach();
-              // @note - let's if we can do something here to handle
-              // update-notifications vs. update-response
-            });
-
-
-            state.subscribe(updates => {
+            const unsubscribeUpdateNotifications = state.subscribe(updates => {
               const channel = `/sw/state-manager/update-notification/${id}/${remoteId}`;
               // console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending update notification ${channel}`, updates);
 
@@ -248,10 +265,23 @@ server.stateManager.registerSchema('other', otherSchema);
               this._oscClient.send(channel, updates);
             });
 
+            const cleanStateFunc = async () => {
+              console.log('cleaning state', state.id);
+              unsubscribeUpdateRequests();
+              unsubscribeUpdateNotifications();
+              unsubscribeDetach();
+              await state.detach();
+            }
+
+            const detachChannel = `/sw/state-manager/detach-request/${id}/${remoteId}`;
+            const unsubscribeDetach = this._subscribe(detachChannel, cleanStateFunc);
+
             // init state listeners
 
             const schemaStr = JSON.stringify(schema);
             const currentValues = JSON.stringify(state.getValues());
+
+            this._attachedStates.set(schemaName, { state, cleanStateFunc });
 
             console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending attach response`);
             this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schemaName, schemaStr, currentValues);

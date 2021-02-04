@@ -1,9 +1,9 @@
 export default {
-  boolean: {
+  myBoolean: {
     type: 'boolean',
     default: false,
   },
-  float: {
+  myFloat: {
     type: 'float',
     default: 0,
     min: -1,
