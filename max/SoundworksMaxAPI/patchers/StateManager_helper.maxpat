@@ -40,14 +40,26 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-4",
+					"linecount" : 4,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 105.0, 118.0, 150.0, 60.0 ],
+					"text" : "faire un système pour savoir combien / qui est attaché quand on demande au SM"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-15",
-					"linecount" : 5,
+					"linecount" : 4,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 540.0, 206.0, 53.0, 76.0 ],
-					"text" : "config dictionary u113005454"
+					"patching_rect" : [ 540.0, 206.0, 53.0, 62.0 ],
+					"text" : "message \"#fgd gdf fgddfg\""
 				}
 
 			}

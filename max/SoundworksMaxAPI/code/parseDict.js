@@ -1,4 +1,4 @@
-p = this.patcher;
+
 inlets = 1;
 outlets = 1;
 var inc = 0;
@@ -78,6 +78,7 @@ function parseDict(dictName)
 
 function maker(varName, varType, varMin, varMax)
 {
+	p = this.patcher;
 	var parent = p.parentpatcher;
 	object = parent.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args",schemaName, varName, varMin, varMax);
 	var objH = 25;
