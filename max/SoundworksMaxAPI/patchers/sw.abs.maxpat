@@ -40,6 +40,35 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 30.5, 492.0, 58.0, 22.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 30.5, 520.0, 91.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "abscounter.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js abscounter.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-69",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -530,7 +559,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 612.0, 226.0, 50.0, 89.0 ],
-					"text" : "/sw/state-manager/detach-request/0/39"
+					"text" : "/sw/state-manager/detach-request/0/2"
 				}
 
 			}
@@ -699,6 +728,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-32", 0 ],
 					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}

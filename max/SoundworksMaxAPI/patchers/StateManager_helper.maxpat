@@ -40,26 +40,38 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-4",
-					"linecount" : 4,
-					"maxclass" : "comment",
+					"id" : "obj-14",
+					"maxclass" : "button",
 					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 105.0, 118.0, 150.0, 60.0 ],
-					"text" : "faire un système pour savoir combien / qui est attaché quand on demande au SM"
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 63.0, 25.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "number",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 39.0, 137.0, 50.0, 22.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-15",
-					"linecount" : 4,
+					"linecount" : 5,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 540.0, 206.0, 53.0, 62.0 ],
-					"text" : "message \"#fgd gdf fgddfg\""
+					"patching_rect" : [ 540.0, 206.0, 53.0, 76.0 ],
+					"text" : "config dictionary u135010251"
 				}
 
 			}
@@ -431,8 +443,9 @@
 				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 23.0, 78.0, 101.0, 22.0 ],
 					"text" : "sw.StateManager"
 				}
@@ -588,6 +601,13 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-101", 0 ]
 				}
@@ -597,6 +617,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-59", 0 ],
 					"source" : [ "obj-102", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-14", 0 ]
 				}
 
 			}
@@ -732,6 +759,13 @@
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "abscounter.js",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
