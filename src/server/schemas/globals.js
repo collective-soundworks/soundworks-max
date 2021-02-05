@@ -24,9 +24,8 @@ export default {
     type: 'any',
     default: { a: 1, b: true },
   },
-  // presets: {
-  //   type: 'enum',
-  //   list: ['a', 'b', 'c'],
-  //   default: 'a',
-  // },
+  createOther: {
+    type: 'boolean',
+    default: false,
+  },
 }

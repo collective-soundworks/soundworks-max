@@ -25,10 +25,18 @@ class PlayerExperience extends AbstractExperience {
     super.start();
 
     this.globals = await this.client.stateManager.attach('globals');
-    this.other = await this.client.stateManager.attach('other');
+    this.other = null;
+
+    this.client.stateManager.observe(async (schemaName, stateId, nodeId) => {
+      if (schemaName === 'other') {
+        this.other = await this.client.stateManager.attach(schemaName, stateId);
+        this.other.subscribe(() => this.render());
+        this.other.onDetach(() => this.other = null);
+      }
+    });
+    //
 
     this.globals.subscribe(() => this.render());
-    this.other.subscribe(() => this.render());
 
     window.addEventListener('resize', () => this.render());
     this.render();
@@ -40,7 +48,6 @@ class PlayerExperience extends AbstractExperience {
 
     this.rafId = window.requestAnimationFrame(() => {
       const globalsSchema = this.globals.getSchema();
-      const otherSchema = this.other.getSchema();
 
       render(html`
         <div style="padding: 20px">
@@ -112,34 +119,48 @@ class PlayerExperience extends AbstractExperience {
               ></sc-editor>
             </div>
 
-            <h1>Other</h1>
             <div style="margin-bottom: 4px">
               <sc-text
-                value="myFloat"
-                width="100"
-                readonly
-              ></sc-text>
-              <sc-slider
-                display-number
-                width="300"
-                min="${otherSchema.myFloat.min}"
-                max="${otherSchema.myFloat.max}"
-                step="0.001"
-                value="${this.other.get('myFloat')}"
-                @input=${e => this.other.set({ myFloat: e.detail.value })}
-              ></sc-slider>
-            </div>
-            <div style="margin-bottom: 4px">
-              <sc-text
-                value="myBoolean"
+                value="createOther"
                 width="100"
                 readonly
               ></sc-text>
               <sc-toggle
-                ?active="${this.other.get('myBoolean')}"
-                @change=${e => this.other.set({ myBoolean: e.detail.value })}
+                ?active="${this.globals.get('createOther')}"
+                @change=${e => this.globals.set({ createOther: e.detail.value })}
               ></sc-toggle>
             </div>
+
+            ${this.other ? html`
+              <h1>Other</h1>
+              <div style="margin-bottom: 4px">
+                <sc-text
+                  value="myFloat"
+                  width="100"
+                  readonly
+                ></sc-text>
+                <sc-slider
+                  display-number
+                  width="300"
+                  min="${this.other.getSchema().myFloat.min}"
+                  max="${this.other.getSchema().myFloat.max}"
+                  step="0.001"
+                  value="${this.other.get('myFloat')}"
+                  @input=${e => this.other.set({ myFloat: e.detail.value })}
+                ></sc-slider>
+              </div>
+              <div style="margin-bottom: 4px">
+                <sc-text
+                  value="myBoolean"
+                  width="100"
+                  readonly
+                ></sc-text>
+                <sc-toggle
+                  ?active="${this.other.get('myBoolean')}"
+                  @change=${e => this.other.set({ myBoolean: e.detail.value })}
+                ></sc-toggle>
+              </div>
+            ` : ``}
         </div>
       `, this.$container);
     });

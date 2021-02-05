@@ -45,8 +45,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 159.0, 81.0, 252.0, 22.0 ],
-					"text" : "/sw/state-manager/detach-request/0/2 globals"
+					"patching_rect" : [ 159.0, 81.0, 259.0, 22.0 ],
+					"text" : "/sw/state-manager/detach-request/0/89 globals"
 				}
 
 			}
