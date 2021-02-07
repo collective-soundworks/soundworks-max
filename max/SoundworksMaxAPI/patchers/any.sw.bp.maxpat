@@ -268,7 +268,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 702.0, 448.0, 139.0, 31.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 281.0, 0.0, 10.0, 21.69862973690033 ],
+					"presentation_rect" : [ 281.0, 0.0, 5.212765991687775, 21.69862973690033 ],
 					"proportion" : 0.5,
 					"rounded" : 0
 				}

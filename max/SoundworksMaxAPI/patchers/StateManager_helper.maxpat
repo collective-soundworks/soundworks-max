@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 303.0, 79.0, 656.0, 739.0 ],
+		"rect" : [ 204.0, 79.0, 863.0, 739.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,47 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 187.0, 132.0, 90.0, 22.0 ],
+					"text" : "remove globals"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 153.0, 157.0, 78.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 0,
+						"precision" : 6
+					}
+,
+					"text" : "coll schemas"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-22",
+					"linecount" : 6,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 549.0, 604.0, 150.0, 87.0 ],
+					"text" : "il faut compter combien d'abstractions sont présentes, seulement 1 doit envoyer l'observe\n______\nidem pour le detach"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-14",
 					"maxclass" : "button",
 					"numinlets" : 1,
@@ -65,13 +106,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-15",
-					"linecount" : 5,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 540.0, 206.0, 53.0, 76.0 ],
-					"text" : "config dictionary u135010251"
+					"patching_rect" : [ 474.0, 206.0, 83.0, 22.0 ],
+					"text" : "createOther 1"
 				}
 
 			}
@@ -93,33 +133,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 393.0, 499.230769038200378, 152.0, 181.0 ],
+					"patching_rect" : [ 356.0, 510.230769038200378, 152.0, 181.0 ],
 					"text" : "PROBLEME multiples abstractions !!\n--> si on en supprime une, on se détache, meme si d'autres sont encore actives!\n--> solution temporaire, quand le patch sharedState est supprimé, le detach n'est pas envoyé. Il faut manuellement se détacher."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 1,
-					"id" : "obj-80",
-					"linecount" : 10,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 13.0, 189.0, 359.0, 141.0 ],
-					"text" : "ATTENTION\n- envoyer les valeurs à la création des objets !!!!\n- il faudrait avoir un getValues.\n- debug multiples instance of sharedState --> envoyer des detach-notif quand on envoie plusieurs attach à la suite\n- refaire l'arborescence pour pouvoir lancer node dans Max\n\nautre petit truc :\nest-ce qu'on peut savoir si dans soundworks on a un slider ou une boite à nombre ?"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-109",
-					"linecount" : 5,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 35.0, 632.0, 151.0, 74.0 ],
-					"text" : "autre petit truc :\nest-ce qu'on peut savoir si dans soundworks on a un slider ou une boite à nombre ?"
 				}
 
 			}
@@ -205,7 +220,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1183.0, 582.0, 88.0, 22.0 ],
+					"patching_rect" : [ 884.0, 505.0, 88.0, 22.0 ],
 					"text" : "s sw._udpsend"
 				}
 
@@ -236,11 +251,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-131",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 353.0, 17.0, 150.0, 20.0 ],
-					"text" : "liste de tous les schémas"
+					"patching_rect" : [ 353.0, 17.0, 150.0, 33.0 ],
+					"text" : "liste de tous les schémas --> on oublie pour l'instant"
 				}
 
 			}
@@ -268,6 +284,16 @@
 			}
 , 			{
 				"box" : 				{
+					"bgcolor" : [ 0.0, 1.0, 0.317647058823529, 1.0 ],
+					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_angle" : 270.0,
+					"bgfillcolor_autogradient" : 0.0,
+					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_color1" : [ 0.0, 1.0, 0.317647058823529, 1.0 ],
+					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_proportion" : 0.5,
+					"bgfillcolor_type" : "gradient",
+					"gradient" : 1,
 					"id" : "obj-98",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -280,12 +306,22 @@
 			}
 , 			{
 				"box" : 				{
+					"bgcolor" : [ 0.0, 1.0, 0.196078431372549, 1.0 ],
+					"bgcolor2" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_angle" : 270.0,
+					"bgfillcolor_autogradient" : 0.0,
+					"bgfillcolor_color" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_color1" : [ 0.0, 1.0, 0.196078431372549, 1.0 ],
+					"bgfillcolor_color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+					"bgfillcolor_proportion" : 0.5,
+					"bgfillcolor_type" : "gradient",
+					"gradient" : 1,
 					"id" : "obj-96",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 490.0, 147.0, 67.0, 22.0 ],
+					"patching_rect" : [ 488.0, 110.5, 67.0, 22.0 ],
 					"text" : "get volume"
 				}
 
@@ -331,8 +367,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "dictionary" ],
-					"patching_rect" : [ 955.0, 194.0, 121.0, 22.0 ],
-					"text" : "sw.sharedState other"
+					"patching_rect" : [ 955.0, 194.0, 123.0, 22.0 ],
+					"text" : "sw.shared-state other"
 				}
 
 			}
@@ -400,8 +436,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "dictionary" ],
-					"patching_rect" : [ 570.0, 174.0, 132.0, 22.0 ],
-					"text" : "sw.sharedState globals"
+					"patching_rect" : [ 570.0, 174.0, 134.0, 22.0 ],
+					"text" : "sw.shared-state globals"
 				}
 
 			}
@@ -443,11 +479,10 @@
 				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 23.0, 78.0, 101.0, 22.0 ],
-					"text" : "sw.StateManager"
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 23.0, 78.0, 103.0, 22.0 ],
+					"text" : "sw.state-manager"
 				}
 
 			}
@@ -467,7 +502,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 453.0, 285.0, 25.0 ],
+					"patching_rect" : [ 23.0, 252.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -488,7 +523,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 488.0, 285.0, 25.0 ],
+					"patching_rect" : [ 23.0, 287.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -501,7 +536,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-12",
+					"id" : "obj-16",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "float.sw.bp.maxpat",
@@ -509,7 +544,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 523.0, 285.0, 25.0 ],
+					"patching_rect" : [ 23.0, 322.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -522,7 +557,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-16",
+					"id" : "obj-19",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "string.sw.bp.maxpat",
@@ -530,7 +565,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 558.0, 285.0, 25.0 ],
+					"patching_rect" : [ 23.0, 357.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -543,7 +578,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-19",
+					"id" : "obj-21",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "any.sw.bp.maxpat",
@@ -551,20 +586,20 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "dictionary" ],
-					"patching_rect" : [ 17.0, 593.0, 285.0, 25.0 ],
+					"patching_rect" : [ 23.0, 392.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "other", "myBoolean", 0, 0 ],
+					"args" : [ "globals", "createOther", 0, 0 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-21",
+					"id" : "obj-24",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "boolean.sw.bp.maxpat",
@@ -572,41 +607,13 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 348.0, 285.0, 25.0 ],
-					"viewvisibility" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"args" : [ "other", "myFloat", -1, 1 ],
-					"bgmode" : 0,
-					"border" : 0,
-					"clickthrough" : 0,
-					"enablehscroll" : 0,
-					"enablevscroll" : 0,
-					"id" : "obj-23",
-					"lockeddragscroll" : 0,
-					"maxclass" : "bpatcher",
-					"name" : "float.sw.bp.maxpat",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"offset" : [ 0.0, 0.0 ],
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 383.0, 285.0, 25.0 ],
+					"patching_rect" : [ 23.0, 427.0, 285.0, 25.0 ],
 					"viewvisibility" : 1
 				}
 
 			}
  ],
 		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-101", 0 ]
@@ -622,8 +629,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-14", 0 ]
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -713,13 +720,6 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "float.sw.bp.maxpat",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "boolean.sw.bp.maxpat",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
@@ -741,6 +741,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "float.sw.bp.maxpat",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "integer.sw.bp.maxpat",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
@@ -748,7 +755,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sw.StateManager.maxpat",
+				"name" : "sw.state-manager.maxpat",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -762,14 +769,14 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "abscounter.js",
+				"name" : "maincounter.js",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sw.sharedState.maxpat",
+				"name" : "sw.shared-state.maxpat",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -784,6 +791,13 @@
 			}
 , 			{
 				"name" : "notifydeleted.js",
+				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "slavecounter.js",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
