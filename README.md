@@ -66,7 +66,7 @@ await oscStateManager.init();
 2. Copy the directory into ~/Documents/Max 8/packages
 3. Open the Helper patch for more informations
 
-![./resources/max.png](max example)
+![Max screenshot](./resources/max.png)
 
 ## License
 
