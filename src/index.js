@@ -165,7 +165,7 @@ export class StateManagerOsc {
             try {
               updates[key] = coerseValue(key, updates[key], schema[key])
             } catch(err) {
-              console.log('Ignoring param update:', err.message);
+              console.log(chalk.cyan('[@soundworks/state-manager-osc]'), 'Ignoring param update:', err.message);
               delete updates[key];
             }
           }
@@ -188,7 +188,6 @@ export class StateManagerOsc {
         });
 
         const cleanStateFunc = async (detach = true) => {
-          console.log('cleaning state', schemaName, id, remoteId);
           unsubscribeUpdateRequests();
           unsubscribeGetValues();
           unsubscribeUpdateNotifications();
@@ -214,7 +213,6 @@ export class StateManagerOsc {
 
         this._attachedStates.set(schemaName, { state, cleanStateFunc });
 
-        console.log(`[stateId: ${id} - remoteId: ${remoteId}] sending attach response`);
         this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schemaName, schemaStr, currentValues);
       });
     });
