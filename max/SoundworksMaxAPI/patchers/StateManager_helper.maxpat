@@ -111,7 +111,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 474.0, 206.0, 83.0, 22.0 ],
-					"text" : "createOther 1"
+					"text" : "createOther 0"
 				}
 
 			}
@@ -494,7 +494,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-3",
+					"id" : "obj-4",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "integer.sw.bp.maxpat",
@@ -515,7 +515,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-7",
+					"id" : "obj-16",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "boolean.sw.bp.maxpat",
@@ -536,7 +536,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-16",
+					"id" : "obj-19",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "float.sw.bp.maxpat",
@@ -557,7 +557,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-19",
+					"id" : "obj-21",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "string.sw.bp.maxpat",
@@ -578,7 +578,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-21",
+					"id" : "obj-24",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "any.sw.bp.maxpat",
@@ -599,7 +599,7 @@
 					"clickthrough" : 0,
 					"enablehscroll" : 0,
 					"enablevscroll" : 0,
-					"id" : "obj-24",
+					"id" : "obj-26",
 					"lockeddragscroll" : 0,
 					"maxclass" : "bpatcher",
 					"name" : "boolean.sw.bp.maxpat",
@@ -769,13 +769,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "maincounter.js",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
-				"patcherrelativepath" : "../code",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "sw.shared-state.maxpat",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/patchers",
 				"patcherrelativepath" : ".",
@@ -790,14 +783,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "notifydeleted.js",
-				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
-				"patcherrelativepath" : "../code",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "slavecounter.js",
+				"name" : "jscount.js",
 				"bootpath" : "~/Documents/GitHub/soundworks_state-manager_osc-test/max/SoundworksMaxAPI/code",
 				"patcherrelativepath" : "../code",
 				"type" : "TEXT",

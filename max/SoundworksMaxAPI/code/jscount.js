@@ -38,11 +38,18 @@ function notifydeleted(){
 
 // at start, increments g.count
 add();
-function loadbang(){
+
+// bang: reset g.count and wait to re-count all instances
+function bang(){
+	g.count = null;
+	var waitReset = new Task(function(){
+		add();
+	});
+	waitReset.schedule(200);
 }
 
 function attach(){
-	post("s'attacher à "+arg);post();
+	post("Demande d'observation effectuée à "+arg);post();
 	var wait = new Task(function(){
 		messnamed("sw.observe",arg);
 	});
@@ -50,6 +57,11 @@ function attach(){
 }
 
 function detach(){
-	post("se détacher de "+arg);post();
+	post("Demande de détachement effectuée à "+arg);post();
 	messnamed(arg+".sw.detach","bang");
 }
+
+
+
+
+
