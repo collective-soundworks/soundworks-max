@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 89.0, 92.0, 355.0, 522.0 ],
+		"rect" : [ 292.0, 79.0, 1188.0, 702.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -26,7 +26,7 @@
 		"toptoolbarpinned" : 0,
 		"righttoolbarpinned" : 0,
 		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 15,
+		"toolbars_unpinned_last_save" : 0,
 		"tallnewobj" : 0,
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-32",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 515.200000000000045, 426.0, 47.0, 22.0 ],
+					"text" : "#1"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-37",
 					"maxclass" : "newobj",
@@ -138,13 +150,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 26.0, 603.0, 100.0, 22.0 ],
+					"patching_rect" : [ 26.0, 603.0, 112.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "slavecounter.js",
+						"filename" : "jscount.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js slavecounter.js"
+					"text" : "js jscount.js #1"
 				}
 
 			}
@@ -186,18 +198,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-26",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 538.0, 354.0, 77.0, 22.0 ],
-					"text" : "r sw.listening"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-27",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -229,23 +229,6 @@
 					"outlettype" : [ "int" ],
 					"patching_rect" : [ 179.800000000000011, 369.0, 40.0, 22.0 ],
 					"text" : "active"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-24",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 337.600000000000023, 164.0, 101.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "notifydeleted.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js notifydeleted.js"
 				}
 
 			}
@@ -329,18 +312,6 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 515.200000000000045, 392.5, 22.0, 22.0 ],
 					"text" : "t b"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-19",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 515.200000000000045, 427.0, 101.0, 22.0 ],
-					"text" : "loadmess #1"
 				}
 
 			}
@@ -543,14 +514,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
-					"disabled" : 1,
-					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
@@ -615,7 +578,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-19", 0 ],
+					"destination" : [ "obj-32", 0 ],
 					"source" : [ "obj-13", 0 ]
 				}
 
@@ -638,13 +601,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-57", 0 ],
 					"source" : [ "obj-17", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"source" : [ "obj-19", 0 ]
 				}
 
 			}
@@ -673,13 +629,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-25", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-13", 0 ],
-					"source" : [ "obj-26", 0 ]
 				}
 
 			}
@@ -722,6 +671,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-45", 0 ],
 					"source" : [ "obj-31", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-32", 0 ]
 				}
 
 			}

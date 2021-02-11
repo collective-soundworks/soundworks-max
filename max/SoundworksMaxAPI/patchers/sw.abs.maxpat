@@ -214,7 +214,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1027.0, 345.0, 64.0, 76.0 ],
-					"text" : "/sw/state-manager/get-values-request/0/20"
+					"text" : "/sw/state-manager/get-values-request/0/1"
 				}
 
 			}
@@ -263,23 +263,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1027.0, 229.0, 127.0, 22.0 ],
 					"text" : "r #3.sw.getValues"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 27.0, 521.0, 98.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "maincounter.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js maincounter.js"
 				}
 
 			}
@@ -775,7 +758,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 612.0, 226.0, 50.0, 89.0 ],
-					"text" : "/sw/state-manager/detach-request/0/20"
+					"text" : "/sw/state-manager/detach-request/0/1"
 				}
 
 			}
