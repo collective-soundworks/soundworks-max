@@ -16,7 +16,8 @@
     "clean": "rm -Rf dist",
     "prepublishOnly": "npm run clean && npm run build",
     "build": "babel src --out-dir dist",
-    "dev": "npm run clean && npm run build && chokidar src -c \"npm run build\""
+    "dev": "npm run clean && npm run build && chokidar src -c \"npm run build\"",
+    "toc": "markdown-toc -i README.md"
   },
   "dependencies": {
     "chalk": "^4.1.0",

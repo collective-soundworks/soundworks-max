@@ -1,4 +1,4 @@
-# `@sounworks/state-manager-osc`
+# `@soundworks/state-manager-osc`
 
 > Utility to monitor and control soundworks' shared states within Max using OSC communications
 
@@ -9,6 +9,17 @@ _**Warning**: this component is experimental and will probably be subject to cha
 ## Table of Contents
 
 <!-- toc -->
+
+- [Installation](#installation)
+  * [NPM](#npm)
+  * [Max/MSP](#maxmsp)
+- [Usage](#usage)
+  * [Javascript](#javascript)
+  * [Max](#max)
+- [Running the example](#running-the-example)
+- [License](#license)
+
+<!-- tocstop -->
 
 ## Installation
 
@@ -74,7 +85,7 @@ await oscStateManager.init();
 
 See the overview Patch for more information (cf. `~/Document/Max 8/Packages/SoundworksAPI/extras/soundworksAPI.overview.maxpat`)
 
-### Running the example
+## Running the example
 
 1. Download the repository
 2. Go the `example` directory
