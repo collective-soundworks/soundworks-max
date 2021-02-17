@@ -83,7 +83,8 @@ await oscStateManager.init();
 
 ### Max/MSP
 
-See the overview Patch for more information (cf. `~/Document/Max 8/Packages/SoundworksAPI/extras/soundworksAPI.overview.maxpat`)
+See the overview Patch for more information  
+cf. `~/Document/Max 8/Packages/SoundworksAPI/extras/soundworksAPI.overview.maxpat`
 
 ## Running the example
 
