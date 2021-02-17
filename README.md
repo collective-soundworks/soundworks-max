@@ -15,7 +15,7 @@ _**Warning**: this component is experimental and will probably be subject to cha
   * [Max/MSP](#maxmsp)
 - [Usage](#usage)
   * [Javascript](#javascript)
-  * [Max](#max)
+  * [Max/MSP](#maxmsp-1)
 - [Running the example](#running-the-example)
 - [License](#license)
 
@@ -81,7 +81,7 @@ await oscStateManager.init();
 // now you can control and monitor the `globals` state from your Max patch
 ```
 
-### Max
+### Max/MSP
 
 See the overview Patch for more information (cf. `~/Document/Max 8/Packages/SoundworksAPI/extras/soundworksAPI.overview.maxpat`)
 
