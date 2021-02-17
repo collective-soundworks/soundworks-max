@@ -1,8 +1,10 @@
 # `@sounworks/state-manager-osc`
 
-> Utility to monitor and control soundworks' shared state within Max through OSC
+> Utility to monitor and control soundworks' shared states within Max using OSC communications
 
-**warning: this component is experimental and may be subbject to changes**
+![Max screenshot](./resources/max.png)
+
+_**Warning**: this component is experimental and will probably be subject to changes_
 
 ## Table of Contents
 
@@ -10,9 +12,17 @@
 
 ## Installation
 
+### NPM 
+
 ```sh
-npm install --save @sounworks/state-manager-osc
+npm install --save @soundworks/state-manager-osc
 ```
+
+### Max/MSP
+
+1. Download the Max abstraction from the release page 
+2. Unzip the package and copy the directory in `~/Documents/Max 8/packages`
+3. Open the Helper patch for more informations
 
 ## Usage
 
@@ -62,11 +72,9 @@ await oscStateManager.init();
 
 ### Max
 
-1. Download the Max abstraction from the release page 
-2. Copy the directory into ~/Documents/Max 8/packages
-3. Open the Helper patch for more informations
+See max helper
 
-![Max screenshot](./resources/max.png)
+### Running the example
 
 ## License
 

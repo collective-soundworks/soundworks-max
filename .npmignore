@@ -3,6 +3,11 @@
 /src
 /tests
 /max
+/example
+/resources
+
+.editorconfig
+.babelrc
 
 # junk files
 package-lock.json
