@@ -20,8 +20,8 @@ npm install --save @soundworks/state-manager-osc
 
 ### Max/MSP
 
-1. Download the Max abstraction from the release page 
-2. Unzip the package and copy the directory in `~/Documents/Max 8/packages`
+1. Download the Max abstraction (SoundworksAPI.zip) from the releases page: [https://github.com/collective-soundworks/soundworks-state-manager-osc/releases](https://github.com/collective-soundworks/soundworks-state-manager-osc/releases)
+2. Unzip the package and copy the resulting directory in `~/Documents/Max 8/Packages`
 3. Open the Helper patch for more informations
 
 ## Usage
@@ -72,9 +72,23 @@ await oscStateManager.init();
 
 ### Max
 
-See max helper
+See the overview Patch for more information (cf. `~/Document/Max 8/Packages/SoundworksAPI/extras/soundworksAPI.overview.maxpat`)
 
 ### Running the example
+
+1. Download the repository
+2. Go the `example` directory
+3. In a terminal, launch the soundworks application
+
+```
+cd path/to/soundworks-state-manager-osc/example
+npm install 
+npm run dev
+```
+
+3. Launch a web client in your favorite browser ([http://127.0.0.1:8000]([http://127.0.0.1:8000]))
+4. Open the max example patch `example.maxpat`
+
 
 ## License
 
