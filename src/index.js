@@ -163,7 +163,7 @@ export class StateManagerOsc {
 
           for (let key in updates) {
             try {
-              updates[key] = coerseValue(key, updates[key], schema[key])
+              updates[key] = coerseValue(key, updates[key], schema[key]);
             } catch(err) {
               console.log(chalk.cyan('[@soundworks/state-manager-osc]'), 'Ignoring param update:', err.message);
               delete updates[key];
