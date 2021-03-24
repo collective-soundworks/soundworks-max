@@ -110,7 +110,7 @@
 				"box" : 				{
 					"fontsize" : 45.0,
 					"id" : "obj-17",
-					"items" : "globals",
+					"items" : "<empty>",
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -1612,17 +1612,6 @@
 				}
 
 			}
-, 			{
-				"box" : 				{
-					"id" : "obj-27",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patching_rect" : [ 0.0, 0.0, 107.0, 22.0 ],
-					"text" : "sw.abs 0 1 globals"
-				}
-
-			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -1887,7 +1876,9 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [  ],
+		"autosave" : 0
 	}
 
 }
