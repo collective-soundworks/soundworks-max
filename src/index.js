@@ -115,6 +115,8 @@ export class StateManagerOsc {
           }
         };
 
+        this._oscClient.send('/sw/state-manager/exit');
+
         setTimeout(() => {
           console.log(chalk.cyan('[@soundworks/state-manager-osc]'), 'exiting...');
           process.exit();
