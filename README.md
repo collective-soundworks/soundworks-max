@@ -2,7 +2,7 @@
 
 > Utility to monitor and control soundworks' shared states within Max using OSC communications
 
-![Max screenshot](./resources/max.png)
+<!--![Max screenshot](./resources/max.png)-->
 
 _**Warning**: this component is experimental and will probably be subject to changes_
 
