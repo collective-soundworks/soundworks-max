@@ -3,6 +3,7 @@ var dict = new Dict(dictName);
 
 function update() {
   var args = arrayfromargs(arguments);
+  // get updates
   var json = args.toString();
   var obj = JSON.parse(json);
 
@@ -17,19 +18,6 @@ function update() {
   }
 
   dict.parse(JSON.stringify(dictObj));
-
-  // for (var name in obj) {
-  //   if (typeof obj[name] !== 'object') {
-  //     dict.set(name, obj[name]);
-  //   } else {
-  //     var test = new Dict('test');
-  //     // post(JSON.stringify(obj[name]), '\n');
-  //     test.parse(JSON.stringify(obj[name]));
-  //     dict.set(name, test);
-  //   }
-  // }
-
-  // [{"x":0.4541984732824428,"y":0.5620229007633588}]
 
   outlet(0, 'bang');
 }
