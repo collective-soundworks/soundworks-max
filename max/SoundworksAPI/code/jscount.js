@@ -1,5 +1,8 @@
 var arg = jsarguments[1];
-if (arg == null){
+if (arg == null) {
+	arg = 'pouet';
+}
+if (arg == '#1') {
 	arg = 'pouet';
 }
 

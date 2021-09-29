@@ -9,7 +9,7 @@ function parseDict(dictName)
 {
 	// argument is the name of a dict, which may or may not already exist. 
 	// in this case there is already a dict named "northern animals" and we will reference that dict.
-	var d = new Dict(schemaName+"_infos");
+	var d = new Dict(dictName);
 	
 	// an optional 'true' arg to getnames() will get all dictionary names
 	// rather than just explicitly named dictionaries
@@ -80,7 +80,8 @@ function maker(varName, varType, varMin, varMax)
 {
 	p = this.patcher;
 	var parent = p.parentpatcher;
-	object = parent.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args",schemaName, varName, varMin, varMax);
+	object = p.newdefault(500,90,"bpatcher",varType+".sw.bp", "@args",schemaName, varName, varMin, varMax);
+	//object = p.newdefault(500,90,"route","volume");
 	var objH = 25;
 	var objW = 285;
 	var objL = 23; //change me!
@@ -90,12 +91,12 @@ function maker(varName, varType, varMin, varMax)
 }
 
 
-function create()
+function dictionary()
 {
 	//post(arguments[0]);
 	schemaName = arguments[0];
 	inc = 0;
-	parseDict();
+	parseDict(schemaName);
 	
 
 }
