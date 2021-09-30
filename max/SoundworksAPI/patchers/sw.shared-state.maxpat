@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 227.0, 582.0 ],
+		"rect" : [ 419.0, 87.0, 227.0, 582.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -46,7 +46,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 138.800000000000011, 672.0, 87.0, 76.0 ],
+					"patching_rect" : [ 169.800000000000011, 648.0, 87.0, 76.0 ],
 					"text" : "symbol \"sw.shared-state requires a state name as argument\""
 				}
 
@@ -70,7 +70,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 23.0, 847.0, 444.0, 22.0 ],
+					"patching_rect" : [ 23.0, 846.0, 444.0, 22.0 ],
 					"text" : "script newdefault java 40 600 js jscount.js #1, script connect listening 0 java 0"
 				}
 
@@ -499,114 +499,6 @@
 				}
 
 			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 600.0, 112.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "jscount.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js jscount.js globals",
-					"varname" : "java"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-23",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 600.0, 112.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "jscount.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js jscount.js globals",
-					"varname" : "java[1]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-36",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 600.0, 112.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "jscount.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js jscount.js globals",
-					"varname" : "java[2]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-24",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 600.0, 112.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "jscount.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js jscount.js globals",
-					"varname" : "java[3]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-31",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 600.0, 100.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "jscount.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js jscount.js g",
-					"varname" : "java[4]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-33",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 40.0, 600.0, 100.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "jscount.js",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js jscount.js g",
-					"varname" : "java[5]"
-				}
-
-			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -684,13 +576,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-57", 0 ],
 					"source" : [ "obj-17", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-19", 0 ]
 				}
 
 			}
