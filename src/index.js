@@ -132,7 +132,7 @@ export class StateManagerOsc {
           // Max can only attach to states created by the server
           if (nodeId === -1) {
             if (_schemaName === schemaName) {
-              this._oscClient.send('/sw/state-manager/observe-notification', schemaName /*, stateId */);
+              this._oscClient.send('/sw/state-manager/observe-notification', schemaName, stateId, nodeId);
             }
           }
         });
