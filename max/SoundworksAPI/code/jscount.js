@@ -1,11 +1,9 @@
-var arg = jsarguments[1];
+var schemaName = jsarguments[1];
 var uuid = jsarguments[2];
-if (arg == null) {
-	arg = 'pouet';
-}
 
-var g = new Global(arg);
-var d = new Dict("id");
+var g = new Global(schemaName);
+var idDict = new Dict('sw_id');
+var keyDict = new Dict('sw_keys');
 
 // increments g.count only if g.count is defined. If not, it means this is the first JS instance and g.count is init to 1;
 function add(){
@@ -30,8 +28,8 @@ function remove(){
 
 // send g.count to nb_of_instances receive
 function send(){
-	//messnamed('nb_of_instances', arg, g.count);
-	//post("nb_of_instances",arg,g.count);post();
+	//messnamed('nb_of_instances', schemaName, g.count);
+	//post("nb_of_instances",schemaName,g.count);post();
 } 
 
 // when JS instance is removed, decrements g.count
@@ -52,7 +50,7 @@ function bang(){
 }
 
 function attach(){
-	post("Demande d'observation effectuée à "+arg);post();
+	post("Demande d'observation effectuée à "+schemaName);post();
 	var wait = new Task(function(){
 		messnamed(uuid+".sw.observe","bang");
 	});
@@ -60,8 +58,14 @@ function attach(){
 }
 
 function detach(){
-	post("Demande de détachement effectuée à "+arg);post();
-	d.remove(arg);
+	post("Demande de détachement effectuée à "+schemaName);post();
+	var stateId = idDict.get(schemaName + '::stateID');
+	var nodeId = idDict.get(schemaName + '::nodeID');
+	var key = schemaName + '_' + stateId + '_' + nodeId;
+	
+	keyDict.remove(key);
+	idDict.remove(schemaName);
+
 	messnamed(uuid+".sw.detach","bang");
 }
 

@@ -1,25 +1,20 @@
 //Si la clé est dans le dictionnaire --> ne rien faire
 // Si la clé n'est pas dans le dictionnaire, l'ajouter puis envoyer une attach request.
+var keyDict = new Dict('sw_keys');
+var idDict = new Dict('sw_id');
 
-
-d = new Dict(jsarguments[1]);
-
-function anything()
-{
-	var a = arrayfromargs(messagename, arguments);
-
-	var isPresent = d.contains(a);
-
-
-	if (isPresent) {
-		//post("yes");post()
+function anything() {
+	var arr = arrayfromargs(messagename, arguments);
+	var schemaName = arr[0];
+	var stateId = arr[1];
+	var nodeId = arr[2];
+	var uniqKey = arr.join('_');
+	
+	if (!keyDict.contains(uniqKey)) {
+		keyDict.replace(uniqKey);
+		idDict.replace(schemaName + '::stateID', stateId);
+		idDict.replace(schemaName + '::nodeID', nodeId);
+		
+		outlet(0,arr);
 	}
-	else {
-		d.replace(a+"::stateID",-1);
-		d.replace(a+"::remoteID",-1);
-		outlet(0,a);
-		//post("no");post();
-	}
-
-
 }
