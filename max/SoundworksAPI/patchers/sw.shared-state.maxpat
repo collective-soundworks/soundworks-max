@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 419.0, 87.0, 227.0, 582.0 ],
+		"rect" : [ 419.0, 87.0, 1276.0, 866.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -158,18 +158,6 @@
 					"patching_rect" : [ 374.0, 642.0, 100.0, 100.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 227.0, 582.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-26",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 1125.0, 369.0, 29.5, 22.0 ],
-					"text" : "t b l"
 				}
 
 			}
@@ -386,8 +374,8 @@
 					"numinlets" : 5,
 					"numoutlets" : 5,
 					"outlettype" : [ "", "", "", "", "" ],
-					"patching_rect" : [ 109.0, 330.0, 1033.0, 22.0 ],
-					"text" : "route detach getSchema attach getValues"
+					"patching_rect" : [ 109.0, 330.0, 205.0, 22.0 ],
+					"text" : "route detach getSchema attach bang"
 				}
 
 			}
@@ -499,6 +487,24 @@
 				}
 
 			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 40.0, 600.0, 112.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "jscount.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js jscount.js globals",
+					"varname" : "java"
+				}
+
+			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -539,15 +545,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-26", 0 ],
-					"source" : [ "obj-10", 4 ]
+					"destination" : [ "obj-29", 0 ],
+					"source" : [ "obj-10", 3 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-29", 0 ],
-					"source" : [ "obj-10", 3 ]
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-10", 4 ]
 				}
 
 			}
@@ -576,6 +582,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-57", 0 ],
 					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-19", 0 ]
 				}
 
 			}
@@ -611,20 +624,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-25", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-29", 0 ],
-					"source" : [ "obj-26", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-26", 1 ]
 				}
 
 			}
