@@ -127,6 +127,8 @@ export class StateManagerOsc {
       process.once('beforeExit', cleanup);
 
       // @note: this is probably not very clean, to be reviewed
+      // @note: why do we receive a schemaName here:
+      // -
       this._subscribe('/sw/state-manager/observe-request', schemaName => {
         this.stateManager.observe((_schemaName, stateId, nodeId) => {
           // Max can only attach to states created by the server
@@ -139,7 +141,7 @@ export class StateManagerOsc {
       });
 
       // subscribe for `attach-request`s
-      this._subscribe('/sw/state-manager/attach-request', async (schemaName, stateId) => {
+      this._subscribe('/sw/state-manager/attach-request', async (schemaName, stateId, nodeId) => {
         // we don't allow Max to attach mode than once to a state
         if (this._attachedStates.has(schemaName)) {
           const infos = this._attachedStates.get(schemaName);
@@ -150,7 +152,7 @@ export class StateManagerOsc {
 
         try {
           // @note - use soundworks behavior to find the first state of its kind
-          state = await this.stateManager.attach(schemaName/*, stateId */);
+          state = await this.stateManager.attach(schemaName, stateId, nodeId);
         } catch(err) {
           this._oscClient.send('/sw/state-manager/attach-error', err);
           return;
