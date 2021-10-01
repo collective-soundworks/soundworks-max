@@ -20,6 +20,8 @@ function anything() {
 		var valueDict = new Dict(schemaName + '_values');
 		valueDict.parse(initValues);
 
-		outlet(0, stateId, remoteId, schemaName);
+		messnamed(schemaName+"_sw.sendID","bang");
+
+		post("attached to "+schemaName+" - stateId: "+stateId+" - remoteId: "+remoteId);
 	}
 }
