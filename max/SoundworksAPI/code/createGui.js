@@ -1,15 +1,9 @@
 var stateName = jsarguments[1];
 
-var schemaDict = new Dict(stateName + '_infos');
-var schemaJson = schemaDict.stringify();
-schema = JSON.parse(schemaJson);
-
-var valuesDict = new Dict(stateName + '_values');
-var valuesJson = valuesDict.stringify();
-values = JSON.parse(valuesJson);
 
 var x = 500;
 var y = 300;
+
 
 // function bang() {
 //   createIntInterface('volume', schema.volume, values.volume);
@@ -21,6 +15,16 @@ var y = 300;
 // }
 
 function anything() {
+
+
+var schemaDict = new Dict(stateName + '_infos');
+var schemaJson = schemaDict.stringify();
+schema = JSON.parse(schemaJson);
+
+var valuesDict = new Dict(stateName + '_values');
+var valuesJson = valuesDict.stringify();
+values = JSON.parse(valuesJson);
+
   if (messagename in schema) {
     var name = messagename;
     var def = schema[name]
@@ -49,7 +53,7 @@ function anything() {
         break;
     }
   } else {
-    post('Unknow param "' + messagename + '" for state "' + stateName + '"', '\n');
+    post('Unknown param "' + messagename + '" for state "' + stateName + '"', '\n');
   }
 }
 
@@ -60,7 +64,7 @@ function createIntInterface(name, def, initValue) {
   comment.set(name);
 
   var receive = patch.newdefault(x, y + 30, 'r', 'update-' + stateName);
-  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', 'volume:');
+  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', name+":");
   var prependSet = patch.newdefault(x, y + 90, 'prepend', 'set');
 
   var args = [x, y + 120, 'number'];
@@ -77,7 +81,7 @@ function createIntInterface(name, def, initValue) {
   var int = patch.newdefault.apply(patch, args);
   int.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', 'volume', ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
@@ -94,7 +98,7 @@ function createFloatInterface(name, def, initValue) {
   comment.set(name);
 
   var receive = patch.newdefault(x, y + 30, 'r', 'update-' + stateName);
-  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', 'volume:');
+  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', name+':');
   var prependSet = patch.newdefault(x, y + 90, 'prepend', 'set');
 
   var args = [x, y + 120, 'flonum'];
@@ -111,7 +115,7 @@ function createFloatInterface(name, def, initValue) {
   var float = patch.newdefault.apply(patch, args);
   float.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', 'volume', ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
@@ -128,13 +132,13 @@ function createToggleInterface(name, def, initValue) {
   comment.set(name);
 
   var receive = patch.newdefault(x, y + 30, 'r', 'update-' + stateName);
-  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', 'volume:');
+  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', name+':');
   var prependSet = patch.newdefault(x, y + 90, 'prepend', 'set');
 
   var toggle = patch.newdefault(x, y + 120, 'toggle');
   toggle.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', 'volume', ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
@@ -151,13 +155,13 @@ function createStringInterface(name, def, initValue) {
   comment.set(name);
 
   var receive = patch.newdefault(x, y + 30, 'r', 'update-' + stateName);
-  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', 'volume:');
+  var unpack = patch.newdefault(x, y + 60, 'dict.unpack', name+':');
   var prependSet = patch.newdefault(x, y + 90, 'prepend', 'set');
 
   var msg = patch.newobject('message', x, y + 120, 110, 12);
   msg.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', 'volume', ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
