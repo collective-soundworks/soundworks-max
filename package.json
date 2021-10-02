@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
+    "lodash.throttle": "^4.1.1",
     "node-osc": "^5.2.2"
   },
   "devDependencies": {

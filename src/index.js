@@ -1,5 +1,8 @@
 import { Client as OscClient, Server as OscServer } from 'node-osc';
 import chalk from 'chalk';
+import throttle from 'lodash.throttle';
+
+console.log(throttle);
 
 function coerseValue(key, value, def) {
   if (!def) {
@@ -76,6 +79,7 @@ export class StateManagerOsc {
       localPort: 57121,
       remoteAddress: '127.0.0.1',
       remotePort: 57122,
+      speedLimit: 20,
     }, config);
 
     // we keep a record of attached states, to send a notification to max
@@ -90,6 +94,7 @@ export class StateManagerOsc {
   async init() {
     return new Promise((resolve, reject) => {
       this._oscClient = new OscClient(this.config.remoteAddress, this.config.remotePort);
+      this._oscClient.send = throttle(this._oscClient.send.bind(this._oscClient), this.config.speedLimit);
 
       this._oscServer = new OscServer(this.config.localPort, this.config.localAddress, () => {
         // allow Max to resend its observe requests when node wakes up
