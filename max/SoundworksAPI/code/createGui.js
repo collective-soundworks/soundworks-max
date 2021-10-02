@@ -1,29 +1,22 @@
 var stateName = jsarguments[1];
 
-
 var x = 500;
 var y = 300;
 
-
-// function bang() {
-//   createIntInterface('volume', schema.volume, values.volume);
-//   x += 180;
-//   createToggleInterface('mute', schema.mute, values.mute);
-//   x += 180;
-//   createStringInterface('message', schema.message, values.message);
-//   x += 180;
-// }
+var schema = null;
+var values = null;
 
 function anything() {
+  // lazy get dicts so as to make sure the they are ready on patch load
+  if (schema === null && values === null) {
+    var schemaDict = new Dict(stateName + '_infos');
+    var schemaJson = schemaDict.stringify();
+    schema = JSON.parse(schemaJson);
 
-
-var schemaDict = new Dict(stateName + '_infos');
-var schemaJson = schemaDict.stringify();
-schema = JSON.parse(schemaJson);
-
-var valuesDict = new Dict(stateName + '_values');
-var valuesJson = valuesDict.stringify();
-values = JSON.parse(valuesJson);
+    var valuesDict = new Dict(stateName + '_values');
+    var valuesJson = valuesDict.stringify();
+    values = JSON.parse(valuesJson);
+  }
 
   if (messagename in schema) {
     var name = messagename;
