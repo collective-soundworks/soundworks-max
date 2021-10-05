@@ -5,6 +5,9 @@ var g = new Global(schemaName);
 var idDict = new Dict('sw_id');
 var keyDict = new Dict('sw_keys');
 
+idDict.quiet = true;
+keyDict.quiet = true;
+
 // increments g.count only if g.count is defined. If not, it means this is the first JS instance and g.count is init to 1;
 function add(){
 	if(g.count){
@@ -58,6 +61,7 @@ function attach(){
 }
 
 function detach(){
+
 	post("Demande de détachement effectuée à "+schemaName);post();
 	var stateId = idDict.get(schemaName + '::stateID');
 	var nodeId = idDict.get(schemaName + '::nodeID');
@@ -67,6 +71,7 @@ function detach(){
 	idDict.remove(schemaName);
 
 	messnamed(uuid+".sw.detach","bang");
+
 }
 
 
