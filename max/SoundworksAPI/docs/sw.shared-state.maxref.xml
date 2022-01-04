@@ -40,20 +40,8 @@
 	
 	<!--ARGUMENTS-->
 	<objarglist>
-		<objarg name="schemaName" optional="0" type="any">
+		<objarg name="schemaName" optional="0" type="symbol">
             <digest>Soundworks' schema's name to communicate.</digest>
-        </objarg>
-	    <objarg name="ip" optional="1" type="any">
-            <digest>IP Address of soundworks' server. Default is localhost</digest>
-        </objarg>
-		<objarg name="portsend" optional="1" type="float">
-            <digest>Local port of soundworks' server. Default is 57121.</digest>
-        </objarg>
-		<objarg name="portrecv" optional="1" type="float">
-            <digest>Remote port of soundworks' server. Default is 57122.</digest>
-        </objarg>
-		<objarg name="speedLim" optional="1" type="float">
-            <digest>Speedlimit for sending OSC datas. Default is 20 ms.</digest>
         </objarg>
 	</objarglist>
 	
@@ -86,6 +74,48 @@
 			</description>
 		</method>
 	</methodlist>
+
+	<!--ATTRIBUTES-->
+
+    <attributelist>
+
+        <attribute name='ip' get='0' set='1' type='symbol' size='1' >
+            <digest>IP Address of soundworks' server</digest>
+            <description>IP Address of soundworks' server. Default is localhost</description>
+        </attribute>
+
+        <attribute name='portsend' get='0' set='1' type='int' size='1' >
+            <digest>Local port of soundworks' server</digest>
+            <description>Local port of soundworks' server. Default is 57121</description>
+        </attribute>
+
+        <attribute name='portrecv' get='0' set='1' type='int' size='1' >
+            <digest>Remote port of soundworks' server</digest>
+            <description>Remote port of soundworks' server. Default is 57122</description>
+        </attribute>
+
+        <attribute name='speedLimit' get='0' set='1' type='int' size='1' >
+            <digest>Speedlimit for sending OSC datas</digest>
+            <description>Speedlimit for sending OSC datas. Default is 20 ms.</description>
+        </attribute>
+
+        <attribute name='log' get='0' set='1' type='boolean' size='1' >
+            <digest>Logging sent and received datas from and to soundworks</digest>
+            <description>Logging sent and received datas from and to soundworks</description>
+        </attribute>
+
+        <attribute name='maxqueuesize' get='0' set='1' type='int' size='1' >
+            <digest>Set maximum message queue size</digest>
+            <description>The maxqueuesize message sets the number of messages that can be in the internal queue at any given time. The default is 512. If you are sending or receiving a lot of messages very frequently you may need to increase this to avoid dropped messages.</description>
+        </attribute>
+
+        <attribute name='maxpacketsize' get='0' set='1' type='int' size='1' >
+            <digest>Set maximum packet size</digest>
+            <description>This is the size in bytes of the largest udp packet you can send. If you are sending very long max messages you may need to increase this. The default is 5096. The work queue will grow as needed until this max limit is reached.</description>
+        </attribute>
+
+
+    </attributelist>
 	
 	<!--SEEALSO-->
 	<seealsolist>
