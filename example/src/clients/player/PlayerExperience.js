@@ -7,6 +7,7 @@ import '@ircam/simple-components/sc-slider.js';
 import '@ircam/simple-components/sc-toggle.js';
 import '@ircam/simple-components/sc-number.js';
 import '@ircam/simple-components/sc-editor.js';
+import '@ircam/simple-components/sc-bang.js';
 
 class PlayerExperience extends AbstractExperience {
   constructor(client, config, $container) {
@@ -25,91 +26,163 @@ class PlayerExperience extends AbstractExperience {
     super.start();
 
     this.globals = await this.client.stateManager.attach('globals');
-    this.globals.subscribe(() => this.render());
+    this.globals.subscribe((updates) => {
+      console.log(updates);
+      this.render();
+      // reset event display
+      setTimeout(() => this.render(), 100);
+    });
 
     window.addEventListener('resize', () => this.render());
     this.render();
   }
 
   render() {
-    // debounce with requestAnimationFrame
-    window.cancelAnimationFrame(this.rafId);
+    const globalsSchema = this.globals.getSchema();
 
-    this.rafId = window.requestAnimationFrame(() => {
-      const globalsSchema = this.globals.getSchema();
+    render(html`
+      <div style="padding: 20px">
+        <h1 style="margin: 20px 0">${this.client.type} [id: ${this.client.id}]</h1>
 
-      render(html`
-        <div style="padding: 20px">
-          <h1 style="margin: 20px 0">${this.client.type} [id: ${this.client.id}]</h1>
-
-          <div>
-            <h1>Globals</h1>
-            <div style="margin-bottom: 4px">
-              <sc-text
-                value="volume"
-                width="100"
-                readonly
-              ></sc-text>
-              <sc-slider
-                display-number
-                width="300"
-                min="${globalsSchema.volume.min}"
-                max="${globalsSchema.volume.max}"
-                step="1"
-                value="${this.globals.get('volume')}"
-                @input=${e => this.globals.set({ volume: e.detail.value })}
-              ></sc-slider>
-            </div>
-            <div style="margin-bottom: 4px">
-              <sc-text
-                value="mute"
-                width="100"
-                readonly
-              ></sc-text>
-              <sc-toggle
-                ?active="${this.globals.get('mute')}"
-                @change=${e => this.globals.set({ mute: e.detail.value })}
-              ></sc-toggle>
-            </div>
-            <div style="margin-bottom: 4px">
-              <sc-text
-                value="gain"
-                width="100"
-                readonly
-              ></sc-text>
-              <sc-number
-                value="${this.globals.get('gain')}"
-                min="${globalsSchema.gain.min}"
-                max="${globalsSchema.gain.max}"
-                step="${globalsSchema.gain.step}"
-                @input=${e => this.globals.set({ gain: e.detail.value })}
-              ></sc-number>
-            </div>
-            <div style="margin-bottom: 4px">
-              <sc-text
-                value="message"
-                width="100"
-                readonly
-              ></sc-text>
-              <sc-text
-                value="${this.globals.get('message')}"
-                @change=${e => this.globals.set({ message: e.detail.value })}
-              ></sc-text>
-            </div>
-            <div style="margin-bottom: 4px">
-              <sc-text
-                value="config"
-                width="100"
-                readonly
-              ></sc-text>
-              <sc-editor
-                value="${JSON.stringify(this.globals.get('config'), null, 2)}"
-                @change=${e => this.globals.set({ config: JSON.parse(e.detail.value) })}
-              ></sc-editor>
-            </div>
+        <h1>Globals</h1>
+        <p>received events are logged in console</p>
+        <div style="margin-bottom: 4px">
+          <sc-text
+            value="volume"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-slider
+            display-number
+            width="300"
+            min="${globalsSchema.volume.min}"
+            max="${globalsSchema.volume.max}"
+            step="1"
+            value="${this.globals.get('volume')}"
+            @input=${e => this.globals.set({ volume: e.detail.value })}
+          ></sc-slider>
         </div>
-      `, this.$container);
-    });
+        <div style="margin-bottom: 4px">
+          <sc-text
+            value="mute"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-toggle
+            ?active="${this.globals.get('mute')}"
+            @change=${e => this.globals.set({ mute: e.detail.value })}
+          ></sc-toggle>
+        </div>
+        <div style="margin-bottom: 4px">
+          <sc-text
+            value="gain"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-number
+            value="${this.globals.get('gain')}"
+            min="${globalsSchema.gain.min}"
+            max="${globalsSchema.gain.max}"
+            step="${globalsSchema.gain.step}"
+            @input=${e => this.globals.set({ gain: e.detail.value })}
+          ></sc-number>
+        </div>
+        <div style="margin-bottom: 4px">
+          <sc-text
+            value="message"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-text
+            value="${this.globals.get('message')}"
+            @change=${e => this.globals.set({ message: e.detail.value })}
+          ></sc-text>
+        </div>
+        <div style="margin-bottom: 4px">
+          <sc-text
+            value="config"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-editor
+            value="${JSON.stringify(this.globals.get('config'), null, 2)}"
+            @change=${e => this.globals.set({ config: JSON.parse(e.detail.value) })}
+          ></sc-editor>
+        </div>
+        <div style="margin-bottom: 4px">
+          <p>[event=true] value is reset to null after propagation</p>
+          <sc-text
+            value="event"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-bang
+            .active="${this.globals.get('event')}"
+            @input="${e => this.globals.set({ event: true })}"
+          ></sc-bang>
+          <sc-text
+            readonly
+            value="get value: ${this.globals.get('event')}"
+          ></sc-text>
+
+        </div>
+        <div style="margin-bottom: 4px">
+          <p>[filterChange=false] will retrigger subscribe each time even if value does not change</p>
+          <sc-text
+            value="noFilterChange"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-bang
+            .active="${this.globals.get('noFilterChange')}"
+            @input="${e => this.globals.set({ noFilterChange: true })}"
+          ></sc-bang>
+          <sc-text
+            readonly
+            value="get value: ${this.globals.get('noFilterChange')}"
+          ></sc-text>
+        </div>
+        <div style="margin-bottom: 4px">
+          <p>
+            [immediate=true] trigger locally before network propagation<br />
+            (triggering "2" will be overriden to "4" by the server)
+          </p>
+          <sc-text
+            value="immediate"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-number
+            value="${this.globals.get('immediate')}"
+            @change="${e => this.globals.set({ immediate: e.detail.value })}"
+          ></sc-number>
+          <sc-text
+            readonly
+            width="150"
+            value="${this.globals.get('immediate')}"
+          ></sc-text>
+        </div>
+        <div style="margin-bottom: 4px">
+          <p>
+            load huge data (data/export.json) in "bigData" field
+          </p>
+          <sc-text
+            value="loadBigData"
+            width="150"
+            readonly
+          ></sc-text>
+          <sc-bang
+            .active="${this.globals.get('loadBigData')}"
+            @input="${e => this.globals.set({ loadBigData: true })}"
+          ></sc-bang>
+          <sc-text
+            readonly
+            width="150"
+            value="${this.globals.get('bigData')}"
+          ></sc-text>
+        </div>
+      </div>
+    `, this.$container);
   }
 }
 

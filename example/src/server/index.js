@@ -1,6 +1,7 @@
 import 'source-map-support/register';
 import { Server } from '@soundworks/core/server';
 import path from 'path';
+import fs from 'fs';
 import serveStatic from 'serve-static';
 import compile from 'template-literal';
 import PlayerExperience from './PlayerExperience.js';
@@ -61,6 +62,23 @@ server.stateManager.registerSchema('globals', globalsSchema);
     // -------------------------------------------------------------------
     // 3. create a global state from the registered schema
     // -------------------------------------------------------------------
+    const bigData = fs.readFileSync('./data/export.json');
+
+    server.stateManager.registerUpdateHook('globals', updates => {
+      if (updates.immediate && updates.immediate === 2) {
+        return {
+          ...updates,
+          immediate: 4,
+        };
+      }
+
+      if (updates.loadBigData) {
+        return {
+          ...updates,
+          bigData: JSON.parse(bigData),
+        };
+      }
+    });
     const globals = await server.stateManager.create('globals');
 
     // ----------------------------------------------------------
