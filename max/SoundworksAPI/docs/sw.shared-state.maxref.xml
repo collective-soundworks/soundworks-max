@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="sw.shared-state">
+
+	<digest>
+		Monitor and control soundworks' shared states.
+	</digest>
+	
+	<description>
+		Utility to monitor and control IRCAM-ISMM soundworks' shared states within Max using OSC communications
+		Communicate with dictionaries or key:value pair to this object.
+	</description>
+	
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Etienne Démoulin</metadata>
+		<metadata name="tag">OSC</metadata>
+		<metadata name="tag">Data</metadata>
+		<metadata name="tag">Soundworks</metadata>
+		<metadata name="tag">IRCAM</metadata>
+	</metadatalist>
+	
+	<!--INLETS-->
+	<inletlist>
+		<inlet id="0" type="dictionary">
+			<digest>Dictionary: control soundworks' shared states.</digest>
+		</inlet>
+	</inletlist>
+
+	<!--OUTLETS-->
+	<outletlist>
+		<outlet id="0" type="dictionary">
+			<digest>Dictionary: monitor soundworks' shared states.</digest>
+		</outlet>
+		<outlet id="1" type="dictionary">
+			<digest>Dictionary: soundworks' schema definition.</digest>
+		</outlet>
+	</outletlist>
+	
+	<!--ARGUMENTS-->
+	<objarglist>
+		<objarg name="schemaName" optional="0" type="any">
+            <digest>Soundworks' schema's name to communicate.</digest>
+        </objarg>
+	    <objarg name="ip" optional="1" type="any">
+            <digest>IP Address of soundworks' server. Default is localhost</digest>
+        </objarg>
+		<objarg name="portsend" optional="1" type="float">
+            <digest>Local port of soundworks' server. Default is 57121.</digest>
+        </objarg>
+		<objarg name="portrecv" optional="1" type="float">
+            <digest>Remote port of soundworks' server. Default is 57122.</digest>
+        </objarg>
+		<objarg name="speedLim" optional="1" type="float">
+            <digest>Speedlimit for sending OSC datas. Default is 20 ms.</digest>
+        </objarg>
+	</objarglist>
+	
+	<!--MESSAGES-->
+	<methodlist>
+		<method name="bang">
+			<digest>
+				Ask for the state's current values
+			</digest>
+			<description>
+				Bang to ask for the state's current values. Output from the first outlet will be a dictionary.
+			</description>
+		</method>
+		<method name="dictionary">
+			<arglist />
+			<digest>
+				Function depends on inlet
+			</digest>
+			<description>
+				Control soundworks shared states
+			</description>
+		</method>
+		<method name="schema">
+			<arglist />
+			<digest>
+				Ask for the schema of soundworks' states
+			</digest>
+			<description>
+				Ask for the formal definition of the parameters of soundworks' state.
+			</description>
+		</method>
+	</methodlist>
+	
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="udpsend"/>
+		<seealso name="node.script"/>
+		<seealso name="dict"/>
+		<seealso name="udpreceive"/>
+	</seealsolist>
+	
+</c74object>
