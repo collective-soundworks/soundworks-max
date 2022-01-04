@@ -19,6 +19,7 @@ export default {
   message: {
     type: 'string',
     default: 'my-message',
+    nullable: true,
   },
   config: {
     type: 'any',

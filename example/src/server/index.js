@@ -81,6 +81,10 @@ server.stateManager.registerSchema('globals', globalsSchema);
     });
     const globals = await server.stateManager.create('globals');
 
+    setTimeout(() => {
+      globals.set({ message: null });
+    }, 2000);
+
     // ----------------------------------------------------------
     // 4. configure and init the StateManagerOsc
     // ----------------------------------------------------------

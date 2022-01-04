@@ -100,7 +100,7 @@ function createFloatInterface(name, def, initValue) {
     args.push('@minimum');
     args.push(def.min);
   }
-  if (def.min !== +Infinity) {
+  if (def.max !== +Infinity) {
     args.push('@maximum');
     args.push(def.max);
   }

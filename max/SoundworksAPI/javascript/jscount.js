@@ -4,6 +4,9 @@ var uuid = jsarguments[2];
 var g = new Global(schemaName);
 var idDict = new Dict('sw_id');
 var keyDict = new Dict('sw_keys');
+var thisValueDict = new Dict(schemaName+'_values');
+var thisInfosDict = new Dict(schemaName+'_infos');
+
 
 idDict.quiet = true;
 keyDict.quiet = true;
@@ -53,7 +56,7 @@ function bang(){
 }
 
 function attach(){
-	post("Demande d'observation effectuée à "+schemaName);post();
+	post("Observe request to "+schemaName);post();
 	var wait = new Task(function(){
 		messnamed(uuid+".sw.observe","bang");
 	});
@@ -62,13 +65,15 @@ function attach(){
 
 function detach(){
 
-	post("Demande de détachement effectuée à "+schemaName);post();
+	post("Detach request to "+schemaName);post();
 	var stateId = idDict.get(schemaName + '::stateID');
 	var nodeId = idDict.get(schemaName + '::nodeID');
 	var key = schemaName + '_' + stateId + '_' + nodeId;
 	
 	keyDict.remove(key);
 	idDict.remove(schemaName);
+	thisInfosDict.clear();
+	thisValueDict.clear();
 
 	messnamed(uuid+".sw.detach","bang");
 

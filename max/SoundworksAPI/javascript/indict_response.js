@@ -22,6 +22,6 @@ function anything() {
 
 		messnamed(schemaName+"_sw.sendID","bang");
 
-		post("attached to "+schemaName+" - stateId: "+stateId+" - remoteId: "+remoteId);
+		post("attached to "+schemaName+" - stateId: "+stateId+" - remoteId: "+remoteId);post();
 	}
 }
