@@ -304,7 +304,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 205.0, 10.0, 40.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 356.1375732421875, 25.13134765625, 40.0, 21.0 ],
+					"presentation_rect" : [ 355.1375732421875, 26.13134765625, 40.0, 21.0 ],
 					"text" : "View",
 					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
 				}
@@ -1694,7 +1694,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 2314.0, 638.0, 255.0, 23.0 ],
+					"patching_rect" : [ 2314.0, 638.0, 166.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "mergeUpdates.js",
 						"parameter_enable" : 0
@@ -1747,13 +1747,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1474.0, 656.0, 110.0, 23.0 ],
+					"patching_rect" : [ 1474.0, 656.0, 91.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "indict.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js indict.js sw_keys"
+					"text" : "js indict.js #0"
 				}
 
 			}
@@ -2114,7 +2114,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "globals", "bang" ],
+					"outlettype" : [ "g", "bang" ],
 					"patching_rect" : [ 2053.0, 149.0, 124.0, 23.0 ],
 					"text" : "t #1 b"
 				}
@@ -2727,7 +2727,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 109.0, 210.0, 30.0, 30.0 ]
 				}
 

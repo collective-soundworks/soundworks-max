@@ -62,11 +62,11 @@ function createIntInterface(name, def, initValue) {
 
   var args = [x, y + 120, 'number'];
 
-  if (def.min !== -Infinity) {
+  if (def.min !== null) {
     args.push('@minimum');
     args.push(def.min);
   }
-  if (def.min !== +Infinity) {
+  if (def.max !== null) {
     args.push('@maximum');
     args.push(def.max);
   }
