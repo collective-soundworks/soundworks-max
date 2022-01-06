@@ -31,13 +31,18 @@ function isPlainObject(o) {
   return true;
 };
 
+var dictInfos = new Dict(jsarguments[1]+"_infos")
+//dictInfos.quiet = true
 
 function stringifyNull(obj) {
   for (var key in obj) {
     if (isPlainObject(obj[key])) {
       stringifyNull(obj[key])
     } else if (obj[key] === null) {
-      obj[key] = "null";
+      //Les null qui doivent être stringifiés sont ceux qui ne contiennent pas de balise event ou dont leur balise event vaut 0
+      if (!dictInfos.contains(key+"::event") || dictInfos.get(key+"::event") === 0) {
+        obj[key] = "null";
+      }
     }
   }
   
@@ -45,8 +50,21 @@ function stringifyNull(obj) {
 }
 
 
-var dictName = jsarguments[1];
+var dictName = jsarguments[1]+"_values";
 var dict = new Dict(dictName);
+
+
+//la fonction event permet de savoir si une variable possède la balise event
+//
+function isEvent(obj) {
+  for (var key in obj) {
+    if (dictInfos.get(key+"::event") === 1) {
+      writeInDict('{"'+key+'":null}');
+    }
+  }
+}
+
+
 
 function update() {
   var args = arrayfromargs(arguments);
@@ -69,7 +87,35 @@ function update() {
   dict.parse(JSON.stringify(dictObj));
 
   outlet(0, 'bang');
+
+  isEvent(obj);
 }
+
+
+//à refaire surement, la fonction writeInDict est très proche de la fonction update, 
+//il faut adapter un peu la fonction isEvent pour eviter les récurrences successives 
+//et tout se passera très bien sans cette fonction
+function writeInDict(args) {
+  var json = args.toString();
+  var obj = JSON.parse(json);
+
+  // get current dict state
+  var dictJson = dict.stringify();
+  var dictObj = JSON.parse(dictJson);
+
+  // merge current values with updates
+  // Object.assign(dictObj, obj); // aie...
+  for (var name in obj) {
+    dictObj[name] = obj[name]
+  }
+
+  dict.parse(JSON.stringify(dictObj));
+
+  outlet(0, 'bang');
+}
+///
+///
+///
 
 function getValues() {
   var args = arrayfromargs(arguments);
@@ -101,18 +147,19 @@ function attachResponse() {
   var schema = JSON.parse(arr[4].toString());
   var initValues = JSON.parse(arr[5].toString());
 
-  stringifyNull(initValues);
-  stringifyNull(schema);
-
   
   if (!idDict.contains(schemaName + '::remoteID')) {
     idDict.replace(schemaName + '::stateID', stateId);
     idDict.replace(schemaName + '::remoteID', remoteId);
 
+
+    stringifyNull(schema);
     var infosDict = new Dict(schemaName + '_infos');
     //infosDict.parse(schema);
     infosDict.parse(JSON.stringify(schema));
 
+
+    stringifyNull(initValues);
     var valueDict = new Dict(schemaName + '_values');
     //valueDict.parse(initValues);
     valueDict.parse(JSON.stringify(initValues));
@@ -121,6 +168,8 @@ function attachResponse() {
 
     post("attached to "+schemaName+" - stateId: "+stateId+" - remoteId: "+remoteId);post();
   }
+
+
 }
 
 

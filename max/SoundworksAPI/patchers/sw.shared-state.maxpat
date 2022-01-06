@@ -304,7 +304,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 205.0, 10.0, 40.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 355.1375732421875, 26.13134765625, 40.0, 21.0 ],
+					"presentation_rect" : [ 355.1375732421875, 27.13134765625, 40.0, 21.0 ],
 					"text" : "View",
 					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
 				}
@@ -1694,13 +1694,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 2314.0, 638.0, 166.0, 23.0 ],
+					"patching_rect" : [ 2314.0, 638.0, 147.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "mergeUpdates.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js  mergeUpdates.js #1_values"
+					"text" : "js  mergeUpdates.js #1"
 				}
 
 			}
@@ -2114,7 +2114,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "g", "bang" ],
+					"outlettype" : [ "globals", "bang" ],
 					"patching_rect" : [ 2053.0, 149.0, 124.0, 23.0 ],
 					"text" : "t #1 b"
 				}
@@ -2727,7 +2727,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "dictionary" ],
 					"patching_rect" : [ 109.0, 210.0, 30.0, 30.0 ]
 				}
 
