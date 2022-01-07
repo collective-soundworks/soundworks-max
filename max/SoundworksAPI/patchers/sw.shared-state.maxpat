@@ -450,7 +450,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 205.0, 10.0, 40.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 352.1375732421875, 28.13134765625, 40.0, 21.0 ],
+					"presentation_rect" : [ 354.1375732421875, 28.13134765625, 40.0, 21.0 ],
 					"text" : "View",
 					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
 				}
@@ -2249,7 +2249,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "score", "bang" ],
+					"outlettype" : [ "globals", "bang" ],
 					"patching_rect" : [ 2053.0, 149.0, 126.0, 23.0 ],
 					"text" : "t #1 b"
 				}
@@ -2808,7 +2808,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "dictionary" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 109.0, 210.0, 30.0, 30.0 ]
 				}
 
@@ -3490,7 +3490,16 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-46", 1 ],
+					"order" : 1,
+					"source" : [ "obj-55", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-54", 0 ],
+					"order" : 0,
 					"source" : [ "obj-55", 0 ]
 				}
 
