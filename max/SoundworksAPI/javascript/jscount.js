@@ -6,6 +6,7 @@ var idDict = new Dict('sw_id');
 var keyDict = new Dict('sw_keys');
 var thisValueDict = new Dict(schemaName+'_values');
 var thisInfosDict = new Dict(schemaName+'_infos');
+var thisUpdatesDict = new Dict(schemaName+'_updates');
 
 
 idDict.quiet = true;
@@ -68,12 +69,13 @@ function detach(){
 	post("Detach request to "+schemaName);post();
 	var stateId = idDict.get(schemaName + '::stateID');
 	var nodeId = idDict.get(schemaName + '::nodeID');
-	var key = schemaName + '_' + stateId + '_' + nodeId;
-	
+	var key = schemaName+uuid.toString();
+	//post("voici key "+key);
 	keyDict.remove(key);
 	idDict.remove(schemaName);
 	thisInfosDict.clear();
 	thisValueDict.clear();
+	thisUpdatesDict.clear();
 
 	messnamed(uuid+".sw.detach","bang");
 
