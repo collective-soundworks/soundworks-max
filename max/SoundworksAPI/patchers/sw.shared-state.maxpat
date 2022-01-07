@@ -41,6 +41,164 @@
 		"title" : "Shared State",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-133",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 2716.0, 596.0, 121.0, 23.0 ],
+					"text" : "r #0.sw.getSchema"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-131",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 2527.0, 753.0, 114.0, 23.0 ],
+					"text" : "s #0.sw.subscribe"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "Dictionary: monitor schema's updates.",
+					"id" : "obj-130",
+					"index" : 1,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 183.0, 249.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-127",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 365.0, 392.5, 23.0, 23.0 ],
+					"text" : "t b"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-126",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 365.0, 431.0, 122.0, 23.0 ],
+					"text" : "s #0.sw.getSchema"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "button",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 2716.0, 645.5, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-57",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 4,
+					"outlettype" : [ "dictionary", "", "", "" ],
+					"patching_rect" : [ 2716.0, 690.0, 161.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 0,
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0
+					}
+,
+					"text" : "dict #1_infos"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "Dictionary: soundworks' schema definition.",
+					"id" : "obj-18",
+					"index" : 3,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 2716.0, 754.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "Dictionary: monitor schema's values.",
+					"id" : "obj-120",
+					"index" : 2,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 2314.0, 753.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-110",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 4,
+					"outlettype" : [ "dictionary", "", "", "" ],
+					"patching_rect" : [ 2527.0, 690.0, 115.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 0,
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0
+					}
+,
+					"text" : "dict #1_updates"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Lato",
+					"id" : "obj-93",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 288.0, -1.0, 148.0, 21.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ -1.0, 1.0, 137.0, 21.0 ],
+					"text" : "Updates",
+					"textcolor" : [ 0.968627450980392, 0.968627450980392, 0.968627450980392, 1.0 ],
+					"textjustification" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-62",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1260.5, 297.0, 148.0, 23.0 ],
+					"text" : "dictionary #1_updates"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-53",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -245,10 +403,10 @@
 					"id" : "obj-119",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "bang", "bang", "bang" ],
-					"patching_rect" : [ 1536.0, 101.0, 42.0, 23.0 ],
-					"text" : "t b b b"
+					"numoutlets" : 4,
+					"outlettype" : [ "bang", "bang", "bang", "bang" ],
+					"patching_rect" : [ 1536.0, 101.0, 52.0, 23.0 ],
+					"text" : "t b b b b"
 				}
 
 			}
@@ -304,7 +462,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 205.0, 10.0, 40.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 355.1375732421875, 27.13134765625, 40.0, 21.0 ],
+					"presentation_rect" : [ 355.1375732421875, 28.13134765625, 40.0, 21.0 ],
 					"text" : "View",
 					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
 				}
@@ -1603,7 +1761,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1183.0, 186.5, 224.5, 23.0 ],
+					"patching_rect" : [ 1066.0, 119.0, 224.5, 23.0 ],
 					"text" : "dictionary #1_values"
 				}
 
@@ -1615,7 +1773,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1261.5, 288.0, 201.0, 23.0 ],
+					"patching_rect" : [ 1144.5, 220.5, 201.0, 23.0 ],
 					"text" : "dictionary #1_infos"
 				}
 
@@ -1641,7 +1799,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 881.0, 45.0, 148.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 235.0, 1.0, 227.0, 21.0 ],
+					"presentation_rect" : [ 137.0, 1.0, 157.0, 21.0 ],
 					"text" : "Values",
 					"textcolor" : [ 0.968627450980392, 0.968627450980392, 0.968627450980392, 1.0 ],
 					"textjustification" : 1
@@ -1654,9 +1812,9 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1183.0, 225.0, 102.0, 32.0 ],
+					"patching_rect" : [ 1066.0, 157.5, 102.0, 32.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 235.0, 23.0, 231.0, 297.0 ]
+					"presentation_rect" : [ 139.0, 23.0, 157.0, 297.0 ]
 				}
 
 			}
@@ -1669,7 +1827,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 299.0, 154.0, 142.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 1.0, 219.0, 21.0 ],
+					"presentation_rect" : [ 296.0, 1.0, 169.0, 21.0 ],
 					"text" : "Schema",
 					"textcolor" : [ 0.968627450980392, 0.968627450980392, 0.968627450980392, 1.0 ],
 					"textjustification" : 1
@@ -1692,15 +1850,15 @@
 					"id" : "obj-106",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 2314.0, 638.0, 147.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "mergeUpdates.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js  mergeUpdates.js #1"
+					"text" : "js  mergeUpdates.js #1 "
 				}
 
 			}
@@ -2068,17 +2226,6 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 2309.5, 448.0, 51.5, 21.0 ],
 					"text" : "IN"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-97",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 2314.0, 753.0, 137.0, 23.0 ],
-					"text" : "send #0.sw.subscribe"
 				}
 
 			}
@@ -2484,9 +2631,9 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1261.5, 330.0, 115.0, 22.0 ],
+					"patching_rect" : [ 1144.5, 262.5, 115.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 23.0, 231.0, 297.0 ]
+					"presentation_rect" : [ 298.0, 23.0, 167.0, 297.0 ]
 				}
 
 			}
@@ -2539,18 +2686,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-17",
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 380.0, 376.0, 24.0, 24.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-27",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -2582,24 +2717,6 @@
 					"outlettype" : [ "int" ],
 					"patching_rect" : [ 179.800000000000011, 369.0, 40.0, 23.0 ],
 					"text" : "active"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-57",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 4,
-					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 379.600000000000023, 437.0, 161.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"embed" : 0,
-						"parameter_enable" : 0,
-						"parameter_mappable" : 0
-					}
-,
-					"text" : "dict #1_infos"
 				}
 
 			}
@@ -2662,18 +2779,6 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "\"getSchema outlet\"",
-					"id" : "obj-18",
-					"index" : 2,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 379.600000000000023, 501.0, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-12",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -2709,25 +2814,13 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "\"messages from the schema\"",
-					"id" : "obj-9",
-					"index" : 1,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 183.0, 283.0, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "\"messages to the schema\"",
+					"comment" : "Dictionary: control soundworks' shared states.",
 					"id" : "obj-8",
 					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "dictionary" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 109.0, 210.0, 30.0, 30.0 ]
 				}
 
@@ -2815,6 +2908,18 @@
 				}
 
 			}
+, 			{
+				"box" : 				{
+					"id" : "obj-75",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1260.5, 339.0, 115.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 23.0, 137.0, 297.0 ]
+				}
+
+			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
@@ -2841,15 +2946,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-13", 0 ],
-					"source" : [ "obj-10", 2 ]
+					"destination" : [ "obj-127", 0 ],
+					"source" : [ "obj-10", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-10", 1 ]
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-10", 2 ]
 				}
 
 			}
@@ -2913,6 +3018,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-110", 0 ],
+					"source" : [ "obj-106", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-60", 0 ],
 					"source" : [ "obj-106", 0 ]
@@ -2924,6 +3036,13 @@
 					"destination" : [ "obj-140", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-108", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-131", 0 ],
+					"source" : [ "obj-110", 0 ]
 				}
 
 			}
@@ -3001,6 +3120,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-62", 0 ],
+					"source" : [ "obj-119", 3 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
 					"source" : [ "obj-12", 0 ]
 				}
@@ -3057,6 +3183,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-126", 0 ],
+					"source" : [ "obj-127", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-32", 0 ],
 					"source" : [ "obj-13", 0 ]
 				}
@@ -3066,6 +3199,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-119", 0 ],
 					"source" : [ "obj-132", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-133", 0 ]
 				}
 
 			}
@@ -3339,8 +3479,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"destination" : [ "obj-9", 0 ],
+					"destination" : [ "obj-130", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
@@ -3427,8 +3566,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
-					"destination" : [ "obj-97", 0 ],
+					"destination" : [ "obj-120", 0 ],
 					"source" : [ "obj-60", 0 ]
 				}
 
@@ -3437,6 +3575,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-140", 1 ],
 					"source" : [ "obj-61", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-75", 0 ],
+					"source" : [ "obj-62", 0 ]
 				}
 
 			}

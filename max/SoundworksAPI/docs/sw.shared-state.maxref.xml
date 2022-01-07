@@ -31,9 +31,12 @@
 	<!--OUTLETS-->
 	<outletlist>
 		<outlet id="0" type="dictionary">
-			<digest>Dictionary: monitor soundworks' shared states.</digest>
+			<digest>Dictionary: monitor schema's updates.</digest>
 		</outlet>
 		<outlet id="1" type="dictionary">
+			<digest>Dictionary: monitor schema's values.</digest>
+		</outlet>
+		<outlet id="2" type="dictionary">
 			<digest>Dictionary: soundworks' schema definition.</digest>
 		</outlet>
 	</outletlist>

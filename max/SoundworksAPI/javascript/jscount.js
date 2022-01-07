@@ -6,6 +6,7 @@ var idDict = new Dict('sw_id');
 var keyDict = new Dict('sw_keys');
 var thisValueDict = new Dict(schemaName+'_values');
 var thisInfosDict = new Dict(schemaName+'_infos');
+var thisUpdatesDict = new Dict(schemaName+'_updates');
 
 
 idDict.quiet = true;
@@ -74,6 +75,7 @@ function detach(){
 	idDict.remove(schemaName);
 	thisInfosDict.clear();
 	thisValueDict.clear();
+	thisUpdatesDict.clear();
 
 	messnamed(uuid+".sw.detach","bang");
 

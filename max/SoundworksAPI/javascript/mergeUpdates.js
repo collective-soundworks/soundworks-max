@@ -1,3 +1,6 @@
+inlets = 1;
+outlets = 2;
+
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -31,9 +34,20 @@ function isPlainObject(o) {
   return true;
 };
 
+//déclaration des dictionnaires
+//
+//
+
 var dictInfos = new Dict(jsarguments[1]+"_infos")
 //dictInfos.quiet = true
 
+var dictName = jsarguments[1]+"_values";
+var dict = new Dict(dictName);
+
+var dictUpdates = new Dict(jsarguments[1]+"_updates")
+
+
+//la fonction stringifyNull permet de transformer une clé null en chaine de caractère pour pouvoir la réupérer dans Max.
 function stringifyNull(obj) {
   for (var key in obj) {
     if (isPlainObject(obj[key])) {
@@ -50,23 +64,20 @@ function stringifyNull(obj) {
 }
 
 
-var dictName = jsarguments[1]+"_values";
-var dict = new Dict(dictName);
-
 
 //la fonction event permet de savoir si une variable possède la balise event
-//
+//et la remet à null après la propagation de la valeur le cas échéant.
 function isEvent(obj) {
   for (var key in obj) {
-    if (dictInfos.get(key+"::event") === 1) {
-      writeInDict('{"'+key+'":null}');
+    if (dictInfos.get(key+"::event") === 1 && obj[key] !== null) {
+      update('{"'+key+'":null}');
     }
   }
 }
 
 
-
-function update() {
+//la fonction update mets à jour le dictionnaire values à chaque réception d'une update par le serveur
+function update(args) {
   var args = arrayfromargs(arguments);
   // get updates
   var json = args.toString();
@@ -85,38 +96,15 @@ function update() {
   }
 
   dict.parse(JSON.stringify(dictObj));
+  dictUpdates.parse(JSON.stringify(obj));
 
   outlet(0, 'bang');
+  outlet(1, 'bang');
 
   isEvent(obj);
 }
 
-
-//à refaire surement, la fonction writeInDict est très proche de la fonction update, 
-//il faut adapter un peu la fonction isEvent pour eviter les récurrences successives 
-//et tout se passera très bien sans cette fonction
-function writeInDict(args) {
-  var json = args.toString();
-  var obj = JSON.parse(json);
-
-  // get current dict state
-  var dictJson = dict.stringify();
-  var dictObj = JSON.parse(dictJson);
-
-  // merge current values with updates
-  // Object.assign(dictObj, obj); // aie...
-  for (var name in obj) {
-    dictObj[name] = obj[name]
-  }
-
-  dict.parse(JSON.stringify(dictObj));
-
-  outlet(0, 'bang');
-}
-///
-///
-///
-
+//la fonction getValues remplace le dictionnaire values par un nouveau dictionnaire à chaque appel de la commmande getValues
 function getValues() {
   var args = arrayfromargs(arguments);
   var json = args.toString();
@@ -135,8 +123,13 @@ function getValues() {
 }
 
 
-//Si la clé est dans le dictionnaire --> ne rien faire
-// Si la clé n'est pas dans le dictionnaire, l'ajouter puis envoyer une attach request.
+//Attach response répond au message attachResponse envoyé par le serveur.
+//Il s'agit de:
+//1. mettre à jour le dict sw.id avec le stateID, remoteID et nodeID du schéma attaché si cette dernière n'est pas encore dans le dictionnaire
+//2. remplir le dictionnaire des infos du schéma
+//3. remplir le dictionnaire des valeurs courantes du schéma
+//4. Envoyer à Max le sendID afin d'initialiser la chaine de réception.
+
 var idDict = new Dict('sw_id');
 
 function attachResponse() {
