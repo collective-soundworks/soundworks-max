@@ -96,12 +96,12 @@
             <digest>Remote port of soundworks' server</digest>
             <description>Remote port of soundworks' server. Default is 57122</description>
         </attribute>
-
+<!--
         <attribute name='speedLimit' get='0' set='1' type='int' size='1' >
             <digest>Speedlimit for sending OSC datas</digest>
             <description>Speedlimit for sending OSC datas. Default is 20 ms.</description>
         </attribute>
-
+-->
         <attribute name='log' get='0' set='1' type='boolean' size='1' >
             <digest>Logging sent and received datas from and to soundworks</digest>
             <description>Logging sent and received datas from and to soundworks</description>

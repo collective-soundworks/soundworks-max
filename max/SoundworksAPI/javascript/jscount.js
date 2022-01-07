@@ -69,7 +69,7 @@ function detach(){
 	post("Detach request to "+schemaName);post();
 	var stateId = idDict.get(schemaName + '::stateID');
 	var nodeId = idDict.get(schemaName + '::nodeID');
-	var key = schemaName+uuid.toString();
+	var key = schemaName;
 	//post("voici key "+key);
 	keyDict.remove(key);
 	idDict.remove(schemaName);
