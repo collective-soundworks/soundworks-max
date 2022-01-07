@@ -204,7 +204,7 @@ export class StateManagerOsc {
           unsubscribeDetach();
 
           const channel = `/sw/state-manager/detach-notification/${id}/${remoteId}`;
-          this._oscClient.send(channel);
+          this._oscClient.sendRaw(channel);
           // notify max
           this._attachedStates.delete(schemaName);
 
