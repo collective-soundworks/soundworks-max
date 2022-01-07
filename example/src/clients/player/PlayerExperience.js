@@ -162,25 +162,6 @@ class PlayerExperience extends AbstractExperience {
             value="${this.globals.get('immediate')}"
           ></sc-text>
         </div>
-        <div style="margin-bottom: 4px">
-          <p>
-            load huge data (data/export.json) in "bigData" field
-          </p>
-          <sc-text
-            value="loadBigData"
-            width="150"
-            readonly
-          ></sc-text>
-          <sc-bang
-            .active="${this.globals.get('loadBigData')}"
-            @input="${e => this.globals.set({ loadBigData: true })}"
-          ></sc-bang>
-          <sc-text
-            readonly
-            width="150"
-            value="${this.globals.get('bigData')}"
-          ></sc-text>
-        </div>
       </div>
     `, this.$container);
   }

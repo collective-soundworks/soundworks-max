@@ -41,16 +41,16 @@ export default {
     default: 0,
     immediate: true,
   },
-  //
-  loadBigData: {
-    type: 'boolean',
-    default: true,
-    event: true,
-  },
-  bigData: {
-    type: 'any',
-    default: null,
-    nullable: true,
-    filterChange: false,
-  },
+  // //
+  // loadBigData: {
+  //   type: 'boolean',
+  //   default: true,
+  //   event: true,
+  // },
+  // bigData: {
+  //   type: 'any',
+  //   default: null,
+  //   nullable: true,
+  //   filterChange: false,
+  // },
 }

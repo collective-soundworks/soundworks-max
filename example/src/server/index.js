@@ -62,7 +62,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
     // -------------------------------------------------------------------
     // 3. create a global state from the registered schema
     // -------------------------------------------------------------------
-    const bigData = fs.readFileSync('./data/export.json');
+    // const bigData = fs.readFileSync('./data/export.json');
 
     server.stateManager.registerUpdateHook('globals', updates => {
       if (updates.immediate && updates.immediate === 2) {
@@ -72,12 +72,12 @@ server.stateManager.registerSchema('globals', globalsSchema);
         };
       }
 
-      if (updates.loadBigData) {
-        return {
-          ...updates,
-          bigData: JSON.parse(bigData),
-        };
-      }
+      // if (updates.loadBigData) {
+      //   return {
+      //     ...updates,
+      //     bigData: JSON.parse(bigData),
+      //   };
+      // }
     });
     const globals = await server.stateManager.create('globals');
 
