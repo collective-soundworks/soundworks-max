@@ -94,6 +94,7 @@ export class StateManagerOsc {
   async init() {
     return new Promise((resolve, reject) => {
       this._oscClient = new OscClient(this.config.remoteAddress, this.config.remotePort);
+      this._oscClient.sendRaw = this._oscClient.send;
       this._oscClient.send = throttle(this._oscClient.send.bind(this._oscClient), this.config.speedLimit);
 
       this._oscServer = new OscServer(this.config.localPort, this.config.localAddress, () => {
@@ -139,7 +140,7 @@ export class StateManagerOsc {
           // Max can only attach to states created by the server
           if (nodeId === -1) {
             if (_schemaName === schemaName) {
-              this._oscClient.send('/sw/state-manager/observe-notification', schemaName, stateId, nodeId);
+              this._oscClient.sendRaw('/sw/state-manager/observe-notification', schemaName, stateId, nodeId);
             }
           }
         });
@@ -222,7 +223,7 @@ export class StateManagerOsc {
 
         this._attachedStates.set(schemaName, { state, cleanStateFunc });
 
-        this._oscClient.send('/sw/state-manager/attach-response', id, remoteId, schemaName, schemaStr, currentValues);
+        this._oscClient.sendRaw('/sw/state-manager/attach-response', id, remoteId, schemaName, schemaStr, currentValues);
       });
     });
   }
