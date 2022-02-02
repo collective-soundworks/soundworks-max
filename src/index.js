@@ -2,8 +2,6 @@ import { Client as OscClient, Server as OscServer } from 'node-osc';
 import chalk from 'chalk';
 import throttle from 'lodash.throttle';
 
-console.log(throttle);
-
 function coerseValue(key, value, def) {
   if (!def) {
     throw new Error(`Param "${key}" does not exists`);
