@@ -1,6 +1,6 @@
 {
   "name": "@soundworks/state-manager-osc",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Utility to monitor and control soundworks' shared state within Max through OSC",
   "main": "dist/index.js",
   "license": "BSD-3-Clause",
