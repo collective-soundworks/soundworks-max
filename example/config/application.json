@@ -1,5 +1,5 @@
 {
-  "name": "soundworks",
+  "name": "soundworks-max example",
   "author": "",
 
   "clients": {
@@ -7,12 +7,5 @@
       "target": "browser",
       "default": true
     },
-    "controller": {
-      "target": "browser",
-      // "default": true
-    },
-    "thing": {
-      "target": "node",
-    }
   },
 }
