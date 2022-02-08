@@ -2,6 +2,7 @@ import { Client as OscClient, Server as OscServer } from 'node-osc';
 import chalk from 'chalk';
 import throttle from 'lodash.throttle';
 
+// corce values from Max to JS types
 function coerseValue(key, value, def) {
   if (!def) {
     throw new Error(`Param "${key}" does not exists`);
@@ -167,6 +168,8 @@ export class StateManagerOsc {
 
         const updateChannel = `/sw/state-manager/update-request/${id}/${remoteId}`;
         const unsubscribeUpdateRequests = this._subscribe(updateChannel, async updates => {
+          // we use 'null' symbol in Max, which has no `null` concept
+          updates = updates.replace(/"null"/g, null);
           updates = JSON.parse(updates);
 
           for (let key in updates) {
