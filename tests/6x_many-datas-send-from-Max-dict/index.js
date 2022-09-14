@@ -46,7 +46,7 @@ let server;
   server.stateManager.registerSchema('globals', {
     myValue: {
       type: 'integer',
-      default: 0,
+      default: 100,
     },
     killMax: {
       type:'boolean',
@@ -83,6 +83,14 @@ let server;
   
   await new Promise(resolve => setTimeout(resolve, 2*1000));
 
+  let result = ``;
+  // register callback on updates
+  globals.subscribe(updates => {
+    if ('myValue' in updates) {
+      result += `${updates.myValue}\n`;
+    }
+  });
+
   // ---------------------------------------------------
   // START MAX
   // ---------------------------------------------------
@@ -90,33 +98,12 @@ let server;
   console.log('open echo.maxpat');
   await open(path.join(__dirname, 'echo.maxpat'));
   await new Promise(resolve => setTimeout(resolve, 6 * 1000));
-
-
-  // ---------------------------------------------------
-  // sends values
-  // ---------------------------------------------------
-  
-  let counter = 0;
-
-  let expected = ``;
-
-  while (counter < 250) {
-    let rand = Math.floor(Math.random() * 1000);
-    expected += `${rand}\n`;
-
-    globals.set({ myValue: rand });
-    await new Promise(resolve => setTimeout(resolve, 20));
-    counter += 1;
-  }
-
-
-  await new Promise(resolve => setTimeout(resolve, 1000));
-
+ 
   // ---------------------------------------------------
   // KILL MAX
   // ---------------------------------------------------
 
-  globals.set({ killMax:true });
+  globals.set({ killMax: true });
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   // ---------------------------------------------------
@@ -124,13 +111,12 @@ let server;
   // ---------------------------------------------------
   const resultFile = fs.readFileSync(logFile);
   const listConsole = resultFile.toString().split(os.EOL);
-  let result = ``;
-
+  let expected = ``;
   listConsole.forEach(function(value){
     splitlistConsole = value.split(':');
-    if (splitlistConsole[0] === 'print') {
+    if (splitlistConsole[0] === 'test') {
       //console.log(splitlistConsole[1]);
-      result += `${splitlistConsole[1].trim()}\n`;
+      expected += `${splitlistConsole[1].trim()}\n`;
     }
   })
 

@@ -45,7 +45,7 @@ let server;
 
   server.stateManager.registerSchema('globals', {
     myValue: {
-      type: 'integer',
+      type: 'float',
       default: 0,
     },
     killMax: {

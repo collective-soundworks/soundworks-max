@@ -20,7 +20,9 @@
     "toc": "markdown-toc -i README.md"
   },
   "dependencies": {
+    "chai": "^4.3.6",
     "chalk": "^4.1.0",
+    "find-process": "^1.4.7",
     "lodash.throttle": "^4.1.1",
     "node-osc": "^5.2.2"
   },

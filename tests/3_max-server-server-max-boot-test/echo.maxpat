@@ -129,7 +129,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "dictionary", "dictionary" ],
-					"patching_rect" : [ 66.5, 24.0, 134.0, 22.0 ],
+					"patching_rect" : [ 66.5, 156.0, 134.0, 22.0 ],
 					"text" : "sw.shared-state globals"
 				}
 

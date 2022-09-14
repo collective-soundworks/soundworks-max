@@ -3,7 +3,7 @@ const os = require('os');
 const open = require('open');
 const { execSync } = require('child_process');
 const fs = require('fs');
-const assert = require('assert');
+const assert = require('chai');
 
 const Server = require('@soundworks/core/server/index.js').Server;
 const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
@@ -45,8 +45,10 @@ let server;
 
   server.stateManager.registerSchema('globals', {
     myValue: {
-      type: 'integer',
-      default: 0,
+    type: 'integer',
+    min: -Infinity,
+    max: Infinity,
+    default: 0,
     },
     killMax: {
       type:'boolean',
@@ -91,27 +93,6 @@ let server;
   await open(path.join(__dirname, 'echo.maxpat'));
   await new Promise(resolve => setTimeout(resolve, 6 * 1000));
 
-
-  // ---------------------------------------------------
-  // sends values
-  // ---------------------------------------------------
-  
-  let counter = 0;
-
-  let expected = ``;
-
-  while (counter < 250) {
-    let rand = Math.floor(Math.random() * 1000);
-    expected += `${rand}\n`;
-
-    globals.set({ myValue: rand });
-    await new Promise(resolve => setTimeout(resolve, 20));
-    counter += 1;
-  }
-
-
-  await new Promise(resolve => setTimeout(resolve, 1000));
-
   // ---------------------------------------------------
   // KILL MAX
   // ---------------------------------------------------
@@ -123,18 +104,20 @@ let server;
   // LOG
   // ---------------------------------------------------
   const resultFile = fs.readFileSync(logFile);
-  const listConsole = resultFile.toString().split(os.EOL);
-  let result = ``;
+  const result = resultFile.toString().split(os.EOL);
+  let expected = `myValue: 
+    nullable: 0 
+    event: 0 
+    metas: 
+    filterChange: 1 
+    immediate: 0 
+    min: null 
+    max: null 
+    type: integer 
+    default: 0 
+    initValue: 0`;
 
-  listConsole.forEach(function(value){
-    splitlistConsole = value.split(':');
-    if (splitlistConsole[0] === 'print') {
-      //console.log(splitlistConsole[1]);
-      result += `${splitlistConsole[1].trim()}\n`;
-    }
-  })
-
-  assert.equal(result, expected);
+//chercher si expected est contenu dans les logs.
 
   // ---------------------------------------------------
   // KILL SERVER

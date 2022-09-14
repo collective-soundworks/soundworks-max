@@ -1,0 +1,26 @@
+udpreceiver: binding to port 57122
+udpreceiver: binding to port 57122
+js: Observe request to globals  
+udpreceiver: binding to port 57122
+js: attached to globals - stateId: 0 - remoteId: 1  
+dict.print: dictionary globals_infos
+myValue: 
+    nullable: 0 
+    event: 0 
+    metas: 
+    filterChange: 1 
+    immediate: 0 
+    min: null 
+    max: null 
+    type: integer 
+    default: 0 
+    initValue: 0 
+killMax: 
+    nullable: 1 
+    event: 1 
+    metas: 
+    filterChange: 1 
+    immediate: 0 
+    type: boolean 
+    default: null 
+    initValue: null 

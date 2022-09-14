@@ -1,9 +1,10 @@
 const path = require('path');
 const os = require('os');
+const findProcess = require('find-process')
 const open = require('open');
 const { execSync } = require('child_process');
 const fs = require('fs');
-const assert = require('assert');
+// const assert = require('chai').assert;
 
 const Server = require('@soundworks/core/server/index.js').Server;
 const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
@@ -80,8 +81,7 @@ let server;
   } catch (err) {}
   fs.writeFileSync(logFile, '');
 
-  
-  await new Promise(resolve => setTimeout(resolve, 2*1000));
+  await new Promise(resolve => setTimeout(resolve, 2 * 1000));
 
   // ---------------------------------------------------
   // START MAX
@@ -89,61 +89,35 @@ let server;
 
   console.log('open echo.maxpat');
   await open(path.join(__dirname, 'echo.maxpat'));
-  await new Promise(resolve => setTimeout(resolve, 6 * 1000));
-
-
-  // ---------------------------------------------------
-  // sends values
-  // ---------------------------------------------------
-  
-  let counter = 0;
-
-  let expected = ``;
-
-  while (counter < 250) {
-    let rand = Math.floor(Math.random() * 1000);
-    expected += `${rand}\n`;
-
-    globals.set({ myValue: rand });
-    await new Promise(resolve => setTimeout(resolve, 20));
-    counter += 1;
-  }
-
-
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 5 * 1000));
 
   // ---------------------------------------------------
   // KILL MAX
   // ---------------------------------------------------
 
-  globals.set({ killMax:true });
+  globals.set({killMax:true});
+
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   // ---------------------------------------------------
   // LOG
   // ---------------------------------------------------
-  const resultFile = fs.readFileSync(logFile);
-  const listConsole = resultFile.toString().split(os.EOL);
-  let result = ``;
+  const processesList = await findProcess('name','Max');
 
-  listConsole.forEach(function(value){
-    splitlistConsole = value.split(':');
-    if (splitlistConsole[0] === 'print') {
-      //console.log(splitlistConsole[1]);
-      result += `${splitlistConsole[1].trim()}\n`;
-    }
-  })
 
-  assert.equal(result, expected);
+  if (processesList.length === 0) {
+    console.log("test passed");
+  }
+  else {
+    console.log("test FAILED");
+  }
 
   // ---------------------------------------------------
   // KILL SERVER
   // ---------------------------------------------------
   process.exit();
 
-
 }());
-
 
 
 
