@@ -1,9 +1,9 @@
-const path = require('path');
-const os = require('os');
+const path = require('node:path');
+const os = require('node:os');
+const fs = require('node:fs');
 const findProcess = require('find-process')
 const open = require('open');
 const { execSync } = require('child_process');
-const fs = require('fs');
 // const assert = require('chai').assert;
 
 const Server = require('@soundworks/core/server/index.js').Server;
