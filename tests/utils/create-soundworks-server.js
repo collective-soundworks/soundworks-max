@@ -1,0 +1,51 @@
+const Server = require('@soundworks/core/server/index.js').Server;
+const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
+
+const { StateManagerOsc } = require('../../');
+
+
+class ServerTestExperience extends ServerAbstractExperience {
+  start() { console.log('> server started'); }
+}
+
+module.exports = async function createSoundworksServer(initStateManagerOsc = true) {
+  const config = {
+    app: {
+      name: 'test',
+      clients: {}, // we don't have clients here
+    },
+    env: {
+      type: 'development',
+      port: 8081,
+      serverIp: '127.0.0.1',
+      useHttps: false,
+    },
+  };
+
+  const server = new Server();
+
+  await server.init(config);
+  // @note - client type should not be mandatory
+  const serverTestExperience = new ServerTestExperience(server, []);
+
+  await server.start();
+  serverTestExperience.start();
+
+  if (initStateManagerOsc === true) {
+    // init osc state manager with default values
+    const stateManagerOsc = new StateManagerOsc(server.stateManager, {
+      localAddress: '0.0.0.0',
+      localPort: 57121,
+      remoteAddress: '127.0.0.1',
+      remotePort: 57122,
+      speedLimit: 20,
+    });
+
+    await stateManagerOsc.start();
+
+    // monley patch on server to stop
+    server.stateManagerOsc = stateManagerOsc;
+  }
+
+  return server;
+}

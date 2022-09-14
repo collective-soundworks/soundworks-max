@@ -3,45 +3,17 @@ const os = require('os');
 const open = require('open');
 const { execSync } = require('child_process');
 const fs = require('fs');
+const assert = require('assert');
 // const assert = require('chai').assert;
 
-const Server = require('@soundworks/core/server/index.js').Server;
-const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
-
-const Client = require('@soundworks/core/client').Client;
-const ClientAbstractExperience = require('@soundworks/core/client').AbstractExperience;
-
-
-const { StateManagerOsc } = require('../../');
-
-config = {
-  app: {
-    name: 'test-plugin-audio-buffer-loader',
-    clients: {}, // we don't have clients here
-  },
-  env: {
-    type: 'development',
-    port: 8081,
-    serverIp: '127.0.0.1',
-    useHttps: false,
-  },
-};
-;
-
-class ServerTestExperience extends ServerAbstractExperience {
-  start() { console.log('> server started'); }
-}
+const createSoundworksServer = require('../utils/create-soundworks-server.js');
+const parseMaxConsole = require('../utils/parse-max-console.js');
 
 let server;
 
 (async function() {
-  // ---------------------------------------------------
-  // START server
-  // ---------------------------------------------------
-  server = new Server();
-  // @note - these two should not be mandatory
-  server.templateEngine = { compile: () => {} };
-  server.templateDirectory = __dirname;
+  // get configure and started soundworks server
+  let server = await createSoundworksServer();
 
   server.stateManager.registerSchema('globals', {
     myValue: {
@@ -49,51 +21,27 @@ let server;
       default: 0,
     },
     killMax: {
-      type:'boolean',
-      default:false,
-      event:true
-    }
+      type: 'boolean',
+      default: false,
+      event: true,
+    },
   });
-
-  await server.init(config);
-  // @note - client type should not be mandatory
-  const serverTestExperience = new ServerTestExperience(server, 'dummy');
-
-  await server.start();
-  serverTestExperience.start();
 
   const globals = await server.stateManager.create('globals');
 
-  // init osc state manager with default values
-  const stateManagerOsc = new StateManagerOsc(server.stateManager, {
-    localAddress: '0.0.0.0',
-    localPort: 57121,
-    remoteAddress: '127.0.0.1',
-    remotePort: 57122,
-    speedLimit: 20,
-  });
-  await stateManagerOsc.init();
-
-  const logFile = path.join(__dirname, 'log.txt');
+  const patchFilename = path.join(__dirname, 'test.maxpat');
+  const logFilename = path.join(__dirname, 'log.txt');
   try {
-    fs.unlinkSync(logFile);
-  } catch (err) {}
-  fs.writeFileSync(logFile, '');
+    fs.unlinkSync(logFilename);
+  } catch(err) {}
 
-  await new Promise(resolve => setTimeout(resolve, 2 * 1000));
-
-  // ---------------------------------------------------
-  // START MAX
-  // ---------------------------------------------------
-
-  console.log('open echo.maxpat');
-  await open(path.join(__dirname, 'echo.maxpat'));
-  await new Promise(resolve => setTimeout(resolve, 5 * 1000));
-
-
+  // start max patch
+  console.log(`> open ${patchFilename}`);
+  await open(patchFilename);
+  await new Promise(resolve => setTimeout(resolve, 10 * 1000));
 
   // ---------------------------------------------------
-  // sends values
+  // sends some values
   // ---------------------------------------------------
 
   console.log('update globals.myValue = 1');
@@ -106,33 +54,29 @@ let server;
 
   await new Promise(resolve => setTimeout(resolve, 1000));
 
-  // ---------------------------------------------------
-  // KILL MAX
-  // ---------------------------------------------------
-
-  globals.set({killMax:true});
-
+  // close patch message
+  globals.set({ killMax: true });
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   // ---------------------------------------------------
-  // LOG
+  // check results
   // ---------------------------------------------------
-  const result = fs.readFileSync(logFile);
-  const resultStr = result.toString();
-  const listConsole = resultStr.split(os.EOL);
+  const expected = `\
+0
+1
+2
+`;
 
-  listConsole.forEach(function(value){
-    splitlistConsole = value.split(':');
-    if (splitlistConsole[0] === 'print') {
-      console.log(splitlistConsole[1]);
-    }
-  })
+  const logPrefix = 'print';
+  const result = parseMaxConsole(logFilename, logPrefix);
+  console.log(result);
 
-  // ---------------------------------------------------
-  // KILL SERVER
-  // ---------------------------------------------------
-  process.exit();
+  assert.equal(result, expected);
 
+  // close the server
+  console.log(`> close server`);
+  await server.stateManagerOsc.stop();
+  await server.stop();
 }());
 
 

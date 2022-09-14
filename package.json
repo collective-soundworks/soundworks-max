@@ -30,7 +30,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
-    "@soundworks/core": "^3.2.2",
+    "@soundworks/core": "^3.3.1",
     "chokidar": "^3.0.1",
     "chokidar-cli": "^2.1.0",
     "markdown-toc": "^1.2.0",
