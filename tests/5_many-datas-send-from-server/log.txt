@@ -1,0 +1,55 @@
+udpreceiver: binding to port 57122
+udpreceiver: binding to port 57122
+js: Observe request to globals  
+udpreceiver: binding to port 57122
+js: attached to globals - stateId: 0 - remoteId: 1  
+print: 0.633282
+print: 0.76228
+print: 0.329436
+print: 0.946662
+print: 0.965924
+print: 0.363408
+print: 0.418693
+print: 0.503026
+print: 0.657708
+print: 0.719482
+print: 0.205102
+print: 0.302117
+print: 0.340104
+print: 0.484079
+print: 0.756925
+print: 0.392585
+print: 0.741221
+print: 0.633022
+print: 0.050494
+print: 0.028356
+print: 0.801571
+print: 0.788695
+print: 0.73307
+print: 0.748596
+print: 0.719131
+print: 0.22298
+print: 0.447812
+print: 0.878484
+print: 0.399208
+print: 0.521807
+print: 0.726691
+print: 0.44869
+print: 0.151759
+print: 0.131665
+print: 0.546402
+print: 0.296284
+print: 0.754024
+print: 0.863383
+print: 0.156461
+print: 0.826824
+print: 0.257863
+print: 0.795041
+print: 0.704351
+print: 0.355557
+print: 0.552948
+print: 0.244199
+print: 0.502011
+print: 0.196211
+print: 0.772694
+print: 0.377448

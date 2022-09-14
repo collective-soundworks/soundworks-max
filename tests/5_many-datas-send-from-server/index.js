@@ -1,14 +1,16 @@
 const path = require('path');
+const os = require('os');
 const open = require('open');
 const { execSync } = require('child_process');
 const fs = require('fs');
-// const assert = require('chai').assert;
+const assert = require('assert');
 
 const Server = require('@soundworks/core/server/index.js').Server;
 const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
 
-// const Client = require('@soundworks/core/client').Client;
-// const ClientAbstractExperience = require('@soundworks/core/client').AbstractExperience;
+const Client = require('@soundworks/core/client').Client;
+const ClientAbstractExperience = require('@soundworks/core/client').AbstractExperience;
+
 
 const { StateManagerOsc } = require('../../');
 
@@ -34,7 +36,7 @@ let server;
 
 (async function() {
   // ---------------------------------------------------
-  // server
+  // START server
   // ---------------------------------------------------
   server = new Server();
   // @note - these two should not be mandatory
@@ -43,8 +45,13 @@ let server;
 
   server.stateManager.registerSchema('globals', {
     myValue: {
-      type: 'integer',
+      type: 'float',
       default: 0,
+    },
+    killMax: {
+      type:'boolean',
+      default:false,
+      event:true
     }
   });
 
@@ -67,38 +74,77 @@ let server;
   });
   await stateManagerOsc.init();
 
-  //console.log('open echo.maxpat');
-  //await open(path.join(__dirname, 'echo.maxpat'));
-
-  const logFile = path.join(__dirname, 'max-log.txt');
+  const logFile = path.join(__dirname, 'log.txt');
   try {
     fs.unlinkSync(logFile);
   } catch (err) {}
   fs.writeFileSync(logFile, '');
 
-  // wait for Max to open
-  await new Promise(resolve => setTimeout(resolve, 10 * 1000));
+  
+  await new Promise(resolve => setTimeout(resolve, 2*1000));
 
-  console.log('update globals.myValue = 1');
-  //globals.set({ myValue: 1 });
+  // ---------------------------------------------------
+  // START MAX
+  // ---------------------------------------------------
+
+  console.log('open echo.maxpat');
+  await open(path.join(__dirname, 'echo.maxpat'));
+  await new Promise(resolve => setTimeout(resolve, 6 * 1000));
+
+
+  // ---------------------------------------------------
+  // sends values
+  // ---------------------------------------------------
+  
+  let counter = 0;
+
+  let expected = ``;
+
+  while (counter < 50) {
+    let rand = Math.random();
+    expected += `${rand}\n`;
+
+    globals.set({ myValue: rand });
+    await new Promise(resolve => setTimeout(resolve, 20));
+    counter += 1;
+  }
+
 
   await new Promise(resolve => setTimeout(resolve, 1000));
 
-  console.log('update globals.myValue = 2');
-  //globals.set({ myValue: 2 });
+  // ---------------------------------------------------
+  // KILL MAX
+  // ---------------------------------------------------
 
+  globals.set({ killMax:true });
   await new Promise(resolve => setTimeout(resolve, 1000));
 
-  //execSync(`killall Max`);
+  // ---------------------------------------------------
+  // LOG
+  // ---------------------------------------------------
+  const resultFile = fs.readFileSync(logFile);
+  const listConsole = resultFile.toString().split(os.EOL);
+  let result = ``;
 
-  const result = fs.readFileSync(logFile);
-  console.log(result.toString());
+  listConsole.forEach(function(value){
+    splitlistConsole = value.split(':');
+    if (splitlistConsole[0] === 'print') {
+      console.log(splitlistConsole[1]);
+      result += `${splitlistConsole[1].trim()}\n`;
+    }
+  })
 
+  assert.equal(result, expected);
+
+  // ---------------------------------------------------
+  // KILL SERVER
+  // ---------------------------------------------------
   process.exit();
+
 
 }());
 
-//cassé, Max est censé envoyé 0 1 2
+
 
 
 
