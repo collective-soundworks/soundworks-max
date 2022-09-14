@@ -90,7 +90,7 @@ export class StateManagerOsc {
   }
 
 
-  async init() {
+  async start() {
     return new Promise((resolve, reject) => {
       this._oscClient = new OscClient(this.config.remoteAddress, this.config.remotePort);
       this._oscClient.sendRaw = this._oscClient.send;
@@ -227,6 +227,11 @@ export class StateManagerOsc {
         this._oscClient.sendRaw('/sw/state-manager/attach-response', id, remoteId, schemaName, schemaStr, currentValues);
       });
     });
+  }
+
+  async stop() {
+    this._oscClient.close();
+    this._oscServer.close();
   }
 
   _subscribe(channel, callback) {
