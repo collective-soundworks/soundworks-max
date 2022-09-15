@@ -32,21 +32,6 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
   await server.start();
   serverTestExperience.start();
 
-  server.stateManager.registerSchema('testSuite', {
-    closePatch: {
-      type: 'boolean',
-      default: false,
-      event: true,
-    },
-    killMax: {
-      type: 'boolean',
-      default: false,
-      event: true,
-    },
-  });
-
-  server.testSuite = await server.stateManager.create('testSuite');
-
   if (initStateManagerOsc === true) {
     // init osc state manager with default values
     const stateManagerOsc = new StateManagerOsc(server.stateManager, {
