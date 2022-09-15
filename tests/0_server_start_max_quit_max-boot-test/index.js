@@ -8,6 +8,7 @@ const assert = require('chai').assert;
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
 const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
+const floatEqual = require('../utils/float-equal.js');
 
 // `npm test -- tests/0_server_start_max_quit_max-boot-test/`
 
@@ -77,6 +78,13 @@ describe('testing test infrastucture', () => {
     const result = getLogAsString(logFilename);
 
     assert.equal(result, expected);
+  });
+
+  it('should have a way to compare arrays of floats with a tolerance', () => {
+    floatEqual([0.1], [0.2], 1e-1);
+
+    // uncomment to see the test fail
+    // floatEqual([0.1], [0.2], 1e-2);
   });
 
   // it('should get logs as array of numbers', () => {

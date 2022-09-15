@@ -8,6 +8,7 @@ const assert = require('chai').assert;
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
 const { openPatch, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
+const floatEqual = require('./utils/float-equal');
 
 // `npm test -- tests/1_server-max-max-server-boot-test/`
 
@@ -54,7 +55,11 @@ describe('launch server -> max / quit max -> server', () => {
     await quitMax(server);
     await server.stop();
 
-        const expected = `\
+    assert.ok(true);
+  });
+
+  it('should get log as strings', () => {
+    const expected = `\
 0
 1
 2
