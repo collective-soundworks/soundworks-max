@@ -25,17 +25,17 @@ before(async function() {
   await quitMax();
 
   // get configure and started soundworks server
-  server = await createSoundworksServer()
+  server = await createSoundworksServer();
 
-  server.stateManager.registerSchema('globals', {
-    killMax: {
-      type: 'boolean',
-      default: false,
-      event: true,
-    },
-  });
+  // server.stateManager.registerSchema('globals', {
+  //   killMax: {
+  //     type: 'boolean',
+  //     default: false,
+  //     event: true,
+  //   },
+  // });
 
-  globals = await server.stateManager.create('globals');
+  // globals = await server.stateManager.create('globals');
 
   // start max patch
   return await openPatch(patchFilename);
@@ -44,8 +44,8 @@ before(async function() {
 describe('testing test infrastucture', () => {
   it('should close Max from event', async function() {
     this.timeout(10 * 1000);
-
-    await quitMax(() => globals.set({ killMax: true }));
+    // send close message to Max
+    await quitMax(server);
 
     const processesList = await findProcess('name', 'Max');
     assert.equal(processesList.length, 0, 'some Max process has been found');

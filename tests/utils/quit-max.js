@@ -1,9 +1,14 @@
+const { execSync } = require('node:child_process');
 const findProcess = require('find-process');
 
 // send the `killMax` message to the given state
-module.exports = async function(command = null) {
-  if (command) {
-    await command();
+module.exports = async function(server = null) {
+  if (server) {
+    await server.testSuite.set({ killMax: true });
+  } else {
+    try {
+      execSync(`killall -9 Max`);
+    } catch(err) {}
   }
 
   return new Promise((resolve, reject) => {
