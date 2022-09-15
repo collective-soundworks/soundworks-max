@@ -6,8 +6,8 @@ const { execSync } = require('child_process');
 const assert = require('chai').assert;
 
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const parseMaxConsole = require('../utils/parse-max-console.js');
-const openPatch = require('../utils/open-patch.js');
+const { openPatch, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
+const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 
 // `npm test -- tests/1_server-max-max-server-boot-test/`
 
@@ -20,15 +20,12 @@ try { fs.unlinkSync(logFilename); } catch (err) {}
 
 before(async function() {
   this.timeout(15 * 1000);
+
+  await ensureMaxIsDown();
   // get configure and started soundworks server
   server = await createSoundworksServer()
 
   server.stateManager.registerSchema('globals', {
-    killMax: {
-      type: 'boolean',
-      default: false,
-      event: true,
-    },
     myValue: {
       type: 'integer',
       default: 0,
@@ -55,14 +52,28 @@ describe('launch server -> max / quit max -> server', () => {
     globals.set({ killMax: true });
     await new Promise(resolve => setTimeout(resolve, 1000));
 
+    await quitMax(server);
     await server.stop();
+
+    assert.ok(true);
+  });
+
+  it('should get log as strings', () => {
 
     const expected = `\
 0
 1
 2
 `;
-    const result = parseMaxConsole(logFilename);
+    const result = getLogAsString(logFilename);
+
+    assert.equal(result, expected);
+  });
+
+  it('should get logs as array of numbers', () => {
+
+    const expected = [0, 1, 2];
+    const result = getLogAsNumArray(logFilename);
 
     assert.equal(result, expected);
   });

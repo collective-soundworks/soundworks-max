@@ -6,9 +6,8 @@ const { execSync } = require('child_process');
 const assert = require('chai').assert;
 
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const parseMaxConsole = require('../utils/parse-max-console.js');
-const openPatch = require('../utils/open-patch.js');
-const quitMax = require('../utils/quit-max.js');
+const { openPatch, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
+const { getLogAsString } = require('../utils/logs-reader.js');
 
 // `npm test -- tests/0_server_start_max_quit_max-boot-test/`
 
@@ -21,22 +20,10 @@ try { fs.unlinkSync(logFilename); } catch (err) {}
 
 before(async function() {
   this.timeout(15 * 1000);
-  // ensure Max is dead, if not quit
-  await quitMax();
-
+  // ensure Max is not running
+  await ensureMaxIsDown();
   // get configure and started soundworks server
   server = await createSoundworksServer();
-
-  // server.stateManager.registerSchema('globals', {
-  //   killMax: {
-  //     type: 'boolean',
-  //     default: false,
-  //     event: true,
-  //   },
-  // });
-
-  // globals = await server.stateManager.create('globals');
-
   // start max patch
   return await openPatch(patchFilename);
 });
@@ -54,7 +41,7 @@ describe('testing test infrastucture', () => {
   });
 
   it('log file should have logged the killMax event', () => {
-    const result = parseMaxConsole(logFilename);
+    const result = getLogAsString(logFilename);
     const expected = `\
 1
 `;
