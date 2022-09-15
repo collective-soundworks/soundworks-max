@@ -47,6 +47,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
     const oldClose = server.stop.bind(server);
 
     server.stop = async () => {
+      console.log('> closing server');
       await stateManagerOsc.stop();
       await oldClose();
     }
