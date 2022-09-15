@@ -40,49 +40,98 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-25",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 445.5, 197.0, 67.0, 22.0 ],
+					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
+					"text" : "thispatcher"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 445.5, 143.0, 54.0, 22.0 ],
+					"text" : "deferlow"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "bang", "bang" ],
+					"patching_rect" : [ 445.5, 96.25, 32.0, 22.0 ],
+					"text" : "t b b"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "bang", "bang" ],
+					"patching_rect" : [ 381.5, 96.25, 32.0, 22.0 ],
+					"text" : "t b b"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-18",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 381.5, 51.5, 147.0, 22.0 ],
+					"text" : "route /quit /close"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 445.5, 169.0, 50.0, 22.0 ],
+					"text" : "dispose"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 381.5, 14.0, 97.0, 22.0 ],
+					"text" : "udpreceive 5555"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-30",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "cr", "" ],
-					"patching_rect" : [ 118.5, 270.0, 31.0, 22.0 ],
+					"patching_rect" : [ 171.5, 295.0, 31.0, 22.0 ],
 					"text" : "t cr l"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 381.5, 68.0, 113.0, 22.0 ],
-					"text" : "dict.unpack killMax:"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "dictionary", "dictionary" ],
-					"patching_rect" : [ 381.5, 31.0, 193.0, 22.0 ],
-					"text" : "soundworks.shared-state testSuite"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-31",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 381.5, 105.0, 32.0, 22.0 ],
-					"text" : "t b b"
 				}
 
 			}
@@ -93,7 +142,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "bang", "int" ],
-					"patching_rect" : [ 118.5, 305.0, 40.0, 22.0 ],
+					"patching_rect" : [ 171.5, 334.0, 40.0, 22.0 ],
 					"text" : "text"
 				}
 
@@ -105,7 +154,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 515.5, 255.0, 81.0, 22.0 ],
+					"patching_rect" : [ 561.5, 231.0, 81.0, 22.0 ],
 					"text" : "prepend write"
 				}
 
@@ -117,7 +166,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 515.5, 226.0, 135.0, 22.0 ],
+					"patching_rect" : [ 561.5, 202.0, 135.0, 22.0 ],
 					"text" : "sprintf symout %slog.txt"
 				}
 
@@ -129,7 +178,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 515.5, 202.0, 128.0, 22.0 ],
+					"patching_rect" : [ 561.5, 178.0, 128.0, 22.0 ],
 					"text" : "conformpath max boot"
 				}
 
@@ -141,7 +190,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 467.5, 143.0, 32.0, 22.0 ],
+					"patching_rect" : [ 513.5, 96.25, 32.0, 22.0 ],
 					"text" : "path"
 				}
 
@@ -153,7 +202,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 467.5, 167.0, 67.0, 22.0 ],
+					"patching_rect" : [ 513.5, 143.0, 67.0, 22.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -184,42 +233,48 @@
 				}
 
 			}
-, 			{
-				"box" : 				{
-					"id" : "obj-11",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 118.5, 235.0, 122.0, 22.0 ],
-					"text" : "dict.unpack myValue:"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "dictionary", "dictionary" ],
-					"patching_rect" : [ 118.5, 202.0, 184.0, 22.0 ],
-					"text" : "soundworks.shared-state globals"
-				}
-
-			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-11", 0 ],
-					"source" : [ "obj-10", 1 ]
+					"destination" : [ "obj-18", 0 ],
+					"order" : 0,
+					"source" : [ "obj-13", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-30", 0 ],
-					"source" : [ "obj-11", 0 ]
+					"order" : 1,
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-19", 0 ],
+					"source" : [ "obj-18", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-18", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-19", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-19", 0 ]
 				}
 
 			}
@@ -227,6 +282,27 @@
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-20", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-21", 0 ],
+					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-21", 0 ]
 				}
 
 			}
@@ -274,69 +350,20 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"source" : [ "obj-31", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-31", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-5", 0 ],
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-31", 0 ],
-					"source" : [ "obj-5", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
 					"source" : [ "obj-6", 0 ]
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "soundworks.shared-state.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/patchers",
-				"patcherrelativepath" : "../../max/soundworks/patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
 , 			{
-				"name" : "jscount.js",
-				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
-				"patcherrelativepath" : "../../max/soundworks/javascript",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "indict.js",
-				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
-				"patcherrelativepath" : "../../max/soundworks/javascript",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "mergeUpdates.js",
-				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
-				"patcherrelativepath" : "../../max/soundworks/javascript",
-				"type" : "TEXT",
-				"implicit" : 1
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
 			}
  ],
+		"dependency_cache" : [  ],
 		"autosave" : 0
 	}
 

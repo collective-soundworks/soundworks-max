@@ -33,7 +33,6 @@ before(async function() {
   });
 
   globals = await server.stateManager.create('globals');
-
   // start max patch
   return await openPatch(patchFilename);
 });
@@ -55,12 +54,7 @@ describe('launch server -> max / quit max -> server', () => {
     await quitMax(server);
     await server.stop();
 
-    assert.ok(true);
-  });
-
-  it('should get log as strings', () => {
-
-    const expected = `\
+        const expected = `\
 0
 1
 2
@@ -71,7 +65,6 @@ describe('launch server -> max / quit max -> server', () => {
   });
 
   it('should get logs as array of numbers', () => {
-
     const expected = [0, 1, 2];
     const result = getLogAsNumArray(logFilename);
 
