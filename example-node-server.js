@@ -3,7 +3,6 @@ const ServerAbstractExperience = require('@soundworks/core/server').AbstractExpe
 // mixed config for server and client
 const config = {
   app: {
-    name: 'test-state-manager',
     clients: {
       max: { target: 'node' },
     },
@@ -11,7 +10,6 @@ const config = {
   env: {
     type: 'development',
     port: 8000,
-    serverIp: '127.0.0.1',
     useHttps: false,
   },
 };
@@ -46,10 +44,13 @@ class ServerMaxExperience extends ServerAbstractExperience {
   });
 
   const globals = await server.stateManager.create('globals');
+
   const experience = new ServerMaxExperience(server, 'max');
 
   await server.start();
   experience.start();
+
+  globals.subscribe(updates => console.log(updates));
 
   console.log('globals:', globals.getValues());
 }())

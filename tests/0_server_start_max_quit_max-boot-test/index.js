@@ -37,7 +37,7 @@ describe('testing test infrastucture', () => {
   });
 
   it('should send osc message to patch', async () => {
-    sendOsc('/coucou');
+    await sendOsc('/coucou');
     assert.ok(true);
   });
 
