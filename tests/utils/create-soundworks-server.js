@@ -43,8 +43,13 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
 
     await stateManagerOsc.start();
 
-    // monley patch on server to stop
-    server.stateManagerOsc = stateManagerOsc;
+
+    const oldClose = server.stop.bind(server);
+
+    server.stop = async () => {
+      await stateManagerOsc.stop();
+      await oldClose();
+    }
   }
 
   return server;

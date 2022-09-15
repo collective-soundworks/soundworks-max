@@ -28,12 +28,9 @@ let server;
   });
 
   const globals = await server.stateManager.create('globals');
-
   const patchFilename = path.join(__dirname, 'test.maxpat');
   const logFilename = path.join(__dirname, 'log.txt');
-  try {
-    fs.unlinkSync(logFilename);
-  } catch(err) {}
+  try { fs.unlinkSync(logFile); } catch (err) {}
 
   // start max patch
   console.log(`> open ${patchFilename}`);

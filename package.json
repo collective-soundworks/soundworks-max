@@ -17,10 +17,10 @@
     "prepublishOnly": "npm run clean && npm run build",
     "build": "babel src --out-dir dist",
     "dev": "npm run clean && npm run build && chokidar src -c \"npm run build\"",
+    "test": "mocha",
     "toc": "markdown-toc -i README.md"
   },
   "dependencies": {
-    "chai": "^4.3.6",
     "chalk": "^4.1.0",
     "find-process": "^1.4.7",
     "lodash.throttle": "^4.1.1",
@@ -31,9 +31,11 @@
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
     "@soundworks/core": "^3.3.1",
+    "chai": "^4.3.6",
     "chokidar": "^3.0.1",
     "chokidar-cli": "^2.1.0",
     "markdown-toc": "^1.2.0",
+    "mocha": "^10.0.0",
     "open": "^8.4.0"
   }
 }

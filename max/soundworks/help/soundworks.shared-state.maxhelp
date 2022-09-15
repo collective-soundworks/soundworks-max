@@ -372,7 +372,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "dictionary", "dictionary" ],
 									"patching_rect" : [ 138.5, 223.0, 134.0, 22.0 ],
-									"text" : "sw.shared-state globals"
+									"text" : "soundworks.shared-state globals"
 								}
 
 							}
@@ -633,7 +633,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "dictionary", "dictionary" ],
 					"patching_rect" : [ 17.5, 200.0, 302.0, 22.0 ],
-					"text" : "sw.shared-state globals"
+					"text" : "soundworks.shared-state globals"
 				}
 
 			}
@@ -1190,7 +1190,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "dictionary", "dictionary" ],
 									"patching_rect" : [ 18.25, 320.0, 874.0, 22.0 ],
-									"text" : "sw.shared-state globals"
+									"text" : "soundworks.shared-state globals"
 								}
 
 							}
@@ -1874,7 +1874,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "dictionary", "dictionary" ],
 									"patching_rect" : [ 125.5, 205.0, 134.0, 22.0 ],
-									"text" : "sw.shared-state globals"
+									"text" : "soundworks.shared-state globals"
 								}
 
 							}
@@ -2705,7 +2705,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 844.0, 372.5, 181.0, 51.0 ],
-									"text" : "attach to a state creating a [sw.sharedState <schema>] object"
+									"text" : "attach to a state creating a [soundworks.sharedState <schema>] object"
 								}
 
 							}
@@ -2718,7 +2718,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "dictionary", "dictionary" ],
 									"patching_rect" : [ 303.0, 387.0, 527.5, 22.0 ],
-									"text" : "sw.shared-state globals"
+									"text" : "soundworks.shared-state globals"
 								}
 
 							}
@@ -3098,7 +3098,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "sw.shared-state.maxpat",
+				"name" : "soundworks.shared-state.maxpat",
 				"bootpath" : "~/work/dev/libs/soundworks/soundworks-state-manager-osc/max/SoundworksAPI/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
