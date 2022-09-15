@@ -89,7 +89,6 @@ export class StateManagerOsc {
     this._observeListeners = new Map();
   }
 
-
   async start() {
     return new Promise((resolve, reject) => {
       this._oscClient = new OscClient(this.config.remoteAddress, this.config.remotePort);

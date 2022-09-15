@@ -13,7 +13,7 @@ let server;
 
 (async function() {
   // get configure and started soundworks server
-  let server = await createSoundworksServer();
+  server = await createSoundworksServer();
 
   server.stateManager.registerSchema('globals', {
     myValue: {
