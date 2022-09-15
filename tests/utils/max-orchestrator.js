@@ -1,6 +1,22 @@
 const { execSync } = require('node:child_process');
 const findProcess = require('find-process');
+const { Client } = require('node-osc');
 const open = require('open');
+
+console.log(Client);
+
+console.log('> Create osc client on port 5555');
+const oscClient = new Client('127.0.0.1', 5555);
+
+module.exports.closeOscClient = () => {
+  oscClient.close();
+}
+
+module.exports.sendOsc = async function sendOsc(channel) {
+  console.log('sending osc message', channel)
+  oscClient.send(channel);
+  await new Promise(resolve => setTimeout(resolve, 100));
+}
 
 module.exports.openPatch = function openPatch(patchFilename) {
   console.log(`> opening ${patchFilename}`);
@@ -14,7 +30,7 @@ module.exports.openPatch = function openPatch(patchFilename) {
         const processList = await findProcess('name', 'Max');
         // the patch is effectively opened when we have 3 processes running
         if (processList.length >= 3) {
-          console.log('> path is opened, continue');
+          console.log('> patch is opened, continue');
           clearTimeout(intervalId);
           resolve();
         }
@@ -37,13 +53,10 @@ module.exports.ensureMaxIsDown = async function ensureMaxIsDown() {
 }
 
 // send the `killMax` message to the given state
-module.exports.quitMax = async function(server = null) {
-  if (!server) {
-    throw new Error(`quit max requires the soundworks server`)
-  }
-
-  console.log('> sending kill message to Max');
-  await server.testSuite.set({ killMax: true });
+module.exports.quitMax = async function() {
+  console.log('> sending message to quit Max');
+  oscClient.send('/quit');
+  await new Promise(resolve => setTimeout(resolve, 100));
 
   return new Promise((resolve, reject) => {
     const intervalId = setInterval(async () => {
@@ -63,4 +76,10 @@ module.exports.quitMax = async function(server = null) {
 
     }, 500);
   });
+}
+
+module.exports.closePatch = async function() {
+  console.log('> sending message to close the patch');
+  oscClient.send('/close');
+  return new Promise(resolve => setTimeout(resolve, 100));
 }

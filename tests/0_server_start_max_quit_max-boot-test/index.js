@@ -6,8 +6,8 @@ const { execSync } = require('child_process');
 const assert = require('chai').assert;
 
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const { openPatch, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
-const { getLogAsString } = require('../utils/logs-reader.js');
+const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
+const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 
 // `npm test -- tests/0_server_start_max_quit_max-boot-test/`
 
@@ -24,15 +24,45 @@ before(async function() {
   await ensureMaxIsDown();
   // get configure and started soundworks server
   server = await createSoundworksServer();
-  // start max patch
-  return await openPatch(patchFilename);
 });
 
 describe('testing test infrastucture', () => {
+  it('should open patch and close patch from event', async function() {
+    this.timeout(15 * 1000);
+    // start max patch
+    await openPatch(patchFilename);
+
+    const processesList1 = await findProcess('name', 'Max');
+    assert.isAtLeast(processesList1.length, 3);
+  });
+
+  it('should send osc message to patch', async () => {
+    await sendOsc('/coucou');
+    assert.ok(true);
+  });
+
+  it('should close patch without quitting Max', async () => {
+    // dispose the patch
+    await closePatch();
+    assert.ok(true);
+  });
+
+  it('should have logged osc messages', () => {
+    const expected = `\
+/coucou
+/close
+`;
+    const result = getLogAsString(logFilename);
+
+    assert.equal(result, expected);
+  });
+
   it('should close Max from event', async function() {
     this.timeout(10 * 1000);
+
+    await openPatch(patchFilename);
     // send close message to Max
-    await quitMax(server);
+    await quitMax();
 
     const processesList = await findProcess('name', 'Max');
     assert.equal(processesList.length, 0, 'some Max process has been found');
@@ -40,14 +70,21 @@ describe('testing test infrastucture', () => {
     await server.stop();
   });
 
-  it('log file should have logged the killMax event', () => {
-    const result = getLogAsString(logFilename);
+  it('should have logged osc quit message', () => {
     const expected = `\
-1
+/quit
 `;
+    const result = getLogAsString(logFilename);
 
     assert.equal(result, expected);
   });
+
+  // it('should get logs as array of numbers', () => {
+  //   const expected = [1];
+  //   const result = getLogAsNumArray(logFilename);
+
+  //   assert.deepEqual(result, expected);
+  // });
 });
 
 

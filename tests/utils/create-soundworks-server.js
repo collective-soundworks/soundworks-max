@@ -1,5 +1,6 @@
 const Server = require('@soundworks/core/server/index.js').Server;
 const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
+const { closeOscClient } = require('./max-orchestrator.js');
 
 const { StateManagerOsc } = require('../../');
 
@@ -31,16 +32,6 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
   await server.start();
   serverTestExperience.start();
 
-  server.stateManager.registerSchema('testSuite', {
-    killMax: {
-      type: 'boolean',
-      default: false,
-      event: true,
-    },
-  });
-
-  server.testSuite = await server.stateManager.create('testSuite');
-
   if (initStateManagerOsc === true) {
     // init osc state manager with default values
     const stateManagerOsc = new StateManagerOsc(server.stateManager, {
@@ -57,6 +48,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
 
     server.stop = async () => {
       console.log('> closing server');
+      closeOscClient();
       await stateManagerOsc.stop();
       await oldClose();
     }
