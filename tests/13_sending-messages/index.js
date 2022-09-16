@@ -8,6 +8,7 @@ const assert = require('chai').assert;
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
 const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
+const floatEqual = require('../utils/float-equal.js');
 
 // `npm test -- tests/1_server-max-max-server-boot-test/`
 
@@ -166,7 +167,7 @@ describe('sending messages', () => {
     let step = 0
     while (step < 10) {
       let randFloat = Math.random();
-      expected += `myFloat ${Number((randFloat).toFixed(3))}\n`;
+      expected += `myFloat ${randFloat}\n`;
       globals.set({ myFloat: randFloat });
       await new Promise(resolve => setTimeout(resolve, 100));
       step += 1;
@@ -174,9 +175,6 @@ describe('sending messages', () => {
 
     // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
 
     const result = getLogAsString(logFilename);
 

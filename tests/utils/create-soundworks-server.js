@@ -6,7 +6,11 @@ const { StateManagerOsc } = require('../../');
 
 
 class ServerTestExperience extends ServerAbstractExperience {
-  start() { console.log('> server started'); }
+  start() { console.log('> server started'); };
+  exit(client) {
+    console.log(`> client ${client.id} exited`);
+    super.exit(client);
+  };
 }
 
 module.exports = async function createSoundworksServer(initStateManagerOsc = true) {

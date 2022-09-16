@@ -81,7 +81,7 @@ describe('testing test infrastucture', () => {
   });
 
   it('should have a way to compare arrays of floats with a tolerance', () => {
-    floatEqual([0.1], [0.2], 1e-1);
+    floatEqual(`myFloat 0.1`, `myFloat 0.100`, 1e-3);
 
     // uncomment to see the test fail
     // floatEqual([0.1], [0.2], 1e-2);
