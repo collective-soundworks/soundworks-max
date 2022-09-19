@@ -40,17 +40,6 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 303.0, 215.0, 143.0, 22.0 ],
-					"text" : "soundworks.shared-state"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"args" : [ "soundworks.shared-state", "maxhelp" ],
 					"bgmode" : 0,
 					"border" : 0,
@@ -132,31 +121,6 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "fit_jweb_to_bounds.js",
-				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "n4m.monitor.maxpat",
-				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "resize_n4m_monitor_patcher.js",
-				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "soundworks.client.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
-				"patcherrelativepath" : "../javascript",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "soundworks.digest.js",
 				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
@@ -165,13 +129,6 @@
 			}
 , 			{
 				"name" : "soundworks.openpatcher.maxpat",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
-				"patcherrelativepath" : "../patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "soundworks.shared-state.maxpat",
 				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",

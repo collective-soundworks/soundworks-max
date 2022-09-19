@@ -4,17 +4,17 @@ const Client = require('@soundworks/core/client/index.js').Client;
 const ClientAbstractExperience = require('@soundworks/core/client').AbstractExperience;
 
 Max.addHandlers({
-  [Max.MESSAGE_TYPES.BANG]: () => Max.outlet('bang'),
+  [Max.MESSAGE_TYPES.BANG]: () => Max.outlet('update'),
   [Max.MESSAGE_TYPES.DICT]: (obj) => onDict(obj),
   [Max.MESSAGE_TYPES.NUMBER]: (num) => {},
   attach: (arg) => attach(arg),
-  bootstrap: (serverIp = '127.0.0.1', port = 8000, schemaName = null) => bootstrap(serverIp, port, schemaName)
+  bootstrap: (serverIp = '127.0.0.1', port = 8000) => bootstrap(serverIp, port),
 });
 
 class ClientMaxExperience extends ClientAbstractExperience {
   async start() {
     super.start();
-    console.log('> client started');
+    log('> client started');
   }
 }
 
@@ -22,10 +22,17 @@ const globals = {
 	experience: null,
 	state: null,
 	schemaName: null,
+	verbose: false,
 };
 
-async function bootstrap(serverIp, port, schemaName) {
-	console.log(serverIp, port, schemaName);
+function log(...args) {
+	if (globals.verbose) {
+		log(...args);
+	}
+}
+
+async function bootstrap(serverIp, port) {
+	log(serverIp, port);
 	
 	const config = {
 	  clientType: 'max',
@@ -36,31 +43,34 @@ async function bootstrap(serverIp, port, schemaName) {
   await client.init(config);
 
   const experience = new ClientMaxExperience(client);
-  // store experience globally
-  globals.experience = experience;
   
   // start client and experience
   await client.start();
   experience.start();
 
   client.socket.addListener('close', () => {
-  	console.log('socket close');
+  	log('socket close');
   	_clearDicts();
   });
   client.socket.addListener('error', () => {
-  	console.log('socket error');
+  	log('socket error');
   	_clearDicts();
   });
 
-  // init schema if it was given as max object argument
-  if (schemaName !== null) {
-  	attach(schemaName);
-  }
+  // store experience globally
+  globals.experience = experience;
+
+  Max.outlet('bootstraped');
+
 };
 
 async function attach(schemaName) {
-	console.log(`attaching to ${schemaName}`);
+	if (schemaName === 0) {
+		log(`invalid schema name, abort`);
+		return;
+	}
 
+	log(`attaching to ${schemaName}`);
 
 	if (schemaName === globals.schemaName) {
 		return;
@@ -82,7 +92,7 @@ async function attach(schemaName) {
   	state.subscribe(updates => {
   		Max.setDict(`${schemaName}_values`, state.getValues());  	
 			Max.setDict(`${schemaName}_updates`, updates);
-			Max.outlet('bang');
+			Max.outlet('update');
   	});
 
   	state.onDetach(() => _clearDicts());
@@ -91,11 +101,11 @@ async function attach(schemaName) {
   	Max.setDict(`${schemaName}_values`, state.getValues());
   	Max.setDict(`${schemaName}_schema`, state.getSchema());
 
-  	Max.outlet('bang');
+  	Max.outlet('init');
 
-  	console.log(`attached to ${schemaName}`);
+  	log(`attached to ${schemaName}`);
+
   } catch (err) {
-  	console.log(`can't attach to ${schemaName}`);
   	console.log(err);
   }
 }
@@ -107,7 +117,8 @@ async function onDict(dict) {
 async function _clearDicts() {
 	Max.setDict(`${globals.schemaName}_values`, null);  	
 	Max.setDict(`${globals.schemaName}_updates`, null);
-	Max.outlet('bang');
+	Max.setDict(`${globals.schemaName}_schema`, null);
+	Max.outlet('clear');
 }
 
 
