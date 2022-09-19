@@ -26,28 +26,28 @@ before(async function() {
   server = await createSoundworksServer()
 
   server.stateManager.registerSchema('globals', {
-  myInt: {
-    type: 'integer',
-    min: -Infinity,
-    max: Infinity,
-    default: 12,
-  },
-  myBool: {
-    type: 'boolean',
-    default: true,
-  },
-  myFloat: {
-    type: 'float',
-    min: -Infinity,
-    max: Infinity,
-    step: 0.001,
-    default: -10.01,
-  },
-  myMessage: {
-    type: 'string',
-    default: 'tototitito',
-    nullable: true,
-  },
+    myInt: {
+      type: 'integer',
+      min: -Infinity,
+      max: Infinity,
+      default: 12,
+    },
+    myBool: {
+      type: 'boolean',
+      default: true,
+    },
+    myFloat: {
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      step: 0.001,
+      default: -10.01,
+    },
+    myMessage: {
+      type: 'string',
+      default: 'tototitito',
+      nullable: true,
+    },
   });
 
   globals = await server.stateManager.create('globals');

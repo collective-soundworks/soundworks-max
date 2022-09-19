@@ -1,6 +1,6 @@
-# `@soundworks/state-manager-osc`
+# `@soundworks/max`
 
-> Utility to monitor and control soundworks' shared states within Max using OSC communications
+> Utility to monitor and control soundworks' shared states within Max
 
 <!--![Max screenshot](./resources/max.png)-->
 
@@ -23,7 +23,7 @@ _**Warning**: this component is experimental and will probably be subject to cha
 
 ## Installation
 
-### NPM 
+### NPM
 
 ```sh
 npm install --save @soundworks/state-manager-osc
