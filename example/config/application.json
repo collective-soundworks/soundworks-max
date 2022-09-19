@@ -1,11 +1,14 @@
 {
-  "name": "soundworks-max example",
-  "author": "",
+  name: 'soundworks-max example',
+  author: '',
 
-  "clients": {
-    "player": {
-      "target": "browser",
-      "default": true
+  clients: {
+    player: {
+      target: 'browser',
+      default: true,
+    },
+    max: { 
+      target: 'node',
     },
   },
 }

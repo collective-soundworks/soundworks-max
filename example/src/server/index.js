@@ -5,11 +5,12 @@ import fs from 'fs';
 import serveStatic from 'serve-static';
 import compile from 'template-literal';
 import PlayerExperience from './PlayerExperience.js';
+import MaxExperience from './MaxExperience.js';
 
 // -------------------------------------------------------------------
 // 1. import the StateManagerOsc class
 // -------------------------------------------------------------------
-import { StateManagerOsc } from '@soundworks/state-manager-osc';
+// import { StateManagerOsc } from '@soundworks/state-manager-osc';
 
 import globalsSchema from './schemas/globals.js';
 
@@ -55,9 +56,14 @@ server.stateManager.registerSchema('globals', globalsSchema);
     });
 
     const playerExperience = new PlayerExperience(server, 'player');
+    const maxExperience = new MaxExperience(server, 'max');
+    
+    // maxStateManager.init(server);
 
     await server.start();
     playerExperience.start();
+
+    // maxStateManager.start();
 
     // -------------------------------------------------------------------
     // 3. create a global state from the registered schema
@@ -88,14 +94,14 @@ server.stateManager.registerSchema('globals', globalsSchema);
     // ----------------------------------------------------------
     // 4. configure and init the StateManagerOsc
     // ----------------------------------------------------------
-    const oscStateManager = new StateManagerOsc(server.stateManager, {
-      localAddress: '0.0.0.0',
-      localPort: 57121,
-      remoteAddress: '127.0.0.1',
-      remotePort: 57122,
-    });
+    // const oscStateManager = new StateManagerOsc(server.stateManager, {
+    //   localAddress: '0.0.0.0',
+    //   localPort: 57121,
+    //   remoteAddress: '127.0.0.1',
+    //   remotePort: 57122,
+    // });
 
-    await oscStateManager.init();
+    // await oscStateManager.init();
 
   } catch (err) {
     console.error(err.stack);
