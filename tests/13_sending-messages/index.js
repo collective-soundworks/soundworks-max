@@ -50,47 +50,46 @@ before(async function() {
   server = await createSoundworksServer()
 
   server.stateManager.registerSchema('globals', {
-  myInt: {
-    type: 'integer',
-    min: -Infinity,
-    max: Infinity,
-    default: 0,
-  },
-  myBool: {
-    type: 'boolean',
-    default: false,
-  },
-  myFloat: {
-    type: 'float',
-    min: -Infinity,
-    max: Infinity,
-    step: 0.001,
-    default: 0.5,
-  },
-  myInfFloat: {
-    type: 'float',
-    min: -Infinity,
-    max: Infinity,
-    step: 0.001,
-    default: 0,
-  },
-  MyMessage: {
-    type: 'string',
-    default: 'my-message',
-    nullable: true,
-  },
-  // new options
-  MyEvent: {
-    type: 'boolean',
-    default: false,
-    event: true,
-  },
+    myInt: {
+      type: 'integer',
+      min: -Infinity,
+      max: Infinity,
+      default: 0,
+    },
+    myBool: {
+      type: 'boolean',
+      default: false,
+    },
+    myFloat: {
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      step: 0.001,
+      default: 0.5,
+    },
+    myInfFloat: {
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      step: 0.001,
+      default: 0,
+    },
+    myMessage: {
+      type: 'string',
+      default: 'my-message',
+      nullable: true,
+    },
+    // new options
+    myEvent: {
+      type: 'boolean',
+      default: false,
+      event: true,
+    },
   });
 
   globals = await server.stateManager.create('globals');
 
   return await openPatch(patchFilename);
-
 });
 
 describe('sending messages', () => {
@@ -102,26 +101,18 @@ describe('sending messages', () => {
     await new Promise(resolve => setTimeout(resolve, 200));
     let expected = ``;
 
-    let step = 0
-    while (step < 10) {
+    for (let i = 0; i < 10; i++) {
       let randInt = Math.floor(Math.random() * 1000);
       expected += `myInt ${randInt}\n`;
+
       globals.set({ myInt: randInt });
       await new Promise(resolve => setTimeout(resolve, 100));
-      step += 1;
     }
 
-    console.log("close patch");
-    // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
 
   it('should log some boolean sent by server', async function() {
@@ -133,26 +124,20 @@ describe('sending messages', () => {
 
     let expected = ``;
 
-    let step = 0
-    while (step < 10) {
+    for (let i = 0; i < 10; i++) {
       let randBool = Boolean(Math.round(Math.random()));
       expected += `myBool ${randBool ? 1 : 0}\n`;
+
       globals.set({ myBool: randBool });
-      console.log(randBool);
+
       await new Promise(resolve => setTimeout(resolve, 100));
-      step += 1;
     }
 
     // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
 
   it('should log some floats sent by server', async function() {
@@ -164,22 +149,19 @@ describe('sending messages', () => {
 
     let expected = ``;
 
-    let step = 0
-    while (step < 10) {
+    for (let i = 0; i < 10; i++) {
       let randFloat = Math.random();
       expected += `myFloat ${randFloat}\n`;
+
       globals.set({ myFloat: randFloat });
       await new Promise(resolve => setTimeout(resolve, 100));
-      step += 1;
     }
 
     // close patch message
     await closePatch();
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
 
   it('should log some messages sent by server', async function() {
@@ -191,25 +173,18 @@ describe('sending messages', () => {
 
     let expected = ``;
 
-    let step = 0
-    while (step < 10) {
+    for (let i = 0; i < 10; i++) {
       let randMessage = genRandonString(80);
-      expected += `MyMessage ${randMessage}\n`;
-      globals.set({ MyMessage: randMessage });
+      expected += `myMessage ${randMessage}\n`;
+
+      globals.set({ myMessage: randMessage });
       await new Promise(resolve => setTimeout(resolve, 100));
-      step += 1;
     }
 
-    // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
 
   it('should log some events sent by server', async function() {
@@ -221,21 +196,16 @@ describe('sending messages', () => {
 
     let expected = ``;
 
-    let step = 0
-    while (step < 10) {
+    for (let i = 0; i < 10; i++) {
       let randBool = Boolean(Math.round(Math.random()));
-      expected += `MyEvent ${randBool ? 1 : 0}\nMyEvent\n`;
-      globals.set({ MyEvent: randBool });
+      expected += `myEvent ${randBool ? 1 : 0}\nmyEvent\n`;
+
+      globals.set({ myEvent: randBool });
+
       await new Promise(resolve => setTimeout(resolve, 100));
-      step += 1;
     }
 
-    // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
-
     const result = getLogAsString(logFilename);
 
     assert.equal(result, expected);
@@ -244,9 +214,11 @@ describe('sending messages', () => {
 
   it('should log infinity type sent by server', async function() {
     this.timeout(10 * 1000);
+
+    assert.fail('...but Infinity should not translate to null');
+
     // start max patch
     openPatch(patchFilename);
-    console.log("waiting for Max to sync");
     await new Promise(resolve => setTimeout(resolve, 200));
 
     let expected = ``;
@@ -258,23 +230,18 @@ describe('sending messages', () => {
     globals.set({ myInfFloat: Infinity });
     await new Promise(resolve => setTimeout(resolve, 100));
 
-    // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
 
   it('should log NAN type sent by server', async function() {
     this.timeout(10 * 1000);
+
+    assert.fail('NaN should probably not propagate at all, should be handled by soundworks?');
     // start max patch
     openPatch(patchFilename);
-    console.log("waiting for Max to sync");
     await new Promise(resolve => setTimeout(resolve, 200));
 
     let expected = ``;
@@ -283,21 +250,18 @@ describe('sending messages', () => {
 
     // close patch message
     await closePatch();
-    //await new Promise(resolve => setTimeout(resolve, 1000));
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
 
   });
 
   it('should log null type sent by server', async function() {
     this.timeout(10 * 1000);
+
+    assert.fail('not sure what this test actually does');
     // start max patch
     openPatch(patchFilename);
-    console.log("waiting for Max to sync");
     await new Promise(resolve => setTimeout(resolve, 200));
 
     let expected = ``;
@@ -311,16 +275,9 @@ describe('sending messages', () => {
     await quitMax();
     await server.stop();
 
-
-    //await new Promise(resolve => setTimeout(resolve, 2000));
-
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
-
-
 });
 
 
