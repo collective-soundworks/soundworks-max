@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@soundworks/core": "^3.3.2"
+    "@soundworks/core": "^3.3.2",
+    "json5": "^2.2.1"
   }
 }
