@@ -279,23 +279,3 @@ describe('sending messages', () => {
     assert.equal(result, expected);
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

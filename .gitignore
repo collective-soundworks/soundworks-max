@@ -8,3 +8,4 @@ package-lock.json
 Thumbs.db
 
 tests/**/*.txt
+npm-debug*.log
