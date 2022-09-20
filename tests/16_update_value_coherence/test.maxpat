@@ -83,37 +83,13 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-6",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 23.0, 146.0, 48.0, 22.0 ],
-					"text" : "del 200"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-2",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 22.0, 97.0, 58.0, 22.0 ],
-					"text" : "loadbang"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 190.5, 159.75, 91.0, 22.0 ],
-					"text" : "prepend values"
+					"patching_rect" : [ 190.5, 159.75, 99.0, 22.0 ],
+					"text" : "prepend updates"
 				}
 
 			}
@@ -124,8 +100,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 108.0, 196.75, 99.0, 22.0 ],
-					"text" : "prepend updates"
+					"patching_rect" : [ 108.0, 196.75, 91.0, 22.0 ],
+					"text" : "prepend values"
 				}
 
 			}
@@ -221,7 +197,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 324.5, 14.0, 97.0, 22.0 ],
+					"patching_rect" : [ 369.5, 43.0, 97.0, 22.0 ],
 					"text" : "udpreceive 5555"
 				}
 
@@ -354,7 +330,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 3,
-					"outlettype" : [ "", "dictionary", "dictionary" ],
+					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
 					"patching_rect" : [ 108.0, 37.5, 184.0, 22.0 ],
 					"text" : "soundworks.shared-state globals"
 				}
@@ -488,13 +464,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-2", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"source" : [ "obj-20", 0 ]
 				}
@@ -570,39 +539,36 @@
 				}
 
 			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"source" : [ "obj-6", 0 ]
-				}
-
-			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "indict.js",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/javascript",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/javascript",
+				"name" : "fit_jweb_to_bounds.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "jscount.js",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/javascript",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/javascript",
+				"name" : "n4m.monitor.maxpat",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "resize_n4m_monitor_patcher.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "mergeUpdates.js",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/javascript",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/javascript",
+				"name" : "soundworks.client.js",
+				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"patcherrelativepath" : "../../max/soundworks/javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.shared-state.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/patchers",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/patchers",
+				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"patcherrelativepath" : "../../max/soundworks/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}

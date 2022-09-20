@@ -3,13 +3,12 @@ const findProcess = require('find-process');
 const { Client } = require('node-osc');
 const open = require('open');
 
-console.log(Client);
-
 console.log('> Create osc client on port 5555');
-const oscClient = new Client('127.0.0.1', 5555);
+let oscClient = new Client('127.0.0.1', 5555);
 
 module.exports.closeOscClient = () => {
   oscClient.close();
+  oscClient = null;
 }
 
 module.exports.sendOsc = async function sendOsc(channel) {
@@ -81,5 +80,5 @@ module.exports.quitMax = async function() {
 module.exports.closePatch = async function() {
   console.log('> sending message to close the patch');
   oscClient.send('/close');
-  return new Promise(resolve => setTimeout(resolve, 100));
+  return new Promise(resolve => setTimeout(resolve, 500));
 }

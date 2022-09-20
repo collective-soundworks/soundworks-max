@@ -40,18 +40,6 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 63.0, 108.0, 83.0, 22.0 ],
-					"text" : "target 0, bang"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-48",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -59,41 +47,6 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 54.0, 175.0, 132.0, 22.0 ],
 					"text" : "poly~ many_objects 10"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 70.5, 41.0, 150.0, 20.0 ],
-					"text" : "should'nt be here"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-12",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 22.0, 41.0, 48.0, 22.0 ],
-					"text" : "del 200"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-11",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 22.0, 12.0, 58.0, 22.0 ],
-					"text" : "loadbang"
 				}
 
 			}
@@ -295,20 +248,6 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-12", 0 ],
-					"source" : [ "obj-11", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
-					"source" : [ "obj-12", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"source" : [ "obj-13", 0 ]
 				}
@@ -414,13 +353,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-48", 0 ],
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-30", 0 ],
 					"source" : [ "obj-48", 0 ]
 				}
@@ -442,17 +374,16 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "indict.js",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/javascript",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/javascript",
+				"name" : "fit_jweb_to_bounds.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "jscount.js",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/javascript",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/javascript",
-				"type" : "TEXT",
+				"name" : "many_instances.maxpat",
+				"bootpath" : "~/Desktop/soundworks-max/tests/17_attach_many_clients",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
@@ -463,16 +394,28 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "mergeUpdates.js",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/javascript",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/javascript",
+				"name" : "n4m.monitor.maxpat",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "resize_n4m_monitor_patcher.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "soundworks.client.js",
+				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"patcherrelativepath" : "../../max/soundworks/javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.shared-state.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/soundworks/patchers",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/soundworks/patchers",
+				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"patcherrelativepath" : "../../max/soundworks/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}

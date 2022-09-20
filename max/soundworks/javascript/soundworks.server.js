@@ -38,12 +38,15 @@ class ServerMaxExperience extends ServerAbstractExperience {
 
   server.stateManager.registerSchema('globals', {
     test: {
-      type: 'integer',
-      default: 0,
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      default: 10,
     }
   });
 
   const globals = await server.stateManager.create('globals');
+  console.log(globals.getSchema());
 
   const experience = new ServerMaxExperience(server, 'max');
 

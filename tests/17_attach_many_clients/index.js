@@ -69,7 +69,7 @@ before(async function() {
 });
 
 describe('attaching with severals objets and severals schemas', () => {
-  it('[REBUILD PATCH PLEASE!] should log schemas value on the output of each object', async function() {
+  it('should log schemas value on the output of each object', async function() {
     this.timeout(10 * 1000);
 
     await openPatch(patchFilename);
@@ -80,17 +80,20 @@ describe('attaching with severals objets and severals schemas', () => {
     await quitMax(server);
     await server.stop();
 
-    let expected = ``;
+    let expected = [];
 
-    for (let i = 5; i >= 1; i--) {
+    for (let i = 1; i <= 5; i++) {
       for (let j = 1; j <= 10; j++) {
-          expected += `sch${i}_${j}_value value${i} ${i}\n`;
+        expected.push(`sch${i}_${j}_value value${i} ${i}\n`);
       }
     }
 
-    const result = getLogAsString(logFilename);
+    expected.sort();
 
-    assert.equal(result, expected);
+    const result = getLogAsArray(logFilename);
+    result.sort();
+
+    assert.deepEqual(result, expected);
   });
 });
 
