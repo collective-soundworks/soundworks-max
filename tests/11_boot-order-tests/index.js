@@ -39,6 +39,9 @@ describe('boot ordering, reconnections, etc.', () => {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     await server.stop();
+
+    assert.fail(`should check that Max has detached`);
+
     await quitMax();
 
 
@@ -165,61 +168,6 @@ describe('boot ordering, reconnections, etc.', () => {
       assert.equal(result, expected);
     }
   });
-
-  // it(`should survive very messy problems`, async function() {
-  //   this.timeout(15 * 1000);
-
-  //   await ensureMaxIsDown();
-
-  // });
-
-  // it('[CHANGE PATCH] should log schema values as a proof of attach (S-M-M-S)', async function() {
-  //   this.timeout(10 * 1000);
-  //   console.log("starting Max");
-  //   await openPatch(patchFilename);
-
-  //   console.log("waiting for Max to sync");
-  //   await new Promise(resolve => setTimeout(resolve, 200));
-
-  //   const expected = `schema_values myInt 12\nschema_values myBool 1\nschema_values myFloat -10.010\nschema_values myMessage tototitito\n`
-
-  //   await quitMax(server);
-
-  //   const result = getLogAsString(logFilename);
-
-  //   assert.equal(result, expected);
-
-  // });
-
-  // it('[TODO] should log detach notification server side (S-M-M-S)', async function() {
-  //   this.timeout(10 * 1000);
-
-  //   //const result = getLogAsString(logFilename);
-
-  //   assert.equal(false);
-
-  //   //do not work ?
-  //   await server.stop();
-
-  // });
-
-  // it('[CHANGE PATCH] should log schema values as a proof of attach (M-S-M-S)', async function() {
-  //   this.timeout(10 * 1000);
-
-  //   await openPatch(patchFilename);
-  //   await server.start();
-  //   console.log("waiting for Max to sync");
-  //   await new Promise(resolve => setTimeout(resolve, 200));
-
-  //   const expected = `schema_values myInt 12\nschema_values myBool 1\nschema_values myFloat -10.010\nschema_values myMessage tototitito\n`
-
-  //   await quitMax(server);
-
-  //   const result = getLogAsString(logFilename);
-
-  //   assert.equal(result, expected);
-
-  // });
 });
 
 

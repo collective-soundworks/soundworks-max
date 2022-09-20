@@ -2,12 +2,8 @@
   "name": "soundworks-max",
   "version": "0.0.3",
   "description": "Simple Max client for Soundworks application",
-  "main": "client.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "@soundworks/core": "^3.3.2",
     "json5": "^2.2.1"

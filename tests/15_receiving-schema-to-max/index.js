@@ -28,14 +28,14 @@ before(async function() {
 
 
   server.stateManager.registerSchema('globals', {
-  myInt: {
-    type: 'float',
-    min: -Infinity,
-    max: Infinity,
-    default: 0,
-    step: 0.001,
-    nullable: true,
-  },
+    myInt: {
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      default: 0,
+      step: 0.001,
+      nullable: true,
+    },
   });
 
   globals = await server.stateManager.create('globals');
@@ -53,17 +53,11 @@ describe('receiving schema to Max on schema command sent', () => {
     await quitMax();
     await server.stop();
 
-
     const expected = globals.getSchema();
+    const result = JSON.parse(fs.readFileSync(logFilename));
 
-    rawresult = fs.readFileSync(logFilename);
-    result = JSON.parse(rawresult);
-    assert.equal(result,expected);
-
-
-
+    assert.equal(result, expected);
   });
-
 });
 
 
