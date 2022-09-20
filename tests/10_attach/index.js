@@ -24,7 +24,7 @@ before(async function() {
   await ensureMaxIsDown();
   // get configure and started soundworks server
   server = await createSoundworksServer();
-    server.stateManager.registerSchema('globals', {
+  server.stateManager.registerSchema('globals', {
     myBool: {
       type: 'boolean',
       default: true,

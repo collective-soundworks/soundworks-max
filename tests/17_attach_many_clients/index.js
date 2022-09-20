@@ -26,38 +26,38 @@ before(async function() {
   server = await createSoundworksServer()
 
   server.stateManager.registerSchema('sch1', {
-  value1: {
-    type: 'float',
-    default: 1,
-  }
+    value1: {
+      type: 'float',
+      default: 1,
+    }
   });
 
   server.stateManager.registerSchema('sch2', {
-  value2: {
-    type: 'float',
-    default: 2,
-  }
+    value2: {
+      type: 'float',
+      default: 2,
+    }
   });
 
   server.stateManager.registerSchema('sch3', {
-  value3: {
-    type: 'float',
-    default: 3,
-  }
+    value3: {
+      type: 'float',
+      default: 3,
+    }
   });
 
   server.stateManager.registerSchema('sch4', {
-  value4: {
-    type: 'float',
-    default: 4,
-  }
+    value4: {
+      type: 'float',
+      default: 4,
+    }
   });
 
   server.stateManager.registerSchema('sch5', {
-  value5: {
-    type: 'float',
-    default: 5,
-  }
+    value5: {
+      type: 'float',
+      default: 5,
+    }
   });
 
   sch1 = await server.stateManager.create('sch1');
@@ -71,29 +71,27 @@ before(async function() {
 describe('attaching with severals objets and severals schemas', () => {
   it('[REBUILD PATCH PLEASE!] should log schemas value on the output of each object', async function() {
     this.timeout(10 * 1000);
-    console.log("starting Max");
+
     await openPatch(patchFilename);
 
+    console.log('waiting for Max to sync');
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    await quitMax(server);
+    await server.stop();
+
     let expected = ``;
-    for (let i = 5;i>=1;i--) {
-      for (let j=1;j<=10;j++) {
+
+    for (let i = 5; i >= 1; i--) {
+      for (let j = 1; j <= 10; j++) {
           expected += `sch${i}_${j}_value value${i} ${i}\n`;
       }
     }
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-
-    await quitMax(server);
-
-    await server.stop();
 
     const result = getLogAsString(logFilename);
 
     assert.equal(result, expected);
-
   });
-
 });
 
 
