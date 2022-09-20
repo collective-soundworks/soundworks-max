@@ -1,6 +1,9 @@
 ## Max / Soundworks
 
 - test connect / disconnect / reconnect (b-ma)
+  --> 
+
+- mocha test suite
 
 ## Max
 
