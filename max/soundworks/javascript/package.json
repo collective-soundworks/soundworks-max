@@ -5,6 +5,7 @@
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@soundworks/core": "^3.3.2"
+    "@soundworks/core": "^3.3.2",
+    "json5": "^2.2.1"
   }
 }
