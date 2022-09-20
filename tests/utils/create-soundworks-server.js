@@ -23,7 +23,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
     },
     env: {
       type: 'development',
-      port: 8081,
+      port: 8000,
       serverIp: '127.0.0.1',
       useHttps: false,
     },
@@ -36,6 +36,14 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
 
   await server.start();
   maxExperience.start();
+
+
+  const oldClose = server.stop.bind(server);
+
+    server.stop = async () => {
+      closeOscClient();
+      await oldClose();
+    }
 
   return server;
 }

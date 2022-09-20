@@ -34,7 +34,7 @@ before(async function() {
 });
 
 after(async function() {
-  consoe.log('server.stop');
+  console.log('server.stop');
   await server.stop();
 });
 
@@ -47,7 +47,7 @@ describe('test attach methods', () => {
     const patchFilename = path.join(__dirname, 'test-attach-as-attribute.maxpat');
     await openPatch(patchFilename);
     // give some time to connect and sync
-    await new Promise(resolve => setTimeout(resolve, 4000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     await quitMax();
 
@@ -66,7 +66,7 @@ describe('test attach methods', () => {
     const patchFilename = path.join(__dirname, 'test-attach-as-command.maxpat');
     await openPatch(patchFilename);
     // give some time to connect and sync
-    await new Promise(resolve => setTimeout(resolve, 4000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     await quitMax();
 
