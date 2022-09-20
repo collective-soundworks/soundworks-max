@@ -27,6 +27,11 @@ before(async function() {
   server = await createSoundworksServer();
 });
 
+after(async function() {
+  this.timeout(1000);
+  await server.stop();
+})
+
 describe('testing test infrastucture', () => {
   it('should open patch and close patch from event', async function() {
     this.timeout(15 * 1000);
@@ -68,7 +73,7 @@ describe('testing test infrastucture', () => {
     const processesList = await findProcess('name', 'Max');
     assert.equal(processesList.length, 0, 'some Max process has been found');
 
-    await server.stop();
+    //await server.stop();
   });
 
   it('should have logged osc quit message', () => {
@@ -93,4 +98,22 @@ describe('testing test infrastucture', () => {
   // });
 });
 
+//oops...
+  it('should open and close Max many times', async function() {
+    this.timeout(10 * 1000);
+    await openPatch(patchFilename);
+    // await new Promise(resolve => setTimeout(resolve, 500));
+    await closePatch();
+    // await new Promise(resolve => setTimeout(resolve, 500));
+    await openPatch(patchFilename);
+    // await new Promise(resolve => setTimeout(resolve, 500));
+    await closePatch();
+    // await new Promise(resolve => setTimeout(resolve, 500));
+    await openPatch(patchFilename);
+    // await new Promise(resolve => setTimeout(resolve, 500));
+    await quitMax();
+    // await new Promise(resolve => setTimeout(resolve, 500));
+    const processesList = await findProcess('name', 'Max');
+    assert.equal(processesList.length, 0, 'some Max process has been found');
+  });
 

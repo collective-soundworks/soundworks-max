@@ -12,6 +12,19 @@ module.exports.getLogAsString = function(logFilename, prefixFilter = 'test') {
   return result.toString();
 }
 
+module.exports.getLogAsArray = function(logFilename) {
+  if (!fs.existsSync(logFilename)) {
+    assert.fail(`file ${logFilename} should exists`);
+    return [];
+  }
+
+  let result = getLogAsString(logFilename);
+  result = result.split('\n');
+  result.pop();
+
+  return result;
+}
+
 module.exports.getLogAsNumArray = function(logFilename, prefixFilter = 'test') {
   if (!fs.existsSync(logFilename)) {
     assert.fail(`file ${logFilename} should exists`);

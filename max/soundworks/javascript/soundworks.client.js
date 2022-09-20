@@ -2,7 +2,6 @@ const path = require('path');
 const Max = require('max-api');
 const Client = require('@soundworks/core/client/index.js').Client;
 const ClientAbstractExperience = require('@soundworks/core/client').AbstractExperience;
-const JSON5 = require('json5');
 
 Max.addHandlers({
   [Max.MESSAGE_TYPES.BANG]: () => Max.outlet('update'),
@@ -99,16 +98,17 @@ async function attach(schemaName) {
   	const dictSchema = await Max.getDict(`${maxID}_schema`);
 
   	state.subscribe(updates => {
-  		Max.setDict(`${maxID}_values`, state.getValues());  	
-			Max.setDict(`${maxID}_updates`, updates);
+  		console.log(updates);
+  		updateDict(`${maxID}_values`, state.getValues());  	
+			updateDict(`${maxID}_updates`, updates);
 			Max.outlet('update');
   	});
 
   	state.onDetach(() => _clearDicts());
   	state.onDelete(() => _clearDicts());
 
-  	Max.setDict(`${maxID}_values`, state.getValues());
-  	Max.setDict(`${maxID}_schema`, state.getSchema());
+  	updateDict(`${maxID}_values`, state.getValues());
+  	updateDict(`${maxID}_schema`, state.getSchema());
 
   	Max.outlet('init');
 
@@ -120,6 +120,10 @@ async function attach(schemaName) {
 }
 
 async function onDict(dict) {
+	for (let name in dict) {
+		dict[name] = sanitizeInputForNode(name, dict[name]);
+	}
+
 	await globals.state.set(dict);
 }
 
@@ -139,18 +143,72 @@ async function _detach() {
 	_clearDicts();
 }
 
+function sanitizeInputForNode(key, value) {
+	const def = globals.state.getSchema(key);
+	let sanitizedValue = null;
+
+	// if (value === 'null' && def.nullable) {
+	// 	return null;
+	// }
+
+	switch (def.type) {
+		case 'boolean': {
+			sanitizedValue = !!value;
+			break;
+		}
+		default: {
+			sanitizedValue = value;
+			break;
+		}
+	}
+
+	if (def.nullable === false && sanitizedValue === null) {
+		throw new Error(`Failed to sanitize ${value} to ${def.type}`);
+	}
+
+	return sanitizedValue;
+}
+
+function sanitizeInputForMax(key, value) {
+	const def = globals.state.getSchema(key);
+	let sanitizedValue = null;
+
+	if (value === null && def.nullable) {
+		return 'null';
+	}
+
+	return sanitizedValue;
+}
+
 async function onMessage(...args) {
-	if (handledMessages.includes(args[0])) {
+	const cmd = args[0];
+	if (handledMessages.includes(cmd)) {
 		return;
 	}
 
 	try {
-	const obj = JSON5.parse(`{ ${args.join(' ')} }`)
-	await globals.state.set(obj);
-	}
-	catch(err) {
+		const key = args[0];
+		const value = sanitizeInputForNode(key, args[1]);
+
+		await globals.state.set({ [key]: value });
+	} catch(err) {
 		log(err);
 		console.log("cannot parse message, use dict instead");
 	}
 
 }
+
+async function updateDict(dictName, obj) {
+	for (let name in obj) {
+		//obj[name] = sanitizeInputForMax(name, obj[name]);
+	}
+
+	Max.setDict(dictName, obj);
+} 
+
+
+
+
+
+
+
