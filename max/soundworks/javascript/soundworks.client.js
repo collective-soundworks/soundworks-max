@@ -8,7 +8,7 @@ Max.addHandlers({
   [Max.MESSAGE_TYPES.DICT]: (obj) => onDict(obj),
   [Max.MESSAGE_TYPES.NUMBER]: (num) => {},
   attach: (arg) => attach(arg),
-  bootstrap: (maxID, serverIp = '127.0.0.1', port = 8000) => bootstrap(maxID, serverIp, port),
+  bootstrap: (maxId, serverIp = '127.0.0.1', port = 8000) => bootstrap(maxId, serverIp, port),
   detach: () => _detach(),
   [Max.MESSAGE_TYPES.ALL]: (handled, ...args) => onMessage(...args),
 });
@@ -26,8 +26,10 @@ const globals = {
 	experience: null,
 	state: null,
 	schemaName: null,
-	verbose: false,
-	maxID: null,
+	verbose: true,
+	maxId: null,
+  serverIp: null,
+  port: null,
 };
 
 function log(...args) {
@@ -36,8 +38,8 @@ function log(...args) {
 	}
 }
 
-async function bootstrap(maxID, serverIp, port) {
-	log(maxID, serverIp, port);
+async function bootstrap(maxId, serverIp, port) {
+	log(maxId, serverIp, port);
 	
 	const config = {
 	  clientType: 'max',
@@ -51,23 +53,38 @@ async function bootstrap(maxID, serverIp, port) {
   
   // start client and experience
   await client.start();
+  console.log('start experience');
   experience.start();
 
-  client.socket.addListener('close', () => {
-  	log('socket close');
-  	_clearDicts();
-  });
-  client.socket.addListener('error', () => {
-  	log('socket error');
-  	_clearDicts();
-  });
-
-  // store experience globally
+  // store global informations
   globals.experience = experience;
+  globals.maxId = maxId;
+  globals.serverIp = serverIp;
+  globals.port = port;
 
-  globals.maxID = maxID;
-  Max.outlet('bootstraped');
+  const reboot = async function() {
+    try {
+      _clearDicts();
 
+      globals.schemaName = null;
+      globals.state = null;
+
+      await client.stop();
+      await bootstrap(maxId, serverIp, port);
+    } catch(err) { console.log(err) }
+  }
+
+  client.socket.addListener('close', async () => {
+  	log('socket close');
+    await reboot();
+  });
+
+  client.socket.addListener('error', async () => {
+  	log('socket error');
+    await reboot();
+  });
+
+  Max.outlet('bootstrapped');
 };
 
 async function attach(schemaName) {
@@ -80,28 +97,27 @@ async function attach(schemaName) {
 		return;
 	} else if (globals.state !== null) {
 		_detach();
-		//await globals.state.detach();
 	}
 
 	log(`attaching to ${schemaName}`);
 
 	globals.schemaName = schemaName;
-	const maxID = globals.maxID;
+	const maxId = globals.maxId;
  
   try {
   	const stateManager = globals.experience.client.stateManager;
   	const state = await stateManager.attach(schemaName);
   	globals.state = state;
 
-  	const dictValues = await Max.getDict(`${maxID}_values`);
-  	const dictUpdates = await Max.getDict(`${maxID}_updates`);
-  	const dictSchema = await Max.getDict(`${maxID}_schema`);
+  	const dictValues = await Max.getDict(`${maxId}_values`);
+  	const dictUpdates = await Max.getDict(`${maxId}_updates`);
+  	const dictSchema = await Max.getDict(`${maxId}_schema`);
 
   	state.subscribe(updates => {
-			updateDict(`${maxID}_updates`, updates);
+			updateDict(`${maxId}_updates`, updates);
 			Max.outlet('updates');
 
-			updateDict(`${maxID}_values`, state.getValues());
+			updateDict(`${maxId}_values`, state.getValues());
 			Max.outlet('values');
 
 			for (let name in updates) {
@@ -109,7 +125,7 @@ async function attach(schemaName) {
 
 				if (def.event === true) {
 					setImmediate(() => {
-						updateDict(`${maxID}_values`, state.getValues());
+						updateDict(`${maxId}_values`, state.getValues());
 						Max.outlet('values');
 					});
 				}
@@ -119,8 +135,8 @@ async function attach(schemaName) {
   	state.onDetach(() => _clearDicts());
   	state.onDelete(() => _clearDicts());
 
-  	updateDict(`${maxID}_values`, state.getValues());
-  	updateDict(`${maxID}_schema`, state.getSchema());
+  	updateDict(`${maxId}_values`, state.getValues());
+  	updateDict(`${maxId}_schema`, state.getSchema());
 
   	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 
@@ -141,9 +157,9 @@ async function onDict(dict) {
 }
 
 async function _clearDicts() {
-	Max.setDict(`${globals.maxID}_values`,{});  	
-	Max.setDict(`${globals.maxID}_updates`,{});
-	Max.setDict(`${globals.maxID}_schema`,{});
+	Max.setDict(`${globals.maxId}_values`,{});
+	Max.setDict(`${globals.maxId}_updates`,{});
+	Max.setDict(`${globals.maxId}_schema`,{});
 	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 }
 
@@ -180,7 +196,7 @@ function sanitizeInputForNode(key, value) {
 }
 
 async function onBang() {
-	updateDict(`${globals.maxID}_values`, globals.state.getValues());
+	updateDict(`${globals.maxId}_values`, globals.state.getValues());
 	Max.outlet('values');
 }
 
