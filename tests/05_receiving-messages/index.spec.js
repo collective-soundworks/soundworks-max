@@ -10,8 +10,6 @@ const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('..
 const { getLogAsString, getLogAsNumArray, getLogAsArray } = require('../utils/logs-reader.js');
 const floatEqual = require('../utils/float-equal.js');
 
-// `npm test -- tests/1_server-max-max-server-boot-test/`
-
 let server;
 let globals;
 
@@ -24,8 +22,8 @@ before(async function() {
   this.timeout(15 * 1000);
 
   await ensureMaxIsDown();
-  // get configure and started soundworks server
-  server = await createSoundworksServer()
+  // get configured and started soundworks server
+  server = await createSoundworksServer();
 
   server.stateManager.registerSchema('globals', {
     myInt: {
@@ -66,44 +64,38 @@ before(async function() {
   });
 
   globals = await server.stateManager.create('globals');
-
 });
 
 after(async function() {
-  this.timeout(10 * 1000);
-  
+  this.timeout(30 * 1000);
+
   await openPatch(patchFilename);
-  await new Promise(resolve => setTimeout(resolve, 500));
   await quitMax();
   await server.stop();
 });
 
 describe('receiving messages types', () => {
-
   it('should log some integer sent by Max', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
 
     await openPatch(patchFilename);
-    // start max patch
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     let result = ``;
+
     globals.subscribe(updates => {
       if ('myInt' in updates) {
         result += `myInt ${updates.myInt}\n`;
       }
     });
-    //sending command for Max to send things
+
+    // sending command for Max to send things
     await sendOsc('/integer');
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    //sending command for Max to send nothing
+    // sending command for Max to send nothing
     await sendOsc('/nothing');
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log("close patch");
-    // close patch message
     await closePatch();
 
     const expected = getLogAsString(logFilename);
@@ -112,30 +104,26 @@ describe('receiving messages types', () => {
   });
 
   it('should log some boolean sent by Max', async function() {
-    this.timeout(10 * 1000);
-    // start max patch
+    this.timeout(30 * 1000);
+
     await openPatch(patchFilename);
 
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
-
     let result = ``;
+
     globals.subscribe(updates => {
       if ('myBool' in updates) {
         result += `myBool ${updates.myBool ? 1 : 0}\n`;
       }
     });
 
-    //sending command for Max to send things
+    // sending command for Max to send things
     await sendOsc('/bool');
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    //sending command for Max to send nothing
+    // sending command for Max to send nothing
     await sendOsc('/nothing');
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log("close patch");
-    // close patch message
     await closePatch();
 
     const expected = getLogAsString(logFilename);
@@ -144,12 +132,9 @@ describe('receiving messages types', () => {
   });
 
   it('should log some floats sent by Max', async function() {
-    this.timeout(10 * 1000);
-    // start max patch
-    await openPatch(patchFilename);
+    this.timeout(30 * 1000);
 
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await openPatch(patchFilename);
 
     let result = [];
 
@@ -159,16 +144,14 @@ describe('receiving messages types', () => {
       }
     });
 
-    //sending command for Max to send things
+    // sending command for Max to send things
     await sendOsc('/floaty');
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    //sending command for Max to send nothing
+    // sending command for Max to send nothing
     await sendOsc('/nothing');
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log("close patch");
-    // close patch message
     await closePatch();
 
     const expected = getLogAsNumArray(logFilename);
@@ -178,12 +161,9 @@ describe('receiving messages types', () => {
   });
 
   it('should log some strings sent by Max', async function() {
-    this.timeout(10 * 1000);
-    // start max patch
-    await openPatch(patchFilename);
+    this.timeout(30 * 1000);
 
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await openPatch(patchFilename);
 
     let result = ``;
 
@@ -193,16 +173,14 @@ describe('receiving messages types', () => {
       }
     });
 
-    //sending command for Max to send things
+    // sending command for Max to send things
     await sendOsc('/string');
     await new Promise(resolve => setTimeout(resolve, 2500));
 
-    //sending command for Max to send nothing
+    // sending command for Max to send nothing
     await sendOsc('/nothing');
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log("close patch");
-    // close patch message
     await closePatch();
 
     const expected = getLogAsString(logFilename);
@@ -210,13 +188,10 @@ describe('receiving messages types', () => {
     assert.equal(result, expected);
   });
 
-  it('should log some events sent by Max', async function() {
-    this.timeout(10 * 1000);
+  it.only('should log some events sent by Max', async function() {
+    this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilenameEvent);
-
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     let result = `myEvent\n`;
 
@@ -226,15 +201,14 @@ describe('receiving messages types', () => {
       }
     });
 
-    //sending command for Max to send things
+    // sending command for Max to send things
     await sendOsc('/event');
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    //sending command for Max to send nothing
+    // sending command for Max to send nothing
     await sendOsc('/nothing');
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log("close patch");
     // close patch message
     await closePatch();
 
@@ -243,6 +217,7 @@ describe('receiving messages types', () => {
 
     for (let i in log) {
       const splitted = log[i].split(' ');
+
       if (splitted[0] === 'myEvent') {
         expected += `${log[i]}\n`
       }

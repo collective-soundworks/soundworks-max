@@ -7,6 +7,8 @@
 
 ## Max
 
+- recheck methods that need a state (ie. all input stuff)
+
 
 ## Questions
 

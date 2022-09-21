@@ -10,8 +10,6 @@ const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('..
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 const floatEqual = require('../utils/float-equal.js');
 
-// `npm test -- tests/0_server_start_max_quit_max-boot-test/`
-
 let server;
 let globals;
 
