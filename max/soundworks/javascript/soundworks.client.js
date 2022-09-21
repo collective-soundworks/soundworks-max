@@ -26,7 +26,7 @@ const globals = {
 	experience: null,
 	state: null,
 	schemaName: null,
-	verbose: false,
+	verbose: true,
 	maxId: null,
   serverIp: null,
   port: null,

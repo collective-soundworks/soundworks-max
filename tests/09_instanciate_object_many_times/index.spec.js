@@ -35,26 +35,33 @@ before(async function() {
 });
 
 after(async function() {
-  this.timeout(1000);
+  this.timeout(10*1000);
+
+  await openPatch(patchFilename);
+
+  await quitMax();
+
   await server.stop();
+
 })
 
 describe('testing bug node is not running', () => {
   it('should attach to the state', async function() {
-    this.timeout(100 * 1000);
+    this.timeout(1000 * 1000);
 
-    // start max patch
-    await openPatch(patchFilename);
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    for (let i = 0; i<=100; i++) {
+      // start max patch
+      await openPatch(patchFilename);
 
-    const expected = `1`;
+      const expected = `1\n`;
 
-    await closePatch();
-    await new Promise(resolve => setTimeout(resolve, 500));
+      await closePatch();
 
-    const result = getLogAsString(logFilename);
+      const result = getLogAsString(logFilename);
 
-    assert.equal(result, expected);
+      assert.equal(result, expected);
+    }
+
   });
 });
 

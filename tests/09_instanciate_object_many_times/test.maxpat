@@ -53,12 +53,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-4",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
-					"patching_rect" : [ 8.0, 99.25, 143.0, 22.0 ],
-					"text" : "soundworks.shared-state"
+					"patching_rect" : [ 8.0, 73.25, 151.0, 35.0 ],
+					"text" : "soundworks.shared-state globals"
 				}
 
 			}
