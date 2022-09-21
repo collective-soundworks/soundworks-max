@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 909.0, 103.0, 724.0, 538.0 ],
+		"rect" : [ 588.0, 87.0, 751.0, 538.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -79,7 +79,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
-					"patching_rect" : [ 108.0, 164.0, 184.0, 22.0 ],
+					"patching_rect" : [ 108.0, 163.0, 184.0, 22.0 ],
 					"text" : "soundworks.shared-state globals"
 				}
 

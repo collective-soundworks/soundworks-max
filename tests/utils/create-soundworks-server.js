@@ -37,7 +37,6 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
   await server.start();
   maxExperience.start();
 
-
   const oldClose = server.stop.bind(server);
 
   // override stop to close orchestrator OSC connection by default
@@ -46,9 +45,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
       closeOscClient();
     }
 
-    console.log('close server');
     await oldClose();
-    console.log('after close server');
   }
 
   return server;
