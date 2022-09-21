@@ -7,16 +7,12 @@ const assert = require('chai').assert;
 
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
 const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
-const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
+const { getLogAsString, getLogAsArray } = require('../utils/logs-reader.js');
 const floatEqual = require('../utils/float-equal.js');
-
-// `npm test -- tests/1_server-max-max-server-boot-test/`
 
 let server;
 let globals;
 
-//function generate random chars
-  
 const genRandonString = (() => {
     const gen = (min, max) => max++ && [...Array(max-min)].map((s, i) => String.fromCharCode(min+i));
 
@@ -36,9 +32,8 @@ const genRandonString = (() => {
     return Object.assign(((len, ...set) => [...iter(len, set.flat())].join('')), sets);
 })();
 
-
 const patchFilename = path.join(__dirname, 'test.maxpat');
-const patchFilenameEVENT = path.join(__dirname, 'testEVENT.maxpat');
+const patchFilenameEVENT = path.join(__dirname, 'test-event.maxpat');
 const logFilename = path.join(__dirname, 'log.txt');
 try { fs.unlinkSync(logFilename); } catch (err) {}
 
@@ -91,7 +86,7 @@ before(async function() {
 });
 
 after(async function() {
-  this.timeout(10 * 1000);
+  this.timeout(30 * 1000);
   
   await openPatch(patchFilename);
   await new Promise(resolve => setTimeout(resolve, 500));
@@ -102,20 +97,18 @@ after(async function() {
 describe('sending messages', () => {
 
   it('should log some integer sent by server', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
 
     await openPatch(patchFilename);
-    // start max patch
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
+
     let expected = ``;
 
     for (let i = 0; i < 10; i++) {
-      let randInt = Math.floor(Math.random() * 1000);
-      expected += `myInt ${randInt}\n`;
+      let rand = Math.floor(Math.random() * 1000);
 
-      globals.set({ myInt: randInt });
-      // console.log(randInt);
+      expected += `myInt ${rand}\n`;
+      globals.set({ myInt: rand });
+
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
@@ -126,11 +119,9 @@ describe('sending messages', () => {
   });
 
   it('should log some boolean sent by server', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilename);
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     let expected = ``;
     // false is default so trigger true to have a messsage on Max side
@@ -145,8 +136,6 @@ describe('sending messages', () => {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    // close patch message
-    console.log('closepatch');
     await closePatch();
 
     const result = getLogAsString(logFilename);
@@ -154,49 +143,44 @@ describe('sending messages', () => {
   });
 
   it('should log some floats sent by server', async function() {
-    this.timeout(10 * 1000);
-    // start max patch
+    this.timeout(30 * 1000);
+
     await openPatch(patchFilename);
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     let expected = [];
 
     for (let i = 0; i < 10; i++) {
-      let randFloat = Math.random();
-      expected.push(randFloat);
+      let rand = Math.random();
 
-      globals.set({ myFloat: randFloat });
+      expected.push(rand);
+      globals.set({ myFloat: rand });
+
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     // close patch message
     await closePatch();
 
-    let result = getLogAsString(logFilename);
-    result = result.split('\n');
-    result.pop(); // remove last empty line
+    let result = getLogAsArray(logFilename);
     result = result.map(line => line.replace('myFloat ', ''));
     result = result.map(line => parseFloat(line));
 
     floatEqual(result, expected, 1e-3);
-
   });
 
   it('should log some messages sent by server', async function() {
-    this.timeout(10 * 1000);
-    // start max patch
+    this.timeout(30 * 1000);
+
     await openPatch(patchFilename);
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     let expected = ``;
 
     for (let i = 0; i < 10; i++) {
-      let randMessage = genRandonString(80);
-      expected += `myMessage ${randMessage}\n`;
+      let msg = genRandonString(80);
 
-      globals.set({ myMessage: randMessage });
+      expected += `myMessage ${msg}\n`;
+      globals.set({ myMessage: msg });
+
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
@@ -207,37 +191,35 @@ describe('sending messages', () => {
   });
 
   it('should log some events sent by server', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilenameEVENT);
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     let expected = ``;
     expected += `myEvent\n` // Init Value
 
     for (let i = 0; i < 10; i++) {
-      let randBool = Boolean(Math.round(Math.random()));
-      expected += `myEvent ${randBool ? 1 : 0}\nmyEvent\n`;
+      let bool = Boolean(Math.round(Math.random()));
 
-      globals.set({ myEvent: randBool });
+      expected += `myEvent ${bool ? 1 : 0}\nmyEvent\n`;
+      globals.set({ myEvent: bool });
 
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     await closePatch();
-    let result = getLogAsString(logFilename);
-    result = result.split('\n');
-    result.pop(); // remove last empty line
-    let trueResult = ``;
-    for (let i in result) {
-      const splittedResult = result[i].split(' ');
+
+    let arr = getLogAsArray(logFilename);
+    let result = ``;
+
+    for (let i in arr) {
+      const splittedResult = arr[i].split(' ');
       if (splittedResult[0] === 'myEvent') {
-        trueResult += `${result[i]}\n`
+        result += `${arr[i]}\n`
       }
     }
    
-    assert.equal(trueResult, expected);
+    assert.equal(result, expected);
 
   });
 });

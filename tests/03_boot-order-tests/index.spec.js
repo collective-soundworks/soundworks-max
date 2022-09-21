@@ -26,7 +26,7 @@ after(async function() {
 
 describe('boot ordering, reconnections, etc.', () => {
   it(`should support launching server before patch`, async function() {
-    this.timeout(20 * 1000);
+    this.timeout(30 * 1000);
     await ensureMaxIsDown();
 
     const server = await createSoundworksServer();
@@ -38,18 +38,13 @@ describe('boot ordering, reconnections, etc.', () => {
     });
     globals = await server.stateManager.create('globals');
 
-    await new Promise(resolve => setTimeout(resolve, 500));
-
     await openPatch(patchFilename);
-    // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 2000));
 
     console.log('quit max');
     await quitMax();
 
     console.log('close server');
     await server.stop(true); // do not close orchestrator OSC client
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     const expected = `1\n`;
     const result = getLogAsString(logFilename);
@@ -57,7 +52,7 @@ describe('boot ordering, reconnections, etc.', () => {
   });
 
   it(`should receive event on max side if server closes`, async function() {
-    this.timeout(20 * 1000);
+    this.timeout(30 * 1000);
     await ensureMaxIsDown();
 
     const server = await createSoundworksServer();
@@ -69,19 +64,15 @@ describe('boot ordering, reconnections, etc.', () => {
     });
     globals = await server.stateManager.create('globals');
 
-    await new Promise(resolve => setTimeout(resolve, 500));
-
     await openPatch(patchFilename);
-    // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // important to test that Max is somehow notified when server shutdown
     console.log('close server');
     await server.stop(true); // do not close orchestrator OSC client
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     console.log('quit max');
     await quitMax();
+
     // first line is connection bang
     // second line is disconnection bang
     const expected = `1\n1\n`;
@@ -90,11 +81,10 @@ describe('boot ordering, reconnections, etc.', () => {
   });
 
   it(`should support launching patch before server`, async function() {
-    this.timeout(20 * 1000);
+    this.timeout(30 * 1000);
     await ensureMaxIsDown();
 
     await openPatch(patchFilename);
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     const server = await createSoundworksServer();
     server.stateManager.registerSchema('globals', {
@@ -117,7 +107,7 @@ describe('boot ordering, reconnections, etc.', () => {
   });
 
   it(`should properly reconnect after server down`, async function() {
-    this.timeout(20 * 1000);
+    this.timeout(30 * 1000);
     await ensureMaxIsDown();
 
     let server = await createSoundworksServer();
@@ -129,11 +119,7 @@ describe('boot ordering, reconnections, etc.', () => {
     });
     globals = await server.stateManager.create('globals');
 
-    await new Promise(resolve => setTimeout(resolve, 500));
-
     await openPatch(patchFilename);
-    // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // stop the server
     await server.stop(true);
@@ -179,9 +165,7 @@ describe('boot ordering, reconnections, etc.', () => {
     // give some time for max client to connect and synchronize
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // stop Max
     await quitMax();
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     {
       const expected = `1\n`;
@@ -190,10 +174,7 @@ describe('boot ordering, reconnections, etc.', () => {
     }
 
     await openPatch(patchFilename);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
     await quitMax();
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     await server.stop(true);
 
