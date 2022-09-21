@@ -52,8 +52,8 @@ before(async function() {
   server.stateManager.registerSchema('globals', {
     myInt: {
       type: 'integer',
-      min: -1000,
-      max: 1000,
+      min: -Infinity,
+      max: Infinity,
       default: 0,
     },
     myBool: {
@@ -62,8 +62,8 @@ before(async function() {
     },
     myFloat: {
       type: 'float',
-      min: -1000,
-      max: 1000,
+      min: -Infinity,
+      max: Infinity,
       step: 0.001,
       default: 0.5,
     },
@@ -209,11 +209,12 @@ describe('sending messages', () => {
   it('should log some events sent by server', async function() {
     this.timeout(10 * 1000);
     // start max patch
-    await openPatch(patchFilename);
+    await openPatch(patchFilenameEVENT);
     console.log("waiting for Max to sync");
     await new Promise(resolve => setTimeout(resolve, 500));
 
     let expected = ``;
+    expected += `myEvent\n` // Init Value
 
     for (let i = 0; i < 10; i++) {
       let randBool = Boolean(Math.round(Math.random()));
@@ -225,76 +226,18 @@ describe('sending messages', () => {
     }
 
     await closePatch();
-    const result = getLogAsString(logFilename);
-
-    assert.equal(result, expected);
+    let result = getLogAsString(logFilename);
+    result = result.split('\n');
+    result.pop(); // remove last empty line
+    let trueResult = ``;
+    for (let i in result) {
+      const splittedResult = result[i].split(' ');
+      if (splittedResult[0] === 'myEvent') {
+        trueResult += `${result[i]}\n`
+      }
+    }
+   
+    assert.equal(trueResult, expected);
 
   });
-
-  // it('should log infinity type sent by server', async function() {
-  //   this.timeout(10 * 1000);
-
-  //   assert.fail('...but Infinity should not translate to null');
-
-  //   // start max patch
-  //   openPatch(patchFilename);
-  //   await new Promise(resolve => setTimeout(resolve, 500));
-
-  //   let expected = ``;
-  //   expected += `myInfFloat null\n`;
-  //   globals.set({ myInfFloat: -Infinity });
-  //   await new Promise(resolve => setTimeout(resolve, 100));
-
-  //   expected += `myInfFloat null\n`;
-  //   globals.set({ myInfFloat: Infinity });
-  //   await new Promise(resolve => setTimeout(resolve, 100));
-
-  //   await closePatch();
-
-  //   const result = getLogAsString(logFilename);
-  //   assert.equal(result, expected);
-  // });
-
-  // it('should log NAN type sent by server', async function() {
-  //   this.timeout(10 * 1000);
-
-  //   assert.fail('NaN should probably not propagate at all, should be handled by soundworks?');
-  //   // start max patch
-  //   openPatch(patchFilename);
-  //   await new Promise(resolve => setTimeout(resolve, 500));
-
-  //   let expected = ``;
-  //   globals.set({ myInfFloat: NaN });
-  //   await new Promise(resolve => setTimeout(resolve, 100));
-
-  //   // close patch message
-  //   await closePatch();
-
-  //   const result = getLogAsString(logFilename);
-  //   assert.equal(result, expected);
-
-  // });
-
-  // it('should log null type sent by server', async function() {
-  //   this.timeout(10 * 1000);
-
-  //   assert.fail('not sure what this test actually does');
-  //   // start max patch
-  //   openPatch(patchFilename);
-  //   await new Promise(resolve => setTimeout(resolve, 200));
-
-  //   let expected = ``;
-  //   expected += `myInfFloat\n`;
-  //   globals.set({ myInfFloat: null });
-  //   await new Promise(resolve => setTimeout(resolve, 100));
-
-
-  //   await new Promise(resolve => setTimeout(resolve, 1000));
-  //   // close patch message
-  //   await quitMax();
-  //   await server.stop();
-
-  //   const result = getLogAsString(logFilename);
-  //   assert.equal(result, expected);
-  // });
 });
