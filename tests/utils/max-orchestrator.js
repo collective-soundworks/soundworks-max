@@ -31,7 +31,7 @@ module.exports.openPatch = function openPatch(patchFilename) {
         if (processList.length >= 3) {
           console.log('> patch is opened, continue');
           clearTimeout(intervalId);
-          resolve();
+          setTimeout(resolve, 2000);
         }
       } catch(err) {
         reject(err);
@@ -67,7 +67,7 @@ module.exports.quitMax = async function() {
         if (processList.length === 0) {
           console.log('> max is not running, continue');
           clearTimeout(intervalId);
-          resolve();
+          setTimeout(resolve, 500);
         }
       } catch(err) {
         reject(err);

@@ -46,6 +46,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
     }
 
     await oldClose();
+    return new Promise(resolve => setTimeout(resolve, 500));
   }
 
   return server;

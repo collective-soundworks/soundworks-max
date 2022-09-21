@@ -20,7 +20,7 @@ const logFilename = path.join(__dirname, 'log.txt');
 try { fs.unlinkSync(logFilename); } catch (err) {}
 
 before(async function() {
-  this.timeout(15 * 1000);
+  this.timeout(30 * 1000);
   // ensure Max is not running
   await ensureMaxIsDown();
   // get configure and started soundworks server
@@ -34,7 +34,7 @@ after(async function() {
 
 describe('testing test infrastucture', () => {
   it('should open patch and close patch from event', async function() {
-    this.timeout(15 * 1000);
+    this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilename);
 
@@ -64,7 +64,7 @@ describe('testing test infrastucture', () => {
   });
 
   it('should close Max from event', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
 
     await openPatch(patchFilename);
     // send close message to Max
@@ -100,7 +100,7 @@ describe('testing test infrastucture', () => {
 
 //oops...
   it('should open and close Max many times', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(30 * 1000);
     await openPatch(patchFilename);
     // await new Promise(resolve => setTimeout(resolve, 500));
     await closePatch();

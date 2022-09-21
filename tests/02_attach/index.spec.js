@@ -40,18 +40,14 @@ after(async function() {
 
 describe('test attach methods', () => {
   it('should properly init with schema name as attribute', async function() {
-    this.timeout(20 * 1000);
+    this.timeout(30 * 1000);
 
     await ensureMaxIsDown();
     // start max patch
     const patchFilename = path.join(__dirname, 'test-attach-as-attribute.maxpat');
     await openPatch(patchFilename);
-    // give some time to connect and sync
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     await quitMax();
-
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     const expected = `1\n`;
     const result = getLogAsString(logFilename);
@@ -59,18 +55,14 @@ describe('test attach methods', () => {
   });
 
   it('should properly init with attach command', async function() {
-    this.timeout(20 * 1000);
+    this.timeout(30 * 1000);
 
     await ensureMaxIsDown();
     // start max patch
     const patchFilename = path.join(__dirname, 'test-attach-as-command.maxpat');
     await openPatch(patchFilename);
-    // give some time to connect and sync
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     await quitMax();
-
-    await new Promise(resolve => setTimeout(resolve, 500));
 
     const expected = `1\n`;
     const result = getLogAsString(logFilename);
