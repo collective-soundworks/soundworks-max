@@ -101,7 +101,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 388.0, 23.204721999999997, 56.0, 22.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 181.0, 52.0, 58.0, 22.0 ],
+					"presentation_rect" : [ 181.0, 51.0, 58.0, 22.0 ],
 					"text" : "NoFloat",
 					"textcolor" : [ 0.968627, 0.968627, 0.968627, 1.0 ]
 				}
@@ -2255,7 +2255,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "Dictionary: state schema.",
 					"id" : "obj-58",
 					"index" : 3,
 					"maxclass" : "outlet",
@@ -2303,7 +2303,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "Dictionary: state updates.",
 					"id" : "obj-44",
 					"index" : 2,
 					"maxclass" : "outlet",
@@ -2315,7 +2315,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "Dictionary: state values.",
 					"id" : "obj-43",
 					"index" : 1,
 					"maxclass" : "outlet",
@@ -2400,6 +2400,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -2409,7 +2411,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "Update state",
 					"id" : "obj-1",
 					"index" : 1,
 					"maxclass" : "inlet",
