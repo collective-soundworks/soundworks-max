@@ -42,7 +42,7 @@ describe('boot ordering, reconnections, etc.', () => {
 
     await openPatch(patchFilename);
     // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     console.log('quit max');
     await quitMax();
@@ -73,7 +73,7 @@ describe('boot ordering, reconnections, etc.', () => {
 
     await openPatch(patchFilename);
     // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // important to test that Max is somehow notified when server shutdown
     console.log('close server');
@@ -106,7 +106,7 @@ describe('boot ordering, reconnections, etc.', () => {
     globals = await server.stateManager.create('globals');
 
     // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     await quitMax();
     await server.stop(true);
@@ -116,8 +116,8 @@ describe('boot ordering, reconnections, etc.', () => {
     assert.equal(result, expected);
   });
 
-  it.only(`should properly reconnect after server down`, async function() {
-    this.timeout(15 * 1000);
+  it(`should properly reconnect after server down`, async function() {
+    this.timeout(20 * 1000);
     await ensureMaxIsDown();
 
     let server = await createSoundworksServer();
@@ -133,10 +133,10 @@ describe('boot ordering, reconnections, etc.', () => {
 
     await openPatch(patchFilename);
     // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // stop the server
-    await server.stop();
+    await server.stop(true);
 
     // restart server
     server = await createSoundworksServer();
@@ -152,7 +152,7 @@ describe('boot ordering, reconnections, etc.', () => {
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     await quitMax();
-
+    await server.stop(true);
     // write is done only when closing the patch...
     // first 1 is patch launch, second is server stop, third is reconnection
     const expected = `1\n1\n1\n`;
@@ -160,72 +160,47 @@ describe('boot ordering, reconnections, etc.', () => {
     assert.equal(result, expected);
   });
 
-//   it(`should properly reconnect after Max down`, async function() {
-//     this.timeout(15 * 1000);
-//     await ensureMaxIsDown();
+  it(`should properly reconnect after Max down`, async function() {
+    this.timeout(60 * 1000);
+    await ensureMaxIsDown();
 
-//     await openPatch(patchFilename);
-//     // give some time for max client to sync
-//     await new Promise(resolve => setTimeout(resolve, 500));
+    await openPatch(patchFilename);
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-//     const server = await createSoundworksServer();
-//     server.stateManager.registerSchema('globals', {
-//       myBool: {
-//         type: 'boolean',
-//         default: true,
-//       },
-//     });
-//     globals = await server.stateManager.create('globals');
+    const server = await createSoundworksServer();
+    server.stateManager.registerSchema('globals', {
+      myBool: {
+        type: 'boolean',
+        default: true,
+      },
+    });
+    globals = await server.stateManager.create('globals');
 
-//     // give some time for max client to connect and synchronize
-//     await new Promise(resolve => setTimeout(resolve, 500));
+    // give some time for max client to connect and synchronize
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-//     {
-//       const expected1 = `1\n`;
-//       const result = getLogAsString(logFilename);
-//       assert.equal(result, expected);
-//     }
+    // stop Max
+    await quitMax();
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-//     // stop Max
-//     await quitMax();
-//     await new Promise(resolve => setTimeout(resolve, 500));
+    {
+      const expected = `1\n`;
+      const result = getLogAsString(logFilename);
+      assert.equal(result, expected);
+    }
 
-//     await openPatch(patchFilename);
-//     await new Promise(resolve => setTimeout(resolve, 500));
+    await openPatch(patchFilename);
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-//     {
-//       const expected1 = `1\n`;
-//       const result = getLogAsString(logFilename);
-//       assert.equal(result, expected);
-//     }
-//   });
+    await quitMax();
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    await server.stop(true);
+
+    {
+      const expected = `1\n`;
+      const result = getLogAsString(logFilename);
+      assert.equal(result, expected);
+    }
+  });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
