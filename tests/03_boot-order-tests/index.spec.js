@@ -9,8 +9,6 @@ const createSoundworksServer = require('../utils/create-soundworks-server.js');
 const { openPatch, closeOscClient, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 
-// `npm test -- tests/1_server-max-max-server-boot-test/`
-
 let server;
 let globals;
 
