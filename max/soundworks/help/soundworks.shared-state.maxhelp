@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 1068.0, 710.0 ],
+		"rect" : [ 100.0, 100.0, 1378.0, 710.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -130,7 +130,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 100.0, 126.0, 1068.0, 684.0 ],
+						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -358,8 +358,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 55.0, 302.0, 21.0 ],
-									"text" : "a way to communicate with Soundworks via OSC"
+									"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
+									"text" : "a way to communicate with Soundworks via WebSocket"
 								}
 
 							}
@@ -712,7 +712,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1068.0, 684.0 ],
+						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -782,8 +782,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 55.0, 302.0, 21.0 ],
-									"text" : "a way to communicate with Soundworks via OSC"
+									"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
+									"text" : "a way to communicate with Soundworks via WebSocket"
 								}
 
 							}
@@ -1615,7 +1615,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1068.0, 684.0 ],
+						"rect" : [ 100.0, 126.0, 1378.0, 684.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1645,6 +1645,42 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 4,
+									"outlettype" : [ "dictionary", "", "", "" ],
+									"patching_rect" : [ 17.5, 268.0, 110.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 0,
+										"parameter_enable" : 0,
+										"parameter_mappable" : 0
+									}
+,
+									"text" : "dict globals_values"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 4,
+									"outlettype" : [ "dictionary", "", "", "" ],
+									"patching_rect" : [ 338.5, 268.0, 101.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 0,
+										"parameter_enable" : 0,
+										"parameter_mappable" : 0
+									}
+,
+									"text" : "dict globals_infos"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-8",
 									"maxclass" : "comment",
@@ -1800,7 +1836,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 125.5, 240.0, 97.0, 22.0 ],
+									"patching_rect" : [ 145.5, 240.0, 97.0, 22.0 ],
 									"text" : "s update-globals"
 								}
 
@@ -1830,8 +1866,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 55.0, 302.0, 21.0 ],
-									"text" : "a way to communicate with Soundworks via OSC"
+									"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
+									"text" : "a way to communicate with Soundworks via WebSocket"
 								}
 
 							}
@@ -1915,6 +1951,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
+									"midpoints" : [ 135.0, 192.0, 135.0, 192.0 ],
 									"source" : [ "obj-154", 0 ]
 								}
 
@@ -1922,7 +1959,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 36.0, 196.0, 135.0, 196.0 ],
+									"midpoints" : [ 36.0, 201.0, 135.0, 201.0 ],
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -1930,7 +1967,8 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 300.0, 272.5, 326.5, 272.5 ],
+									"midpoints" : [ 300.0, 282.0, 327.0, 282.0, 327.0, 315.0, 326.5, 315.0 ],
+									"order" : 1,
 									"source" : [ "obj-28", 2 ]
 								}
 
@@ -1938,6 +1976,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-153", 0 ],
+									"midpoints" : [ 135.0, 234.0, 155.0, 234.0 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}
@@ -1946,15 +1985,24 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-177", 0 ],
-									"midpoints" : [ 217.5, 272.5, 170.0, 272.5 ],
+									"midpoints" : [ 217.5, 237.0, 252.0, 237.0, 252.0, 282.0, 170.0, 282.0 ],
 									"source" : [ "obj-28", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 135.0, 272.5, 11.0, 272.5 ],
+									"destination" : [ "obj-4", 0 ],
+									"midpoints" : [ 300.0, 264.0, 348.0, 264.0 ],
+									"order" : 0,
+									"source" : [ "obj-28", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 0 ],
+									"midpoints" : [ 135.0, 237.0, 27.0, 237.0 ],
 									"order" : 1,
 									"source" : [ "obj-28", 0 ]
 								}
@@ -1962,7 +2010,17 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"midpoints" : [ 135.0, 237.0, 3.0, 237.0, 3.0, 312.0, 11.0, 312.0 ],
+									"order" : 2,
+									"source" : [ "obj-28", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
+									"midpoints" : [ 326.5, 201.0, 326.5, 201.0 ],
 									"source" : [ "obj-403", 0 ]
 								}
 
@@ -1970,7 +2028,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 418.5, 208.0, 326.5, 208.0 ],
+									"midpoints" : [ 418.5, 213.0, 326.5, 213.0 ],
 									"source" : [ "obj-404", 0 ]
 								}
 
@@ -1978,7 +2036,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 378.5, 207.0, 326.5, 207.0 ],
+									"midpoints" : [ 378.5, 213.0, 326.5, 213.0 ],
 									"source" : [ "obj-405", 0 ]
 								}
 
@@ -1986,7 +2044,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 454.5, 208.0, 326.5, 208.0 ],
+									"midpoints" : [ 454.5, 213.0, 326.5, 213.0 ],
 									"source" : [ "obj-406", 0 ]
 								}
 
@@ -1994,7 +2052,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 518.5, 208.0, 326.5, 208.0 ],
+									"midpoints" : [ 518.5, 201.0, 507.0, 201.0, 507.0, 213.0, 326.5, 213.0 ],
 									"source" : [ "obj-407", 0 ]
 								}
 
@@ -2002,7 +2060,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 563.5, 208.0, 326.5, 208.0 ],
+									"midpoints" : [ 563.5, 201.0, 507.0, 201.0, 507.0, 213.0, 326.5, 213.0 ],
 									"source" : [ "obj-408", 0 ]
 								}
 
@@ -2180,8 +2238,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 55.0, 302.0, 21.0 ],
-					"text" : "a way to communicate with Soundworks via OSC"
+					"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
+					"text" : "a way to communicate with Soundworks via WebSocket"
 				}
 
 			}
@@ -2232,7 +2290,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1068.0, 684.0 ],
+						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2317,8 +2375,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 55.0, 302.0, 21.0 ],
-									"text" : "a way to communicate with Soundworks via OSC"
+									"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
+									"text" : "a way to communicate with Soundworks via WebSocket"
 								}
 
 							}
@@ -2370,7 +2428,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 732.0, 530.5, 50.0, 22.0 ],
-									"text" : "tototot"
+									"text" : "pouet"
 								}
 
 							}
@@ -2600,7 +2658,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 922.0, 513.0, 119.0, 22.0 ],
-									"text" : "event : 1"
+									"text" : "message : pouet"
 								}
 
 							}

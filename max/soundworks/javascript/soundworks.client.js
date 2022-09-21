@@ -26,7 +26,7 @@ const globals = {
 	experience: null,
 	state: null,
 	schemaName: null,
-	verbose: true,
+	verbose: false,
 	maxId: null,
   serverIp: null,
   port: null,
@@ -53,7 +53,7 @@ async function bootstrap(maxId, serverIp, port) {
   
   // start client and experience
   await client.start();
-  console.log('start experience');
+  log('start experience');
   experience.start();
 
   // store global informations
