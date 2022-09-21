@@ -18,7 +18,7 @@ module.exports.getLogAsArray = function(logFilename) {
     return [];
   }
 
-  let result = getLogAsString(logFilename);
+  let result = fs.readFileSync(logFilename).toString();
   result = result.split('\n');
   result.pop();
 

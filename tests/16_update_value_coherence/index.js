@@ -61,23 +61,27 @@ before(async function() {
 
   globals = await server.stateManager.create('globals');
 
-  return await openPatch(patchFilename);
+  await openPatch(patchFilename);
 
 });
 
 describe('coherence between dict in Max', () => {
 
-  it('[REMOVE LOADBANG] should log same value 2 times (update on server side)', async function() {
+  it('should log same value 2 times (update on server side)', async function() {
     this.timeout(10 * 1000);
+    
+    await openPatch(patchFilename);
     // start max patch
     console.log("waiting for Max to sync");
     await new Promise(resolve => setTimeout(resolve, 200));
-    let expected = ``;
+    let expected = `values myString toto\nvalues toto 0\n`;
 
     let randStr = genRandonString(20);
-    expected += `values myString toto\nvalues toto 0\nvalues myString ${randStr}\nvalues toto 0\nupdates myString ${randStr}\n`;
+    expected += `updates myString ${randStr}\n`;
     globals.set({ myString: randStr });
+    expected += `values myString ${randStr}\nvalues toto 0\n`;
     await new Promise(resolve => setTimeout(resolve, 100));
+
 
     console.log("> quit Max");
     // close patch message
@@ -92,18 +96,20 @@ describe('coherence between dict in Max', () => {
   });
 
 
-  it('[REMOVE LOADBANG] should log same value 2 times (update on Max side)', async function() {
+  it('should log same value 2 times (update on Max side)', async function() {
     this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilename);
     console.log("waiting for Max to sync");
     await new Promise(resolve => setTimeout(resolve, 200));
-    let expected = ``;
+
+    let expected = `values myString toto\nvalues toto 0\n`;
 
     let randStr = genRandonString(20);
     sendOsc(randStr);
     await new Promise(resolve => setTimeout(resolve, 1000));
-    expected += `values myString toto\nvalues toto 0\nvalues myString ${randStr}\nvalues toto 0\nupdates myString ${randStr}\n`;
+    expected += `updates myString ${randStr}\n`;
+    expected += `values myString ${randStr}\nvalues toto 0\n`;
     await new Promise(resolve => setTimeout(resolve, 100));
 
     console.log("> quit Max");

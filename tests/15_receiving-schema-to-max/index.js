@@ -7,7 +7,7 @@ const assert = require('chai').assert;
 
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
 const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
-const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
+const { getLogAsString, getLogAsNumArray, getLogAsArray } = require('../utils/logs-reader.js');
 const floatEqual = require('../utils/float-equal.js');
 
 // `npm test -- tests/0_server_start_max_quit_max-boot-test/`
@@ -30,8 +30,8 @@ before(async function() {
   server.stateManager.registerSchema('globals', {
     myInt: {
       type: 'float',
-      min: -Infinity,
-      max: Infinity,
+      min: -10,
+      max: 10,
       default: 0,
       step: 0.001,
       nullable: true,
@@ -44,7 +44,7 @@ before(async function() {
 });
 
 describe('receiving schema to Max on schema command sent', () => {
-  it('[REMOVE LOADBANG] should log schema definition to log file', async function() {
+  it('should log schema definition to log file', async function() {
     this.timeout(10 * 1000);
     // start max patch
     await openPatch(patchFilename);
@@ -53,10 +53,19 @@ describe('receiving schema to Max on schema command sent', () => {
     await quitMax();
     await server.stop();
 
-    const expected = globals.getSchema();
-    const result = JSON.parse(fs.readFileSync(logFilename));
+    let expected = globals.getSchema();
+    let result = JSON.parse(fs.readFileSync(logFilename));
 
-    assert.equal(result, expected);
+    expected = expected.myInt;
+    result = result.myInt;
+
+    for (let i in expected) {
+      if ( typeof(expected[i]) === 'boolean' ) {
+        expected[i] = expected[i] ? 1 : 0;
+      }
+    }
+
+    assert.deepEqual(result, expected);
   });
 });
 
