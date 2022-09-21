@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 473.0, 100.0, 1068.0, 710.0 ],
+		"rect" : [ 100.0, 100.0, 1068.0, 710.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -130,7 +130,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 473.0, 126.0, 1068.0, 684.0 ],
+						"rect" : [ 100.0, 126.0, 1068.0, 684.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -160,6 +160,53 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "button",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 284.0, 376.0, 84.0, 84.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 307.5, 341.0, 72.0, 22.0 ],
+									"text" : "print update"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 284.0, 303.0, 105.0, 22.0 ],
+									"text" : "dict.unpack event:"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "button",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 154.0, 147.0, 24.0, 24.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-26",
 									"maxclass" : "message",
@@ -191,7 +238,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 138.5, 329.0, 84.0, 84.0 ]
+									"patching_rect" : [ 145.5, 376.0, 84.0, 84.0 ]
 								}
 
 							}
@@ -201,8 +248,8 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 162.0, 294.0, 65.0, 22.0 ],
-									"text" : "print event"
+									"patching_rect" : [ 169.0, 341.0, 70.0, 22.0 ],
+									"text" : "print values"
 								}
 
 							}
@@ -215,7 +262,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 28.5, 456.0, 112.0, 54.0 ],
+									"patching_rect" : [ 13.5, 492.0, 123.0, 54.0 ],
 									"text" : "it's like a shooting star 💫"
 								}
 
@@ -229,7 +276,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 17.5, 247.0, 112.0, 52.0 ],
+									"patching_rect" : [ 13.5, 247.0, 123.0, 52.0 ],
 									"text" : "you can't see event in a dict.view"
 								}
 
@@ -240,7 +287,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 39.5, 306.0, 90.0, 136.0 ]
+									"patching_rect" : [ 13.5, 303.0, 123.0, 185.0 ]
 								}
 
 							}
@@ -263,7 +310,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 138.5, 256.0, 105.0, 22.0 ],
+									"patching_rect" : [ 145.5, 303.0, 105.0, 22.0 ],
 									"text" : "dict.unpack event:"
 								}
 
@@ -276,7 +323,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 409.5, 299.0, 170.0, 51.0 ],
+									"patching_rect" : [ 577.5, 336.0, 170.0, 51.0 ],
 									"text" : "event: 1 means\nvalue is reset to null after propagation"
 								}
 
@@ -287,7 +334,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.5, 289.0, 152.0, 191.0 ]
+									"patching_rect" : [ 421.5, 336.0, 152.0, 191.0 ]
 								}
 
 							}
@@ -298,7 +345,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 253.5, 256.0, 105.0, 22.0 ],
+									"patching_rect" : [ 421.5, 303.0, 105.0, 22.0 ],
 									"text" : "dict.unpack event:"
 								}
 
@@ -412,6 +459,20 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-28", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-28", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-20", 0 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
@@ -423,6 +484,22 @@
 									"destination" : [ "obj-22", 0 ],
 									"order" : 1,
 									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-6", 0 ],
+									"order" : 1,
+									"source" : [ "obj-9", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"order" : 0,
+									"source" : [ "obj-9", 0 ]
 								}
 
 							}
@@ -2523,7 +2600,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 922.0, 513.0, 119.0, 22.0 ],
-									"text" : "event : 0"
+									"text" : "event : 1"
 								}
 
 							}

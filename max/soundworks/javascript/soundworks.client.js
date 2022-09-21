@@ -4,7 +4,7 @@ const Client = require('@soundworks/core/client/index.js').Client;
 const ClientAbstractExperience = require('@soundworks/core/client').AbstractExperience;
 
 Max.addHandlers({
-  [Max.MESSAGE_TYPES.BANG]: () => Max.outlet('update'),
+  [Max.MESSAGE_TYPES.BANG]: () => onBang(),
   [Max.MESSAGE_TYPES.DICT]: (obj) => onDict(obj),
   [Max.MESSAGE_TYPES.NUMBER]: (num) => {},
   attach: (arg) => attach(arg),
@@ -98,10 +98,22 @@ async function attach(schemaName) {
   	const dictSchema = await Max.getDict(`${maxID}_schema`);
 
   	state.subscribe(updates => {
-  		console.log(updates);
-  		updateDict(`${maxID}_values`, state.getValues());  	
 			updateDict(`${maxID}_updates`, updates);
-			Max.outlet('update');
+			Max.outlet('updates');
+
+			updateDict(`${maxID}_values`, state.getValues());
+			Max.outlet('values');
+
+			for (let name in updates) {
+				const def = globals.state.getSchema(name);
+
+				if (def.event === true) {
+					setImmediate(() => {
+						updateDict(`${maxID}_values`, state.getValues());
+						Max.outlet('values');
+					});
+				}
+			}
   	});
 
   	state.onDetach(() => _clearDicts());
@@ -110,7 +122,8 @@ async function attach(schemaName) {
   	updateDict(`${maxID}_values`, state.getValues());
   	updateDict(`${maxID}_schema`, state.getSchema());
 
-  	Max.outlet('init');
+  	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
+
 
   	log(`attached to ${schemaName}`);
 
@@ -131,12 +144,13 @@ async function _clearDicts() {
 	Max.setDict(`${globals.maxID}_values`,{});  	
 	Max.setDict(`${globals.maxID}_updates`,{});
 	Max.setDict(`${globals.maxID}_schema`,{});
-	Max.outlet('clear');
+	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 }
 
 async function _detach() {
 	//@TODO detach request to the server did not seem to work
 	log(`detaching from ${globals.schemaName}`);
+
 	await globals.state.detach();
 	globals.schemaName = null;
 	globals.state = null;
@@ -146,10 +160,6 @@ async function _detach() {
 function sanitizeInputForNode(key, value) {
 	const def = globals.state.getSchema(key);
 	let sanitizedValue = null;
-
-	// if (value === 'null' && def.nullable) {
-	// 	return null;
-	// }
 
 	switch (def.type) {
 		case 'boolean': {
@@ -169,15 +179,9 @@ function sanitizeInputForNode(key, value) {
 	return sanitizedValue;
 }
 
-function sanitizeInputForMax(key, value) {
-	const def = globals.state.getSchema(key);
-	let sanitizedValue = null;
-
-	if (value === null && def.nullable) {
-		return 'null';
-	}
-
-	return sanitizedValue;
+async function onBang() {
+	updateDict(`${globals.maxID}_values`, globals.state.getValues());
+	Max.outlet('values');
 }
 
 async function onMessage(...args) {
@@ -199,10 +203,7 @@ async function onMessage(...args) {
 }
 
 async function updateDict(dictName, obj) {
-	for (let name in obj) {
-		//obj[name] = sanitizeInputForMax(name, obj[name]);
-	}
-
+	// sanitize values for Max if/when needed
 	Max.setDict(dictName, obj);
 } 
 
