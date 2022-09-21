@@ -1,6 +1,9 @@
 ## Max / Soundworks
 
 - test connect / disconnect / reconnect (b-ma)
+  --> 
+
+- mocha test suite
 
 ## Max
 
@@ -15,3 +18,4 @@
 
 ## How to open patcher ?
 CMD + OPTION + M puis CMD + E puis appuyer sur le bouton
+

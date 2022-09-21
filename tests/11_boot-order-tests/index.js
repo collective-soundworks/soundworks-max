@@ -6,7 +6,7 @@ const { execSync } = require('child_process');
 const assert = require('chai').assert;
 
 const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const { openPatch, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
+const { openPatch, closeOscClient, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 
 // `npm test -- tests/1_server-max-max-server-boot-test/`
@@ -38,136 +38,136 @@ describe('boot ordering, reconnections, etc.', () => {
     // give some time for max client to sync
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    await server.stop();
+    // important to test that Max is somehow notified when server shutdown
+    console.log('close server');
+    await server.stop(true); // do not close orchestrator OSC client
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-    assert.fail(`should check that Max has detached`);
-
+    console.log('quit max');
     await quitMax();
-
-
-    const expected = `
-1
-`;
+    // first line is connection bang
+    // second line is disconnection bang
+    const expected = `1\n1\n`;
     const result = getLogAsString(logFilename);
     assert.equal(result, expected);
   });
 
-  it(`should support launching patch before server`, async function() {
-    this.timeout(15 * 1000);
-    await ensureMaxIsDown();
+//   it(`should support launching patch before server`, async function() {
+//     this.timeout(15 * 1000);
+//     await ensureMaxIsDown();
 
-    await openPatch(patchFilename);
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     await openPatch(patchFilename);
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    const server = await createSoundworksServer();
-    server.stateManager.registerSchema('globals', {
-      myBool: {
-        type: 'boolean',
-        default: true,
-      },
-    });
-    globals = await server.stateManager.create('globals');
+//     const server = await createSoundworksServer();
+//     server.stateManager.registerSchema('globals', {
+//       myBool: {
+//         type: 'boolean',
+//         default: true,
+//       },
+//     });
+//     globals = await server.stateManager.create('globals');
 
-    // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     // give some time for max client to sync
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    await quitMax();
-    await server.stop();
+//     await quitMax();
+//     await server.stop();
 
-    const expected = `
-1
-`;
-    const result = getLogAsString(logFilename);
-    assert.equal(result, expected);
-  });
+//     const expected = `
+// 1
+// `;
+//     const result = getLogAsString(logFilename);
+//     assert.equal(result, expected);
+//   });
 
-  it(`should properly reconnect after server down`, async function() {
-    this.timeout(15 * 1000);
-    await ensureMaxIsDown();
+//   it(`should properly reconnect after server down`, async function() {
+//     this.timeout(15 * 1000);
+//     await ensureMaxIsDown();
 
-    let server = await createSoundworksServer();
-    server.stateManager.registerSchema('globals', {
-      myBool: {
-        type: 'boolean',
-        default: true,
-      },
-    });
-    globals = await server.stateManager.create('globals');
+//     let server = await createSoundworksServer();
+//     server.stateManager.registerSchema('globals', {
+//       myBool: {
+//         type: 'boolean',
+//         default: true,
+//       },
+//     });
+//     globals = await server.stateManager.create('globals');
 
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    await openPatch(patchFilename);
-    // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     await openPatch(patchFilename);
+//     // give some time for max client to sync
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    // stop the server
-    await server.stop();
+//     // stop the server
+//     await server.stop();
 
-    {
-      const expected1 = `1\n`;
-      const result = getLogAsString(logFilename);
-      assert.equal(result, expected1);
-    }
+//     {
+//       const expected1 = `1\n`;
+//       const result = getLogAsString(logFilename);
+//       assert.equal(result, expected1);
+//     }
 
-    // restart server
-    server = await createSoundworksServer();
-    server.stateManager.registerSchema('globals', {
-      myBool: {
-        type: 'boolean',
-        default: true,
-      },
-    });
-    globals = await server.stateManager.create('globals');
+//     // restart server
+//     server = await createSoundworksServer();
+//     server.stateManager.registerSchema('globals', {
+//       myBool: {
+//         type: 'boolean',
+//         default: true,
+//       },
+//     });
+//     globals = await server.stateManager.create('globals');
 
-    // give some time for max client to connect and synchronize
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     // give some time for max client to connect and synchronize
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    {
-      const expected1 = `1\n`;
-      const result = getLogAsString(logFilename);
-      assert.equal(result, expected);
-    }
-  });
+//     {
+//       const expected1 = `1\n`;
+//       const result = getLogAsString(logFilename);
+//       assert.equal(result, expected);
+//     }
+//   });
 
-  it(`should properly reconnect after Max down`, async function() {
-    this.timeout(15 * 1000);
-    await ensureMaxIsDown();
+//   it(`should properly reconnect after Max down`, async function() {
+//     this.timeout(15 * 1000);
+//     await ensureMaxIsDown();
 
-    await openPatch(patchFilename);
-    // give some time for max client to sync
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     await openPatch(patchFilename);
+//     // give some time for max client to sync
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    const server = await createSoundworksServer();
-    server.stateManager.registerSchema('globals', {
-      myBool: {
-        type: 'boolean',
-        default: true,
-      },
-    });
-    globals = await server.stateManager.create('globals');
+//     const server = await createSoundworksServer();
+//     server.stateManager.registerSchema('globals', {
+//       myBool: {
+//         type: 'boolean',
+//         default: true,
+//       },
+//     });
+//     globals = await server.stateManager.create('globals');
 
-    // give some time for max client to connect and synchronize
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     // give some time for max client to connect and synchronize
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    {
-      const expected1 = `1\n`;
-      const result = getLogAsString(logFilename);
-      assert.equal(result, expected);
-    }
+//     {
+//       const expected1 = `1\n`;
+//       const result = getLogAsString(logFilename);
+//       assert.equal(result, expected);
+//     }
 
-    // stop Max
-    await quitMax();
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     // stop Max
+//     await quitMax();
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    await openPatch(patchFilename);
-    await new Promise(resolve => setTimeout(resolve, 500));
+//     await openPatch(patchFilename);
+//     await new Promise(resolve => setTimeout(resolve, 500));
 
-    {
-      const expected1 = `1\n`;
-      const result = getLogAsString(logFilename);
-      assert.equal(result, expected);
-    }
-  });
+//     {
+//       const expected1 = `1\n`;
+//       const result = getLogAsString(logFilename);
+//       assert.equal(result, expected);
+//     }
+//   });
 });
 
 
