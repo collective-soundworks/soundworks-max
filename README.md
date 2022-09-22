@@ -102,6 +102,26 @@ npm run dev
 4. Open the max example patch `example.maxpat`
 
 
+## Running the tests
+
+Launching all the tests
+
+```
+npm test -- tests/**/*.spec.js
+```
+
+Launching one test file
+
+```
+npm test -- tests/the-test/index.spec.js
+```
+
+For verbose output
+
+```
+VERBOSE=1 npm test -- tests/the-test/index.spec.js
+```
+
 ## License
 
 BSD-3-Clause

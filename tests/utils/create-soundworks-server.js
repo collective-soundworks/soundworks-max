@@ -35,6 +35,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
       port: 8000,
       serverIp: '127.0.0.1',
       useHttps: false,
+      verbose: process.env.VERBOSE === '1' ? true : false,
     },
   };
 

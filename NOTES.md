@@ -9,9 +9,10 @@
 - [ ] add outlet for node minitor with arg @debug
 
 - [ ] command to launch all tests at once
-- [ ] cleaner les logs
 
+- [ ] cleaner les logs
 - [x] parser les inputs
+
 - [ ] handle errors
 
 #### Issues
