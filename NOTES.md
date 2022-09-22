@@ -17,7 +17,9 @@
 
 #### Issues
 
-- 04_sending --> events
+- 04_sending --> events 
+  + ok: `await Max.setDict()`
+- 08_attach_many_clients
 
 ### [soundworks.shared-state.observe]
 
