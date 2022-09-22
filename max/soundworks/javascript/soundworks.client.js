@@ -25,7 +25,7 @@ const globals = {
 	experience: null,
 	state: null,
 	schemaName: null,
-	verbose: true,
+	verbose: false,
 	maxId: null,
   serverIp: null,
   port: null,
@@ -38,7 +38,6 @@ function log(...args) {
 }
 
 async function bootstrap(maxId, serverIp, port, verbose) {
-	log(maxId, serverIp, port);
 	
 	const config = {
 	  clientType: 'max',
@@ -60,6 +59,8 @@ async function bootstrap(maxId, serverIp, port, verbose) {
   globals.serverIp = serverIp;
   globals.port = port;
   globals.verbose = !!verbose;
+
+  log(maxId, serverIp, port, verbose);
 
   const reboot = async function() {
     try {
@@ -142,6 +143,8 @@ async function attach(schemaName) {
 
   	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 
+    // Send connected value
+    Max.outlet('connect', 1);
 
   	log(`attached to ${schemaName}`);
   } catch (err) {
@@ -205,10 +208,15 @@ async function onMessage(...args) {
 // HELPERS
 // -------------------------------------------------------
 async function _clearDicts() {
-  Max.setDict(`${globals.maxId}_values`,{});
-  Max.setDict(`${globals.maxId}_updates`,{});
-  Max.setDict(`${globals.maxId}_schema`,{});
+  await Max.setDict(`${globals.maxId}_values`,{});
+  await Max.setDict(`${globals.maxId}_updates`,{});
+  await Max.setDict(`${globals.maxId}_schema`,{});
   Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
+
+  // Send disconnected value
+  Max.outlet('connect', 0);
+
+
 }
 
 async function _detach() {
@@ -245,7 +253,7 @@ function _sanitizeInputForNode(key, value) {
 
 async function _updateDict(dictName, obj) {
 	// sanitize values for Max if/when needed
-	Max.setDict(dictName, obj);
+	await Max.setDict(dictName, obj);
 }
 
 // -------------------------------------------------------

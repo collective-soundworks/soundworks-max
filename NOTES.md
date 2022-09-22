@@ -4,11 +4,11 @@
 
 ### [soundworks.shared-state]
 
-- [ ] intégrer le server dans le helper
-- [ ] outlet connected / disconnected
-- [ ] add outlet for node minitor with arg @debug
+- [x] intégrer le server dans le helper
+- [x] outlet connected / disconnected
+- [x] add outlet for node minitor with arg @debug -> better than outlet ;)
 
-- [ ] command to launch all tests at once
+- [x] command to launch all tests at once
 
 - [ ] cleaner les logs
 - [x] parser les inputs
