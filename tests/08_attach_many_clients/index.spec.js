@@ -29,7 +29,7 @@ before(async function() {
   // get configure and started soundworks server
   server = await createSoundworksServer()
 
-  for (let i = 1; i<=numOfSchema; i++) {
+  for (let i = 1; i <= numOfSchema; i++) {
     server.stateManager.registerSchema(`sch${i}`, {
       value: {
         type: 'float',
@@ -68,32 +68,3 @@ describe('attaching with severals objets and severals schemas', () => {
     assert.deepEqual(result, expected);
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

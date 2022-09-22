@@ -159,7 +159,7 @@ async function onDict(dict) {
 	}
 
   try {
-	 await globals.state.set(dict);
+	  await globals.state.set(dict);
   } catch(err) {
     console.log(err);
   }
@@ -192,11 +192,10 @@ async function onMessage(...args) {
     try {
 		  await globals.state.set({ [key]: value });
     } catch(err) {
-      console.log(err);
+      console.log(err.message);
     }
 	} catch(err) {
-		log(err);
-		console.log("cannot parse message, use dict instead");
+		console.error(err.message);
 	}
 
 }
@@ -208,6 +207,7 @@ async function _clearDicts() {
   await Max.setDict(`${globals.maxId}_values`,{});
   await Max.setDict(`${globals.maxId}_updates`,{});
   await Max.setDict(`${globals.maxId}_schema`,{});
+
   Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 }
 
@@ -227,9 +227,21 @@ function _sanitizeInputForNode(key, value) {
 
   switch (def.type) {
     case 'boolean': {
-      sanitizedValue = !!value;
+      if (value === 1) {
+        sanitizedValue = true;
+      } else {
+        sanitizedValue = false;
+      }
       break;
     }
+    case 'integer':
+      if (Number.isInteger(value)) {
+
+      }
+      break;
+    case 'float':
+
+      break;
     default: {
       sanitizedValue = value;
       break;

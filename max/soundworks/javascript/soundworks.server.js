@@ -42,11 +42,45 @@ class ServerMaxExperience extends ServerAbstractExperience {
       min: -Infinity,
       max: Infinity,
       default: 10,
-    }
+    },
+    myInt: {
+      type: 'integer',
+      min: -Infinity,
+      max: Infinity,
+      default: 0,
+    },
+    myBool: {
+      type: 'boolean',
+      default: false,
+    },
+    myFloat: {
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      step: 0.001,
+      default: 0.5,
+    },
+    myInfFloat: {
+      type: 'float',
+      min: -Infinity,
+      max: Infinity,
+      step: 0.001,
+      default: 0,
+    },
+    myMessage: {
+      type: 'string',
+      default: 'my-message',
+      nullable: true,
+    },
+    // new options
+    myEvent: {
+      type: 'boolean',
+      default: false,
+      event: true,
+    },
   });
 
   const globals = await server.stateManager.create('globals');
-  console.log(globals.getSchema());
 
   const experience = new ServerMaxExperience(server, 'max');
 
@@ -54,6 +88,4 @@ class ServerMaxExperience extends ServerAbstractExperience {
   experience.start();
 
   globals.subscribe(updates => console.log(updates));
-
-  console.log('globals:', globals.getValues());
-}())
+}());
