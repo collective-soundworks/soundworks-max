@@ -124,6 +124,11 @@
             <description>Port of soundworks' server. Default is 8000</description>
         </attribute>
 
+         <attribute name='debug' get='0' set='1' type='int' size='1' >
+            <digest>Set debug mode</digest>
+            <description>Set debug mode</description>
+        </attribute>
+
 
     </attributelist>
 	
