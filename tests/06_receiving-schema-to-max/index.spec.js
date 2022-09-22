@@ -26,7 +26,6 @@ before(async function() {
   // get configure and started soundworks server
   server = await createSoundworksServer();
 
-
   server.stateManager.registerSchema('globals', {
     myInt: {
       type: 'float',
@@ -48,8 +47,7 @@ describe('receiving schema to Max on schema command sent', () => {
     this.timeout(10 * 1000);
     // start max patch
     await openPatch(patchFilename);
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 200));
+
     await quitMax();
     await server.stop();
 
@@ -60,7 +58,7 @@ describe('receiving schema to Max on schema command sent', () => {
     result = result.myInt;
 
     for (let i in expected) {
-      if ( typeof(expected[i]) === 'boolean' ) {
+      if (typeof expected[i] === 'boolean') {
         expected[i] = expected[i] ? 1 : 0;
       }
     }

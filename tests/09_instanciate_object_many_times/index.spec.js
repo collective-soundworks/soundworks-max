@@ -10,8 +10,6 @@ const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('..
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 const floatEqual = require('../utils/float-equal.js');
 
-// `npm test -- tests/0_server_start_max_quit_max-boot-test/`
-
 let server;
 let globals;
 
@@ -31,6 +29,7 @@ before(async function() {
       default: true,
     },
   });
+
   globals = await server.stateManager.create('globals');
 });
 
@@ -38,30 +37,23 @@ after(async function() {
   this.timeout(10*1000);
 
   await openPatch(patchFilename);
-
   await quitMax();
-
   await server.stop();
-
-})
+});
 
 describe('testing bug node is not running', () => {
   it('should attach to the state', async function() {
     this.timeout(1000 * 1000);
 
-    for (let i = 0; i<=100; i++) {
+    for (let i = 0; i <= 10; i++) {
       // start max patch
       await openPatch(patchFilename);
-
-      const expected = `1\n`;
-
       await closePatch();
 
+      const expected = `1\n`;
       const result = getLogAsString(logFilename);
-
       assert.equal(result, expected);
     }
-
   });
 });
 

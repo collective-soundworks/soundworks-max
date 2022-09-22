@@ -29,7 +29,6 @@ before(async function() {
   // get configure and started soundworks server
   server = await createSoundworksServer()
 
-
   for (let i = 1; i<=numOfSchema; i++) {
     server.stateManager.registerSchema(`sch${i}`, {
       value: {
@@ -47,9 +46,6 @@ describe('attaching with severals objets and severals schemas', () => {
     this.timeout(30 * 1000);
 
     await openPatch(patchFilename);
-
-    console.log('waiting for Max to sync');
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
     await quitMax(server);
     await server.stop();

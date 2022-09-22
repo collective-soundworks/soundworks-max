@@ -41,6 +41,7 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
 
   // override stop to close orchestrator OSC connection by default
   server.stop = async (keepOsc = false) => {
+    console.log('> closing server');
     if (keepOsc === false) {
       closeOscClient();
     }

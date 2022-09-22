@@ -223,8 +223,7 @@ async function updateDict(dictName, obj) {
 	Max.setDict(dictName, obj);
 } 
 
-
-
+Max.outletBang();
 
 
 
