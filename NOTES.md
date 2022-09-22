@@ -10,8 +10,13 @@
 
 - [ ] command to launch all tests at once
 - [ ] cleaner les logs
+
 - [x] parser les inputs
 - [ ] handle errors
+
+#### Issues
+
+- 04_sending --> events
 
 ### [soundworks.shared-state.observe]
 

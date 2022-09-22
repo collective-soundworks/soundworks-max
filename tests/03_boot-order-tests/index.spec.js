@@ -38,10 +38,7 @@ describe('boot ordering, reconnections, etc.', () => {
 
     await openPatch(patchFilename);
 
-    console.log('quit max');
     await quitMax();
-
-    console.log('close server');
     await server.stop(true); // do not close orchestrator OSC client
 
     const expected = `1\n`;
@@ -64,11 +61,7 @@ describe('boot ordering, reconnections, etc.', () => {
 
     await openPatch(patchFilename);
 
-    // important to test that Max is somehow notified when server shutdown
-    console.log('close server');
     await server.stop(true); // do not close orchestrator OSC client
-
-    console.log('quit max');
     await quitMax();
 
     // first line is connection bang

@@ -3,14 +3,23 @@ const AbstractExperience = require('@soundworks/core/server').AbstractExperience
 const { closeOscClient } = require('./max-orchestrator.js');
 
 const { StateManagerOsc } = require('../../');
+const log = require('../utils/logger.js');
 
 
 class MaxExperience extends AbstractExperience {
-  start() { console.log('> server started'); };
+  start() {
+    log('> server started');
+  }
+
+  enter(client) {
+    log(`> client ${client.id} entered`);
+    super.enter(client);
+  }
+
   exit(client) {
-    console.log(`> client ${client.id} exited`);
+    log(`> client ${client.id} exited`);
     super.exit(client);
-  };
+  }
 }
 
 module.exports = async function createSoundworksServer(initStateManagerOsc = true) {
@@ -41,7 +50,8 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
 
   // override stop to close orchestrator OSC connection by default
   server.stop = async (keepOsc = false) => {
-    console.log('> closing server');
+    log('> closing server');
+
     if (keepOsc === false) {
       closeOscClient();
     }

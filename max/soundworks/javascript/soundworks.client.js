@@ -18,7 +18,6 @@ const handledMessages = ['attach', 'detach', 'dict', 'bootstrap', 'bang'];
 class ClientMaxExperience extends ClientAbstractExperience {
   async start() {
     super.start();
-    log('> client started');
   }
 }
 
@@ -53,7 +52,6 @@ async function bootstrap(maxId, serverIp, port, verbose) {
   
   // start client and experience
   await client.start();
-  log('start experience');
   experience.start();
 
   // store global informations
@@ -93,7 +91,7 @@ async function bootstrap(maxId, serverIp, port, verbose) {
 // -------------------------------------------------------
 async function attach(schemaName) {
 	if (schemaName === 0) {
-		log(`invalid schema name, abort`);
+		log(`Invalid schema name, abort`);
 		return;
 	}
 
@@ -103,7 +101,7 @@ async function attach(schemaName) {
 		_detach();
 	}
 
-	log(`attaching to ${schemaName}`);
+	log(`Attaching to ${schemaName}`);
 
 	globals.schemaName = schemaName;
 	const maxId = globals.maxId;
@@ -160,7 +158,11 @@ async function onDict(dict) {
 		dict[name] = _sanitizeInputForNode(name, dict[name]);
 	}
 
-	await globals.state.set(dict);
+  try {
+	 await globals.state.set(dict);
+  } catch(err) {
+    console.log(err);
+  }
 }
 
 async function onBang() {
@@ -187,7 +189,11 @@ async function onMessage(...args) {
 		const key = args[0];
 		const value = _sanitizeInputForNode(key, args[1]);
 
-		await globals.state.set({ [key]: value });
+    try {
+		  await globals.state.set({ [key]: value });
+    } catch(err) {
+      console.log(err);
+    }
 	} catch(err) {
 		log(err);
 		console.log("cannot parse message, use dict instead");
@@ -206,12 +212,12 @@ async function _clearDicts() {
 }
 
 async function _detach() {
-  //@TODO detach request to the server did not seem to work
-  log(`detaching from ${globals.schemaName}`);
-
+  log(`Detaching from ${globals.schemaName}`);
   await globals.state.detach();
+
   globals.schemaName = null;
   globals.state = null;
+
   _clearDicts();
 }
 
@@ -242,6 +248,10 @@ async function _updateDict(dictName, obj) {
 	Max.setDict(dictName, obj);
 }
 
+// -------------------------------------------------------
+// Notify that the script is ready and
+// that bootstrap can be called
+// -------------------------------------------------------
 Max.outletBang();
 
 

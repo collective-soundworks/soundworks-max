@@ -32,7 +32,6 @@ before(async function() {
 });
 
 after(async function() {
-  console.log('server.stop');
   await server.stop();
 });
 

@@ -31,37 +31,27 @@ before(async function() {
       default: true,
     },
   });
+
   globals = await server.stateManager.create('globals');
 });
 
-// after(async function() {
-//   this.timeout(10*1000);
+after(async function() {
+  this.timeout(10*1000);
 
-//   await openPatch(patchFilename);
-
-//   await quitMax();
-
-//   await server.stop();
-
-// })
+  await openPatch(patchFilename);
+  await quitMax();
+  await server.stop();
+});
 
 describe('launch a server', () => {
   it('should open a server', async function() {
     this.timeout(10 * 1000);
 
-    for (let i = 0; i<=100; i++) {
+    for (let i = 0; i <= 10; i++) {
       // start max patch
       await openPatch(patchFilename);
-
-      // const expected = `1\n`;
-
-      // await closePatch();
-
-      // const result = getLogAsString(logFilename);
-
-      // assert.equal(result, expected);
+      await closePatch();
     }
-
   });
 });
 

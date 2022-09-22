@@ -52,10 +52,7 @@ describe('testing test infrastucture', () => {
   });
 
   it('should have logged osc messages', () => {
-    const expected = `\
-/coucou
-/close
-`;
+    const expected = `/coucou\n/close\n`;
     const result = getLogAsString(logFilename);
 
     assert.equal(result, expected);
@@ -65,21 +62,15 @@ describe('testing test infrastucture', () => {
     this.timeout(30 * 1000);
 
     await openPatch(patchFilename);
-    // send close message to Max
     await quitMax();
 
     const processesList = await findProcess('name', 'Max');
     assert.equal(processesList.length, 0, 'some Max process has been found');
-
-    //await server.stop();
   });
 
   it('should have logged osc quit message', () => {
-    const expected = `\
-/quit
-`;
+    const expected = `/quit\n`;
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
   });
 
@@ -88,30 +79,16 @@ describe('testing test infrastucture', () => {
     floatEqual([0.02], [0.01], 1e-2);
   });
 
-  // it('should get logs as array of numbers', () => {
-  //   const expected = [1];
-  //   const result = getLogAsNumArray(logFilename);
-
-  //   assert.deepEqual(result, expected);
-  // });
-});
-
-//oops...
   it('should open and close Max many times', async function() {
     this.timeout(30 * 1000);
     await openPatch(patchFilename);
-    // await new Promise(resolve => setTimeout(resolve, 500));
     await closePatch();
-    // await new Promise(resolve => setTimeout(resolve, 500));
     await openPatch(patchFilename);
-    // await new Promise(resolve => setTimeout(resolve, 500));
     await closePatch();
-    // await new Promise(resolve => setTimeout(resolve, 500));
     await openPatch(patchFilename);
-    // await new Promise(resolve => setTimeout(resolve, 500));
     await quitMax();
-    // await new Promise(resolve => setTimeout(resolve, 500));
+
     const processesList = await findProcess('name', 'Max');
     assert.equal(processesList.length, 0, 'some Max process has been found');
   });
-
+});

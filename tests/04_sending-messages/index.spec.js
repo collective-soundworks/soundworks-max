@@ -129,7 +129,7 @@ describe('sending messages', () => {
 
     for (let i = 0; i < 10; i++) {
       randBool = !randBool;
-      // console.log(randBool);
+
       expected += `myBool ${randBool ? 1 : 0}\n`;
       globals.set({ myBool: randBool });
 
@@ -190,7 +190,7 @@ describe('sending messages', () => {
     assert.equal(result, expected);
   });
 
-  it('should log some events sent by server', async function() {
+  it.only('should log some events sent by server', async function() {
     this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilenameEVENT);
@@ -212,14 +212,16 @@ describe('sending messages', () => {
     let arr = getLogAsArray(logFilename);
     let result = ``;
 
-    for (let i in arr) {
+    for (let i = 0; i < arr.length; i++) {
       const splittedResult = arr[i].split(' ');
       if (splittedResult[0] === 'myEvent') {
         result += `${arr[i]}\n`
       }
     }
    
-    assert.equal(result, expected);
+    // console.log(result.split('\n'));
+    // console.log(expected.split('\n'));
 
+    assert.equal(result, expected);
   });
 });
