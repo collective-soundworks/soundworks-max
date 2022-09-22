@@ -48,79 +48,64 @@ before(async function() {
   server = await createSoundworksServer()
 
   server.stateManager.registerSchema('globals', {
-  myString: {
-    type: 'string',
-    default: 'toto',
-    nullable: true,
-  },
-  toto: {
-    type: 'float',
-    default: 0,
-  },
+    myString: {
+      type: 'string',
+      default: 'toto',
+      nullable: true,
+    },
+    toto: {
+      type: 'float',
+      default: 0,
+    },
   });
 
   globals = await server.stateManager.create('globals');
 
   await openPatch(patchFilename);
-
 });
 
 describe('coherence between dict in Max', () => {
-
   it('should log same value 2 times (update on server side)', async function() {
     this.timeout(10 * 1000);
     
     await openPatch(patchFilename);
     // start max patch
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 200));
     let expected = `values myString toto\nvalues toto 0\n`;
 
     let randStr = genRandonString(20);
-    expected += `updates myString ${randStr}\n`;
     globals.set({ myString: randStr });
+
+    expected += `updates myString ${randStr}\n`;
     expected += `values myString ${randStr}\nvalues toto 0\n`;
-    await new Promise(resolve => setTimeout(resolve, 100));
 
-
-    console.log("> quit Max");
-    // close patch message
     await closePatch();
 
     globals.set({ myString: 'toto' });
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
-
 
   it('should log same value 2 times (update on Max side)', async function() {
     this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilename);
-    console.log("waiting for Max to sync");
-    await new Promise(resolve => setTimeout(resolve, 200));
 
     let expected = `values myString toto\nvalues toto 0\n`;
 
     let randStr = genRandonString(20);
+
     sendOsc(randStr);
     await new Promise(resolve => setTimeout(resolve, 1000));
+
     expected += `updates myString ${randStr}\n`;
     expected += `values myString ${randStr}\nvalues toto 0\n`;
-    await new Promise(resolve => setTimeout(resolve, 100));
 
-    console.log("> quit Max");
     // close patch message
     await quitMax();
     await server.stop();
 
     const result = getLogAsString(logFilename);
-
     assert.equal(result, expected);
-
   });
-
 });
