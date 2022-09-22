@@ -46,6 +46,8 @@ describe('attaching with severals objets and severals schemas', () => {
     this.timeout(30 * 1000);
 
     await openPatch(patchFilename);
+    // the poly may be long to instanciate (looks better but not stable)
+    await new Promise(resolve => setTimeout(resolve, 10 * 1000));
 
     await quitMax(server);
     await server.stop();

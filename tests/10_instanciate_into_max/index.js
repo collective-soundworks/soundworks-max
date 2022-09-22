@@ -10,8 +10,6 @@ const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('..
 const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
 const floatEqual = require('../utils/float-equal.js');
 
-// `npm test -- tests/0_server_start_max_quit_max-boot-test/`
-
 let server;
 let globals;
 
@@ -36,7 +34,7 @@ before(async function() {
 });
 
 after(async function() {
-  this.timeout(10*1000);
+  this.timeout(10 * 1000);
 
   await openPatch(patchFilename);
   await quitMax();
@@ -45,7 +43,7 @@ after(async function() {
 
 describe('launch a server', () => {
   it('should open a server', async function() {
-    this.timeout(10 * 1000);
+    this.timeout(20 * 1000);
 
     for (let i = 0; i <= 10; i++) {
       // start max patch

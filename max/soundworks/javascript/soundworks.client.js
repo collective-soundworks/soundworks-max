@@ -205,9 +205,9 @@ async function onMessage(...args) {
 // HELPERS
 // -------------------------------------------------------
 async function _clearDicts() {
-  Max.setDict(`${globals.maxId}_values`,{});
-  Max.setDict(`${globals.maxId}_updates`,{});
-  Max.setDict(`${globals.maxId}_schema`,{});
+  await Max.setDict(`${globals.maxId}_values`,{});
+  await Max.setDict(`${globals.maxId}_updates`,{});
+  await Max.setDict(`${globals.maxId}_schema`,{});
   Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 }
 
@@ -245,7 +245,7 @@ function _sanitizeInputForNode(key, value) {
 
 async function _updateDict(dictName, obj) {
 	// sanitize values for Max if/when needed
-	Max.setDict(dictName, obj);
+	await Max.setDict(dictName, obj);
 }
 
 // -------------------------------------------------------
