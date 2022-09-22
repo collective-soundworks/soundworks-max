@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 3,
-			"revision" : 1,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 152.0, 199.0, 755.0, 523.0 ],
+		"rect" : [ 152.0, 199.0, 680.0, 285.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 89.0, 124.0, 63.0, 22.0 ],
+					"text" : "script stop"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 254.0, 201.0, 79.0, 22.0 ],
+					"patching_rect" : [ 145.0, 224.0, 79.0, 22.0 ],
 					"text" : "route running"
 				}
 
@@ -66,7 +78,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 361.5, 37.0, 400.0, 220.0 ],
+					"patching_rect" : [ 245.5, 25.0, 400.0, 220.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -78,9 +90,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 226.0, 111.0, 111.0, 22.0 ],
-					"presentation_linecount" : 2,
-					"text" : "script npm run start"
+					"patching_rect" : [ 71.0, 93.0, 64.0, 22.0 ],
+					"text" : "script start"
 				}
 
 			}
@@ -91,8 +102,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 173.0, 79.0, 113.0, 22.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 51.0, 61.0, 113.0, 22.0 ],
 					"text" : "script npm run build"
 				}
 
@@ -104,7 +114,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 133.0, 41.0, 98.0, 22.0 ],
+					"patching_rect" : [ 35.0, 29.0, 98.0, 22.0 ],
 					"text" : "script npm install"
 				}
 
@@ -116,7 +126,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 144.0, 167.0, 129.0, 22.0 ],
+					"patching_rect" : [ 35.0, 190.0, 129.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
@@ -134,6 +144,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
 					"source" : [ "obj-1", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -161,7 +178,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
-					"source" : [ "obj-7", 0 ]
+					"source" : [ "obj-7", 1 ]
 				}
 
 			}
@@ -186,7 +203,7 @@
 			}
 , 			{
 				"name" : "server-ln.js",
-				"bootpath" : "~/Desktop/soundworks-max/example",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/example",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1

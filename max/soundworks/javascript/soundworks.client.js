@@ -8,7 +8,7 @@ Max.addHandlers({
   [Max.MESSAGE_TYPES.DICT]: (obj) => onDict(obj),
   [Max.MESSAGE_TYPES.NUMBER]: (num) => {},
   attach: (arg) => attach(arg),
-  bootstrap: (maxId, serverIp = '127.0.0.1', port = 8000) => bootstrap(maxId, serverIp, port),
+  bootstrap: (maxId, serverIp = '127.0.0.1', port = 8000, verbose = 0) => bootstrap(maxId, serverIp, port, verbose),
   detach: () => _detach(),
   [Max.MESSAGE_TYPES.ALL]: (handled, ...args) => onMessage(...args),
 });
@@ -38,7 +38,7 @@ function log(...args) {
 	}
 }
 
-async function bootstrap(maxId, serverIp, port) {
+async function bootstrap(maxId, serverIp, port, verbose) {
 	log(maxId, serverIp, port);
 	
 	const config = {
@@ -61,6 +61,7 @@ async function bootstrap(maxId, serverIp, port) {
   globals.maxId = maxId;
   globals.serverIp = serverIp;
   globals.port = port;
+  globals.verbose = !!verbose;
 
   const reboot = async function() {
     try {
@@ -70,7 +71,7 @@ async function bootstrap(maxId, serverIp, port) {
       globals.state = null;
 
       await client.stop();
-      await bootstrap(maxId, serverIp, port);
+      await bootstrap(maxId, serverIp, port, verbose);
     } catch(err) { console.log(err) }
   }
 
@@ -87,6 +88,9 @@ async function bootstrap(maxId, serverIp, port) {
   Max.outlet('bootstrapped');
 };
 
+// -------------------------------------------------------
+// HANDLERS
+// -------------------------------------------------------
 async function attach(schemaName) {
 	if (schemaName === 0) {
 		log(`invalid schema name, abort`);
@@ -114,10 +118,10 @@ async function attach(schemaName) {
   	const dictSchema = await Max.getDict(`${maxId}_schema`);
 
   	state.subscribe(updates => {
-			updateDict(`${maxId}_updates`, updates);
+			_updateDict(`${maxId}_updates`, updates);
 			Max.outlet('updates');
 
-			updateDict(`${maxId}_values`, state.getValues());
+			_updateDict(`${maxId}_values`, state.getValues());
 			Max.outlet('values');
 
 			for (let name in updates) {
@@ -125,7 +129,7 @@ async function attach(schemaName) {
 
 				if (def.event === true) {
 					setImmediate(() => {
-						updateDict(`${maxId}_values`, state.getValues());
+						_updateDict(`${maxId}_values`, state.getValues());
 						Max.outlet('values');
 					});
 				}
@@ -135,80 +139,53 @@ async function attach(schemaName) {
   	state.onDetach(() => _clearDicts());
   	state.onDelete(() => _clearDicts());
 
-  	updateDict(`${maxId}_values`, state.getValues());
-  	updateDict(`${maxId}_schema`, state.getSchema());
+  	_updateDict(`${maxId}_values`, state.getValues());
+  	_updateDict(`${maxId}_schema`, state.getSchema());
 
   	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 
 
   	log(`attached to ${schemaName}`);
-
   } catch (err) {
   	console.log(err);
   }
 }
 
 async function onDict(dict) {
+  if (globals.state === null) {
+    return;
+  }
+
 	for (let name in dict) {
-		dict[name] = sanitizeInputForNode(name, dict[name]);
+		dict[name] = _sanitizeInputForNode(name, dict[name]);
 	}
 
 	await globals.state.set(dict);
 }
 
-async function _clearDicts() {
-	Max.setDict(`${globals.maxId}_values`,{});
-	Max.setDict(`${globals.maxId}_updates`,{});
-	Max.setDict(`${globals.maxId}_schema`,{});
-	Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
-}
-
-async function _detach() {
-	//@TODO detach request to the server did not seem to work
-	log(`detaching from ${globals.schemaName}`);
-
-	await globals.state.detach();
-	globals.schemaName = null;
-	globals.state = null;
-	_clearDicts();
-}
-
-function sanitizeInputForNode(key, value) {
-	const def = globals.state.getSchema(key);
-	let sanitizedValue = null;
-
-	switch (def.type) {
-		case 'boolean': {
-			sanitizedValue = !!value;
-			break;
-		}
-		default: {
-			sanitizedValue = value;
-			break;
-		}
-	}
-
-	if (def.nullable === false && sanitizedValue === null) {
-		throw new Error(`Failed to sanitize ${value} to ${def.type}`);
-	}
-
-	return sanitizedValue;
-}
-
 async function onBang() {
-	updateDict(`${globals.maxId}_values`, globals.state.getValues());
+  if (globals.state === null) {
+    return;
+  }
+
+	_updateDict(`${globals.maxId}_values`, globals.state.getValues());
 	Max.outlet('values');
 }
 
 async function onMessage(...args) {
+  if (globals.state === null) {
+    return;
+  }
+
 	const cmd = args[0];
+
 	if (handledMessages.includes(cmd)) {
 		return;
 	}
 
 	try {
 		const key = args[0];
-		const value = sanitizeInputForNode(key, args[1]);
+		const value = _sanitizeInputForNode(key, args[1]);
 
 		await globals.state.set({ [key]: value });
 	} catch(err) {
@@ -218,10 +195,52 @@ async function onMessage(...args) {
 
 }
 
-async function updateDict(dictName, obj) {
+// -------------------------------------------------------
+// HELPERS
+// -------------------------------------------------------
+async function _clearDicts() {
+  Max.setDict(`${globals.maxId}_values`,{});
+  Max.setDict(`${globals.maxId}_updates`,{});
+  Max.setDict(`${globals.maxId}_schema`,{});
+  Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
+}
+
+async function _detach() {
+  //@TODO detach request to the server did not seem to work
+  log(`detaching from ${globals.schemaName}`);
+
+  await globals.state.detach();
+  globals.schemaName = null;
+  globals.state = null;
+  _clearDicts();
+}
+
+function _sanitizeInputForNode(key, value) {
+  const def = globals.state.getSchema(key);
+  let sanitizedValue = null;
+
+  switch (def.type) {
+    case 'boolean': {
+      sanitizedValue = !!value;
+      break;
+    }
+    default: {
+      sanitizedValue = value;
+      break;
+    }
+  }
+
+  if (def.nullable === false && sanitizedValue === null) {
+    throw new Error(`Failed to sanitize ${value} to ${def.type}`);
+  }
+
+  return sanitizedValue;
+}
+
+async function _updateDict(dictName, obj) {
 	// sanitize values for Max if/when needed
 	Max.setDict(dictName, obj);
-} 
+}
 
 Max.outletBang();
 

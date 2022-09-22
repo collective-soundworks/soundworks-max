@@ -1,14 +1,25 @@
-## Max / Soundworks
-
-- test connect / disconnect / reconnect (b-ma)
-  --> 
-
-- mocha test suite
+## `soundworks-max`
 
 ## Max
 
-- recheck methods that need a state (ie. all input stuff)
+### [soundworks.shared-state]
 
+- [ ] intégrer le server dans le helper
+- [ ] outlet connected / disconnected
+- [ ] add outlet for node minitor with arg @debug
+
+- [ ] command to launch all tests at once
+- [ ] cleaner les logs
+- [x] parser les inputs
+- [ ] handle errors
+
+### [soundworks.shared-state.observe]
+
+@todo 
+
+### [soundworks.sync-server]
+
+@todo
 
 ## Questions
 
@@ -16,5 +27,5 @@
 - do we want to clear existing values if server stop?
 
 ## How to open patcher ?
-CMD + OPTION + M puis CMD + E puis appuyer sur le bouton
 
+CMD + OPTION + M puis CMD + E puis appuyer sur le bouton
