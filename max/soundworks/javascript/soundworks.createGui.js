@@ -74,7 +74,7 @@ function createIntInterface(name, def, initValue) {
   var int = patch.newdefault.apply(patch, args);
   int.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name);
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
@@ -108,7 +108,7 @@ function createFloatInterface(name, def, initValue) {
   var float = patch.newdefault.apply(patch, args);
   float.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name);
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
@@ -131,7 +131,7 @@ function createToggleInterface(name, def, initValue) {
   var toggle = patch.newdefault(x, y + 120, 'toggle');
   toggle.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name);
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);
@@ -154,7 +154,7 @@ function createStringInterface(name, def, initValue) {
   var msg = patch.newobject('message', x, y + 120, 110, 12);
   msg.set(initValue);
 
-  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name, ':');
+  var prependVolume = patch.newdefault(x, y + 150, 'prepend', name);
   var send = patch.newdefault(x, y + 180, 's', 'set-' + stateName);
 
   patcher.connect(receive, 0, unpack, 0);

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 62.0, 100.0, 1378.0, 710.0 ],
+		"rect" : [ 34.0, 100.0, 863.0, 769.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,91 +37,449 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-16",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 527.0, 209.0, 150.0, 33.0 ],
-					"text" : "you should start a server before"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bubble" : 1,
-					"id" : "obj-6",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 251.0, 254.0, 150.0, 24.0 ],
-					"text" : "attach <schemaName>"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"color" : [ 0.0, 0.803921568627451, 1.0, 1.0 ],
-					"id" : "obj-13",
+					"id" : "obj-17",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
-					"patching_rect" : [ 17.5, 453.0, 315.0, 22.0 ],
-					"text" : "soundworks.shared-state globals @ip 8.8.8.8 @port 9999"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"color" : [ 0.0, 0.803921568627451, 1.0, 1.0 ],
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
-					"patching_rect" : [ 17.5, 389.0, 184.0, 22.0 ],
-					"text" : "soundworks.shared-state globals"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 166.0, 230.0, 45.0, 22.0 ],
-					"text" : "detach"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-8",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 166.0, 254.0, 83.0, 22.0 ],
-					"text" : "attach globals"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bubble" : 1,
-					"id" : "obj-5",
-					"maxclass" : "comment",
-					"numinlets" : 1,
+					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 222.0, 389.0, 228.0, 24.0 ],
-					"text" : "argument : <schemaName> (optional)"
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 3,
+							"revision" : 1,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 863.0, 743.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "Default Max 7",
+						"showontab" : 1,
+						"assistshowspatchername" : 0,
+						"boxes" : [ 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-20",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 10.0, 226.0, 282.0, 21.0 ],
+									"text" : "Then you can start using the object"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"args" : [ "soundworks.example.server", "maxpat" ],
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-19",
+									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "soundworks.openpatcher.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
+									"offset" : [ 0.0, 0.0 ],
+									"patching_rect" : [ 10.0, 155.5, 189.0, 49.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-16",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 164.0, 416.0, 174.0, 24.0 ],
+									"text" : "double-click to see the state"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-14",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 10.0, 131.0, 282.0, 21.0 ],
+									"text" : "Let's begin by starting a Soundworks server"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-6",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 95.0, 337.0, 150.0, 24.0 ],
+									"text" : "attach <schemaName>"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.0, 0.803921568627451, 1.0, 1.0 ],
+									"id" : "obj-13",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
+									"patching_rect" : [ 10.0, 544.0, 315.0, 22.0 ],
+									"text" : "soundworks.shared-state globals @ip 8.8.8.8 @port 9999"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.0, 0.803921568627451, 1.0, 1.0 ],
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
+									"patching_rect" : [ 10.0, 480.0, 184.0, 22.0 ],
+									"text" : "soundworks.shared-state globals"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 43.5, 377.0, 45.0, 22.0 ],
+									"text" : "detach"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 10.0, 337.0, 83.0, 22.0 ],
+									"text" : "attach globals"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-5",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 214.5, 480.0, 228.0, 24.0 ],
+									"text" : "argument : <schemaName> (optional)"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 336.5, 574.0, 150.0, 47.0 ],
+									"text" : "defaults to\n- @ip: 127.0.0.1\n- @port :8000"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.0, 0.803921568627451, 1.0, 1.0 ],
+									"id" : "obj-28",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
+									"patching_rect" : [ 10.0, 417.0, 143.0, 22.0 ],
+									"text" : "soundworks.shared-state"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-7",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 10.0, 264.5, 302.0, 50.0 ],
+									"text" : "Attach to a global state created by the soundwork application (here \"globals\"), to monitor its changes and/or to control it:"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-12",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 336.5, 544.0, 146.0, 24.0 ],
+									"text" : "attributes : @ip @port "
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-24",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
+									"text" : "a way to communicate with Soundworks via WebSocket"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 10.0, 81.0, 455.0, 21.0 ],
+									"text" : "Overview",
+									"textcolor" : [ 0.501961, 0.501961, 0.501961, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 0,
+									"filename" : "helpdetails.js",
+									"id" : "obj-11",
+									"ignoreclick" : 1,
+									"jsarguments" : [ "soundworks.shared-state" ],
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 10.0, 10.0, 544.0, 52.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-28", 0 ],
+									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-28", 0 ],
+									"source" : [ "obj-9", 0 ]
+								}
+
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "default_style",
+								"newobj" : 								{
+									"accentcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"textcolor_inverse" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"button" : 								{
+									"bgcolor" : [ 0.682032, 0.698052, 0.748716, 1.0 ],
+									"color" : [ 0.960784, 0.827451, 0.156863, 1.0 ]
+								}
+,
+								"toggle" : 								{
+									"bgcolor" : [ 0.636487, 0.648652, 0.683149, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"elementcolor" : [ 0.786675, 0.801885, 0.845022, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 1
+							}
+, 							{
+								"name" : "default_style-1",
+								"newobj" : 								{
+									"accentcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"textcolor_inverse" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"button" : 								{
+									"bgcolor" : [ 0.682032, 0.698052, 0.748716, 1.0 ],
+									"color" : [ 0.960784, 0.827451, 0.156863, 1.0 ]
+								}
+,
+								"toggle" : 								{
+									"bgcolor" : [ 0.636487, 0.648652, 0.683149, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"elementcolor" : [ 0.786675, 0.801885, 0.845022, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "master_style",
+								"newobj" : 								{
+									"accentcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"textcolor_inverse" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"attrui" : 								{
+									"bgcolor" : [ 0.786675, 0.801885, 0.845022, 1.0 ],
+									"textcolor_inverse" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"button" : 								{
+									"bgcolor" : [ 0.682032, 0.698052, 0.748716, 1.0 ],
+									"color" : [ 1.0, 0.95051, 0.0, 1.0 ],
+									"elementcolor" : [ 0.786675, 0.801885, 0.845022, 1.0 ]
+								}
+,
+								"ezadc~" : 								{
+									"bgcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"elementcolor" : [ 0.862745, 0.870588, 0.878431, 1.0 ]
+								}
+,
+								"ezdac~" : 								{
+									"bgcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"elementcolor" : [ 0.862745, 0.870588, 0.878431, 1.0 ]
+								}
+,
+								"function" : 								{
+									"bgcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"multislider" : 								{
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"slider" : 								{
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"color" : [ 0.461105, 0.492646, 0.591878, 1.0 ],
+									"elementcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ]
+								}
+,
+								"toggle" : 								{
+									"bgcolor" : [ 0.682032, 0.698052, 0.748716, 1.0 ],
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"elementcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ]
+								}
+,
+								"message" : 								{
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0,
+										"color" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"color1" : [ 0.786675, 0.801885, 0.845022, 1.0 ],
+										"color2" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+										"proportion" : 0.39,
+										"type" : "gradient"
+									}
+,
+									"textcolor_inverse" : [ 0.0, 0.0, 0.0, 1.0 ]
+								}
+,
+								"umenu" : 								{
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0,
+										"color" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"color1" : [ 0.786675, 0.801885, 0.845022, 1.0 ],
+										"color2" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+										"proportion" : 0.39,
+										"type" : "gradient"
+									}
+
+								}
+,
+								"gain~" : 								{
+									"color" : [ 1.0, 0.861448, 0.16921, 1.0 ],
+									"elementcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ]
+								}
+,
+								"kslider" : 								{
+									"color" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"elementcolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 1
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 50.0, 33.0, 77.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p Overview"
 				}
 
 			}
@@ -142,7 +500,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
+						"rect" : [ 0.0, 26.0, 863.0, 743.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -208,24 +566,12 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "button",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 154.0, 147.0, 24.0, 24.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-26",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 323.5, 130.0, 29.5, 22.0 ],
+									"patching_rect" : [ 178.5, 140.0, 29.5, 22.0 ],
 									"text" : "1"
 								}
 
@@ -237,7 +583,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 283.5, 130.0, 29.5, 22.0 ],
+									"patching_rect" : [ 138.5, 140.0, 29.5, 22.0 ],
 									"text" : "0"
 								}
 
@@ -310,7 +656,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "dictionary" ],
-									"patching_rect" : [ 283.5, 175.0, 92.0, 22.0 ],
+									"patching_rect" : [ 138.5, 185.0, 92.0, 22.0 ],
 									"text" : "dict.pack event:"
 								}
 
@@ -395,13 +741,13 @@
 									"filename" : "helpdetails.js",
 									"id" : "obj-11",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "Soundworks API" ],
+									"jsarguments" : [ "soundworks.shared-state" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 10.0, 10.0, 359.0, 53.0 ]
+									"patching_rect" : [ 10.0, 10.0, 541.0, 49.0 ]
 								}
 
 							}
@@ -473,13 +819,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
 									"source" : [ "obj-28", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-28", 0 ],
-									"source" : [ "obj-4", 0 ]
 								}
 
 							}
@@ -656,7 +995,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 672.0, 118.0, 82.0, 22.0 ],
+					"patching_rect" : [ 114.0, 162.0, 82.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -665,45 +1004,6 @@
 					}
 ,
 					"text" : "p \"event type\""
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 344.0, 483.0, 150.0, 47.0 ],
-					"text" : "defaults to\n- @ip: 127.0.0.1\n- @port :8000"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"color" : [ 0.0, 0.803921568627451, 1.0, 1.0 ],
-					"id" : "obj-28",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
-					"patching_rect" : [ 17.5, 326.0, 143.0, 22.0 ],
-					"text" : "soundworks.shared-state"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 13.0,
-					"id" : "obj-7",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 17.5, 167.0, 302.0, 50.0 ],
-					"text" : "Attach to a global state created by the soundwork application (here \"globals\"), to monitor its changes and/or to control it:"
 				}
 
 			}
@@ -724,7 +1024,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
+						"rect" : [ 0.0, 26.0, 863.0, 743.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -755,11 +1055,25 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-5",
-									"maxclass" : "dict.view",
+									"id" : "obj-7",
+									"maxclass" : "button",
 									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 501.0, 123.0, 156.0, 48.0 ]
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 909.0, 354.0, 24.0, 24.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "button",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 192.0, 377.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -819,13 +1133,13 @@
 									"filename" : "helpdetails.js",
 									"id" : "obj-11",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "Soundworks API" ],
+									"jsarguments" : [ "soundworks.shared-state" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 10.0, 10.0, 359.0, 53.0 ]
+									"patching_rect" : [ 10.0, 10.0, 544.0, 51.0 ]
 								}
 
 							}
@@ -851,37 +1165,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 542.25, 370.0, 181.0, 24.0 ],
 									"text" : "parse with dict method "
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 4,
-									"outlettype" : [ "dictionary", "", "", "" ],
-									"patching_rect" : [ 18.25, 622.0, 110.0, 22.0 ],
-									"saved_object_attributes" : 									{
-										"embed" : 0,
-										"parameter_enable" : 0,
-										"parameter_mappable" : 0
-									}
-,
-									"text" : "dict globals_values"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"id" : "obj-3",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 134.5, 607.5, 181.0, 51.0 ],
-									"text" : "access values with the <schema_name>_values dict !"
 								}
 
 							}
@@ -1188,8 +1471,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 39,
-											"y" : 82,
+											"x" : 60,
+											"y" : 51,
 											"z" : 123
 										}
 
@@ -1278,8 +1561,16 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 235.75, 309.5, 27.75, 309.5 ],
 									"source" : [ "obj-23", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"midpoints" : [ 27.75, 355.0, 201.5, 355.0 ],
+									"order" : 2,
+									"source" : [ "obj-28", 0 ]
 								}
 
 							}
@@ -1310,9 +1601,16 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
+									"source" : [ "obj-28", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-73", 0 ],
 									"midpoints" : [ 27.75, 352.0, 27.75, 352.0 ],
-									"order" : 2,
+									"order" : 3,
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -1334,15 +1632,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"order" : 1,
-									"source" : [ "obj-33", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-5", 0 ],
-									"order" : 0,
 									"source" : [ "obj-33", 0 ]
 								}
 
@@ -1374,14 +1663,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-33", 1 ],
 									"source" : [ "obj-39", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 798.5, 310.0, 27.75, 310.0 ],
-									"source" : [ "obj-6", 0 ]
 								}
 
 							}
@@ -1437,15 +1718,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 869.75, 309.5, 27.75, 309.5 ],
-									"source" : [ "obj-9", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 506.75, 309.5, 27.75, 309.5 ],
 									"source" : [ "obj-90", 0 ]
 								}
 
@@ -1598,7 +1870,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 671.0, 54.0, 115.0, 22.0 ],
+					"patching_rect" : [ 74.0, 98.0, 115.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1627,7 +1899,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
+						"rect" : [ 34.0, 126.0, 863.0, 743.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1903,13 +2175,13 @@
 									"filename" : "helpdetails.js",
 									"id" : "obj-11",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "Soundworks API" ],
+									"jsarguments" : [ "soundworks.shared-state" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 10.0, 10.0, 359.0, 53.0 ]
+									"patching_rect" : [ 10.0, 10.0, 545.0, 50.0 ]
 								}
 
 							}
@@ -2218,7 +2490,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 672.0, 86.0, 144.0, 22.0 ],
+					"patching_rect" : [ 97.0, 130.0, 144.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2227,61 +2499,6 @@
 					}
 ,
 					"text" : "p \"working with schemas\""
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bubble" : 1,
-					"id" : "obj-12",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 344.0, 453.0, 146.0, 24.0 ],
-					"text" : "attributes : @ip @port "
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 13.0,
-					"id" : "obj-24",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 55.0, 330.0, 21.0 ],
-					"text" : "a way to communicate with Soundworks via WebSocket"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 13.0,
-					"id" : "obj-18",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 81.0, 455.0, 21.0 ],
-					"text" : "Overview",
-					"textcolor" : [ 0.501961, 0.501961, 0.501961, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"border" : 0,
-					"filename" : "helpdetails.js",
-					"id" : "obj-11",
-					"ignoreclick" : 1,
-					"jsarguments" : [ "Soundworks API" ],
-					"maxclass" : "jsui",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 10.0, 10.0, 359.0, 53.0 ]
 				}
 
 			}
@@ -2302,7 +2519,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1378.0, 684.0 ],
+						"rect" : [ 0.0, 26.0, 863.0, 743.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2338,7 +2555,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 1043.0, 482.5, 78.0, 22.0 ],
+									"patching_rect" : [ 396.0, 591.5, 78.0, 22.0 ],
 									"text" : "route volume"
 								}
 
@@ -2351,7 +2568,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 811.5, 415.0, 24.0, 24.0 ]
+									"patching_rect" : [ 695.5, 432.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -2363,7 +2580,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 417.0, 450.0, 24.0, 24.0 ]
+									"patching_rect" : [ 309.0, 432.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -2412,13 +2629,13 @@
 									"filename" : "helpdetails.js",
 									"id" : "obj-11",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "Soundworks API" ],
+									"jsarguments" : [ "soundworks.shared-state" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 10.0, 10.0, 359.0, 53.0 ]
+									"patching_rect" : [ 10.0, 10.0, 548.0, 53.0 ]
 								}
 
 							}
@@ -2428,7 +2645,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 786.100000000000023, 530.5, 100.0, 100.0 ]
+									"patching_rect" : [ 560.999999999999886, 511.0, 100.0, 100.0 ]
 								}
 
 							}
@@ -2439,8 +2656,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 732.0, 530.5, 50.0, 22.0 ],
-									"text" : "pouet"
+									"patching_rect" : [ 506.899999999999864, 511.0, 50.0, 22.0 ],
+									"text" : "dfglkf"
 								}
 
 							}
@@ -2453,7 +2670,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 676.0, 530.5, 50.0, 22.0 ]
+									"patching_rect" : [ 450.899999999999864, 511.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2465,7 +2682,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 644.5, 530.5, 22.0, 22.0 ]
+									"patching_rect" : [ 419.399999999999864, 511.0, 22.0, 22.0 ]
 								}
 
 							}
@@ -2477,7 +2694,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 592.5, 530.5, 50.0, 22.0 ]
+									"patching_rect" : [ 367.399999999999864, 511.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2525,7 +2742,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 6,
 									"outlettype" : [ "", "", "", "", "", "" ],
-									"patching_rect" : [ 624.5, 489.0, 221.0, 22.0 ],
+									"patching_rect" : [ 367.399999999999864, 471.5, 221.0, 22.0 ],
 									"text" : "route volume mute gain message config"
 								}
 
@@ -2537,7 +2754,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 624.5, 450.0, 47.0, 22.0 ],
+									"patching_rect" : [ 367.399999999999864, 432.5, 47.0, 22.0 ],
 									"text" : "dict.iter"
 								}
 
@@ -2549,7 +2766,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 689.0, 450.0, 181.0, 24.0 ],
+									"patching_rect" : [ 431.899999999999864, 432.5, 181.0, 24.0 ],
 									"text" : "handle state updates"
 								}
 
@@ -2633,7 +2850,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 1043.0, 549.0, 101.0, 22.0 ],
+									"patching_rect" : [ 396.0, 658.0, 101.0, 22.0 ],
 									"text" : "scale -80 6 0 127"
 								}
 
@@ -2646,7 +2863,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1043.0, 591.0, 177.0, 26.0 ]
+									"patching_rect" : [ 396.0, 700.0, 177.0, 26.0 ]
 								}
 
 							}
@@ -2657,7 +2874,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 1043.0, 513.0, 55.0, 22.0 ],
+									"patching_rect" : [ 396.0, 622.0, 55.0, 22.0 ],
 									"text" : "zl slice 1"
 								}
 
@@ -2669,8 +2886,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 922.0, 513.0, 119.0, 22.0 ],
-									"text" : "message : pouet"
+									"patching_rect" : [ 275.0, 622.0, 119.0, 22.0 ],
+									"text" : "message : dfglkf"
 								}
 
 							}
@@ -2681,7 +2898,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 1007.0, 450.0, 75.0, 22.0 ],
+									"patching_rect" : [ 360.0, 559.0, 75.0, 22.0 ],
 									"text" : "dict.serialize"
 								}
 
@@ -2729,11 +2946,12 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-54",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 421.5, 484.5, 181.0, 24.0 ],
+									"patching_rect" : [ 157.0, 530.0, 181.0, 39.0 ],
 									"text" : "schema definition"
 								}
 
@@ -2744,7 +2962,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 303.0, 450.0, 105.0, 84.0 ]
+									"patching_rect" : [ 195.0, 432.5, 105.0, 84.0 ]
 								}
 
 							}
@@ -2843,7 +3061,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
-									"patching_rect" : [ 303.0, 387.0, 527.5, 22.0 ],
+									"patching_rect" : [ 195.0, 385.0, 292.5, 22.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
 
@@ -2880,7 +3098,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 250.0, 330.0, 312.5, 330.0 ],
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -2909,8 +3126,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-29", 0 ],
-									"midpoints" : [ 566.75, 440.5, 634.0, 440.5 ],
-									"order" : 1,
+									"order" : 0,
 									"source" : [ "obj-28", 1 ]
 								}
 
@@ -2934,8 +3150,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-96", 0 ],
-									"midpoints" : [ 566.75, 438.5, 1016.5, 438.5 ],
-									"order" : 0,
+									"order" : 1,
 									"source" : [ "obj-28", 1 ]
 								}
 
@@ -3034,7 +3249,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 645.0, 372.5, 312.5, 372.5 ],
 									"source" : [ "obj-56", 0 ]
 								}
 
@@ -3042,7 +3256,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 500.0, 372.0, 312.5, 372.0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -3211,7 +3424,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 671.0, 24.0, 151.0, 22.0 ],
+					"patching_rect" : [ 59.0, 67.0, 151.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3224,21 +3437,28 @@
 
 			}
  ],
-		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-28", 0 ],
-					"source" : [ "obj-8", 0 ]
+		"lines" : [  ],
+		"parameters" : 		{
+			"obj-17::obj-19::obj-3" : [ "live.text[1]", "live.text", 0 ],
+			"parameterbanks" : 			{
+				"0" : 				{
+					"index" : 0,
+					"name" : "",
+					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
 				}
 
 			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-28", 0 ],
-					"source" : [ "obj-9", 0 ]
+,
+			"parameter_overrides" : 			{
+				"obj-17::obj-19::obj-3" : 				{
+					"parameter_longname" : "live.text[1]"
 				}
 
 			}
- ],
+,
+			"inherited_shortname" : 1
+		}
+,
 		"dependency_cache" : [ 			{
 				"name" : "fit_jweb_to_bounds.js",
 				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
@@ -3275,6 +3495,20 @@
 				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
 				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "soundworks.digest.js",
+				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"patcherrelativepath" : "../javascript",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "soundworks.openpatcher.maxpat",
+				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"patcherrelativepath" : "../patchers",
+				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
