@@ -13,6 +13,7 @@
 - [x] parser les inputs
 
 - [ ] handle errors
+- [ ] remore re-connection logs from soundworks
 
 #### Issues
 

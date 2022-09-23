@@ -43,11 +43,11 @@ before(async function() {
 
 describe('attaching with severals objets and severals schemas', () => {
   it('should log schemas value on the output of each object', async function() {
-    this.timeout(30 * 1000);
+    this.timeout(60 * 1000);
 
     await openPatch(patchFilename);
     // the poly may be long to instanciate (looks better but not stable)
-    await new Promise(resolve => setTimeout(resolve, 10 * 1000));
+    await new Promise(resolve => setTimeout(resolve, 30 * 1000));
 
     await quitMax(server);
     await server.stop();
