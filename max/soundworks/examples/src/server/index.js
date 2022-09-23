@@ -5,12 +5,11 @@ import fs from 'fs';
 import serveStatic from 'serve-static';
 import compile from 'template-literal';
 import PlayerExperience from './PlayerExperience.js';
-import MaxExperience from './MaxExperience.js';
 
 // -------------------------------------------------------------------
-// 1. import the StateManagerOsc class
+// 1. import the soundworksMax object
 // -------------------------------------------------------------------
-// import { StateManagerOsc } from '@soundworks/state-manager-osc';
+import { soundworksMax } from '@soundworks/max';
 
 import globalsSchema from './schemas/globals.js';
 
@@ -18,6 +17,11 @@ import getConfig from './utils/getConfig.js';
 const ENV = process.env.ENV || 'default';
 const config = getConfig(ENV);
 const server = new Server();
+
+// -------------------------------------------------------------------
+// 2. init soundworks for Max
+// -------------------------------------------------------------------
+soundworksMax.init(server);
 
 // html template and static files (in most case, this should not be modified)
 server.templateEngine = { compile };
@@ -33,9 +37,6 @@ console.log(`
 --------------------------------------------------------
 `);
 
-// -------------------------------------------------------------------
-// 2. register a schema
-// -------------------------------------------------------------------
 server.stateManager.registerSchema('globals', globalsSchema);
 
 (async function launch() {
@@ -56,53 +57,11 @@ server.stateManager.registerSchema('globals', globalsSchema);
     });
 
     const playerExperience = new PlayerExperience(server, 'player');
-    const maxExperience = new MaxExperience(server, 'max');
-    
-    // maxStateManager.init(server);
 
     await server.start();
     playerExperience.start();
 
-    // maxStateManager.start();
-
-    // -------------------------------------------------------------------
-    // 3. create a global state from the registered schema
-    // -------------------------------------------------------------------
-    // const bigData = fs.readFileSync('./data/export.json');
-
-    server.stateManager.registerUpdateHook('globals', updates => {
-      if (updates.immediate && updates.immediate === 2) {
-        return {
-          ...updates,
-          immediate: 4,
-        };
-      }
-
-      // if (updates.loadBigData) {
-      //   return {
-      //     ...updates,
-      //     bigData: JSON.parse(bigData),
-      //   };
-      // }
-    });
     const globals = await server.stateManager.create('globals');
-
-    setTimeout(() => {
-      globals.set({ message: null });
-    }, 2000);
-
-    // ----------------------------------------------------------
-    // 4. configure and init the StateManagerOsc
-    // ----------------------------------------------------------
-    // const oscStateManager = new StateManagerOsc(server.stateManager, {
-    //   localAddress: '0.0.0.0',
-    //   localPort: 57121,
-    //   remoteAddress: '127.0.0.1',
-    //   remotePort: 57122,
-    // });
-
-    // await oscStateManager.init();
-
   } catch (err) {
     console.error(err.stack);
   }

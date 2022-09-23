@@ -1,12 +1,9 @@
 const Server = require('@soundworks/core/server/index.js').Server;
-const ServerAbstractExperience = require('@soundworks/core/server').AbstractExperience;
+const { soundworksMax } = require('../../dist/index.js');
+
 // mixed config for server and client
 const config = {
-  app: {
-    clients: {
-      max: { target: 'node' },
-    },
-  },
+  app: {},
   env: {
     type: 'development',
     port: 8000,
@@ -14,26 +11,10 @@ const config = {
   },
 };
 
-
-class ServerMaxExperience extends ServerAbstractExperience {
-  start() {
-    super.start();
-    console.log('> server started');
-  }
-
-  enter(client) {
-    super.enter(client);
-    console.log(`client ${client.id} entered`);
-  }
-
-  exit(client) {
-    console.log(`client ${client.id} exited`);
-    super.exit(client);
-  }
-}
-
 (async function() {
   const server = new Server();
+  soundworksMax.init(server);
+
   await server.init(config);
 
   server.stateManager.registerSchema('globals', {
@@ -113,8 +94,5 @@ class ServerMaxExperience extends ServerAbstractExperience {
   const globals = await server.stateManager.create('globals');
   globals.subscribe(updates => console.log(updates));
 
-  const experience = new ServerMaxExperience(server, 'max');
-
   await server.start();
-  experience.start();
 }());

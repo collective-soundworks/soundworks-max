@@ -1,7 +1,7 @@
 {
-  "name": "@soundworks/state-manager-osc",
+  "name": "@soundworks/max",
   "version": "1.0.0-alpha.0",
-  "description": "Utility to monitor and control soundworks' shared state within Max through OSC",
+  "description": "Utilities to facilitate communications between Max/MSP and soundworks",
   "main": "dist/index.js",
   "license": "BSD-3-Clause",
   "author": [
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/collective-soundworks/soundworks-state-manager-osc.git"
+    "url": "https://github.com/collective-soundworks/soundworks-max.git"
   },
   "scripts": {
     "clean": "rm -Rf dist",
@@ -22,18 +22,16 @@
     "postversion": "node bin/sync-max-package-version.js && cd max/soundworks/javascript && npm install package-lock-only && git commit -am 'synced version'"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
-    "find-process": "^1.4.7",
-    "lodash.throttle": "^4.1.1"
+    "@soundworks/core": "^3.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-commonjs": "^7.9.0",
-    "@soundworks/core": "^3.5.1",
     "chai": "^4.3.6",
     "chokidar": "^3.0.1",
     "chokidar-cli": "^2.1.0",
+    "find-process": "^1.4.7",
     "markdown-toc": "^1.2.0",
     "node-osc": "^8.0.5",
     "open": "^8.4.0",

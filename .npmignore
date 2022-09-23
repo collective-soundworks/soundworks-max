@@ -5,11 +5,15 @@
 /max
 /example
 /resources
+/bin
 
 .editorconfig
 .babelrc
+.github
+NOTES.md
 
 # junk files
 package-lock.json
 .DS_Store
 Thumbs.db
+*.bak

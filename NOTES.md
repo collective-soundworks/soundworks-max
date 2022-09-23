@@ -4,16 +4,9 @@
 
 ### [soundworks.shared-state]
 
-- [x] intégrer le server dans le helper
-- [x] outlet connected / disconnected
-- [x] add outlet for node minitor with arg @debug -> better than outlet ;)
-
-- [x] command to launch all tests at once
-- [x] cleaner les logs
-- [x] parser les inputs
-
-- [x] handle errors
-- [x] remore re-connection logs from soundworks
+- [ ] release
+- [x] server-side abstraction 
+- [ ] support es & commonjs module
 
 #### Issues
 

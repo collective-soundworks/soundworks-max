@@ -1,34 +1,16 @@
 const Server = require('@soundworks/core/server/index.js').Server;
 const AbstractExperience = require('@soundworks/core/server').AbstractExperience;
 const { closeOscClient } = require('./max-orchestrator.js');
+const { soundworksMax } = require('../../dist/index.js');
+
 
 const { StateManagerOsc } = require('../../');
 const log = require('../utils/logger.js');
-
-
-class MaxExperience extends AbstractExperience {
-  start() {
-    log('> server started');
-  }
-
-  enter(client) {
-    log(`> client ${client.id} entered`);
-    super.enter(client);
-  }
-
-  exit(client) {
-    log(`> client ${client.id} exited`);
-    super.exit(client);
-  }
-}
 
 module.exports = async function createSoundworksServer(initStateManagerOsc = true) {
   const config = {
     app: {
       name: 'test',
-      clients: {
-        max: { target: 'node' },
-      },
     },
     env: {
       type: 'development',
@@ -40,12 +22,11 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
   };
 
   const server = new Server();
+  soundworksMax.init(server);
 
   await server.init(config);
-  const maxExperience = new MaxExperience(server, 'max');
 
   await server.start();
-  maxExperience.start();
 
   const oldClose = server.stop.bind(server);
 
