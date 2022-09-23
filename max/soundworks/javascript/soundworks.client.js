@@ -126,10 +126,10 @@ async function attach(schemaName) {
 				const def = globals.state.getSchema(name);
 
 				if (def.event === true) {
-					setImmediate(() => {
+					setTimeout(() => {
 						_updateDict(`${maxId}_values`, state.getValues());
 						Max.outlet('values');
-					});
+					}, 10);
 				}
 			}
   	});

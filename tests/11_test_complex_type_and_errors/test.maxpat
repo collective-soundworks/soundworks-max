@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 196.0, 87.0, 1154.0, 569.0 ],
+		"rect" : [ 754.0, 87.0, 1285.0, 605.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -59,7 +59,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 673.0, 253.0, 101.0, 49.0 ],
-					"text" : "myComplexObject dictionary u721000607"
+					"text" : "myComplexObject dictionary u866001068"
 				}
 
 			}
@@ -176,7 +176,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 544.0, 253.0, 101.0, 49.0 ],
-					"text" : "myObject dictionary u748000608"
+					"text" : "myObject dictionary u166001069"
 				}
 
 			}
@@ -195,12 +195,11 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-40",
-					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 419.0, 253.0, 101.0, 35.0 ],
+					"patching_rect" : [ 419.0, 253.0, 103.0, 22.0 ],
 					"text" : "myArray 0 1 2 3 4"
 				}
 

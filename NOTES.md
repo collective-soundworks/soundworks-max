@@ -8,6 +8,8 @@
 - [x] server-side abstraction 
 - [ ] support es & commonjs module
 
+- [ ] for event, replace `setImmediate` w/ `setTimeout(10ms)`
+
 #### Issues
 
 ### [soundworks.shared-state.observe]
