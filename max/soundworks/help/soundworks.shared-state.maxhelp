@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 3,
-			"revision" : 1,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -51,13 +51,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 3,
-							"revision" : 1,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 872.0, 743.0 ],
+						"rect" : [ 34.0, 126.0, 872.0, 743.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -88,6 +88,41 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 219.0, 538.0, 109.0, 22.0 ],
+									"text" : "[socket] connected"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 219.0, 510.0, 46.0, 22.0 ],
+									"text" : "route 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 219.0, 565.0, 169.0, 22.0 ],
+									"text" : "print soundworks.shared-state"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-26",
 									"maxclass" : "toggle",
 									"numinlets" : 1,
@@ -106,7 +141,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 306.0, 574.0, 24.0, 24.0 ]
+									"patching_rect" : [ 306.0, 639.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -203,7 +238,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "dictionary", "dictionary", "dictionary", "" ],
-									"patching_rect" : [ 10.0, 544.0, 315.0, 22.0 ],
+									"patching_rect" : [ 10.0, 609.0, 315.0, 22.0 ],
 									"text" : "soundworks.shared-state globals @ip 8.8.8.8 @port 9999"
 								}
 
@@ -264,7 +299,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.5, 574.0, 150.0, 47.0 ],
+									"patching_rect" : [ 336.5, 639.0, 150.0, 47.0 ],
 									"text" : "defaults to\n- @ip: 127.0.0.1\n- @port :8000"
 								}
 
@@ -303,7 +338,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.5, 544.0, 146.0, 24.0 ],
+									"patching_rect" : [ 336.5, 609.0, 146.0, 24.0 ],
 									"text" : "attributes : @ip @port "
 								}
 
@@ -354,7 +389,16 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"order" : 0,
+									"source" : [ "obj-10", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-26", 0 ],
+									"order" : 1,
 									"source" : [ "obj-10", 3 ]
 								}
 
@@ -368,8 +412,22 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
 									"source" : [ "obj-28", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-4", 0 ]
 								}
 
 							}
@@ -551,7 +609,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 3,
-							"revision" : 1,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1075,7 +1133,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 3,
-							"revision" : 1,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1312,7 +1370,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 21.25, 616.5, 141.0, 66.0 ],
+									"patching_rect" : [ 21.25, 616.5, 142.0, 66.0 ],
 									"text" : "output is a dict containing all the state's values"
 								}
 
@@ -1858,7 +1916,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 3,
-							"revision" : 1,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2491,13 +2549,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 3,
-							"revision" : 1,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 126.0, 872.0, 743.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 743.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3397,35 +3455,35 @@
 			}
 , 			{
 				"name" : "soundworks.client.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.createGui.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.digest.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.openpatcher.maxpat",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.shared-state.maxpat",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1

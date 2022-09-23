@@ -2,8 +2,6 @@
 
 > Utility to monitor and control soundworks' shared states within Max
 
-<!--![Max screenshot](./resources/max.png)-->
-
 _**Warning**: this component is experimental and will probably be subject to changes_
 
 ## Table of Contents
