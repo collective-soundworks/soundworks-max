@@ -69,7 +69,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 114.0, 166.0, 144.0, 22.0 ],
-					"text" : "poly~ many_schemas 10"
+					"text" : "poly~ many_schemas 5"
 				}
 
 			}
