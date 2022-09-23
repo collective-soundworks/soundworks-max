@@ -14,8 +14,8 @@ const { getLogAsString, getLogAsNumArray, getLogAsArray } = require('../utils/lo
 let server;
 let globals;
 
-const numOfSchema = 10;
-const numOfInstances = 10;
+const numOfSchema = 5;
+const numOfInstances = 5;
 const states = {};
 
 const patchFilename = path.join(__dirname, 'test.maxpat');
@@ -43,15 +43,11 @@ before(async function() {
 
 describe('attaching with severals objets and severals schemas', () => {
   it('should log schemas value on the output of each object', async function() {
-<<<<<<< HEAD
-    this.timeout(40 * 1000);
-=======
     this.timeout(60 * 1000);
->>>>>>> 15523683a3ed5eab6ae4b51c566568ffe869c0e0
 
     await openPatch(patchFilename);
     // the poly may be long to instanciate (looks better but not stable)
-    await new Promise(resolve => setTimeout(resolve, 30 * 1000));
+    await new Promise(resolve => setTimeout(resolve, 5 * 1000));
 
     await quitMax(server);
     await server.stop();
