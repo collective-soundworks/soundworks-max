@@ -12,8 +12,8 @@
 - [x] cleaner les logs
 - [x] parser les inputs
 
-- [ ] handle errors
-- [ ] remore re-connection logs from soundworks
+- [x] handle errors
+- [x] remore re-connection logs from soundworks
 
 #### Issues
 
