@@ -53,9 +53,9 @@ npm install --save @soundworks/state-manager-osc
 
 ## Caveats
 Each `soundworks.shared-state` object will create a new soundworks client,   
-which is known as being suboptimal, but improve user friendliness. 
-Our unit tests uses 25 instances, which work on all systems without problems. 
-We run the test with 100 objects successfully on ARM, but we've got some problems on Intel.
+which is known as being suboptimal, but improve user friendliness.  
+Our unit tests uses 25 instances, which work on all systems without problems.  
+We run the test with 100 objects successfully on ARM, but we've got some problems on Intel.  
 
 ## Running the tests
 
