@@ -90,7 +90,7 @@ async function bootstrap(maxId, serverIp, port, verbose) {
 // HANDLERS
 // -------------------------------------------------------
 async function attach(schemaName) {
-	if (schemaName === 0) {
+	if (schemaName === 0 || schemaName[0] === '@') {
 		log(`Invalid schema name, abort`);
 		return;
 	}
