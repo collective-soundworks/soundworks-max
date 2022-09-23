@@ -20,6 +20,7 @@
 - 04_sending --> events 
   + ok: `await Max.setDict()`
 - 08_attach_many_clients
+- when no schema name and attributes. we should parse `@`
 
 ### [soundworks.shared-state.observe]
 
