@@ -44,6 +44,7 @@
 					"annotation" : "",
 					"automation" : "Off",
 					"automationon" : "On",
+					"fontsize" : 12.0,
 					"hint" : "",
 					"id" : "obj-3",
 					"maxclass" : "live.text",

@@ -67,10 +67,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 13.0, 128.0, 198.0, 38.0 ],
+					"patching_rect" : [ 13.0, 128.0, 217.0, 38.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 133.0, 24.0, 462.0, 22.0 ],
-					"text" : "N4M abstract to communicate with soundworks environment"
+					"text" : "N4M abstraction to communicate with soundworks environment"
 				}
 
 			}
