@@ -12,6 +12,9 @@
     "type": "git",
     "url": "https://github.com/collective-soundworks/soundworks-max.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rm -Rf dist",
     "prepublishOnly": "npm run clean && npm run build",
