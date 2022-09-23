@@ -9,11 +9,11 @@
 - [x] add outlet for node minitor with arg @debug -> better than outlet ;)
 
 - [x] command to launch all tests at once
-
-- [ ] cleaner les logs
+- [x] cleaner les logs
 - [x] parser les inputs
 
-- [ ] handle errors
+- [x] handle errors
+- [x] remore re-connection logs from soundworks
 
 #### Issues
 

@@ -20,9 +20,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build project # This would actually build your project, using zip for an example artifact
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install deps in for Max external
         run: |
-          (cd max && zip -r - SoundworksAPI) > SoundworksAPI.zip
+          (cd max/soundworks/javascript && npm install)
+      - name: Zip Max external # This would actually build your project, using zip for an example artifact
+        run: |
+          (cd max && zip -r - soundworks) > soundworks-max.zip
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -40,6 +47,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./SoundworksAPI.zip
-          asset_name: SoundworksAPI.zip
+          asset_path: ./soundworks-max.zip
+          asset_name: soundworks-max.zip
           asset_content_type: application/zip

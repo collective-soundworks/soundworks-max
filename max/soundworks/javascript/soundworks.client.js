@@ -38,7 +38,6 @@ function log(...args) {
 }
 
 async function bootstrap(maxId, serverIp, port, verbose) {
-	
 	const config = {
 	  clientType: 'max',
 	  env: { port, serverIp },
@@ -162,7 +161,7 @@ async function onDict(dict) {
 	}
 
   try {
-	 await globals.state.set(dict);
+	  await globals.state.set(dict);
   } catch(err) {
     console.log(err);
   }
@@ -189,17 +188,17 @@ async function onMessage(...args) {
 	}
 
 	try {
-		const key = args[0];
-		const value = _sanitizeInputForNode(key, args[1]);
+    // @note - we must accept a list, because array are translated to lists by max
+		const key = args.shift();
+		const value = _sanitizeInputForNode(key, ...args);
 
     try {
 		  await globals.state.set({ [key]: value });
     } catch(err) {
-      console.log(err);
+      console.log(err.message);
     }
 	} catch(err) {
-		log(err);
-		console.log("cannot parse message, use dict instead");
+		console.error(err.message);
 	}
 
 }
@@ -211,6 +210,7 @@ async function _clearDicts() {
   await Max.setDict(`${globals.maxId}_values`,{});
   await Max.setDict(`${globals.maxId}_updates`,{});
   await Max.setDict(`${globals.maxId}_schema`,{});
+
   Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
 
   // Send disconnected value
@@ -229,13 +229,88 @@ async function _detach() {
   _clearDicts();
 }
 
-function _sanitizeInputForNode(key, value) {
-  const def = globals.state.getSchema(key);
+function _sanitizeInputForNode(key, ...value) {
+  if (value.length === 1) {
+    value = value[0];
+  }
+
+  let def;
+
+  try {
+    def = globals.state.getSchema(key);
+  } catch(err) {
+    throw new Error(`Unknown param ${key}`);
+  }
+
   let sanitizedValue = null;
+
+  // parse max null
+  if (value === 'null') {
+    value = null;
+  }
 
   switch (def.type) {
     case 'boolean': {
-      sanitizedValue = !!value;
+      if (value === 1) {
+        sanitizedValue = true;
+      } else if (value == 0) {
+        sanitizedValue = false;
+      } else if (def.nullable && value === null) {
+        sanitizedValue = value;
+      } else {
+        throw new Error(`Invalid value ${value} for param ${key} - type: boolean`);
+      }
+      break;
+    }
+    case 'integer': {
+      if (Number.isInteger(value)) {
+        sanitizedValue = value;
+      } else if (def.nullable && value === null) {
+        sanitizedValue = value;
+      } else {
+        throw new Error(`Invalid value ${value} for param ${key} - type: integer`);
+      }
+
+      break;
+    }
+    case 'float': {
+      if (Number.isFinite(value)) {
+        sanitizedValue = value;
+      } else if (def.nullable && value === null) {
+        sanitizedValue = value;
+      } else {
+        throw new Error(`Invalid value ${value} for param ${key} - type: float`);
+      }
+      break;
+    }
+    case 'string': {
+      if (typeof value === 'string' || value instanceof String) {
+        sanitizedValue = value;
+      } else if (def.nullable && value === null) {
+        sanitizedValue = value;
+      } else {
+        throw new Error(`Invalid value ${value} for param ${key} - type: string`);
+      }
+      break;
+    }
+    case 'enum': {
+      let { list } = def;
+
+      if (list.indexOf(value) !== -1) {
+        sanitizedValue = value;
+      } else if (def.nullable && value === null) {
+        sanitizedValue = value;
+      } else {
+        throw new Error(`Invalid value ${value} for param ${key} - type: enum`);
+      }
+      break;
+    }
+    case 'any': {
+      if (!def.nullable && value === null) {
+        throw new Error(`Invalid value ${value} for param ${key} - type: any`);
+      } else {
+        sanitizedValue = value;
+      }
       break;
     }
     default: {
