@@ -22,7 +22,7 @@
     "dev": "npm run clean && npm run build && chokidar src -c \"npm run build\"",
     "test": "serial-mocha",
     "toc": "markdown-toc -i README.md",
-    "postversion": "node bin/sync-max-package-version.js && cd max/soundworks/javascript && npm install package-lock-only && git commit -am 'synced version'"
+    "postversion": "node bin/sync-max-package-version.js && git commit -am 'synced version'"
   },
   "dependencies": {
     "@soundworks/core": "^3.6.0"
