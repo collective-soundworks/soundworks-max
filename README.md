@@ -39,7 +39,7 @@ cf. `~/Documents/Max 8/Packages/soundworks/extras/soundworks.maxpat`
 
 ## Running the example
 
-1. From the overview click `soundworks.shared-state`. 
+1. From the overview click `soundworks.shared-state`  
 2. Start the soundworks server by opening the `soundworks.example.server`   
 and follow the instructions.
 

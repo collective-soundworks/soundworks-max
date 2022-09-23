@@ -190,7 +190,7 @@ describe('sending messages', () => {
     assert.equal(result, expected);
   });
 
-  it.only('should log some events sent by server', async function() {
+  it('should log some events sent by server', async function() {
     this.timeout(30 * 1000);
     // start max patch
     await openPatch(patchFilenameEVENT);
