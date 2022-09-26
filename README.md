@@ -2,8 +2,6 @@
 
 > Utility to monitor and control soundworks' shared states within Max
 
-<!-- _**Warning**: this component is experimental and will probably be subject to changes_ -->
-
 This repository is about a [Max](https://cycling74.com/products/max-features) package tested on Mac.  
 Windows version should work but is untested.
 
@@ -12,20 +10,23 @@ Windows version should work but is untested.
 <!-- toc -->
 
 - [Max](#max)
-  * [Installation](#installation)
+  * [Install](#install)
   * [Usage](#usage)
 - [Running the example](#running-the-example)
 - [Javascript](#javascript)
-  * [NPM](#npm)
+  * [Install](#install-1)
+  * [Usage](#usage-1)
+- [Next Steps](#next-steps)
 - [Caveats](#caveats)
-- [Running the tests](#running-the-tests)
+- [Running the test suite](#running-the-test-suite)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 <!-- tocstop -->
 
 ## Max
 
-### Installation
+### Install
 
 1. Download the Max package (soundworks-max.zip) from the release :  
 [https://github.com/collective-soundworks/soundworks-max/releases](https://github.com/collective-soundworks/soundworks-max/releases)
@@ -44,20 +45,46 @@ cf. `~/Documents/Max 8/Packages/soundworks/extras/soundworks.maxpat`
 and follow the instructions.
 
 ## Javascript
-### NPM
+
+### Install
 
 ```sh
 npm install --save @soundworks/state-manager-osc
 ```
 
 
-## Caveats
-Each `soundworks.shared-state` object will create a new soundworks client,   
-which is known as being suboptimal, but improve user friendliness.  
-Our unit test use 25 instances, which work on all systems without problems.  
-We run the test with 100 objects successfully on ARM, but not on Intel.  
+### Usage
 
-## Running the tests
+In the `src/server/index.js` of your application
+
+1. Import the `soundworksMax` object
+
+```js
+import { soundworksMax } from '@soundworks/max';
+```
+
+2. Init the `soundworksMax` object right after the creation of the soundworks server
+
+```js
+const server = new Server();
+// pass the soundworks server as argument
+soundworksMax.init(server);
+```
+
+## Next Steps
+
+- `[soundworks.shared-state.observe]`
+- `[soundworks.sync]`
+
+## Caveats
+
+Each `soundworks.shared-state` object creates a new soundworks client, which is 
+known suboptimal, but improves user friendliness.
+
+One of our unit test use 25 instances, which work on all systems without problems.  
+This test has been run with 100 objects successfully on ARM, but not on Intel.  
+
+## Running the test suite
 
 Launching all the tests
 
@@ -65,7 +92,7 @@ Launching all the tests
 npm test -- tests/**/*.spec.js
 ```
 
-Launching one test file
+Launching only one test file
 
 ```
 npm test -- tests/the-test/index.spec.js
@@ -77,6 +104,9 @@ For verbose output
 VERBOSE=1 npm test -- tests/the-test/index.spec.js
 ```
 
+## Acknowledgements
+
+The `soundworks-max` has received support from the Ircam UPI SO(a)P
 
 ## License
 
