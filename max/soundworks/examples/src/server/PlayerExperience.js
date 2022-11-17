@@ -4,6 +4,7 @@ class PlayerExperience extends AbstractExperience {
   constructor(server, clientTypes, options = {}) {
     super(server, clientTypes);
 
+    this.sync = this.require('sync');
   }
 
   start() {

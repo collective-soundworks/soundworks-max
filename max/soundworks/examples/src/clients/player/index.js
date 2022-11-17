@@ -2,6 +2,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { Client } from '@soundworks/core/client';
 import initQoS from '@soundworks/template-helpers/client/init-qos.js';
+import pluginSync from '@soundworks/plugin-sync/client';
 
 import PlayerExperience from './PlayerExperience.js';
 
@@ -17,7 +18,7 @@ async function launch($container, index) {
     // -------------------------------------------------------------------
     // register plugins
     // -------------------------------------------------------------------
-    // client.pluginManager.register(pluginName, pluginFactory, [pluginOptions], [dependencies])
+    client.pluginManager.register('sync', pluginSync);
 
     // -------------------------------------------------------------------
     // launch application

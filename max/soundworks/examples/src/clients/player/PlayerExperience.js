@@ -18,6 +18,7 @@ class PlayerExperience extends AbstractExperience {
     this.rafId = null;
 
     // require plugins if needed
+    this.sync = this.require('sync');
 
     renderInitializationScreens(client, config, $container);
   }
@@ -33,6 +34,8 @@ class PlayerExperience extends AbstractExperience {
       setTimeout(() => this.render(), 100);
     });
 
+    this.syncEvents = await this.client.stateManager.attach('sync-events');
+
     window.addEventListener('resize', () => this.render());
     this.render();
   }
@@ -43,6 +46,18 @@ class PlayerExperience extends AbstractExperience {
     render(html`
       <div style="padding: 20px">
         <h1 style="margin: 20px 0">${this.client.type} [id: ${this.client.id}]</h1>
+
+        <div>
+          <h1>SyncEvents</h1>
+          <sc-button
+            value="bang"
+            @input="${e => {
+              const syncTime = this.sync.getSyncTime() + 1;
+              console.log(syncTime);
+              this.syncEvents.set({ triggerTime: syncTime });
+            }}"
+          ></sc-button>
+        </div>
 
         <h1>Globals</h1>
         <p>received events are logged in console</p>

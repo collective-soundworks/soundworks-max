@@ -26,6 +26,7 @@
     "@ircam/simple-components": "^1.1.5",
     "@soundworks/core": "^3.6.0",
     "@soundworks/max": "^1.0.0-alpha.2",
+    "@soundworks/plugin-sync": "^1.1.0",
     "@soundworks/template-helpers": "^1.2.1",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "core-js": "^3.6.5",

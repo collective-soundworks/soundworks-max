@@ -6,17 +6,23 @@ import serveStatic from 'serve-static';
 import compile from 'template-literal';
 import PlayerExperience from './PlayerExperience.js';
 
+import pluginSync from '@soundworks/plugin-sync/server';
+
 // -------------------------------------------------------------------
 // 1. import the soundworksMax object
 // -------------------------------------------------------------------
-import { soundworksMax } from '@soundworks/max';
+import { soundworksMax } from '../../../../../dist/index.js';
 
 import globalsSchema from './schemas/globals.js';
+import syncEventsSchema from './schemas/sync-events.js';
 
 import getConfig from './utils/getConfig.js';
 const ENV = process.env.ENV || 'default';
 const config = getConfig(ENV);
+
 const server = new Server();
+
+server.pluginManager.register('sync', pluginSync);
 
 // -------------------------------------------------------------------
 // 2. init soundworks for Max
@@ -38,6 +44,7 @@ console.log(`
 `);
 
 server.stateManager.registerSchema('globals', globalsSchema);
+server.stateManager.registerSchema('sync-events', syncEventsSchema);
 
 (async function launch() {
   try {
@@ -62,6 +69,7 @@ server.stateManager.registerSchema('globals', globalsSchema);
     playerExperience.start();
 
     const globals = await server.stateManager.create('globals');
+    const syncEvents = await server.stateManager.create('sync-events');
   } catch (err) {
     console.error(err.stack);
   }

@@ -1,6 +1,12 @@
 import { AbstractExperience } from '@soundworks/core/server';
 
-class ServerMaxExperience extends AbstractExperience {}
+class ServerMaxExperience extends AbstractExperience {
+  constructor(...args) {
+    super(...args);
+
+    this.require('sync');
+  }
+}
 
 export const soundworksMax = {
   experience: null,
