@@ -15386,9 +15386,10 @@ import_max_api.default.addHandlers({
   ip: (serverIp) => globals.serverIp = serverIp,
   maxId: (maxId) => globals.maxId = maxId,
   done: () => bootstrap(),
+  schema: () => onSchema(),
   [import_max_api.default.MESSAGE_TYPES.ALL]: (handled, ...args) => onMessage(...args)
 });
-var handledMessages = ["attach", "detach", "dict", "bootstrap", "bang"];
+var handledMessages = ["attach", "detach", "dict", "debug", "bang", "port", "ip", "maxId", "done", "schema"];
 function log(...args) {
   if (globals.verbose) {
     console.log(...args);
@@ -15455,7 +15456,6 @@ async function bootstrap() {
   globals.ready = true;
 }
 async function attach(schemaName) {
-  console.log("attach " + schemaName);
   if (schemaName === globals.schemaName) {
     return;
   } else if (globals.state !== null) {
@@ -15468,32 +15468,24 @@ async function attach(schemaName) {
     const stateManager = globals.client.stateManager;
     const state = await stateManager.attach(schemaName);
     globals.state = state;
-    const dictValues = await import_max_api.default.getDict(`${maxId}_values`);
-    const dictUpdates = await import_max_api.default.getDict(`${maxId}_updates`);
-    const dictSchema = await import_max_api.default.getDict(`${maxId}_schema`);
     state.onUpdate((updates) => {
-      _updateDict(`${maxId}_updates`, updates);
-      import_max_api.default.outlet("updates");
-      _updateDict(`${maxId}_values`, state.getValues());
-      import_max_api.default.outlet("values");
+      import_max_api.default.outlet("updates", updates);
+      import_max_api.default.outlet("values", state.getValues());
       for (let name in updates) {
         const def = globals.state.getSchema(name);
         if (def.event === true) {
           setTimeout(() => {
-            _updateDict(`${maxId}_values`, state.getValues());
-            import_max_api.default.outlet("values");
+            import_max_api.default.outlet("values", state.getValues());
           }, 10);
         }
       }
     });
     state.onDetach(() => _clearDicts());
     state.onDelete(() => _clearDicts());
-    _updateDict(`${maxId}_values`, state.getValues());
-    _updateDict(`${maxId}_schema`, state.getSchema());
-    import_max_api.default.outlet("schema");
-    import_max_api.default.outlet("updates");
-    import_max_api.default.outlet("values");
     import_max_api.default.outlet("connect", 1);
+    import_max_api.default.outlet("schema", state.getSchema());
+    import_max_api.default.outlet("values", state.getValues());
+    import_max_api.default.outlet("updates", {});
     log(`attached to ${schemaName}`);
   } catch (err) {
     console.log(err);
@@ -15516,8 +15508,13 @@ async function onBang() {
   if (globals.state === null) {
     return;
   }
-  _updateDict(`${globals.maxId}_values`, globals.state.getValues());
-  import_max_api.default.outlet("values");
+  import_max_api.default.outlet("values", globals.state.getValues());
+}
+async function onSchema() {
+  if (globals.state === null) {
+    return;
+  }
+  import_max_api.default.outlet("schema", globals.state.getSchema());
 }
 async function onMessage(...args) {
   if (globals.state === null) {
@@ -15540,15 +15537,16 @@ async function onMessage(...args) {
   }
 }
 async function _clearDicts() {
-  await import_max_api.default.setDict(`${globals.maxId}_values`, {});
-  await import_max_api.default.setDict(`${globals.maxId}_updates`, {});
-  await import_max_api.default.setDict(`${globals.maxId}_schema`, {});
-  import_max_api.default.outlet("schema");
-  import_max_api.default.outlet("updates");
-  import_max_api.default.outlet("values");
   import_max_api.default.outlet("connect", 0);
+  import_max_api.default.outlet("schema", {});
+  import_max_api.default.outlet("values", {});
+  import_max_api.default.outlet("updates", {});
 }
 async function _detach() {
+  if (!globals.state) {
+    log("cannot detach - not attached");
+    return;
+  }
   log(`Detaching from ${globals.schemaName}`);
   await globals.state.detach();
   globals.schemaName = null;
@@ -15640,8 +15638,5 @@ function _sanitizeInputForNode(key, ...value) {
     throw new Error(`Failed to sanitize ${value} to ${def.type}`);
   }
   return sanitizedValue;
-}
-async function _updateDict(dictName, obj) {
-  await import_max_api.default.setDict(dictName, obj);
 }
 import_max_api.default.outletBang();

@@ -35,10 +35,11 @@ Max.addHandlers({
   ip: (serverIp) => globals.serverIp = serverIp,
   maxId: (maxId) => globals.maxId = maxId,
   done: () => bootstrap(),
+  schema: () => onSchema(),
   [Max.MESSAGE_TYPES.ALL]: (handled, ...args) => onMessage(...args),
 });
 
-const handledMessages = ['attach', 'detach', 'dict', 'bootstrap', 'bang'];
+const handledMessages = ['attach', 'detach', 'dict', 'debug', 'bang', 'port', 'ip', 'maxId', 'done', 'schema'];
 
 function log(...args) {
   if (globals.verbose) {
@@ -145,10 +146,6 @@ async function bootstrap() {
 // -------------------------------------------------------
 async function attach(schemaName) {
 
-
-  console.log('attach '+schemaName);
-
-
   if (schemaName === globals.schemaName) {
     return;
   } else if (globals.state !== null) {
@@ -165,24 +162,20 @@ async function attach(schemaName) {
     const state = await stateManager.attach(schemaName);
     globals.state = state;
 
-    const dictValues = await Max.getDict(`${maxId}_values`);
-    const dictUpdates = await Max.getDict(`${maxId}_updates`);
-    const dictSchema = await Max.getDict(`${maxId}_schema`);
+    // const dictValues = await Max.getDict(`${maxId}_values`);
+    // const dictUpdates = await Max.getDict(`${maxId}_updates`);
+    // const dictSchema = await Max.getDict(`${maxId}_schema`);
 
     state.onUpdate(updates => {
-      _updateDict(`${maxId}_updates`, updates);
-      Max.outlet('updates');
-
-      _updateDict(`${maxId}_values`, state.getValues());
-      Max.outlet('values');
+      Max.outlet("updates", updates);
+      Max.outlet("values", state.getValues());
 
       for (let name in updates) {
         const def = globals.state.getSchema(name);
 
         if (def.event === true) {
           setTimeout(() => {
-            _updateDict(`${maxId}_values`, state.getValues());
-            Max.outlet('values');
+            Max.outlet("values", state.getValues());
           }, 10);
         }
       }
@@ -191,13 +184,11 @@ async function attach(schemaName) {
     state.onDetach(() => _clearDicts());
     state.onDelete(() => _clearDicts());
 
-    _updateDict(`${maxId}_values`, state.getValues());
-    _updateDict(`${maxId}_schema`, state.getSchema());
-
-    Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
-
     // Send connected value
     Max.outlet('connect', 1);
+    Max.outlet("schema", state.getSchema());
+    Max.outlet("values", state.getValues());
+    Max.outlet("updates", {});
 
     log(`attached to ${schemaName}`);
   } catch (err) {
@@ -226,8 +217,15 @@ async function onBang() {
     return;
   }
 
-  _updateDict(`${globals.maxId}_values`, globals.state.getValues());
-  Max.outlet('values');
+  Max.outlet("values",globals.state.getValues());
+}
+
+async function onSchema() {
+  if (globals.state === null) {
+    return;
+  }
+
+  Max.outlet("schema",globals.state.getSchema());
 }
 
 async function onMessage(...args) {
@@ -261,20 +259,21 @@ async function onMessage(...args) {
 // HELPERS
 // -------------------------------------------------------
 async function _clearDicts() {
-  await Max.setDict(`${globals.maxId}_values`,{});
-  await Max.setDict(`${globals.maxId}_updates`,{});
-  await Max.setDict(`${globals.maxId}_schema`,{});
-
-  Max.outlet('schema'); Max.outlet('updates'); Max.outlet('values');
-
   // Send disconnected value
   Max.outlet('connect', 0);
-
-
+  Max.outlet("schema", {});
+  Max.outlet("values", {});
+  Max.outlet("updates", {});
 }
 
 async function _detach() {
+  if (!globals.state) {
+    log('cannot detach - not attached');
+    return;
+  }
+
   log(`Detaching from ${globals.schemaName}`);
+
   await globals.state.detach();
 
   globals.schemaName = null;
@@ -378,11 +377,6 @@ function _sanitizeInputForNode(key, ...value) {
   }
 
   return sanitizedValue;
-}
-
-async function _updateDict(dictName, obj) {
-  // sanitize values for Max if/when needed
-  await Max.setDict(dictName, obj);
 }
 
 // -------------------------------------------------------
