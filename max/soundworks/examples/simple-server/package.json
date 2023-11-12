@@ -8,8 +8,6 @@
   "private": true,
   "scripts": {
     "build": "npm run clean && sass src/clients/styles:.build/public/css && soundworks-build -b",
-    "build:max": "npx esbuild ./src/clients/max/index.js  --bundle --format=cjs --platform=node --external:max-api --outfile=../../javascript/build.cjs",
-    "build:maxServer": "npx esbuild ./src/server/index.js  --bundle --format=cjs --platform=node --outfile=soundworks.example.server.cjs",
     "clean": "soundworks-build -D",
     "dev": "npm run build && (concurrently -i -p \"none\" \"npm run watch:inspect server\" \"soundworks-build -b -w\" \"npm run watch:sass\")",
     "postinstall": "soundworks-build -C",

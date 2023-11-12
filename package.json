@@ -1,43 +1,16 @@
 {
-  "name": "@soundworks/max",
-  "version": "1.0.0-alpha.4",
-  "description": "Utilities to facilitate communications between Max/MSP and soundworks",
-  "main": "dist/index.js",
-  "license": "BSD-3-Clause",
-  "author": [
-    "Etienne Démoulin",
-    "Benjamin Matuszewski"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/collective-soundworks/soundworks-max.git"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
+  "name": "soundworks-max",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "clean": "rm -Rf dist",
-    "prepublishOnly": "npm run clean && npm run build",
-    "build": "babel src --out-dir dist",
-    "dev": "npm run clean && npm run build && chokidar src -c \"npm run build\"",
-    "test": "serial-mocha",
-    "toc": "markdown-toc -i README.md",
-    "postversion": "node bin/sync-max-package-version.js && git commit -am 'synced version'"
+    "build": "npx esbuild ./src/index.js  --bundle --format=cjs --platform=node --external:max-api --outfile=max/soundworks/javascript/build.cjs"
   },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "@soundworks/core": "^3.6.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
-    "chai": "^4.3.6",
-    "chokidar": "^3.0.1",
-    "chokidar-cli": "^2.1.0",
-    "find-process": "^1.4.7",
-    "markdown-toc": "^1.2.0",
-    "node-osc": "^8.0.5",
-    "open": "^8.4.0",
-    "serial-mocha": "^0.0.4"
+    "@soundworks/core": "^4.0.0-alpha.14",
+    "@soundworks/helpers": "^1.0.0-alpha.7"
   }
 }

@@ -7,7 +7,7 @@
       default: true,
     },
     max: {
-      target: 'node',
+      target:'node',
     },
   },
 }

@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 1,
+			"minor" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 333.0, 154.0, 513.0, 581.0 ],
+		"rect" : [ 793.0, 135.0, 513.0, 581.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -47,7 +47,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 257.0, 257.0, 226.0, 21.0 ],
-					"presentation_linecount" : 3,
 					"text" : "Closing the patch will close the server"
 				}
 
@@ -97,8 +96,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 33.0, 72.0, 113.0, 22.0 ],
-					"text" : "script npm run build"
+					"patching_rect" : [ 33.0, 72.0, 139.0, 22.0 ],
+					"text" : "script npm run build:max"
 				}
 
 			}
@@ -126,8 +125,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 1,
+							"minor" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -315,7 +314,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 9.0, 217.0, 231.0, 22.0 ],
+					"patching_rect" : [ 9.0, 217.0, 221.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
@@ -324,7 +323,7 @@
 						"watch" : 0
 					}
 ,
-					"text" : "node.script soundworks.example.server.js"
+					"text" : "node.script soundworks.simple-server.js"
 				}
 
 			}
@@ -519,8 +518,8 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "soundworks.example.server.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/examples",
+				"name" : "soundworks.simple-server.js",
+				"bootpath" : "~/Github/soundworks-max/max/soundworks/examples/simple-server",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
