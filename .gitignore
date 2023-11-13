@@ -1,19 +1,13 @@
 # transpiled files and dependencies
 node_modules
-/dist
 
 # junk files
 package-lock.json
-!max/soundworks/javascript/package-lock.json
-
 .DS_Store
 Thumbs.db
-
 tests/**/*.txt
 npm-debug*.log
-.data
-
-.build
-.vendors
-
 *.bak
+
+# build file
+max/soundworks/javascript/build.cjs

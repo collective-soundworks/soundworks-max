@@ -24,9 +24,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Install deps in for Max external
+      - name: Install deps
         run: |
-          (cd max/soundworks/javascript && npm install)
+          npm install
       - name: Zip Max external # This would actually build your project, using zip for an example artifact
         run: |
           (cd max && zip -r - soundworks) > soundworks-max.zip
