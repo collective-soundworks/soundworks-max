@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 793.0, 135.0, 513.0, 581.0 ],
+		"rect" : [ 86.0, 150.0, 513.0, 581.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -96,8 +96,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 33.0, 72.0, 139.0, 22.0 ],
-					"text" : "script npm run build:max"
+					"patching_rect" : [ 33.0, 72.0, 113.0, 22.0 ],
+					"text" : "script npm run build"
 				}
 
 			}
@@ -314,7 +314,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 9.0, 217.0, 221.0, 22.0 ],
+					"patching_rect" : [ 9.0, 217.0, 227.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"autostart" : 0,
 						"defer" : 0,
@@ -323,7 +323,7 @@
 						"watch" : 0
 					}
 ,
-					"text" : "node.script soundworks.simple-server.js"
+					"text" : "node.script soundworks.simple-server.cjs"
 				}
 
 			}
@@ -518,7 +518,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "soundworks.simple-server.js",
+				"name" : "soundworks.simple-server.cjs",
 				"bootpath" : "~/Github/soundworks-max/max/soundworks/examples/simple-server",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",

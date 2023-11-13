@@ -163,7 +163,7 @@ async function attach(schemaName) {
     state.onDelete(() => _clearDicts());
 
     // Send connected value
-    Max.outlet('connect', 1);
+    Max.outlet("connect", 1);
     Max.outlet("schema", state.getSchema());
     Max.outlet("values", state.getValues());
     Max.outlet("updates", {});

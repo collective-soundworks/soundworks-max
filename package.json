@@ -8,7 +8,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "npx esbuild ./src/max-client.js  --bundle --format=cjs --platform=node --external:max-api --outfile=max/soundworks/javascript/build.cjs",
+    "build": "npx esbuild ./src/max-client.js  --bundle --format=cjs --platform=node --external:max-api --outfile=max/soundworks/javascript/soundworks.shared-state.cjs",
     "test": "npm run build && mocha",
     "launch-test-server": "VERBOSE=1 MODE=\"debug\" node ./tests/utils/create-soundworks-server.js"
   },

@@ -2423,14 +2423,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 114.5, 293.5, 157.0, 20.0 ],
-					"saved_object_attributes" : 					{
-						"autostart" : 1,
-						"defer" : 0,
-						"watch" : 0
-					}
-,
-					"text" : "node.script build.cjs @autostart 1"
+					"patching_rect" : [ 114.5, 293.5, 247.0, 20.0 ],
+					"text" : "node.script soundworks.shared-state.cjs @autostart 1"
 				}
 
 			}
