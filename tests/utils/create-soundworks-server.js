@@ -1,13 +1,10 @@
-const Server = require('@soundworks/core/server/index.js').Server;
-const AbstractExperience = require('@soundworks/core/server').AbstractExperience;
-const { closeOscClient } = require('./max-orchestrator.js');
-const { soundworksMax } = require('../../dist/index.js');
+import { Server } from '@soundworks/core/server.js';
+import { configureMaxClient } from '../../src/max-server.js';
 
+import { closeOscClient } from './max-orchestrator.js';
+import log from './logger.js';
 
-const { StateManagerOsc } = require('../../');
-const log = require('../utils/logger.js');
-
-module.exports = async function createSoundworksServer(initStateManagerOsc = true) {
+export default async function createSoundworksServer() {
   const config = {
     app: {
       name: 'test',
@@ -15,16 +12,15 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
     env: {
       type: 'development',
       port: 8000,
-      serverIp: '127.0.0.1',
+      serverAddress: '127.0.0.1',
       useHttps: false,
       verbose: process.env.VERBOSE === '1' ? true : false,
     },
   };
 
-  const server = new Server();
-  soundworksMax.init(server);
+  configureMaxClient(config);
 
-  await server.init(config);
+  const server = new Server(config);
 
   await server.start();
 
@@ -43,4 +39,8 @@ module.exports = async function createSoundworksServer(initStateManagerOsc = tru
   }
 
   return server;
+}
+
+if (process.env.MODE === 'debug') {
+  createSoundworksServer();
 }

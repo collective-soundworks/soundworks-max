@@ -43,10 +43,6 @@ class ClientMaxExperience extends ClientAbstractExperience {
 
     const getTimeFunction = () => globals.sync.getSyncTime();
     globals.scheduler = new Scheduler(getTimeFunction);
-
-    // setInterval(() => {
-    //   console.log(globals.sync.getSyncTime());
-    // }, 1000);
   }
 }
 
@@ -63,7 +59,15 @@ async function bootstrap(maxId, serverIp, port, verbose) {
 	};
 
   const client = new Client();
-  client.pluginManager.register('sync', pluginSync);
+
+  const startTime = process.hrtime();
+
+  client.pluginManager.register('sync', pluginSync, {
+    getTimeFunction: () => {
+      const now = process.hrtime(startTime);
+      return now[0] + now[1] * 1e-9;
+    }
+  });
 
   await client.init(config);
 

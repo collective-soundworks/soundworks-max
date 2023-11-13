@@ -47,6 +47,9 @@ function log(...args) {
 
 function attachRequest(schemaName) {
   globals.attachRequest = schemaName;
+
+  console.log('attach request', globals.ready);
+
   if (globals.ready) {
     attach(globals.attachRequest);
   } else {
@@ -55,9 +58,6 @@ function attachRequest(schemaName) {
 }
 
 async function bootstrap() {
-  /**
-   * Load configuration from config files and create the soundworks client
-   */
   try {
     log(`maxID : ${globals.maxId} || serverIp : ${globals.serverIp} || port : ${globals.port} || verbose : ${globals.verbose}`);
   } catch(err) {
@@ -80,28 +80,10 @@ async function bootstrap() {
         }
       }
     },
+    role: 'max',
   };
 
-  config.role = 'max';
-
   const client = new Client(config);
-
-  /**
-   * Register some soundworks plugins, you will need to install the plugins
-   * before hand (run `npx soundworks` for help)
-   */
-  // client.pluginManager.register('my-plugin', plugin);
-
-  /**
-   * Register the soundworks client into the launcher
-   *
-   * Automatically restarts the process when the socket closes or when an
-   * uncaught error occurs in the program.
-   */
-
-  /**
-   * Launch application
-   */
   await client.start();
 
     // store global informations

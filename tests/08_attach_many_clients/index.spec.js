@@ -1,15 +1,27 @@
-const path = require('node:path');
-const os = require('node:os');
-const fs = require('node:fs');
-const findProcess = require('find-process')
-const { execSync } = require('child_process');
-const assert = require('chai').assert;
+import path from 'node:path';
+import os from 'node:os';
+import fs from 'node:fs';
+import { execSync } from 'node:child_process';
+import * as url from 'node:url';
 
-const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const { openPatch, quitMax, ensureMaxIsDown } = require('../utils/max-orchestrator.js');
-const { getLogAsString, getLogAsNumArray, getLogAsArray } = require('../utils/logs-reader.js');
+import { delay } from '@ircam/sc-utils';
+import { assert } from 'chai';
+import findProcess from 'find-process';
 
-// `npm test -- tests/1_server-max-max-server-boot-test/`
+import createSoundworksServer from '../utils/create-soundworks-server.js';
+import {
+  openPatch,
+  closePatch,
+  quitMax,
+  ensureMaxIsDown,
+  sendOsc,
+  closeOscClient
+} from '../utils/max-orchestrator.js';
+import { getLogAsString, getLogAsNumArray, getLogAsArray } from '../utils/logs-reader.js';
+import floatEqual from '../utils/float-equal.js';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 let server;
 let globals;
@@ -22,26 +34,27 @@ const patchFilename = path.join(__dirname, 'test.maxpat');
 const logFilename = path.join(__dirname, 'log.txt');
 try { fs.unlinkSync(logFilename); } catch (err) {}
 
-before(async function() {
-  this.timeout(30 * 1000);
-
-  await ensureMaxIsDown();
-  // get configure and started soundworks server
-  server = await createSoundworksServer()
-
-  for (let i = 1; i <= numOfSchema; i++) {
-    server.stateManager.registerSchema(`sch${i}`, {
-      value: {
-        type: 'float',
-        default: i,
-      }
-    });
-
-    states[`sch${i}`] = await server.stateManager.create(`sch${i}`);
-  }
-});
-
 describe('attaching with severals objets and severals schemas', () => {
+  before(async function() {
+    this.timeout(30 * 1000);
+
+    await ensureMaxIsDown();
+    // get configure and started soundworks server
+    server = await createSoundworksServer()
+
+    for (let i = 1; i <= numOfSchema; i++) {
+      server.stateManager.registerSchema(`sch${i}`, {
+        value: {
+          type: 'float',
+          default: i,
+        }
+      });
+
+      states[`sch${i}`] = await server.stateManager.create(`sch${i}`);
+    }
+  });
+
+  // @fixme - seems to be the same issue as in 02_attach
   it('should log schemas value on the output of each object', async function() {
     this.timeout(60 * 1000);
 

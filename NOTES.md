@@ -1,29 +1,10 @@
 ## `soundworks-max`
 
-## Max
+## Fix tests
 
-### [soundworks.shared-state]
-
-- [ ] release
-- [x] server-side abstraction 
-- [ ] support es & commonjs module
-
-- [ ] for event, replace `setImmediate` w/ `setTimeout(10ms)`
-
-#### Issues
-
-### [soundworks.shared-state.observe]
-
-@todo 
-
-### [soundworks.sync-server]
-
-@todo
-
-## Questions
-
-- do we want an event to appear in outlet 1?
-- do we want to clear existing values if server stop?
+- [ ] 02_attach
+- [ ] 08_attach_many_clients (seems to be the same issue as 02)
+- [ ] 10_instanciate_into_max -> what does it do?
 
 ## How to open patcher ?
 

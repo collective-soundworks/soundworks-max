@@ -1,14 +1,27 @@
-const path = require('node:path');
-const os = require('node:os');
-const fs = require('node:fs');
-const findProcess = require('find-process')
-const { execSync } = require('child_process');
-const assert = require('chai').assert;
+import path from 'node:path';
+import os from 'node:os';
+import fs from 'node:fs';
+import { execSync } from 'node:child_process';
+import * as url from 'node:url';
 
-const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
-const { getLogAsString, getLogAsNumArray, getLogAsArray } = require('../utils/logs-reader.js');
-const floatEqual = require('../utils/float-equal.js');
+import { delay } from '@ircam/sc-utils';
+import { assert } from 'chai';
+import findProcess from 'find-process';
+
+import createSoundworksServer from '../utils/create-soundworks-server.js';
+import {
+  openPatch,
+  closePatch,
+  quitMax,
+  ensureMaxIsDown,
+  sendOsc,
+  closeOscClient
+} from '../utils/max-orchestrator.js';
+import { getLogAsString, getLogAsNumArray, getLogAsArray } from '../utils/logs-reader.js';
+import floatEqual from '../utils/float-equal.js';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 let server;
 let globals;
@@ -18,63 +31,66 @@ const patchFilenameEvent = path.join(__dirname, 'test-event.maxpat');
 const logFilename = path.join(__dirname, 'log.txt');
 try { fs.unlinkSync(logFilename); } catch (err) {}
 
-before(async function() {
-  this.timeout(15 * 1000);
+describe('receiving messages types', () => {
+  before(async function() {
+    this.timeout(15 * 1000);
 
-  await ensureMaxIsDown();
-  // get configured and started soundworks server
-  server = await createSoundworksServer();
+    await ensureMaxIsDown();
+    // get configured and started soundworks server
+    server = await createSoundworksServer();
 
-  server.stateManager.registerSchema('globals', {
-    myInt: {
-      type: 'integer',
-      min: -Infinity,
-      max: Infinity,
-      default: 0,
-    },
-    myBool: {
-      type: 'boolean',
-      default: false,
-    },
-    myFloat: {
-      type: 'float',
-      min: -Infinity,
-      max: Infinity,
-      step: 0.001,
-      default: 0.5,
-    },
-    myInfFloat: {
-      type: 'float',
-      min: -Infinity,
-      max: Infinity,
-      step: 0.001,
-      default: 0,
-    },
-    myMessage: {
-      type: 'string',
-      default: 'my-message',
-      nullable: true,
-    },
-    // new options
-    myEvent: {
-      type: 'boolean',
-      default: false,
-      event: true,
-    }
+    server.stateManager.registerSchema('globals', {
+      myInt: {
+        type: 'integer',
+        min: -Infinity,
+        max: Infinity,
+        default: 0,
+      },
+      myBool: {
+        type: 'boolean',
+        default: false,
+      },
+      myFloat: {
+        type: 'float',
+        min: -Infinity,
+        max: Infinity,
+        step: 0.001,
+        default: 0.5,
+      },
+      myInfFloat: {
+        type: 'float',
+        min: -Infinity,
+        max: Infinity,
+        step: 0.001,
+        default: 0,
+      },
+      myMessage: {
+        type: 'string',
+        default: 'my-message',
+        nullable: true,
+      },
+      // new options
+      myEvent: {
+        type: 'boolean',
+        default: false,
+        event: true,
+      }
+    });
+
+    globals = await server.stateManager.create('globals');
   });
 
-  globals = await server.stateManager.create('globals');
-});
+  after(async function() {
+    this.timeout(30 * 1000);
 
-after(async function() {
-  this.timeout(30 * 1000);
+    // we need to open the patch to fully quit Max
+    await openPatch(patchFilename);
+    await new Promise(resolve => setTimeout(resolve, 500));
+    await quitMax();
 
-  await openPatch(patchFilename);
-  await quitMax();
-  await server.stop();
-});
+    await server.stop();
+  });
 
-describe('receiving messages types', () => {
   it('should log some integer sent by Max', async function() {
     this.timeout(30 * 1000);
 
@@ -82,7 +98,7 @@ describe('receiving messages types', () => {
 
     let result = ``;
 
-    globals.subscribe(updates => {
+    globals.onUpdate(updates => {
       if ('myInt' in updates) {
         result += `myInt ${updates.myInt}\n`;
       }
@@ -110,7 +126,7 @@ describe('receiving messages types', () => {
 
     let result = ``;
 
-    globals.subscribe(updates => {
+    globals.onUpdate(updates => {
       if ('myBool' in updates) {
         result += `myBool ${updates.myBool ? 1 : 0}\n`;
       }
@@ -138,7 +154,7 @@ describe('receiving messages types', () => {
 
     let result = [];
 
-    globals.subscribe(updates => {
+    globals.onUpdate(updates => {
       if ('myFloat' in updates) {
         result.push(updates.myFloat);
       }
@@ -167,7 +183,7 @@ describe('receiving messages types', () => {
 
     let result = ``;
 
-    globals.subscribe(updates => {
+    globals.onUpdate(updates => {
       if ('myMessage' in updates) {
         result += `myMessage ${updates.myMessage}\n`;
       }
@@ -193,11 +209,11 @@ describe('receiving messages types', () => {
     // start max patch
     await openPatch(patchFilenameEvent);
 
-    let result = `myEvent\n`;
+    let result = '';
 
-    globals.subscribe(updates => {
+    globals.onUpdate(updates => {
       if ('myEvent' in updates) {
-        result += `myEvent ${updates.myEvent ? 1 : 0}\nmyEvent\n`;
+        result += `myEvent ${updates.myEvent ? 1 : 0}\n`;
       }
     });
 
@@ -212,17 +228,8 @@ describe('receiving messages types', () => {
     // close patch message
     await closePatch();
 
-    const log = getLogAsArray(logFilename);
-    let expected = ``;
+    const expected = getLogAsString(logFilename);
 
-    for (let i in log) {
-      const splitted = log[i].split(' ');
-
-      if (splitted[0] === 'myEvent') {
-        expected += `${log[i]}\n`
-      }
-    }
-   
     assert.notEqual(result, '');
     assert.equal(result, expected);
   });

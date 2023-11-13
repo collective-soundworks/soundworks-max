@@ -1,8 +1,8 @@
-const assert = require('chai').assert;
-const fs = require('fs');
-const os = require('os');
+import fs from 'node:fs';
+import os from 'node:os';
+import { assert } from 'chai';
 
-module.exports.getLogAsString = function(logFilename, prefixFilter = 'test') {
+export function getLogAsString(logFilename, prefixFilter = 'test') {
   if (!fs.existsSync(logFilename)) {
     assert.fail(`file ${logFilename} should exists`);
     return ``;
@@ -12,7 +12,7 @@ module.exports.getLogAsString = function(logFilename, prefixFilter = 'test') {
   return result.toString();
 }
 
-module.exports.getLogAsArray = function(logFilename) {
+export function getLogAsArray(logFilename) {
   if (!fs.existsSync(logFilename)) {
     assert.fail(`file ${logFilename} should exists`);
     return [];
@@ -25,7 +25,7 @@ module.exports.getLogAsArray = function(logFilename) {
   return result;
 }
 
-module.exports.getLogAsNumArray = function(logFilename, prefixFilter = 'test') {
+export function getLogAsNumArray(logFilename, prefixFilter = 'test') {
   if (!fs.existsSync(logFilename)) {
     assert.fail(`file ${logFilename} should exists`);
     return [];

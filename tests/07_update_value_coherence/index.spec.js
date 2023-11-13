@@ -1,16 +1,27 @@
-const path = require('node:path');
-const os = require('node:os');
-const fs = require('node:fs');
-const findProcess = require('find-process')
-const { execSync } = require('child_process');
-const assert = require('chai').assert;
+import path from 'node:path';
+import os from 'node:os';
+import fs from 'node:fs';
+import { execSync } from 'node:child_process';
+import * as url from 'node:url';
 
-const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
-const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
-const floatEqual = require('../utils/float-equal.js');
+import { delay } from '@ircam/sc-utils';
+import { assert } from 'chai';
+import findProcess from 'find-process';
 
-// `npm test -- tests/1_server-max-max-server-boot-test/`
+import createSoundworksServer from '../utils/create-soundworks-server.js';
+import {
+  openPatch,
+  closePatch,
+  quitMax,
+  ensureMaxIsDown,
+  sendOsc,
+  closeOscClient
+} from '../utils/max-orchestrator.js';
+import { getLogAsString, getLogAsNumArray, getLogAsArray } from '../utils/logs-reader.js';
+import floatEqual from '../utils/float-equal.js';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 let server;
 let globals;
@@ -21,7 +32,9 @@ const logFilename = path.join(__dirname, 'log.txt');
 try { fs.unlinkSync(logFilename); } catch (err) {}
 
 const genRandonString = (() => {
-    const gen = (min, max) => max++ && [...Array(max-min)].map((s, i) => String.fromCharCode(min+i));
+    const gen = (min, max) => {
+      max++ && [...Array(max-min)].map((s, i) => String.fromCharCode(min+i))
+    };
 
     const sets = {
         //num: gen(48,57),
@@ -32,39 +45,43 @@ const genRandonString = (() => {
     };
 
     function* iter(len, set) {
-        if (set.length < 1) set = Object.values(sets).flat(); 
-        for (let i = 0; i < len; i++) yield set[Math.random() * set.length|0]
+        if (set.length < 1) {
+          set = Object.values(sets).flat();
+        }
+
+        for (let i = 0; i < len; i++) {
+          yield set[Math.random() * set.length|0];
+        }
     }
 
     return Object.assign(((len, ...set) => [...iter(len, set.flat())].join('')), sets);
 })();
 
+describe('coherence between dict in Max', () => {
+  before(async function() {
+    this.timeout(15 * 1000);
 
-before(async function() {
-  this.timeout(15 * 1000);
+    await ensureMaxIsDown();
+    // get configure and started soundworks server
+    server = await createSoundworksServer()
 
-  await ensureMaxIsDown();
-  // get configure and started soundworks server
-  server = await createSoundworksServer()
+    server.stateManager.registerSchema('globals', {
+      myString: {
+        type: 'string',
+        default: 'toto',
+        nullable: true,
+      },
+      toto: {
+        type: 'float',
+        default: 0,
+      },
+    });
 
-  server.stateManager.registerSchema('globals', {
-    myString: {
-      type: 'string',
-      default: 'toto',
-      nullable: true,
-    },
-    toto: {
-      type: 'float',
-      default: 0,
-    },
+    globals = await server.stateManager.create('globals');
+
+    await openPatch(patchFilename);
   });
 
-  globals = await server.stateManager.create('globals');
-
-  await openPatch(patchFilename);
-});
-
-describe('coherence between dict in Max', () => {
   it('should log same value 2 times (update on server side)', async function() {
     this.timeout(10 * 1000);
     

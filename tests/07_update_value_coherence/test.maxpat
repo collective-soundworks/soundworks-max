@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 1,
+			"minor" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -43,8 +43,8 @@
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "dictionary", "dictionary", "dictionary" ],
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
 					"patching_rect" : [ 108.0, 54.0, 184.0, 22.0 ],
 					"text" : "soundworks.shared-state globals"
 				}
@@ -100,8 +100,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 190.5, 159.75, 99.0, 22.0 ],
-					"text" : "prepend updates"
+					"patching_rect" : [ 190.5, 159.75, 91.0, 22.0 ],
+					"text" : "prepend values"
 				}
 
 			}
@@ -112,8 +112,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 108.0, 196.75, 91.0, 22.0 ],
-					"text" : "prepend values"
+					"patching_rect" : [ 108.0, 196.75, 99.0, 22.0 ],
+					"text" : "prepend updates"
 				}
 
 			}
@@ -541,33 +541,15 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "fit_jweb_to_bounds.js",
-				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "n4m.monitor.maxpat",
-				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "resize_n4m_monitor_patcher.js",
-				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "soundworks.client.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"name" : "build.cjs",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../../max/soundworks/javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.shared-state.maxpat",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/patchers",
 				"patcherrelativepath" : "../../max/soundworks/patchers",
 				"type" : "JSON",
 				"implicit" : 1

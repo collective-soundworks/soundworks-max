@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 2,
+			"minor" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 754.0, 87.0, 1285.0, 605.0 ],
+		"rect" : [ 601.0, 87.0, 1285.0, 605.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -318,7 +318,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 4,
-					"outlettype" : [ "dictionary", "dictionary", "dictionary", "" ],
+					"outlettype" : [ "", "", "", "" ],
 					"patching_rect" : [ 45.5, 387.0, 184.0, 22.0 ],
 					"text" : "soundworks.shared-state globals"
 				}
@@ -751,15 +751,15 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"order" : 1,
-					"source" : [ "obj-4", 1 ]
+					"source" : [ "obj-4", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-11", 0 ],
-					"midpoints" : [ 55.0, 419.0, 403.75, 419.0, 403.75, 168.0, 428.5, 168.0 ],
-					"source" : [ "obj-4", 0 ]
+					"midpoints" : [ 110.0, 419.0, 403.75, 419.0, 403.75, 168.0, 428.5, 168.0 ],
+					"source" : [ "obj-4", 1 ]
 				}
 
 			}
@@ -767,7 +767,7 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"order" : 0,
-					"source" : [ "obj-4", 1 ]
+					"source" : [ "obj-4", 0 ]
 				}
 
 			}
@@ -927,7 +927,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "soundworks.client.js",
+				"name" : "build.cjs",
 				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../../max/soundworks/javascript",
 				"type" : "TEXT",

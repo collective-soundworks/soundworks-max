@@ -1,6 +1,6 @@
-const assert = require('chai').assert;
+import { assert } from 'chai';
 
-module.exports = function floatEqual(actual, expected, tolerance) {
+export default function floatEqual(actual, expected, tolerance) {
   assert.equal(actual.length, expected.length, 'expected arrays to have same length');
   let maxDiff = 0;
 

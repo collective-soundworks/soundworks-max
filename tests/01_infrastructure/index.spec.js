@@ -1,14 +1,25 @@
-const path = require('node:path');
-const os = require('node:os');
-const fs = require('node:fs');
-const findProcess = require('find-process')
-const { execSync } = require('child_process');
-const assert = require('chai').assert;
+import path from 'node:path';
+import os from 'node:os';
+import fs from 'node:fs';
+import { execSync } from 'node:child_process';
+ import * as url from 'node:url';
 
-const createSoundworksServer = require('../utils/create-soundworks-server.js');
-const { openPatch, closePatch, quitMax, ensureMaxIsDown, sendOsc } = require('../utils/max-orchestrator.js');
-const { getLogAsString, getLogAsNumArray } = require('../utils/logs-reader.js');
-const floatEqual = require('../utils/float-equal.js');
+import findProcess from 'find-process';
+import { assert } from 'chai';
+
+import createSoundworksServer from '../utils/create-soundworks-server.js';
+import {
+  openPatch,
+  closePatch,
+  quitMax,
+  ensureMaxIsDown,
+  sendOsc
+} from '../utils/max-orchestrator.js';
+import { getLogAsString, getLogAsNumArray } from '../utils/logs-reader.js';
+import floatEqual from '../utils/float-equal.js';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 let server;
 let globals;
@@ -17,20 +28,20 @@ const patchFilename = path.join(__dirname, 'test.maxpat');
 const logFilename = path.join(__dirname, 'log.txt');
 try { fs.unlinkSync(logFilename); } catch (err) {}
 
-before(async function() {
-  this.timeout(30 * 1000);
-  // ensure Max is not running
-  await ensureMaxIsDown();
-  // get configure and started soundworks server
-  server = await createSoundworksServer();
-});
-
-after(async function() {
-  this.timeout(1000);
-  await server.stop();
-})
-
 describe('testing test infrastucture', () => {
+  before(async function() {
+    this.timeout(30 * 1000);
+    // ensure Max is not running
+    await ensureMaxIsDown();
+    // get configure and started soundworks server
+    server = await createSoundworksServer();
+  });
+
+  after(async function() {
+    this.timeout(1000);
+    await server.stop();
+  });
+
   it('should open patch and close patch from event', async function() {
     this.timeout(30 * 1000);
     // start max patch

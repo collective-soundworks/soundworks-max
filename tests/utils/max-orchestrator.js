@@ -1,24 +1,24 @@
-const { execSync } = require('node:child_process');
-const findProcess = require('find-process');
-const { Client } = require('node-osc');
-const open = require('open');
-const log = require('../utils/logger.js');
+import { execSync } from 'node:child_process';
+import findProcess from 'find-process';
+import { Client } from 'node-osc';
+import open from 'open';
+import log from './logger.js';
 
 log('> Create osc client on port 5555');
 let oscClient = new Client('127.0.0.1', 5555);
 
-module.exports.closeOscClient = () => {
+export function closeOscClient() {
   oscClient.close();
   oscClient = null;
 }
 
-module.exports.sendOsc = async function sendOsc(channel) {
+export async function sendOsc(channel) {
   log('sending osc message', channel)
   oscClient.send(channel);
   await new Promise(resolve => setTimeout(resolve, 100));
 }
 
-module.exports.openPatch = function openPatch(patchFilename) {
+export function openPatch(patchFilename) {
   log(`> opening ${patchFilename}`);
   open(patchFilename);
 
@@ -41,7 +41,7 @@ module.exports.openPatch = function openPatch(patchFilename) {
   });
 };
 
-module.exports.ensureMaxIsDown = async function ensureMaxIsDown() {
+export async function ensureMaxIsDown() {
   const processList = await findProcess('name', 'Max');
 
   if (processList.length > 0) {
@@ -54,7 +54,7 @@ module.exports.ensureMaxIsDown = async function ensureMaxIsDown() {
 }
 
 // send the `killMax` message to the given state
-module.exports.quitMax = async function() {
+export async function quitMax() {
   log('> sending message to quit Max');
   oscClient.send('/quit');
   await new Promise(resolve => setTimeout(resolve, 100));
@@ -79,7 +79,7 @@ module.exports.quitMax = async function() {
   });
 }
 
-module.exports.closePatch = async function() {
+export async function closePatch() {
   log('> sending message to close the patch');
   oscClient.send('/close');
   return new Promise(resolve => setTimeout(resolve, 500));
