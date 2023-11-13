@@ -55,20 +55,22 @@ npm install --save @soundworks/state-manager-osc
 
 ### Usage
 
-In the `src/server/index.js` of your application
+In the `src/server/index.js` of your soundworks application:
 
 1. Import the `soundworksMax` object
 
 ```js
-import { soundworksMax } from '@soundworks/max';
-```
+import { Server } from '@soundworks/core/server.js';
+// import the `configureMaxClient` function from the @soundworks/max package
+import { configureMaxClient } from '@soundworks/max';
 
-2. Init the `soundworksMax` object right after the creation of the soundworks server
+import { loadConfig } from '../utils/load-config.js';
 
-```js
-const server = new Server();
-// pass the soundworks server as argument
-soundworksMax.init(server);
+// extends with config object to configure max client
+const config = loadConfig(process.env.ENV, import.meta.url);
+configureMaxClient(config);
+
+const server = new Server(config);
 ```
 
 ## Next Steps
@@ -84,7 +86,9 @@ known suboptimal, but improves user friendliness.
 One of our unit test use 25 instances, which work on all systems without problems.  
 This test has been run with 100 objects successfully on ARM, but not on Intel.  
 
-## Running the test suite
+## Development notes
+
+### Running the test suite
 
 Launching all the tests
 
@@ -104,10 +108,14 @@ For verbose output
 VERBOSE=1 npm test -- tests/the-test/index.spec.js
 ```
 
-## Acknowledgements
+### How to open patcher ?
 
-The `soundworks-max` has received support from the Ircam UPI SO(a)P
+CMD + OPTION + M puis CMD + E puis appuyer sur le bouton
+
+## Credits
+
+[https://soundworks.dev/credits.html](https://soundworks.dev/credits.html)
 
 ## License
 
-BSD-3-Clause
+[BSD-3-Clause](./LICENSE)
