@@ -28,7 +28,7 @@ Max.addHandlers({
   [Max.MESSAGE_TYPES.NUMBER]: (num) => {},
   attach: (schemaName) => attachRequest(schemaName),
   detach: () => _detach(),
-  debug: (verbose) => globals.verbose = !!verbose,
+  debug: (verbose) => onDebug(verbose),
   port: (port) => globals.port = port,
   ip: (serverIp) => globals.serverIp = serverIp,
   maxId: (maxId) => globals.maxId = maxId,
@@ -47,8 +47,6 @@ function log(...args) {
 
 function attachRequest(schemaName) {
   globals.attachRequest = schemaName;
-
-  console.log('attach request', globals.ready);
 
   if (globals.ready) {
     attach(globals.attachRequest);
@@ -192,7 +190,12 @@ async function onDict(dict) {
   }
 }
 
-async function onBang() {
+function onDebug(verbose) {
+  globals.verbose = !!verbose;
+  Max.outlet("debug", globals.verbose);
+}
+
+function onBang() {
   if (globals.state === null) {
     return;
   }
@@ -200,7 +203,7 @@ async function onBang() {
   Max.outlet("values",globals.state.getValues());
 }
 
-async function onSchema() {
+function onSchema() {
   if (globals.state === null) {
     return;
   }
@@ -238,7 +241,7 @@ async function onMessage(...args) {
 // -------------------------------------------------------
 // HELPERS
 // -------------------------------------------------------
-async function _clearDicts() {
+function _clearDicts() {
   // Send disconnected value
   Max.outlet('connect', 0);
   Max.outlet("schema", {});

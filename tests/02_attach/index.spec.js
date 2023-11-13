@@ -63,8 +63,7 @@ describe('test attach methods', () => {
     assert.equal(result, expected);
   });
 
-  // this fails
-  it.only('should properly init with attach command', async function() {
+  it('should properly init with attach command', async function() {
     this.timeout(30 * 1000);
 
     await ensureMaxIsDown();

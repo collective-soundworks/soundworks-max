@@ -26,8 +26,8 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 let server;
 let globals;
 
-const numOfSchema = 5;
-const numOfInstances = 5;
+const numOfSchema = 10;
+const numOfInstances = 10;
 const states = {};
 
 const patchFilename = path.join(__dirname, 'test.maxpat');

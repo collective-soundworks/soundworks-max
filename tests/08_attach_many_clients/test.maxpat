@@ -57,7 +57,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 54.0, 175.0, 144.0, 22.0 ],
-					"text" : "poly~ many_instances 5"
+					"text" : "poly~ many_instances 10"
 				}
 
 			}

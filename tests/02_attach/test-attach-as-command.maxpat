@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -448,7 +448,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-4", 0 ]
+					"source" : [ "obj-4", 1 ]
 				}
 
 			}
@@ -483,14 +483,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "build.cjs",
-				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/javascript",
+				"bootpath" : "~/Github/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../../max/soundworks/javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.shared-state.maxpat",
-				"bootpath" : "~/work/dev/libs/soundworks/soundworks-max/max/soundworks/patchers",
+				"bootpath" : "~/Github/soundworks-max/max/soundworks/patchers",
 				"patcherrelativepath" : "../../max/soundworks/patchers",
 				"type" : "JSON",
 				"implicit" : 1
