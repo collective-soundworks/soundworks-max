@@ -48,13 +48,15 @@ and follow the instructions.
 
 ### Install
 
+@TODO rewrite  
 ```sh
-npm install --save @soundworks/state-manager-osc
+npm install --save @soundworks/soundworks-max
 ```
 
 
 ### Usage
 
+@TODO rewrite  
 In the `src/server/index.js` of your soundworks application:
 
 1. Import the `soundworksMax` object

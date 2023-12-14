@@ -140,10 +140,6 @@ async function attach(schemaName) {
     const state = await stateManager.attach(schemaName);
     globals.state = state;
 
-    // const dictValues = await Max.getDict(`${maxId}_values`);
-    // const dictUpdates = await Max.getDict(`${maxId}_updates`);
-    // const dictSchema = await Max.getDict(`${maxId}_schema`);
-
     state.onUpdate(updates => {
       Max.outlet("updates", updates);
       Max.outlet("values", state.getValues());

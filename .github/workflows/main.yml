@@ -29,7 +29,7 @@ jobs:
           npm install
       - name: Build max-client source to cjs
         run: |
-          npm install
+          npm run build
       - name: Zip Max external
         run: |
           (cd max && zip -r - soundworks) > soundworks-max.zip
