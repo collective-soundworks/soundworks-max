@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 445.0, 100.0, 893.0, 624.0 ],
+		"rect" : [ 100.0, 100.0, 905.0, 651.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 100.0, 126.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -150,8 +150,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 7,
-											"y" : 82
+											"x" : 35,
+											"y" : 38
 										}
 
 									}
@@ -225,8 +225,8 @@
 									"id" : "obj-20",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 90.0, 420.0, 184.0, 22.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
@@ -719,7 +719,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -961,8 +961,8 @@
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 138.5, 223.0, 184.0, 22.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
@@ -1236,7 +1236,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1383,7 +1383,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 606.0, 450.5, 50.0, 35.0 ],
-									"text" : "config::x 68"
+									"text" : "config::x 12"
 								}
 
 							}
@@ -1600,8 +1600,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 41,
-											"y" : 49,
+											"x" : 49,
+											"y" : 85,
 											"z" : 123
 										}
 
@@ -1653,8 +1653,8 @@
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 19.25, 339.0, 184.0, 22.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
@@ -1686,7 +1686,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-60", 0 ],
 									"order" : 0,
-									"source" : [ "obj-28", 1 ]
+									"source" : [ "obj-28", 0 ]
 								}
 
 							}
@@ -1694,16 +1694,16 @@
 								"patchline" : 								{
 									"destination" : [ "obj-66", 0 ],
 									"order" : 1,
-									"source" : [ "obj-28", 1 ]
+									"source" : [ "obj-28", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-73", 0 ],
-									"midpoints" : [ 83.75, 379.0, 28.5, 379.0 ],
+									"midpoints" : [ 28.75, 379.0, 28.5, 379.0 ],
 									"order" : 2,
-									"source" : [ "obj-28", 1 ]
+									"source" : [ "obj-28", 0 ]
 								}
 
 							}
@@ -1991,7 +1991,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2055,7 +2055,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 4,
 									"outlettype" : [ "dictionary", "", "", "" ],
-									"patching_rect" : [ 176.0, 285.0, 110.0, 22.0 ],
+									"patching_rect" : [ 160.5, 285.0, 110.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 0,
 										"parameter_enable" : 0,
@@ -2301,8 +2301,8 @@
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 1.5, 249.0, 492.25, 22.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
@@ -2327,7 +2327,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
 									"order" : 2,
-									"source" : [ "obj-28", 2 ]
+									"source" : [ "obj-28", 3 ]
 								}
 
 							}
@@ -2335,7 +2335,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
 									"order" : 1,
-									"source" : [ "obj-28", 2 ]
+									"source" : [ "obj-28", 3 ]
 								}
 
 							}
@@ -2350,7 +2350,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-177", 0 ],
-									"order" : 1,
+									"order" : 0,
 									"source" : [ "obj-28", 1 ]
 								}
 
@@ -2359,14 +2359,14 @@
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"order" : 0,
-									"source" : [ "obj-28", 2 ]
+									"source" : [ "obj-28", 3 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"order" : 0,
+									"order" : 1,
 									"source" : [ "obj-28", 1 ]
 								}
 
@@ -2597,7 +2597,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 445.0, 126.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2628,13 +2628,50 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "button",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 965.0, 410.0, 24.0, 24.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "dict.view",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 460.499999999999773, 446.0, 145.000000000000114, 141.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
+									"id" : "obj-3",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 468.499999999999886, 389.0, 137.0, 52.0 ],
+									"presentation_linecount" : 2,
+									"text" : "values of the state who trigger the update"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-6",
 									"maxclass" : "toggle",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 866.499999999999659, 389.0, 24.0, 24.0 ]
+									"patching_rect" : [ 1216.499999999999773, 394.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2662,8 +2699,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 728.0, 417.5, 53.0, 39.0 ],
-									"text" : "schema"
+									"patching_rect" : [ 992.0, 402.0, 104.0, 39.0 ],
+									"text" : "schema definition"
 								}
 
 							}
@@ -2673,7 +2710,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 690.999999999999773, 472.5, 157.0, 104.0 ]
+									"patching_rect" : [ 947.874999999999773, 446.0, 192.0, 134.0 ]
 								}
 
 							}
@@ -2685,7 +2722,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 436.499999999999886, 432.5, 24.0, 24.0 ]
+									"patching_rect" : [ 650.499999999999659, 420.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -2707,7 +2744,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.5, 487.0, 100.0, 100.0 ]
+									"patching_rect" : [ 328.5, 487.0, 100.0, 100.0 ]
 								}
 
 							}
@@ -2718,7 +2755,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 282.5, 487.0, 50.0, 22.0 ],
+									"patching_rect" : [ 274.5, 487.0, 50.0, 22.0 ],
 									"text" : "C&-H"
 								}
 
@@ -2732,7 +2769,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 226.5, 487.0, 50.0, 22.0 ]
+									"patching_rect" : [ 218.5, 487.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2744,7 +2781,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 194.5, 487.0, 22.0, 22.0 ]
+									"patching_rect" : [ 186.5, 487.0, 22.0, 22.0 ]
 								}
 
 							}
@@ -2755,7 +2792,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 6,
 									"outlettype" : [ "", "", "", "", "", "" ],
-									"patching_rect" : [ 173.5, 446.0, 221.0, 22.0 ],
+									"patching_rect" : [ 165.5, 446.0, 221.0, 22.0 ],
 									"text" : "route volume mute gain message config"
 								}
 
@@ -2767,7 +2804,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 173.5, 407.0, 47.0, 22.0 ],
+									"patching_rect" : [ 165.5, 407.0, 47.0, 22.0 ],
 									"text" : "dict.iter"
 								}
 
@@ -2779,7 +2816,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 223.5, 406.0, 181.0, 24.0 ],
+									"patching_rect" : [ 215.5, 406.0, 181.0, 24.0 ],
 									"text" : "handle state updates"
 								}
 
@@ -2816,7 +2853,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 148.5, 512.0, 101.0, 22.0 ],
+									"patching_rect" : [ 140.5, 512.0, 101.0, 22.0 ],
 									"text" : "scale -80 6 0 127"
 								}
 
@@ -2829,7 +2866,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 148.5, 554.0, 177.0, 26.0 ]
+									"patching_rect" : [ 140.5, 554.0, 177.0, 26.0 ]
 								}
 
 							}
@@ -2840,8 +2877,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 19.0, 459.0, 119.0, 22.0 ],
-									"text" : "volume : -27"
+									"patching_rect" : [ 11.0, 459.0, 119.0, 22.0 ],
+									"text" : "volume : -19"
 								}
 
 							}
@@ -2852,7 +2889,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 63.0, 422.0, 75.0, 22.0 ],
+									"patching_rect" : [ 55.0, 422.0, 75.0, 22.0 ],
 									"text" : "dict.serialize"
 								}
 
@@ -2901,12 +2938,11 @@
 								"box" : 								{
 									"bubble" : 1,
 									"id" : "obj-54",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 482.499999999999886, 426.0, 104.0, 37.0 ],
-									"text" : "schema definition"
+									"patching_rect" : [ 704.999999999999886, 420.5, 160.0, 24.0 ],
+									"text" : "all values of all states"
 								}
 
 							}
@@ -2916,7 +2952,7 @@
 									"maxclass" : "dict.view",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 468.499999999999886, 482.5, 105.0, 84.0 ]
+									"patching_rect" : [ 679.249999999999886, 446.0, 216.0, 136.5 ]
 								}
 
 							}
@@ -3015,9 +3051,9 @@
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 142.0, 361.0, 743.499999999999773, 22.0 ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
+									"patching_rect" : [ 142.0, 361.0, 1093.499999999999773, 22.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
 
@@ -3053,8 +3089,24 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"source" : [ "obj-28", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"source" : [ "obj-28", 2 ]
+									"order" : 1,
+									"source" : [ "obj-28", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-15", 0 ],
+									"order" : 0,
+									"source" : [ "obj-28", 3 ]
 								}
 
 							}
@@ -3070,14 +3122,14 @@
 								"patchline" : 								{
 									"destination" : [ "obj-53", 0 ],
 									"order" : 0,
-									"source" : [ "obj-28", 1 ]
+									"source" : [ "obj-28", 2 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"source" : [ "obj-28", 3 ]
+									"source" : [ "obj-28", 4 ]
 								}
 
 							}
@@ -3085,7 +3137,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
 									"order" : 1,
-									"source" : [ "obj-28", 1 ]
+									"source" : [ "obj-28", 2 ]
 								}
 
 							}
@@ -3351,7 +3403,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3462,7 +3514,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 905.0, 625.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -3590,7 +3642,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 134.0, 449.0, 24.0, 24.0 ]
+									"patching_rect" : [ 145.0, 449.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -3676,8 +3728,8 @@
 									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 588.0, 480.0, 125.0, 52.0 ],
 									"text" : "soundworks.shared-state globals @ip 8.8.8.8 @port 9999"
 								}
@@ -3689,8 +3741,8 @@
 									"id" : "obj-10",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 10.0, 480.0, 199.0, 23.0 ],
 									"text" : "soundworks.shared-state globals"
 								}
@@ -3726,8 +3778,8 @@
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "", "", "", "" ],
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "" ],
 									"patching_rect" : [ 10.0, 417.0, 154.0, 23.0 ],
 									"text" : "soundworks.shared-state"
 								}
@@ -3765,7 +3817,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
 									"order" : 0,
-									"source" : [ "obj-10", 3 ]
+									"source" : [ "obj-10", 4 ]
 								}
 
 							}
@@ -3773,7 +3825,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-26", 0 ],
 									"order" : 1,
-									"source" : [ "obj-10", 3 ]
+									"source" : [ "obj-10", 4 ]
 								}
 
 							}
@@ -3794,7 +3846,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"source" : [ "obj-28", 3 ]
+									"source" : [ "obj-28", 4 ]
 								}
 
 							}
@@ -3869,6 +3921,12 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "fit_jweb_to_bounds.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "helpargs.js",
 				"bootpath" : "C74:/help/resources",
 				"type" : "TEXT",
@@ -3889,6 +3947,18 @@
 , 			{
 				"name" : "helpstarter.js",
 				"bootpath" : "C74:/help/resources",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "n4m.monitor.maxpat",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "resize_n4m_monitor_patcher.js",
+				"bootpath" : "C74:/packages/Node for Max/patchers/debug-monitor",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

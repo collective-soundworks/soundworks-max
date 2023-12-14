@@ -1,12 +1,12 @@
 import '@soundworks/helpers/polyfills.js';
 import { Client } from '@soundworks/core/client.js';
+import { isPlainObject } from '@ircam/sc-utils';
 
 import path from 'node:path';
 import Max from 'max-api';
 
 const globals = {
-  stateManager: null,
-  state: null,
+  collection: null,
   schemaName: null,
   verbose: false,
   maxId: null,
@@ -92,7 +92,7 @@ async function bootstrap() {
       _clearDicts();
 
       globals.schemaName = null;
-      globals.state = null;
+      globals.collection = null;
 
       await client.stop();
       await bootstrap();
@@ -118,6 +118,12 @@ async function bootstrap() {
 
 }
 
+// "values" output
+// {[schemaName] : [{ values1 },  { values2 }, ]}
+// "schema" output
+// {[schemaName] : [{ schema1 },  { schema2 }, ]}
+// "updates" output
+// {[schemaName] : [{ updates1 },  { updates2 }, ]}
 
 // -------------------------------------------------------
 // HANDLERS
@@ -126,7 +132,7 @@ async function attach(schemaName) {
 
   if (schemaName === globals.schemaName) {
     return;
-  } else if (globals.state !== null) {
+  } else if (globals.collection !== null) {
     _detach();
   }
 
@@ -136,32 +142,45 @@ async function attach(schemaName) {
   const maxId = globals.maxId;
 
   try {
-    const stateManager = globals.client.stateManager;
-    const state = await stateManager.attach(schemaName);
-    globals.state = state;
+    const collection = await globals.client.stateManager.getCollection(schemaName);
+    globals.collection = collection;
 
-    state.onUpdate(updates => {
+    collection.onUpdate((state, updates) => {
+
+      Max.outlet("collection", collection.getValues());
+      Max.outlet("state", state.getValues());
       Max.outlet("updates", updates);
-      Max.outlet("values", state.getValues());
 
-      for (let name in updates) {
-        const def = globals.state.getSchema(name);
+      // @TODO - uncomment when collection.getSchema is implemented
+      // for (let name in updates) {
+      //   const def = collection.getSchema(name);
 
-        if (def.event === true) {
-          setTimeout(() => {
-            Max.outlet("values", state.getValues());
-          }, 10);
-        }
-      }
+      //   if (def.event === true) {
+      //     setTimeout(() => {
+      //       Max.outlet("collection", collection.getValues());
+      //     }, 10);
+      //   }
+      // }
     });
 
-    state.onDetach(() => _clearDicts());
-    state.onDelete(() => _clearDicts());
+    collection.onAttach(state => {
+      Max.outlet("collection", collection.getValues());
+      Max.outlet("state", state.getValues());
+      Max.outlet("updates", {});
+    });
+
+    collection.onDetach(state => {
+      Max.outlet("collection", collection.getValues());
+      Max.outlet("state", {});
+      Max.outlet("updates", {});
+    });
 
     // Send connected value
     Max.outlet("connect", 1);
-    Max.outlet("schema", state.getSchema());
-    Max.outlet("values", state.getValues());
+    // @TODO - uncomment when implemented
+    // Max.outlet("schema", collection.getSchema());
+    Max.outlet("collection", collection.getValues());
+    Max.outlet("state", {});
     Max.outlet("updates", {});
 
     log(`attached to ${schemaName}`);
@@ -171,19 +190,35 @@ async function attach(schemaName) {
 }
 
 async function onDict(dict) {
-  if (globals.state === null) {
+  if (globals.collection === null) {
     return;
   }
 
-  for (let name in dict) {
-    dict[name] = _sanitizeInputForNode(name, dict[name]);
+  // @TODO - uncomment when collection.getSchema is implemented
+  // for (let name in dict) {
+  //   dict[name] = _sanitizeInputForNode(name, dict[name]);
+  // }
+  if ("array" in dict) {
+    // we are passing an array
+    globals.collection.forEach(async (state, index) => {
+      if (isPlainObject(dict.array[index])) {
+        try {
+          await state.set(dict.array[index]);
+        } catch(err) {
+          console.log(err);
+        }
+      }
+    })
+  } else {
+    // we are passing a dict
+    try {
+      await globals.collection.set(dict);
+    } catch(err) {
+      console.log(err);
+    }
   }
 
-  try {
-    await globals.state.set(dict);
-  } catch(err) {
-    console.log(err);
-  }
+
 }
 
 function onDebug(verbose) {
@@ -192,23 +227,23 @@ function onDebug(verbose) {
 }
 
 function onBang() {
-  if (globals.state === null) {
+  if (globals.collection === null) {
     return;
   }
 
-  Max.outlet("values",globals.state.getValues());
+  Max.outlet("collection",globals.collection.getValues());
 }
 
 function onSchema() {
   if (globals.state === null) {
     return;
   }
-
-  Max.outlet("schema",globals.state.getSchema());
+  // @TODO - uncomment when collection.getSchema is implemented
+  // Max.outlet("schema",globals.collection.getSchema());
 }
 
 async function onMessage(...args) {
-  if (globals.state === null) {
+  if (globals.collection === null) {
     return;
   }
 
@@ -220,11 +255,12 @@ async function onMessage(...args) {
 
   try {
     // @note - we must accept a list, because array are translated to lists by max
+    // @note - messages inputs update all the collection with the current value
     const key = args.shift();
     const value = _sanitizeInputForNode(key, ...args);
 
     try {
-      await globals.state.set({ [key]: value });
+      await globals.collection.set({ [key]: value });
     } catch(err) {
       console.log(err.message);
     }
@@ -240,9 +276,10 @@ async function onMessage(...args) {
 function _clearDicts() {
   // Send disconnected value
   Max.outlet('connect', 0);
-  Max.outlet("schema", {});
-  Max.outlet("values", {});
-  Max.outlet("updates", {});
+  Max.outlet('schema', {});
+  Max.outlet('collection', {});
+  Max.outlet('state', {});
+  Max.outlet('updates', {});
 }
 
 async function _detach() {
@@ -253,10 +290,10 @@ async function _detach() {
 
   log(`Detaching from ${globals.schemaName}`);
 
-  await globals.state.detach();
+  await globals.collection.detach();
 
   globals.schemaName = null;
-  globals.state = null;
+  globals.collection = null;
 
   _clearDicts();
 }
@@ -268,11 +305,14 @@ function _sanitizeInputForNode(key, ...value) {
 
   let def;
 
-  try {
-    def = globals.state.getSchema(key);
-  } catch(err) {
-    throw new Error(`Unknown param ${key}`);
-  }
+  // @TODO - uncomment when collection.getSchema is implemented
+  // try {
+  //   def = globals.state.getSchema(key);
+  // } catch(err) {
+  //   throw new Error(`Unknown param ${key}`);
+  // }
+  // remove when implemented
+  def = {type: 'float', nullable: false};
 
   let sanitizedValue = null;
 

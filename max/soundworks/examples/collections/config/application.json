@@ -1,0 +1,13 @@
+{
+  name: 'collections',
+  author: '',
+  clients: {
+    player: {
+      target: 'browser',
+      default: true,
+    },
+    max: {
+      target:'node',
+    },
+  },
+}

@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 1,
+			"minor" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 100.0, 723.0, 772.0 ],
+		"rect" : [ 34.0, 472.0, 496.0, 395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,27 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"args" : [ "soundworks.tuto-collections", "maxpat" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-1",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "soundworks.openpatcher.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 237.0, 181.0, 189.0, 51.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"args" : [ "soundworks.shared-state", "maxhelp" ],
 					"bgmode" : 0,
@@ -107,6 +128,7 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
+			"obj-1::obj-3" : [ "live.text[1]", "live.text", 0 ],
 			"obj-6::obj-3" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
 				"0" : 				{
@@ -117,19 +139,26 @@
 
 			}
 ,
+			"parameter_overrides" : 			{
+				"obj-1::obj-3" : 				{
+					"parameter_longname" : "live.text[1]"
+				}
+
+			}
+,
 			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "soundworks.digest.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"bootpath" : "~/Github/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "soundworks.openpatcher.maxpat",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/patchers",
+				"bootpath" : "~/Github/soundworks-max/max/soundworks/patchers",
 				"patcherrelativepath" : "../patchers",
 				"type" : "JSON",
 				"implicit" : 1
