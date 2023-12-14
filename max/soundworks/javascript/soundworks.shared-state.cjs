@@ -3177,7 +3177,7 @@ var require_lodash = __commonJS({
     var nativeNow = Date.now;
     var Map2 = getNative(root2, "Map");
     var nativeCreate = getNative(Object, "create");
-    var baseCreate = function() {
+    var baseCreate = /* @__PURE__ */ function() {
       function object() {
       }
       return function(proto2) {
@@ -3702,7 +3702,7 @@ var require_lodash = __commonJS({
     function eq(value, other) {
       return value === other || value !== value && other !== other;
     }
-    var isArguments = baseIsArguments(function() {
+    var isArguments = baseIsArguments(/* @__PURE__ */ function() {
       return arguments;
     }()) ? baseIsArguments : function(value) {
       return isObjectLike(value) && hasOwnProperty.call(value, "callee") && !propertyIsEnumerable.call(value, "callee");
@@ -14337,7 +14337,6 @@ async function bootstrap() {
   if (globals.attachRequest !== null) {
     attach(globals.attachRequest);
   }
-  import_max_api.default.post(`> soundworks client is ready!`);
   globals.ready = true;
 }
 async function attach(schemaName) {
@@ -14351,15 +14350,11 @@ async function attach(schemaName) {
   const maxId = globals.maxId;
   try {
     const stateManager = globals.client.stateManager;
-    const state = await stateManager.getCollection(schemaName);
+    const state = await stateManager.attach(schemaName);
     globals.state = state;
     state.onUpdate((updates) => {
       import_max_api.default.outlet("updates", updates);
-      const values = [];
-      state.forEach((st) => {
-        values.push(st.getValues());
-      });
-      import_max_api.default.outlet("values", values);
+      import_max_api.default.outlet("values", state.getValues());
       for (let name in updates) {
         const def = globals.state.getSchema(name);
         if (def.event === true) {

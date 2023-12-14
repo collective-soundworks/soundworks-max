@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 100.0, 893.0, 624.0 ],
+		"rect" : [ 445.0, 100.0, 893.0, 624.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -150,8 +150,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 87,
-											"y" : 39
+											"x" : 7,
+											"y" : 82
 										}
 
 									}
@@ -1236,7 +1236,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 100.0, 126.0, 893.0, 598.0 ],
+						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1600,8 +1600,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 94,
-											"y" : 12,
+											"x" : 41,
+											"y" : 49,
 											"z" : 123
 										}
 
@@ -2597,7 +2597,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 893.0, 598.0 ],
+						"rect" : [ 445.0, 126.0, 893.0, 598.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2719,7 +2719,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 282.5, 487.0, 50.0, 22.0 ],
-									"text" : "eWZ60"
+									"text" : "C&-H"
 								}
 
 							}
@@ -2836,13 +2836,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-98",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 19.0, 459.0, 119.0, 35.0 ],
-									"text" : "config : { x : 94 y : 12 z : 123 }"
+									"patching_rect" : [ 19.0, 459.0, 119.0, 22.0 ],
+									"text" : "volume : -27"
 								}
 
 							}

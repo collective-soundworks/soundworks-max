@@ -113,7 +113,7 @@ async function bootstrap() {
     attach(globals.attachRequest);
   }
 
-  Max.post(`> soundworks client is ready!`);
+  // Max.post(`> soundworks client is ready!`);
   globals.ready = true;
 
 }

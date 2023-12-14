@@ -10,4 +10,4 @@ npm-debug*.log
 *.bak
 
 # build file
-max/soundworks/javascript/build.cjs
+max/soundworks/javascript/soundworks.shared-state.cjs
