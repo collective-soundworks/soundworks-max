@@ -3,7 +3,7 @@ export default {
     type: 'float',
     min: 0,
     max: 1,
-    default: 0.7,
+    default: 0,
   },
   frequency: {
     type: 'float',

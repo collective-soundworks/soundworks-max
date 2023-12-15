@@ -41,6 +41,7 @@ async function main($container) {
 
   // create a simple envelop
   const env = audioContext.createGain();
+  env.gain.value = 0;
   env.connect(audioContext.destination);
   const src = audioContext.createOscillator();
   src.connect(env);
@@ -83,8 +84,6 @@ async function main($container) {
       env.gain.setTargetAtTime(values.volume, now,  0.1);
     }
   }, true);
-
-  player.set({frequency: Math.random() * 1000 + 50});
 
 }
 
