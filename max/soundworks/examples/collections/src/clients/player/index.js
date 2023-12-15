@@ -50,9 +50,10 @@ async function main($container) {
 
   function layout() {
     render(html`
-      <p>Client ${client.id}</p>
       <div class="simple-layout">
+        <h1>Client ${client.id}</h1>
         <sc-slider
+          style="width: 100%; margin-bottom: 4px;"
           min="${player.getSchema().frequency.min}"
           max="${player.getSchema().frequency.max}"
           value="${player.get('frequency')}"
@@ -60,6 +61,7 @@ async function main($container) {
           number-box=true
         ></sc-slider>
         <sc-slider
+          style="width: 100%"
           min="${player.getSchema().volume.min}"
           max="${player.getSchema().volume.max}"
           value="${player.get('volume')}"

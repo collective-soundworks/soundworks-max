@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 267.0, 100.0, 938.0, 767.0 ],
+		"rect" : [ 177.0, 100.0, 924.0, 766.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 267.0, 126.0, 938.0, 741.0 ],
+						"rect" : [ 0.0, 26.0, 924.0, 740.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -189,7 +189,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 709.0, 11.0, 146.0, 54.0 ],
-									"presentation_linecount" : 5,
 									"text" : "generate 10 random frequencies and volume values"
 								}
 
@@ -201,8 +200,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 452.0, 238.0, 119.0, 23.0 ],
-									"text" : "pack i f f"
+									"patching_rect" : [ 452.0, 238.0, 121.0, 23.0 ],
+									"text" : "join 3 @triggers 1 2"
 								}
 
 							}
@@ -214,7 +213,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 604.5, 198.0, 201.0, 25.0 ],
-									"presentation_linecount" : 3,
 									"text" : "change frequency and volume"
 								}
 
@@ -229,7 +227,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 269.0, 189.5, 150.0, 40.0 ],
-									"presentation_linecount" : 2,
 									"text" : "set the instance you want to control"
 								}
 
@@ -695,7 +692,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 277.0, 308.5, 114.0, 94.0 ],
+									"patching_rect" : [ 277.0, 308.5, 115.0, 94.0 ],
 									"text" : "this script prepare the \"dict array\" formatting according to the number of connected clients"
 								}
 
@@ -709,7 +706,6 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 125.5, 322.0, 138.0, 67.0 ],
-									"presentation_linecount" : 4,
 									"saved_object_attributes" : 									{
 										"autostart" : 1,
 										"defer" : 0,
@@ -1487,7 +1483,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 58.0, 159.0, 180.0, 22.0 ],
+					"patching_rect" : [ 25.0, 118.0, 180.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1503,7 +1499,40 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-43",
+					"id" : "obj-38",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 110.0, 293.0, 215.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "helpstarter",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js helpstarter soundworks.shared-state"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"border" : 0,
+					"filename" : "helpname.js",
+					"id" : "obj-41",
+					"ignoreclick" : 1,
+					"jsarguments" : [ "soundworks.shared-state" ],
+					"maxclass" : "jsui",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 10.0, 10.0, 534.0321044921875, 57.599853515625 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
 					"numoutlets" : 0,
@@ -1518,7 +1547,70 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 938.0, 741.0 ],
+						"rect" : [ 0.0, 26.0, 924.0, 740.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "",
+						"showontab" : 1,
+						"assistshowspatchername" : 0,
+						"boxes" : [  ],
+						"lines" : [  ]
+					}
+,
+					"patching_rect" : [ 205.0, 205.0, 50.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p ?",
+					"varname" : "q_tab"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 5,
+							"revision" : 6,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 177.0, 126.0, 924.0, 740.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1550,6 +1642,19 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
+									"id" : "obj-21",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 706.0, 286.0, 194.0, 40.0 ],
+									"text" : "see number of connected clients"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
 									"fontname" : "Arial",
 									"fontsize" : 13.0,
 									"id" : "obj-11",
@@ -1570,7 +1675,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 629.0, 119.5, 214.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Open 10 instances of the web client"
 								}
 
@@ -1739,7 +1843,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.499999999999886, 249.0, 139.0, 69.0 ],
+									"patching_rect" : [ 225.499999999999886, 249.0, 137.0, 69.0 ],
 									"text" : "values of the state who trigger the update"
 								}
 
@@ -1752,18 +1856,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 661.0, 288.0, 50.0, 23.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-31",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 646.0, 316.0, 98.0, 23.0 ],
-									"text" : "print @popup 1"
+									"patching_rect" : [ 646.0, 295.5, 50.0, 23.0 ]
 								}
 
 							}
@@ -2167,16 +2260,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-31", 0 ],
-									"order" : 1,
-									"source" : [ "obj-17", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-34", 0 ],
-									"order" : 0,
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -2229,7 +2313,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 35.0, 122.0, 47.0, 22.0 ],
+					"patching_rect" : [ 10.0, 85.0, 50.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2239,24 +2323,7 @@
 					}
 ,
 					"text" : "p basic",
-					"varname" : "basic_tab[1]"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-38",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 110.0, 293.0, 215.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"filename" : "helpstarter",
-						"parameter_enable" : 0
-					}
-,
-					"text" : "js helpstarter soundworks.shared-state"
+					"varname" : "basic_tab"
 				}
 
 			}
@@ -2264,7 +2331,7 @@
 				"box" : 				{
 					"border" : 0,
 					"filename" : "helpname.js",
-					"id" : "obj-41",
+					"id" : "obj-5",
 					"ignoreclick" : 1,
 					"jsarguments" : [ "soundworks.shared-state" ],
 					"maxclass" : "jsui",
@@ -2276,75 +2343,12 @@
 				}
 
 			}
-, 			{
-				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 938.0, 741.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 1,
-						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "",
-						"showontab" : 1,
-						"assistshowspatchername" : 0,
-						"boxes" : [  ],
-						"lines" : [  ]
-					}
-,
-					"patching_rect" : [ 205.0, 205.0, 50.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
-					}
-,
-					"text" : "p ?",
-					"varname" : "q_tab"
-				}
-
-			}
  ],
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-2::obj-102" : [ "number[2]", "number[1]", 0 ],
-			"obj-43::obj-15" : [ "number", "number", 0 ],
-			"obj-43::obj-19::obj-3" : [ "live.text", "live.text", 0 ],
+			"obj-3::obj-15" : [ "number", "number", 0 ],
+			"obj-3::obj-19::obj-3" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
 				"0" : 				{
 					"index" : 0,

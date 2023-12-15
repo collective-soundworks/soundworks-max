@@ -150,8 +150,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 35,
-											"y" : 38
+											"x" : 6,
+											"y" : 25
 										}
 
 									}
@@ -1000,7 +1000,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"source" : [ "obj-28", 2 ]
+									"source" : [ "obj-28", 3 ]
 								}
 
 							}
@@ -1383,7 +1383,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 606.0, 450.5, 50.0, 35.0 ],
-									"text" : "config::x 12"
+									"text" : "config::x 84"
 								}
 
 							}
@@ -1600,8 +1600,8 @@
 								"box" : 								{
 									"data" : 									{
 										"config" : 										{
-											"x" : 49,
-											"y" : 85,
+											"x" : 84,
+											"y" : 69,
 											"z" : 123
 										}
 
@@ -1685,15 +1685,14 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-60", 0 ],
-									"order" : 0,
-									"source" : [ "obj-28", 0 ]
+									"source" : [ "obj-28", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-66", 0 ],
-									"order" : 1,
+									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -1702,7 +1701,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-73", 0 ],
 									"midpoints" : [ 28.75, 379.0, 28.5, 379.0 ],
-									"order" : 2,
+									"order" : 1,
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -2658,7 +2657,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 468.499999999999886, 389.0, 137.0, 52.0 ],
-									"presentation_linecount" : 2,
 									"text" : "values of the state who trigger the update"
 								}
 
@@ -2756,7 +2754,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 274.5, 487.0, 50.0, 22.0 ],
-									"text" : "C&-H"
+									"text" : "<b<@"
 								}
 
 							}
@@ -2878,7 +2876,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 11.0, 459.0, 119.0, 22.0 ],
-									"text" : "volume : -19"
+									"text" : "volume : -32"
 								}
 
 							}
@@ -3029,7 +3027,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 152.0, 128.0, 66.0 ],
-									"text" : "send \"key : value\" pairs to communicate with a state..."
+									"text" : "send \"key value\" pairs to communicate with a state..."
 								}
 
 							}

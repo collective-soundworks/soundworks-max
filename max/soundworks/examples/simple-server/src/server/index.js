@@ -37,6 +37,16 @@ const globals = await server.stateManager.create('globals');
 // server.pluginManager.register('my-plugin', plugin);
 // server.stateManager.registerSchema('my-schema', definition);
 
+server.stateManager.registerUpdateHook('globals', updates => {
+  if ('immediate' in updates) {
+    if (updates['immediate'] === 2) {
+      updates['immediate'] = 4;
+    }
+
+    return updates;
+  }
+});
+
 /**
  * Launch application (init plugins, http server, etc.)
  */

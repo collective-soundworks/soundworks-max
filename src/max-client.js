@@ -151,16 +151,24 @@ async function attach(schemaName) {
       Max.outlet("state", state.getValues());
       Max.outlet("updates", updates);
 
-      // @TODO - uncomment when collection.getSchema is implemented
-      // for (let name in updates) {
-      //   const def = collection.getSchema(name);
+      let hasEvent = false;
 
-      //   if (def.event === true) {
-      //     setTimeout(() => {
-      //       Max.outlet("collection", collection.getValues());
-      //     }, 10);
-      //   }
-      // }
+      for (let name in updates) {
+        const def = collection.getSchema(name);
+
+        if (def.event === true) {
+          hasEvent = true;
+          updates[name] = null;
+        }
+      }
+
+      if (hasEvent) {
+        setTimeout(() => {
+          Max.outlet("collection", collection.getValues());
+          Max.outlet("state", state.getValues());
+          Max.outlet("updates", updates);
+        }, 10);
+      }
     });
 
     collection.onAttach(state => {
@@ -177,8 +185,7 @@ async function attach(schemaName) {
 
     // Send connected value
     Max.outlet("connect", 1);
-    // @TODO - uncomment when implemented
-    // Max.outlet("schema", collection.getSchema());
+    Max.outlet("schema", collection.getSchema());
     Max.outlet("collection", collection.getValues());
     Max.outlet("state", {});
     Max.outlet("updates", {});
@@ -194,31 +201,39 @@ async function onDict(dict) {
     return;
   }
 
-  // @TODO - uncomment when collection.getSchema is implemented
-  // for (let name in dict) {
-  //   dict[name] = _sanitizeInputForNode(name, dict[name]);
-  // }
   if ("array" in dict) {
     // we are passing an array
-    globals.collection.forEach(async (state, index) => {
-      if (isPlainObject(dict.array[index])) {
-        try {
-          await state.set(dict.array[index]);
-        } catch(err) {
-          console.log(err);
-        }
-      }
-    })
+    onArray(dict.array);
   } else {
     // we are passing a dict
+    for (let name in dict) {
+      dict[name] = _sanitizeInputForNode(name, dict[name]);
+    }
+
     try {
       await globals.collection.set(dict);
     } catch(err) {
       console.log(err);
     }
   }
+}
 
+async function onArray(array) {
+  array.forEach((values, index) => {
+    for (let name in values) {
+      values[name] = _sanitizeInputForNode(name, values[name]);
+    }
+  })
 
+  globals.collection.forEach(async (state, index) => {
+    if (isPlainObject(array[index])) {
+      try {
+        await state.set(array[index]);
+      } catch(err) {
+        console.log(err);
+      }
+    }
+  })
 }
 
 function onDebug(verbose) {
@@ -238,8 +253,8 @@ function onSchema() {
   if (globals.state === null) {
     return;
   }
-  // @TODO - uncomment when collection.getSchema is implemented
-  // Max.outlet("schema",globals.collection.getSchema());
+
+  Max.outlet("schema",globals.collection.getSchema());
 }
 
 async function onMessage(...args) {
@@ -305,14 +320,11 @@ function _sanitizeInputForNode(key, ...value) {
 
   let def;
 
-  // @TODO - uncomment when collection.getSchema is implemented
-  // try {
-  //   def = globals.state.getSchema(key);
-  // } catch(err) {
-  //   throw new Error(`Unknown param ${key}`);
-  // }
-  // remove when implemented
-  def = {type: 'float', nullable: false};
+  try {
+    def = globals.collection.getSchema(key);
+  } catch(err) {
+    throw new Error(`Unknown param ${key}`);
+  }
 
   let sanitizedValue = null;
 
