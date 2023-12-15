@@ -1,6 +1,6 @@
 {
   "name": "soundworks-max",
-  "version": "2.0.0",
+  "version": "1.0.0-alpha.4",
   "description": "A Max client for sharing states with soundworks@v4",
   "main": "src/max-server.js",
   "exports": {
