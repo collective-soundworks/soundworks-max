@@ -12,14 +12,16 @@ Notes:
 - [Max](#max)
   * [Install](#install)
   * [Usage](#usage)
-- [Running the example](#running-the-example)
+  * [Running the example](#running-the-example)
 - [Javascript](#javascript)
   * [Install](#install-1)
   * [Usage](#usage-1)
-- [Next Steps](#next-steps)
 - [Caveats](#caveats)
-- [Running the test suite](#running-the-test-suite)
-- [Acknowledgements](#acknowledgements)
+- [Development notes](#development-notes)
+  * [Link Max package into `Documents/Max 8/Packages`](#link-max-package-into-documentsmax-8packages)
+  * [Running the test suite](#running-the-test-suite)
+  * [How to open patcher?](#how-to-open-patcher)
+- [Credits](#credits)
 - [License](#license)
 
 <!-- tocstop -->
@@ -38,9 +40,9 @@ Notes:
 See the overview patch for more informations  
 cf. `~/Documents/Max 8/Packages/soundworks/extras/soundworks.maxpat`
 
-## Running the example
+### Running the example
 
-1. From the overview click `soundworks.shared-state`  
+1. In the "overview" menu click `soundworks.shared-state`  
 2. Start the soundworks server by opening the `soundworks.example.server`   
 and follow the instructions.
 
@@ -107,7 +109,7 @@ For verbose output
 VERBOSE=1 npm test -- tests/the-test/index.spec.js
 ```
 
-### How to open patcher ?
+### How to open patcher?
 
 `CMD + OPTION + M` then `CMD + E` then click on the button
 
