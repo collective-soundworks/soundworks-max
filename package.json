@@ -1,27 +1,35 @@
 {
-  "name": "soundworks-max",
+  "name": "@soundworks/max",
   "version": "1.0.0",
   "description": "A Max client for sharing states with soundworks@v4",
+  "author": [
+    "Etienne Démoulin",
+    "Benjamin Matuszewski"
+  ],
+  "type": "module",
+  "license": "BSD-3-Clause",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "src/max-server.js",
   "exports": {
     ".": "src/max-server.js"
   },
-  "type": "module",
   "scripts": {
     "build": "esbuild ./src/max-client.js  --bundle --format=cjs --platform=node --external:max-api --outfile=max/soundworks/javascript/soundworks.shared-state.cjs",
     "test": "npm run build && mocha",
     "launch-test-server": "VERBOSE=1 MODE=\"debug\" node ./tests/utils/create-soundworks-server.js",
     "preversion": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@ircam/sc-utils": "^1.3.2",
-    "@soundworks/core": "^4.0.0-alpha.16",
-    "@soundworks/helpers": "^1.0.0-alpha.7",
-    "chai": "^4.3.10",
-    "esbuild": "^0.19.9",
+    "@ircam/sc-utils": "^1.3.3",
+    "@soundworks/core": "^4.0.0-alpha.20",
+    "@soundworks/helpers": "^1.0.0-alpha.11",
+    "chai": "^5.1.0",
+    "esbuild": "^0.20.2",
     "find-process": "^1.4.7",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "node-osc": "^9.1.1",
+    "open": "^10.1.0"
   }
 }

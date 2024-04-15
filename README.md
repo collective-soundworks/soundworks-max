@@ -1,9 +1,8 @@
-# `@soundworks/max`
+# soundworks | max
 
-> Utility to monitor and control soundworks' shared states within Max
+Utility to monitor and control soundworks' shared states within [Max](https://cycling74.com/products/max-features).
 
-This repository is about a [Max](https://cycling74.com/products/max-features) package tested on Mac.  
-Windows version should work but is untested.
+_Note that this repository has been tested on Mac only, Windows version should work but is untested._
 
 ## Table of Contents
 
@@ -48,47 +47,44 @@ and follow the instructions.
 
 ### Install
 
-@TODO rewrite  
 ```sh
-npm install --save @soundworks/soundworks-max
+npm install --save @soundworks/max
 ```
-
 
 ### Usage
 
-@TODO rewrite  
 In the `src/server/index.js` of your soundworks application:
 
 1. Import the `soundworksMax` object
 
 ```js
 import { Server } from '@soundworks/core/server.js';
-// import the `configureMaxClient` function from the @soundworks/max package
+// 1. Import the `configureMaxClient` function from the @soundworks/max package
 import { configureMaxClient } from '@soundworks/max';
-
 import { loadConfig } from '../utils/load-config.js';
 
-// extends with config object to configure max client
+// 2. Configure max client
 const config = loadConfig(process.env.ENV, import.meta.url);
 configureMaxClient(config);
 
 const server = new Server(config);
 ```
 
-## Next Steps
-
-- `[soundworks.shared-state.observe]`
-- `[soundworks.sync]`
-
 ## Caveats
 
 Each `soundworks.shared-state` object creates a new soundworks client, which is 
 known suboptimal, but improves user friendliness.
 
-One of our unit test use 25 instances, which work on all systems without problems.  
+One of our unit test use 25 instances, which work on all systems without issues.  
 This test has been run with 100 objects successfully on ARM, but not on Intel.  
 
 ## Development notes
+
+### Link Max package into `Documents/Max 8/Packages`
+
+```sh
+ln -s .path/to/soundworks-max/max/soundworks ~/Documents/Max\ 8/Packages
+```
 
 ### Running the test suite
 
@@ -112,7 +108,7 @@ VERBOSE=1 npm test -- tests/the-test/index.spec.js
 
 ### How to open patcher ?
 
-CMD + OPTION + M puis CMD + E puis appuyer sur le bouton
+`CMD + OPTION + M` then `CMD + E` then click on the button
 
 ## Credits
 

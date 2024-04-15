@@ -2,7 +2,7 @@ import path from 'node:path';
 import os from 'node:os';
 import fs from 'node:fs';
 import { execSync } from 'node:child_process';
- import * as url from 'node:url';
+import * as url from 'node:url';
 
 import findProcess from 'find-process';
 import { assert } from 'chai';

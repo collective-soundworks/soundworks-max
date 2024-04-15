@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@ircam/sc-components": "^3.0.0-alpha.44",
-    "@soundworks/core": "^4.0.0-alpha.0",
-    "@soundworks/helpers": "^1.0.0-alpha.2",
+    "@soundworks/core": "^4.0.0-alpha.20",
+    "@soundworks/helpers": "^1.0.0-alpha.11",
     "json5": "^2.2.2",
     "lit": "^3.0.2"
   },
