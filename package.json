@@ -11,9 +11,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "src/max-server.js",
   "exports": {
-    ".": "src/max-server.js"
+    ".": "./src/max-server.js"
   },
   "scripts": {
     "build": "esbuild ./src/max-client.js  --bundle --format=cjs --platform=node --external:max-api --outfile=max/soundworks/javascript/soundworks.shared-state.cjs",
@@ -28,8 +27,6 @@
     "chai": "^5.1.0",
     "esbuild": "^0.20.2",
     "find-process": "^1.4.7",
-    "mocha": "^10.2.0",
-    "node-osc": "^9.1.1",
-    "open": "^10.1.0"
+    "mocha": "^10.2.0"
   }
 }

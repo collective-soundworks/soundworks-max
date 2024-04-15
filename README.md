@@ -2,7 +2,8 @@
 
 Utility to monitor and control soundworks' shared states within [Max](https://cycling74.com/products/max-features).
 
-_Note that this repository has been tested on Mac only, Windows version should work but is untested._
+Notes: 
+- This repository has been tested on Mac only, Windows version should work but is untested.
 
 ## Table of Contents
 
