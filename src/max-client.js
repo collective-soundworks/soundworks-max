@@ -16,7 +16,6 @@ const globals = {
   ready: false,
 };
 
-
 // - General documentation: https://soundworks.dev/
 // - API documentation:     https://soundworks.dev/api
 // - Issue Tracker:         https://github.com/collective-soundworks/soundworks/issues
@@ -415,4 +414,3 @@ function _sanitizeInputForNode(key, ...value) {
 // that bootstrap can be called
 // -------------------------------------------------------
 Max.outletBang();
-

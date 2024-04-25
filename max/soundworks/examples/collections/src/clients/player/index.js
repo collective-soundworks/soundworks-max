@@ -77,13 +77,19 @@ async function main($container) {
   player.onUpdate((values) => {
     layout();
 
+    if ('oscillatorType' in values) {
+        src.type = values.oscillatorType;
+    }
+
     if ('frequency' in values) {
       src.frequency.value = values.frequency;
+      // const now = audioContext.currentTime;
+      // src.frequency.setTargetAtTime(values.volume, now,  0.01);
     }
 
     if ('volume' in values) {
       const now = audioContext.currentTime;
-      env.gain.setTargetAtTime(values.volume, now,  0.1);
+      env.gain.setTargetAtTime(values.volume, now,  0.01);
     }
   }, true);
 

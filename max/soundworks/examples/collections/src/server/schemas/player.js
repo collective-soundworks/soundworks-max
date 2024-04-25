@@ -7,8 +7,12 @@ export default {
   },
   frequency: {
     type: 'float',
-    min: 50,
-    max: 1000,
+    min: 1,
+    max: 20000,
     default: 400,
   },
+  oscillatorType: {
+    type: "string",
+  default: "sine"
+  }
 };
