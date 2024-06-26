@@ -144,11 +144,11 @@ async function attach(schemaName) {
     const collection = await globals.client.stateManager.getCollection(schemaName);
     globals.collection = collection;
 
-    collection.onUpdate((state, updates) => {
+    collection.onUpdate(async (state, updates) => {
 
-      Max.outlet("collection", collection.getValues());
-      Max.outlet("state", state.getValues());
-      Max.outlet("updates", updates);
+      await Max.outlet("collection", collection.getValues());
+      await Max.outlet("state", state.getValues());
+      await Max.outlet("updates", updates);
 
       let hasEvent = false;
 
@@ -162,32 +162,32 @@ async function attach(schemaName) {
       }
 
       if (hasEvent) {
-        setTimeout(() => {
-          Max.outlet("collection", collection.getValues());
-          Max.outlet("state", state.getValues());
-          Max.outlet("updates", updates);
+        setTimeout(async () => {
+          await Max.outlet("collection", collection.getValues());
+          await Max.outlet("state", state.getValues());
+          await Max.outlet("updates", updates);
         }, 10);
       }
     });
 
-    collection.onAttach(state => {
-      Max.outlet("collection", collection.getValues());
-      Max.outlet("state", state.getValues());
-      Max.outlet("updates", {});
+    collection.onAttach(async state => {
+      await Max.outlet("collection", collection.getValues());
+      await Max.outlet("state", state.getValues());
+      await Max.outlet("updates", {});
     });
 
-    collection.onDetach(state => {
-      Max.outlet("collection", collection.getValues());
-      Max.outlet("state", {});
-      Max.outlet("updates", {});
+    collection.onDetach(async state => {
+      await Max.outlet("collection", collection.getValues());
+      await Max.outlet("state", {});
+      await Max.outlet("updates", {});
     });
 
     // Send connected value
-    Max.outlet("connect", 1);
-    Max.outlet("schema", collection.getSchema());
-    Max.outlet("collection", collection.getValues());
-    Max.outlet("state", {});
-    Max.outlet("updates", {});
+    await Max.outlet("connect", 1);
+    await Max.outlet("schema", collection.getSchema());
+    await Max.outlet("collection", collection.getValues());
+    await Max.outlet("state", {});
+    await Max.outlet("updates", {});
 
     log(`attached to ${schemaName}`);
   } catch (err) {
@@ -235,25 +235,25 @@ async function onArray(array) {
   })
 }
 
-function onDebug(verbose) {
+async function onDebug(verbose) {
   globals.verbose = !!verbose;
-  Max.outlet("debug", globals.verbose);
+  await Max.outlet("debug", globals.verbose);
 }
 
-function onBang() {
+async function onBang() {
   if (globals.collection === null) {
     return;
   }
 
-  Max.outlet("collection",globals.collection.getValues());
+  await Max.outlet("collection",globals.collection.getValues());
 }
 
-function onSchema() {
+async function onSchema() {
   if (globals.state === null) {
     return;
   }
 
-  Max.outlet("schema",globals.collection.getSchema());
+  await Max.outlet("schema",globals.collection.getSchema());
 }
 
 async function onMessage(...args) {
@@ -287,13 +287,13 @@ async function onMessage(...args) {
 // -------------------------------------------------------
 // HELPERS
 // -------------------------------------------------------
-function _clearDicts() {
+async function _clearDicts() {
   // Send disconnected value
-  Max.outlet('connect', 0);
-  Max.outlet('schema', {});
-  Max.outlet('collection', {});
-  Max.outlet('state', {});
-  Max.outlet('updates', {});
+  await Max.outlet('connect', 0);
+  await Max.outlet('schema', {});
+  await Max.outlet('collection', {});
+  await Max.outlet('state', {});
+  await Max.outlet('updates', {});
 }
 
 async function _detach() {
