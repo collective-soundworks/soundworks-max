@@ -1,19 +1,12 @@
-# transpiled files and dependencies
-/node_modules
-/src
-/tests
-/max
-/example
-/resources
-/bin
-
-.editorconfig
-.babelrc
 .github
+/max
+/node_modules
+/tests
+.babelrc
+.editorconfig
 NOTES.md
 
 # junk files
-package-lock.json
 .DS_Store
 Thumbs.db
 *.bak

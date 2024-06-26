@@ -56,9 +56,7 @@ npm install --save @soundworks/max
 
 ### Usage
 
-In the `src/server/index.js` of your soundworks application:
-
-1. Import the `soundworksMax` object
+In the `src/server/index.js` of your soundworks application, and configure the Max client:
 
 ```js
 import { Server } from '@soundworks/core/server.js';
