@@ -146,8 +146,8 @@ async function attach(schemaName) {
 
     collection.onUpdate(async (state, updates) => {
 
-      await Max.outlet("collection", collection.getValues());
-      await Max.outlet("state", state.getValues());
+      await Max.outlet("collection", collection.getValuesUnsafe());
+      await Max.outlet("state", state.getValuesUnsafe());
       await Max.outlet("updates", updates);
 
       let hasEvent = false;
@@ -163,21 +163,21 @@ async function attach(schemaName) {
 
       if (hasEvent) {
         setTimeout(async () => {
-          await Max.outlet("collection", collection.getValues());
-          await Max.outlet("state", state.getValues());
+          await Max.outlet("collection", collection.getValuesUnsafe());
+          await Max.outlet("state", state.getValuesUnsafe());
           await Max.outlet("updates", updates);
         }, 10);
       }
     });
 
     collection.onAttach(async state => {
-      await Max.outlet("collection", collection.getValues());
-      await Max.outlet("state", state.getValues());
+      await Max.outlet("collection", collection.getValuesUnsafe());
+      await Max.outlet("state", state.getValuesUnsafe());
       await Max.outlet("updates", {});
     });
 
     collection.onDetach(async state => {
-      await Max.outlet("collection", collection.getValues());
+      await Max.outlet("collection", collection.getValuesUnsafe());
       await Max.outlet("state", {});
       await Max.outlet("updates", {});
     });
@@ -185,7 +185,7 @@ async function attach(schemaName) {
     // Send connected value
     await Max.outlet("connect", 1);
     await Max.outlet("schema", collection.getSchema());
-    await Max.outlet("collection", collection.getValues());
+    await Max.outlet("collection", collection.getValuesUnsafe());
     await Max.outlet("state", {});
     await Max.outlet("updates", {});
 
@@ -245,7 +245,7 @@ async function onBang() {
     return;
   }
 
-  await Max.outlet("collection",globals.collection.getValues());
+  await Max.outlet("collection",globals.collection.getValuesUnsafe());
 }
 
 async function onSchema() {

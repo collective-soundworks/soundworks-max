@@ -26,14 +26,12 @@ console.log(`
 const server = new Server(config);
 // configure the server for usage within this application template
 server.useDefaultApplicationTemplate();
-
 server.stateManager.registerSchema('globals', globalsSchema);
+
+await server.start();
 
 const globals = await server.stateManager.create('globals');
 
-/**
- * Register plugins and schemas
- */
 // server.pluginManager.register('my-plugin', plugin);
 // server.stateManager.registerSchema('my-schema', definition);
 
@@ -46,11 +44,6 @@ server.stateManager.registerUpdateHook('globals', updates => {
     return updates;
   }
 });
-
-/**
- * Launch application (init plugins, http server, etc.)
- */
-await server.start();
 
 // and do your own stuff!
 
