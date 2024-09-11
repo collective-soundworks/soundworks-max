@@ -48,7 +48,7 @@ async function main($container) {
 
   src.start();
 
-  function layout() {
+  function renderApp() {
     render(html`
       <div class="simple-layout">
         <h1>Client ${client.id}</h1>
@@ -75,8 +75,6 @@ async function main($container) {
 
   const player = await client.stateManager.create('player');
   player.onUpdate((values) => {
-    layout();
-
     if ('oscillatorType' in values) {
         src.type = values.oscillatorType;
     }
@@ -91,6 +89,8 @@ async function main($container) {
       const now = audioContext.currentTime;
       env.gain.setTargetAtTime(values.volume, now,  0.01);
     }
+
+    renderApp();
   }, true);
 
 }
