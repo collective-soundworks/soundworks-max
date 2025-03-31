@@ -2,9 +2,9 @@
 // please put this cjs file and the attached Max patch
 // on top of your soundworks file tree
 
-const { fork } = require('child_process');
+import { fork } from 'child_process';
 
-const child = fork('./.build/server/index.js');
+const child = fork('./.build/server.js');
 
 process.on('exit', function() {
   child.kill('SIGTERM');

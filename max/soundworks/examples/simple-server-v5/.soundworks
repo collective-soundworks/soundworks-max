@@ -1,0 +1,6 @@
+{
+  "name": "simple-server-v5",
+  "createVersion": "5.0.3",
+  "language": "js",
+  "configFormat": "yaml"
+}

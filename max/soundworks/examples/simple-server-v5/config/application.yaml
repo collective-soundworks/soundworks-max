@@ -1,0 +1,8 @@
+name: simple-server-v5
+author: ""
+clients:
+  player:
+    runtime: browser
+    default: true
+  max:
+    runtime: node
