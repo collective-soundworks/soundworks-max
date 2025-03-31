@@ -481,7 +481,7 @@
 
 							}
  ],
-						"originid" : "pat-16",
+						"originid" : "pat-610",
 						"styles" : [ 							{
 								"name" : "default_style",
 								"newobj" : 								{
@@ -998,7 +998,7 @@
 
 							}
  ],
-						"originid" : "pat-50",
+						"originid" : "pat-648",
 						"styles" : [ 							{
 								"name" : "default_style",
 								"newobj" : 								{
@@ -1728,7 +1728,7 @@
 
 							}
  ],
-						"originid" : "pat-84",
+						"originid" : "pat-686",
 						"styles" : [ 							{
 								"name" : "default_style",
 								"newobj" : 								{
@@ -2305,7 +2305,7 @@
 
 							}
  ],
-						"originid" : "pat-118",
+						"originid" : "pat-724",
 						"styles" : [ 							{
 								"name" : "default_style",
 								"newobj" : 								{
@@ -2468,7 +2468,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 126.0, 869.0, 746.0 ],
+						"rect" : [ 0.0, 26.0, 869.0, 746.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"subpatcher_template" : "Default Max 7",
 						"showontab" : 1,
@@ -3105,7 +3105,7 @@
 
 							}
  ],
-						"originid" : "pat-152",
+						"originid" : "pat-762",
 						"styles" : [ 							{
 								"name" : "default_style",
 								"newobj" : 								{
@@ -3273,7 +3273,7 @@
 						"showontab" : 1,
 						"boxes" : [  ],
 						"lines" : [  ],
-						"originid" : "pat-186"
+						"originid" : "pat-800"
 					}
 ,
 					"patching_rect" : [ 252.01605224609375, 318.0, 50.0, 22.0 ],
@@ -3347,11 +3347,23 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 869.0, 746.0 ],
+						"rect" : [ 34.0, 126.0, 869.0, 746.0 ],
 						"default_fontsize" : 13.0,
 						"gridsize" : [ 5.0, 5.0 ],
 						"showontab" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 453.0, 214.0, 311.0, 79.0 ],
+									"text" : "while first open this package, please double click on \"soundworks.shared-state\" and click on the \nplease click on \"script npm install\" button.\nThen, re-open your patch. \nSoundworks-max is now ready to use."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"border" : 0,
 									"filename" : "helpargs.js",
@@ -3680,7 +3692,7 @@
 
 							}
  ],
-						"originid" : "pat-188"
+						"originid" : "pat-802"
 					}
 ,
 					"patching_rect" : [ 10.0, 85.0, 47.0, 22.0 ],
@@ -3711,7 +3723,7 @@
 			}
  ],
 		"lines" : [  ],
-		"originid" : "pat-14",
+		"originid" : "pat-608",
 		"parameters" : 		{
 			"obj-6::obj-19::obj-3" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
