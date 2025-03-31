@@ -1,7 +1,7 @@
 {
   "name": "@soundworks/max",
-  "version": "1.4.1",
-  "description": "A Max client for sharing states with soundworks@v4",
+  "version": "1.4.0",
+  "description": "A Max client for sharing states with soundworks@v5",
   "author": [
     "Etienne Démoulin",
     "Benjamin Matuszewski"
