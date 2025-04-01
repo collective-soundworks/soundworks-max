@@ -2,7 +2,7 @@
   "name": "@soundworks/max",
   "version": "1.4.0",
   "description": "A Max client for sharing states with soundworks@v5",
-  "author": [
+  "contributors": [
     "Etienne Démoulin",
     "Benjamin Matuszewski"
   ],
@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "cp ./src/max-client.js max/soundworks/javascript/soundworks.shared-state.mjs",
+    "esbuild": "esbuild src/max-client.js --bundle --target=esnext --external:max-api --format=esm --outfile=max/soundworks/javascript/soundworks.shared-state.mjs",
     "test": "npm run build && mocha",
     "launch-test-server": "VERBOSE=1 MODE=\"debug\" node ./tests/utils/create-soundworks-server.js",
     "preversion": "npm run toc && npm run build",
