@@ -2,7 +2,6 @@ import '@soundworks/helpers/polyfills.js';
 import { Client } from '@soundworks/core/client.js';
 import { isPlainObject } from '@ircam/sc-utils';
 
-import path from 'node:path';
 import Max from 'max-api';
 
 const globals = {
