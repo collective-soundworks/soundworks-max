@@ -15,8 +15,7 @@
     ".": "./src/max-server.js"
   },
   "scripts": {
-    "build": "cp ./src/max-client.js max/soundworks/javascript/soundworks.shared-state.mjs",
-    "esbuild": "esbuild src/max-client.js --bundle --target=esnext --platform=node --external:max-api --format=esm --outfile=max/soundworks/javascript/soundworks.shared-state.mjs",
+    "build": "node bin/build.js",
     "test": "npm run build && mocha",
     "launch-test-server": "VERBOSE=1 MODE=\"debug\" node ./tests/utils/create-soundworks-server.js",
     "preversion": "npm run toc && npm run build",

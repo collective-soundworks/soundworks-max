@@ -2,44 +2,24 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 3,
-			"revision" : 1,
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
 		"rect" : [ 55.0, 410.0, 638.0, 412.0 ],
-		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
-		"default_fontface" : 0,
-		"default_fontname" : "Arial",
 		"gridonopen" : 2,
 		"gridsize" : [ 10.0, 10.0 ],
 		"gridsnaponopen" : 2,
-		"objectsnaponopen" : 1,
-		"statusbarvisible" : 2,
 		"toolbarvisible" : 0,
-		"lefttoolbarpinned" : 0,
-		"toptoolbarpinned" : 0,
-		"righttoolbarpinned" : 0,
-		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 0,
-		"tallnewobj" : 0,
-		"boxanimatetime" : 200,
-		"enablehscroll" : 1,
-		"enablevscroll" : 1,
-		"devicewidth" : 0.0,
-		"description" : "",
-		"digest" : "",
-		"tags" : "",
-		"style" : "",
-		"subpatcher_template" : "",
-		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"activebgcolor" : [ 0.0, 0.694117647058824, 1.0, 1.0 ],
 					"activebgoncolor" : [ 0.0, 0.694117647058824, 1.0, 1.0 ],
 					"annotation" : "",
 					"automation" : "Off",
@@ -57,6 +37,10 @@
 					"presentation_rect" : [ 10.0, 10.0, 170.0, 30.0 ],
 					"prototypename" : "onoff",
 					"saved_attribute_attributes" : 					{
+						"activebgcolor" : 						{
+							"expression" : ""
+						}
+,
 						"activebgoncolor" : 						{
 							"expression" : ""
 						}
@@ -65,6 +49,7 @@
 							"parameter_enum" : [ "Off", "On" ],
 							"parameter_longname" : "live.text",
 							"parameter_mmax" : 1,
+							"parameter_modmode" : 0,
 							"parameter_shortname" : "live.text",
 							"parameter_type" : 2
 						}
@@ -315,6 +300,7 @@
 
 			}
  ],
+		"originid" : "pat-353",
 		"parameters" : 		{
 			"obj-3" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
@@ -331,7 +317,7 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "soundworks.digest.js",
-				"bootpath" : "~/Desktop/soundworks-max/max/soundworks/javascript",
+				"bootpath" : "~/Github/soundworks-max/max/soundworks/javascript",
 				"patcherrelativepath" : "../javascript",
 				"type" : "TEXT",
 				"implicit" : 1
