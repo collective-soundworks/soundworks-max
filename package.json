@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "@ircam/sc-utils": "^1.10.1",
-    "@soundworks/core": "^5.1.2",
-    "@soundworks/helpers": "^5.0.2",
+    "@soundworks/core": "^5.2.0",
+    "@soundworks/helpers": "^5.0.4",
     "chai": "^5.1.0",
     "esbuild": "^0.20.2",
     "find-process": "^1.4.7",
