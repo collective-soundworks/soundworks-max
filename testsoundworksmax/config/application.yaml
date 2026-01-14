@@ -1,0 +1,10 @@
+name: testsoundworksmax
+author: ""
+clients:
+  web:
+    runtime: browser
+    default: true
+  max:
+    runtime: node
+  node:
+    runtime: node

@@ -2,114 +2,72 @@
 
 Utility to monitor and control soundworks' shared states within [Max](https://cycling74.com/products/max-features).
 
-Notes: 
-- This repository has been tested on Mac only, Windows version should work but is untested.
+## No-build version
+With Max v9, Cycling added "import" support in Node4Max.  
+This means we didn't need anymore to build soundworks-max utility and we can directly run soundworks client in Max.  
+What we still need to do in to document well all functionalities and support between Max (& Ableton Live) and Soundworks.   
 
-## Table of Contents
+1. All previous features as to be documented (see below)
+2. Create max soundworks clients + max patch on this branch for documented features  
+3. List all "bugs" and weird behaviors
+4. Create soundworks tutorial with a Max (& Ableton Live) use case  
 
-<!-- toc -->
+## Documented features
+- Connection status with server
+- Change ip and port
+- Attach and detach to a state
+- Send message in key-value format
+- Send message in dict format
+- Ask for current values
+- Ask for schema definition
+- Get updates and values as message
+- Get updates and values as dict
+- Get and set "event" type as bang
+- Work with collections
 
-- [Max](#max)
-  * [Install](#install)
-  * [Usage](#usage)
-  * [Running the example](#running-the-example)
-- [Javascript](#javascript)
-  * [Install](#install-1)
-  * [Usage](#usage-1)
-- [Caveats](#caveats)
-- [Development notes](#development-notes)
-  * [Link Max package into `Documents/Max 8/Packages`](#link-max-package-into-documentsmax-8packages)
-  * [Running the test suite](#running-the-test-suite)
-  * [How to open patcher?](#how-to-open-patcher)
-- [Credits](#credits)
-- [License](#license)
+## Examples on this repo
+1. Connected status
+This example shows a toggle button on Max indicating if the server is connected or not.
+We need to be sure :
+  1. Connect client, then connect server
+  2. Connect server, then connect client
+  3. Disconnect client, then server
+  4. Disconnect server, then client
+Bug : is there a function to monitor disconnection of the server ? (not working correctly for now)
 
-<!-- tocstop -->
+4. Change IP and port 
+Seems to work for now, with hardcoding load config stuff. We will probably have to test it with corrected version.  
 
-## Max
+5. Attach and detach from a state
 
-### Install
 
-1. Download the Max package (soundworks-max.zip) from the release :  
-[https://github.com/collective-soundworks/soundworks-max/releases](https://github.com/collective-soundworks/soundworks-max/releases)
-2. Unzip the package and copy the resulting directory in `~/Documents/Max 8/Packages`
-3. Open the helper patch for more informations
+## Bugs and weird behaviors
+From Max documentation : If you're loading a JavaScript module (.mjs file) you can use top-level await, and loadend will work as expected.  
+All examples below will use mjs file format.
 
-### Usage
+### Differences between node client and max client
+2. Load Config
+js```const config = loadConfig(process.env.ENV, import.meta.url);```
+![image](screenshots/bugloadConfig.png)
 
-See the overview patch for more informations  
-cf. `~/Documents/Max 8/Packages/soundworks/extras/soundworks.maxpat`
+Workaround : hard code config
 
-### Running the example
+3. Launcher.execute
+js```
+launcher.execute(bootstrap, {
+  numClients: process.env.EMULATE ? parseInt(process.env.EMULATE) : 1,
+  moduleURL: import.meta.url,
+});
+```  
+This is great executed and we can see `[launcher][client max] connected`
+Nevertheless when calling a Max function (in our example Max.post to monitor connected status in Max console), Max throw this error
+![image](screenshots/buglauncherExecute.png)
 
-1. In the "overview" menu click `soundworks.shared-state`  
-2. Start the soundworks server by opening the `soundworks.example.server`   
-and follow the instructions.
+Workaround : move everything inside bootstrap on top level.
 
-## Javascript
+## Tutorials
 
-### Install
 
-```sh
-npm install --save @soundworks/max
-```
-
-### Usage
-
-In the `src/server/index.js` of your soundworks application, and configure the Max client:
-
-```js
-import { Server } from '@soundworks/core/server.js';
-// 1. Import the `configureMaxClient` function from the @soundworks/max package
-import { configureMaxClient } from '@soundworks/max';
-import { loadConfig } from '../utils/load-config.js';
-
-// 2. Configure max client
-const config = loadConfig(process.env.ENV, import.meta.url);
-configureMaxClient(config);
-
-const server = new Server(config);
-```
-
-## Caveats
-
-Each `soundworks.shared-state` object creates a new soundworks client, which is 
-known suboptimal, but improves user friendliness.
-
-One of our unit test use 25 instances, which work on all systems without issues.  
-This test has been run with 100 objects successfully on ARM, but not on Intel.  
-
-## Development notes
-
-### Link Max package into `Documents/Max 8/Packages`
-
-```sh
-ln -s .path/to/soundworks-max/max/soundworks ~/Documents/Max\ 8/Packages
-```
-
-### Running the test suite
-
-Launching all the tests
-
-```
-npm test -- tests/**/*.spec.js
-```
-
-Launching only one test file
-
-```
-npm test -- tests/the-test/index.spec.js
-```
-
-For verbose output
-
-```
-VERBOSE=1 npm test -- tests/the-test/index.spec.js
-```
-
-### How to open patcher?
-
-`CMD + OPTION + M` then `CMD + E` then click on the button
 
 ## Credits
 
