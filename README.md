@@ -46,18 +46,20 @@ From Max documentation : If you're loading a JavaScript module (.mjs file) you c
 All examples below will use mjs file format.
 
 ### Differences between node client and max client
-2. Load Config
-js```const config = loadConfig(process.env.ENV, import.meta.url);```
+2. Load Config  
+`const config = loadConfig(process.env.ENV, import.meta.url);`
 ![image](screenshots/bugloadConfig.png)
 
 Workaround : hard code config
 
 3. Launcher.execute  
 
-js```launcher.execute(bootstrap, {
+```js
+launcher.execute(bootstrap, {
   numClients: process.env.EMULATE ? parseInt(process.env.EMULATE) : 1,
   moduleURL: import.meta.url,
-});```  
+});
+```
 This is great executed and we can see `[launcher][client max] connected`
 Nevertheless when calling a Max function (in our example Max.post to monitor connected status in Max console), Max throw this error
 ![image](screenshots/buglauncherExecute.png)
