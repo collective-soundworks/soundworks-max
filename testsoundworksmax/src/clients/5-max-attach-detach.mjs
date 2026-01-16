@@ -6,7 +6,10 @@ import { loadConfig, launcher } from '@soundworks/helpers/node.js';
 Max.addHandlers({
   attach: (schemaName) => attach(schemaName),
   detach: () => detach(),
+  getDescription: (param) => getDescription(param),
 });
+
+let collection = null;
 
 const config = {
   env: {
@@ -30,39 +33,35 @@ const client = new Client(config);
 launcher.register(client);
 await client.start();
 
+async function getDescription(param) {
+  await Max.outlet(await collection.getDescription(param));
+}
+
 async function attach(name) {
-  // check if already attached to the same schema
   // detach from previous attached schema
 
-  const collection = await client.stateManager.getCollection(name);
+  if (collection) {
+    await collection.detach();
+    collection = null;
+  }
+
+  collection = await client.stateManager.getCollection(name);
 
   // register updates
-  collection.onUpdate(async (state, updates) => {
-
-    await Max.outlet("collection", collection.getValuesUnsafe());
-    await Max.outlet("state", state.getValuesUnsafe());
-    await Max.outlet("updates", updates);
-
-  })
-
-  // get schemaDef
-  const def = collection.getDescription(name);
-
-  // if there is events in schema def, put 10ms delay to make sure events are not logged by max
-
-  // send values onAttach, onDetact
-
-  // send values now
+  collection.onUpdate(async (state, updates, values) => {
+    await Max.outlet(updates);
+  });
 
 };
 
 async function detach() {
   // do nothing if there is no attached states
 
-  await collection.detach();
+  if (!collection) {
+    return;
+  }
 
-  await Max.outlet('collection', {});
-  await Max.outlet('state', {});
-  await Max.outlet('updates', {});
+  await collection.detach();
+  await Max.outlet({});
 
 }

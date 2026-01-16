@@ -10,17 +10,51 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 76.0, 179.0, 1000.0, 698.0 ],
+		"rect" : [ 76.0, 263.0, 675.0, 614.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
+					"id" : "obj-12",
+					"maxclass" : "message",
+					"numinlets" : 2,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 19.0, 67.0, 172.0, 172.0 ]
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 209.0, 64.0, 127.0, 22.0 ],
+					"text" : "getDescription volume"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "dict.view",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 19.0, 198.0, 155.0, 260.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 120.0, 48.0, 45.0, 22.0 ],
+					"text" : "detach"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 19.0, 48.0, 83.0, 22.0 ],
+					"text" : "attach global"
 				}
 
 			}
@@ -40,7 +74,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 326.0, 53.0, 400.0, 220.0 ],
+					"patching_rect" : [ 267.0, 169.0, 578.0, 443.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -52,7 +86,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 19.0, 14.0, 328.0, 22.0 ],
+					"patching_rect" : [ 19.0, 126.0, 332.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
@@ -61,9 +95,9 @@
 						"watch" : 1
 					}
 ,
-					"text" : "node.script 4-max-changeipport.mjs @watch 1 @autostart 1",
+					"text" : "node.script 5-max-attach-detach.mjs @watch 1 @autostart 1",
 					"textfile" : 					{
-						"filename" : "4-max-changeipport.mjs",
+						"filename" : "5-max-attach-detach.mjs",
 						"flags" : 0,
 						"embed" : 0,
 						"autowatch" : 1
@@ -82,14 +116,35 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
+					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-12", 0 ]
 				}
 
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "4-max-changeipport.mjs",
+				"name" : "5-max-attach-detach.mjs",
 				"bootpath" : "~/Github/soundworks-max/testsoundworksmax/src/clients",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",

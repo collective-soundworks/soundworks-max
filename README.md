@@ -15,11 +15,10 @@ What we still need to do in to document well all functionalities and support bet
 ## Documented features
 - Connection status with server
 - Change ip and port
-- Attach and detach to a state
+- Attach and detach to a state, ask for parameter definition
 - Send message in key-value format
 - Send message in dict format
 - Ask for current values
-- Ask for schema definition
 - Get updates and values as message
 - Get updates and values as dict
 - Get and set "event" type as bang
@@ -39,7 +38,10 @@ Bug : is there a function to monitor disconnection of the server ? (not working 
 Seems to work for now, with hardcoding load config stuff. We will probably have to test it with corrected version.  
 
 5. Attach and detach from a state
+OK  
 
+6. Send messages
+create a lib with nodeSanitizeInput function, needed to easily pass messages to soundworks without troubles.  
 
 ## Bugs and weird behaviors
 From Max documentation : If you're loading a JavaScript module (.mjs file) you can use top-level await, and loadend will work as expected.  
