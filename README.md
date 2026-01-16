@@ -52,7 +52,8 @@ js```const config = loadConfig(process.env.ENV, import.meta.url);```
 
 Workaround : hard code config
 
-3. Launcher.execute
+3. Launcher.execute  
+
 js```launcher.execute(bootstrap, {
   numClients: process.env.EMULATE ? parseInt(process.env.EMULATE) : 1,
   moduleURL: import.meta.url,
