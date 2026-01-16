@@ -53,12 +53,10 @@ js```const config = loadConfig(process.env.ENV, import.meta.url);```
 Workaround : hard code config
 
 3. Launcher.execute
-js```
-launcher.execute(bootstrap, {
+js```launcher.execute(bootstrap, {
   numClients: process.env.EMULATE ? parseInt(process.env.EMULATE) : 1,
   moduleURL: import.meta.url,
-});
-```  
+});```  
 This is great executed and we can see `[launcher][client max] connected`
 Nevertheless when calling a Max function (in our example Max.post to monitor connected status in Max console), Max throw this error
 ![image](screenshots/buglauncherExecute.png)
