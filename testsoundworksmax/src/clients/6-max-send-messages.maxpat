@@ -39,12 +39,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-26",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "dictionary" ],
-					"patching_rect" : [ 494.0, 77.0, 135.0, 22.0 ],
-					"text" : "dict.pack volume: mute:"
+					"patching_rect" : [ 494.0, 77.0, 138.0, 35.0 ],
+					"text" : "dict.pack volume: mute: @triggers -1"
 				}
 
 			}
@@ -80,7 +81,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 267.0, 77.0, 100.0, 22.0 ],
-					"presentation_linecount" : 3,
 					"text" : "message etienne"
 				}
 
@@ -200,8 +200,6 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
-						"node_bin_path" : "",
-						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 76.0, 179.0, 1000.0, 698.0 ],
+		"rect" : [ 83.0, 364.0, 644.0, 770.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -20,7 +20,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 19.0, 67.0, 172.0, 172.0 ]
+					"patching_rect" : [ 19.0, 238.0, 172.0, 172.0 ]
 				}
 
 			}
@@ -40,7 +40,7 @@
 					"numoutlets" : 1,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 326.0, 53.0, 400.0, 220.0 ],
+					"patching_rect" : [ 326.0, 224.0, 400.0, 220.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -52,8 +52,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 19.0, 14.0, 350.0, 22.0 ],
+					"patching_rect" : [ 19.0, 185.0, 419.0, 22.0 ],
 					"saved_object_attributes" : 					{
+						"args" : [ "ip,", "port" ],
 						"autostart" : 1,
 						"defer" : 0,
 						"node_bin_path" : "",
@@ -61,9 +62,9 @@
 						"watch" : 1
 					}
 ,
-					"text" : "node.script 1-max-connected-status.mjs @watch 1 @autostart 1",
+					"text" : "node.script 1-max-connected-status.js @watch 1 @autostart 1 @args ip\\, port",
 					"textfile" : 					{
-						"filename" : "1-max-connected-status.mjs",
+						"filename" : "1-max-connected-status.js",
 						"flags" : 0,
 						"embed" : 0,
 						"autowatch" : 1
@@ -89,7 +90,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "1-max-connected-status.mjs",
+				"name" : "1-max-connected-status.js",
 				"bootpath" : "~/Github/soundworks-max/testsoundworksmax/src/clients",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",

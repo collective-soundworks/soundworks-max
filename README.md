@@ -12,70 +12,85 @@ What we still need to do in to document well all functionalities and support bet
 3. List all "bugs" and weird behaviors
 4. Create soundworks tutorial with a Max (& Ableton Live) use case  
 
-## Documented features
-- Connection status with server
-- Change ip and port
-- Attach and detach to a state, ask for parameter definition
-- Send message in key-value format
-- Send message in dict format
-- Ask for current values
-- Get updates and values as message
-- Get updates and values as dict
-- Get and set "event" type as bang
-- Work with collections
 
-## Examples on this repo
-1. Connected status
-This example shows a toggle button on Max indicating if the server is connected or not.
-We need to be sure :
-  1. Connect client, then connect server
-  2. Connect server, then connect client
-  3. Disconnect client, then server
-  4. Disconnect server, then client
-Bug : is there a function to monitor disconnection of the server ? (not working correctly for now)
+## Arborescence idéale entre max et soundworks
 
-4. Change IP and port 
-Seems to work for now, with hardcoding load config stuff. We will probably have to test it with corrected version.  
+```
+project
+  /*.maxpat
+  max.js
+  /max/*.maxpat (ou)
+  /soundworks
+    /src
+    /config
+    /etc.
+```
 
-5. Attach and detach from a state
-OK  
+## Problèmes & Possibles solutions
 
-6. Send messages
-create a lib with nodeSanitizeInput function, needed to easily pass messages to soundworks without troubles.  
+### Bugs du `loadConfig`
 
-## Bugs and weird behaviors
+1. `const config = `, c'est très sale
+2. Mettre le dossier soundworks dans le path
+Mais, le `process.cwd()` est au niveau du fichier js dans ce cas
+do on peut `process.changeDir` mais le boootstrap lance 2 fois le fichier du coup c'est incohérent
+3. Mattre le maxpat à la racine du projet soundworks, et faire un lien symbolique entre le src/client/bla.js et ./bla.js
+
+Et donc les trois sont nulles et ne fonctionnent dans notre arborescence idéale
+
+### Bugs du `bootstrap`
+
+1. Il sert pour le `npm run dev` pour relancer le client automatiquement tout ça, mais dans max il y a une case watch dans le `node.script`
+2. Il sert aussi à `EMULATE=10`
+
+Tout ça ne sert à rien dans Max
+
+En plus le bootstrap, pour une raison inexpliqué nous empêche de faire des `addHandler`
+
+Donc: le bootstrap nous fait chier, autant l'enlever
+
+### Module JS
 From Max documentation : If you're loading a JavaScript module (.mjs file) you can use top-level await, and loadend will work as expected.  
 All examples below will use mjs file format.
+(à priori ça marche en .js)
 
-### Differences between node client and max client
-2. Load Config  
-`const config = loadConfig(process.env.ENV, import.meta.url);`
-![image](screenshots/bugloadConfig.png)
+### Solution
 
-Workaround : hard code config
+Faire un `npx soundworks --create-client` avec un `target=node` && `template=max` + plus on peut générer le patch correspondant.
 
-3. Launcher.execute  
+### deux niveaux d'abstraction
+1. Juste un client soundworks qui tourne dans un node.script -> cf. `Problèmes & Possibles solutions`
+2. Partager les représentations de données côté Max -> `nodeSanitizeInput`
 
-```js
-launcher.execute(bootstrap, {
-  numClients: process.env.EMULATE ? parseInt(process.env.EMULATE) : 1,
-  moduleURL: import.meta.url,
-});
-```
-This is great executed and we can see `[launcher][client max] connected`
-Nevertheless when calling a Max function (in our example Max.post to monitor connected status in Max console), Max throw this error
-![image](screenshots/buglauncherExecute.png)
+### Arborescence
+On fait vivre les patchs max client soundworks à côté des patchs max, dans le projet du concert.
 
-Workaround : move everything inside bootstrap on top level.
+### Niveau 1
+Tutoriel : Setting up Max client environment.
+Juste un client soundworks qui tourne dans un node.script  
+Envoyer un bang à node, et faire un console.log dans le server.
+Récupérer l'info que le client est connecté dans Max.
 
-## Tutorials
+### Changer l'IP et le port ?
+
+npx soundworks --create-client
+
+target=node
+template=max
+dirname of the patch
+create `${client}.js` with `const config = loadConfig('../../my-app/config/env-default.yaml');` and `${client}.maxpat`
 
 
+## Documented features (for later)
+- Connection status with server (niveau 1)
+- Change ip and port (niveau 1)
+- Attach and detach to a state, ask for parameter definition (niveau 2)
+- Send message in key-value format (niveau 2)
+- Send message in dict format (niveau 2)
+- Ask for current values (niveau 2)
+- Get updates and values as message (niveau 2)
+- Get updates and values as dict (niveau 2)
+- Get and set "event" type as bang (niveau 2)
+- Work with collections (niveau 2)
 
-## Credits
 
-[https://soundworks.dev/credits.html](https://soundworks.dev/credits.html)
-
-## License
-
-[BSD-3-Clause](./LICENSE)
